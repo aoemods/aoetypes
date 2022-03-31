@@ -24,15 +24,24 @@ const parseFunction = (functionNode: HTMLElement): TypeSourceFunction => {
     }
 
     const parameters: TypeSourceParameter[] = []
+    let optional = undefined
     for (let i = 2; i + 1 < functionNode.childNodes.length; i += 2) {
         const type = extractText(functionNode.childNodes[i].text)
         const name = extractText(functionNode.childNodes[i + 1].text)
+        if (functionNode.childNodes[i + 1].text.toLowerCase().includes("opt_")) {
+            optional = true
+        }
 
         if (type && name) {
             parameters.push({
                 type,
                 name,
+                optional,
             })
+        }
+
+        if (functionNode.childNodes[i + 1].text.includes("[")) {
+            optional = true
         }
     }
 

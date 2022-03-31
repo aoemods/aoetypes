@@ -3,6 +3,7 @@ export type TypeSourceType = string
 export type TypeSourceParameter = {
     name: string
     type: TypeSourceType
+    optional?: boolean
 }
 
 export type TypeSourceFunction = {

@@ -2,21 +2,27 @@ import * as dtsDom from "dts-dom"
 import fs from "fs/promises"
 import { makeScarDocsEnumTypeSource, makeScarDocsFunctionTypeSource } from "./type-sources/scardocs.js"
 import { TypeSourceFunction, TypeSourceType } from "./type-sources/types.js"
+import * as overrides from "./overrides.js"
 
 const aoe4FunctionsHtml = await fs.readFile("data/aoe4-scardocs/function_list.htm", "utf-8")
 const aoe4EnumsHtml = await fs.readFile("data/aoe4-scardocs/enum_list.htm", "utf-8")
 const coh2FunctionsHtml = await fs.readFile("data/coh2-scardocs/function_list.htm", "utf-8")
 
-const parsedFunctions = makeScarDocsFunctionTypeSource(aoe4FunctionsHtml).getFunctions()
-const parsedEnums = makeScarDocsEnumTypeSource(aoe4EnumsHtml).getEnums()
+const aoe4Functions = makeScarDocsFunctionTypeSource(aoe4FunctionsHtml).getFunctions()
+const aoe4Enums = makeScarDocsEnumTypeSource(aoe4EnumsHtml).getEnums()
 const coh2Functions = makeScarDocsFunctionTypeSource(coh2FunctionsHtml).getFunctions()
+const functionOverrides = overrides.functions
 
 const coh2FunctionMap = Object.fromEntries(coh2Functions.map(fn => [fn.name, fn]))
+const overrideFunctionMap = Object.fromEntries(functionOverrides.map(fn => [fn.name, fn]))
 
-for (let i = 0; i < parsedFunctions.length; i++) {
-    const fnName = parsedFunctions[i].name
+for (let i = 0; i < aoe4Functions.length; i++) {
+    const fnName = aoe4Functions[i].name
     if (fnName in coh2FunctionMap) {
-        parsedFunctions[i] = coh2FunctionMap[fnName]
+        aoe4Functions[i] = coh2FunctionMap[fnName]
+    }
+    if (fnName in overrideFunctionMap) {
+        aoe4Functions[i] = overrideFunctionMap[fnName]
     }
 }
 
@@ -40,10 +46,12 @@ function potentiallyRenameType(type: TypeSourceType): TypeSourceType {
 
 const typeMap: Record<TypeSourceType, dtsDom.Type> = {
     "any": dtsDom.type.any,
+    "nil": dtsDom.type.undefined,
 
     "string": dtsDom.type.string,
     "char": dtsDom.type.string,
     "std::string": dtsDom.type.string,
+    "locstring": dtsDom.type.string,
 
     "number": dtsDom.type.number,
     "real": dtsDom.type.number,
@@ -59,6 +67,8 @@ const typeMap: Record<TypeSourceType, dtsDom.Type> = {
     "boolean": dtsDom.type.boolean,
     "bool": dtsDom.type.boolean,
 
+    "player": { kind: "name", name: "Player", typeArguments: [] },
+
     "position": { kind: "name", name: "Position", typeArguments: [] },
     "scarposition": { kind: "name", name: "Position", typeArguments: [] },
     "scarpos": { kind: "name", name: "Position", typeArguments: [] },
@@ -68,8 +78,6 @@ const typeMap: Record<TypeSourceType, dtsDom.Type> = {
     ["Position, if y-height is nil, y-height = ground height, terrain ground or walkable".toLowerCase()]: { kind: "name", name: "Position", typeArguments: [] },
 
     "entity": { kind: "name", name: "EntityID", typeArguments: [] },
-
-    "player": { kind: "name", name: "PlayerID", typeArguments: [] },
 
     ["EntityID or SquadID id of the destination".toLowerCase()]: dtsDom.create.union([
         { kind: "name", name: "EntityID", typeArguments: [] },
@@ -87,9 +95,9 @@ const typeMap: Record<TypeSourceType, dtsDom.Type> = {
 
 const ignoreTypeDeclarations: Set<string> = new Set<string>([
     ...Object.keys(typeMap),
-    ...parsedEnums.map(e => e.name.toLowerCase()),
+    ...aoe4Enums.map(e => e.name.toLowerCase()),
     "any",
-    "playerid",
+    "player",
     "entityid",
     "locstring",
 ])
@@ -141,7 +149,7 @@ const createFunctionDeclaration = (fn: TypeSourceFunction): dtsDom.FunctionDecla
             paramName = `${origParamName}${n++}`
         }
         const param = dtsDom.create.parameter(paramName, createTypeReference(fnParam.type))
-        if (optional || paramName.toLocaleLowerCase().startsWith("opt_")) {
+        if (optional || fnParam.optional === true || paramName.toLocaleLowerCase().startsWith("opt_")) {
             param.flags = dtsDom.ParameterFlags.Optional
             optional = true
         }
@@ -159,7 +167,7 @@ const createFunctionDeclaration = (fn: TypeSourceFunction): dtsDom.FunctionDecla
 }
 
 const members: dtsDom.TopLevelDeclaration[] = []
-parsedFunctions.map(createFunctionDeclaration).forEach(fn => members.push(fn))
+aoe4Functions.map(createFunctionDeclaration).forEach(fn => members.push(fn))
 
 const createTypeDeclaration = (type: TypeSourceType): dtsDom.ModuleMember[] => {
     type = potentiallyRenameType(type)
@@ -189,8 +197,8 @@ const getExtraTypeDeclarations = (): dtsDom.TopLevelDeclaration[] => {
     entityIdInterface.members.push(dtsDom.create.property("EntityID", "number"))
     extra.push(entityIdInterface)
 
-    const playerIdInterface = dtsDom.create.interface("PlayerID")
-    playerIdInterface.members.push(dtsDom.create.property("PlayerID", "number"))
+    const playerIdInterface = dtsDom.create.interface("Player")
+    playerIdInterface.members.push(dtsDom.create.property("id", { kind: "name", name: "PlayerID", typeArguments: [] }))
     extra.push(playerIdInterface)
 
     const locStringInterface = dtsDom.create.interface("LocString")
@@ -201,9 +209,9 @@ const getExtraTypeDeclarations = (): dtsDom.TopLevelDeclaration[] => {
 }
 
 const getTypeDeclarations = (): dtsDom.TopLevelDeclaration[] => {
-    const enumNames = new Set<string>(parsedEnums.map(e => e.name.toLowerCase()))
+    const enumNames = new Set<string>(aoe4Enums.map(e => e.name.toLowerCase()))
 
-    const types = new Set<string>(parsedFunctions.flatMap(fn => [
+    const types = new Set<string>(aoe4Functions.flatMap(fn => [
         fn.returnType,
         ...fn.parameters.map(param => param.type).filter(t => !(t.toLowerCase() in enumNames)),
     ]))
@@ -211,7 +219,7 @@ const getTypeDeclarations = (): dtsDom.TopLevelDeclaration[] => {
 }
 
 const getEnumDeclarations = (): dtsDom.TopLevelDeclaration[] => {
-    return parsedEnums.map(e => {
+    return aoe4Enums.map(e => {
         const enumDecl = dtsDom.create.enum(e.name)
         const addedMembers = new Set<string>()
         for (const enumMember of e.members) {
