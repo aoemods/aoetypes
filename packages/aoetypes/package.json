@@ -1,0 +1,25 @@
+{
+    "name": "@aoemods/aoetypes",
+    "version": "0.1.0",
+    "description": "TypeScript definitions for Age of Empires 4 Lua API",
+    "keywords": [
+        "aoe",
+        "aoe4",
+        "age-of-empires-iv",
+        "lua",
+        "types",
+        "typescript"
+    ],
+    "homepage": "https://github.com/aoemods/aoetypes",
+    "bugs": "https://github.com/aoemods/aoetypes/issues",
+    "repository": "https://github.com/aoemods/aoetypes/tree/master/packages/aoetypes",
+    "license": "MIT",
+    "author": "Robin Kahlow",
+    "files": [
+        "index.d.ts",
+        "types/**/*.d.ts"
+    ],
+    "dependencies": {
+        "lua-types": "^2.10.1"
+    }
+}
