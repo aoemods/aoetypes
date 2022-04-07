@@ -1327,7 +1327,7 @@ declare function Missionomatic_FlipLeader(): any;
  * Finds the player data table for one of the players in the mission, identifying them from a String ("descriptor"), PlayerID, Squad/SGroup or Entity/EGroup
  * If you pass in a PlayerTable that has already been resolved it returns it straight back
  */
-declare function MissionOMatic_GetPlayer(identifier: string | PlayerID | Object): PlayerTable;
+declare function MissionOMatic_GetPlayer(identifier: string | PlayerID | any): PlayerTable;
 
 /**
  * Get the relationship between two players in the mission. These players can be referenced in any way that MissionOMatic_GetPlayer() can process.
@@ -3914,7 +3914,7 @@ declare function PrintOnScreen(text: string): void;
  * Prints the given message on the screen. If you would like to print multiple messages without clearing them you can
  * assign them unique ID's. Must use PrintOnScreen_Remove(id) to remove each instance
  */
-declare function PrintOnScreen_Add(object: Object, id: string, style?: string): PrintOnScreenID;
+declare function PrintOnScreen_Add(object: any, id: string, style?: string): PrintOnScreenID;
 
 /**
  * Removes the PrintOnScreen text of a given ID
@@ -4549,17 +4549,17 @@ declare function SyncWeapon_SetAutoTargetting(weapon: SyncWeaponID, hardpoint: s
 /**
  * Creates a third table that points to every element in table1 and table2, in that order
  */
-declare function Table_Concatenate(table1: LuaTable, table2: LuaTable): LuaTable;
+declare function Table_Concatenate(table1: any, table2: any): any;
 
 /**
  * Checks if a table contains the specified item
  */
-declare function Table_Contains(OriginalTable: LuaTable, item: Item): boolean;
+declare function Table_Contains(OriginalTable: any, item: Item): boolean;
 
 /**
  * Copies the contents of the original table returns a new table with the contents of that table
  */
-declare function Table_Copy(OriginalTable: LuaTable): LuaTable;
+declare function Table_Copy(OriginalTable: any): any;
 
 /**
  * Updates myTable by applying default values from the myDefaults table for any items that are not explicitly declared already
@@ -4581,7 +4581,7 @@ declare function Table_MakeReadOnly(table: any, OPT_recursive?: boolean, OPT_err
 /**
  * Finds the first instance of a given item in the given table and removes it
  */
-declare function Table_RemoveFirstItem(table: any, toRemove: Object): void;
+declare function Table_RemoveFirstItem(table: any, toRemove: any): void;
 
 /**
  * Reverse the order of items in a table.
@@ -7509,12 +7509,12 @@ declare function SGroup_SplitUnderCap(sgroup: SGroupID, maxSGroupSize: number): 
 /**
  * Checks if a table contains the specified item
  */
-declare function Table_Contains(OriginalTable: LuaTable, item: Item): boolean;
+declare function Table_Contains(OriginalTable: any, item: Item): boolean;
 
 /**
  * Copies the contents of the original table returns a new table with the contents of that table
  */
-declare function Table_Copy(OriginalTable: LuaTable): LuaTable;
+declare function Table_Copy(OriginalTable: any): any;
 
 /**
  * Returns a random item from a table. You can return multiple items (without duplicates) by passing in an optional number parameter.
@@ -9934,19 +9934,19 @@ declare function FOW_UnRevealTerritory(player: PlayerID, sectorID: number): void
  * Returns a table of egroups NOT in the world builder
  * See Marker_GetTable for more info on format parameter
  */
-declare function EGroup_CreateTable(format: string, size: number): LuaTable;
+declare function EGroup_CreateTable(format: string, size: number): any;
 
 /**
  * Returns a table of egroups from the world builder
  * See Marker_GetTable for more info on format parameter
  */
-declare function EGroup_GetWBTable(format: string): LuaTable;
+declare function EGroup_GetWBTable(format: string): any;
 
 /**
  * Returns a fixed size table of markers from the world builder.  Markers that do not
  * exist in the WB, will be nil in the table.  This is why we call it 'non-sequential'
  */
-declare function Marker_GetNonSequentialTable(format: string, size: number): LuaTable;
+declare function Marker_GetNonSequentialTable(format: string, size: number): any;
 
 /**
  * Returns a table of markers from the world builder. Creates as many as it finds
@@ -9954,19 +9954,19 @@ declare function Marker_GetNonSequentialTable(format: string, size: number): Lua
  * mkr_table2 = Marker_GetTable( 'mkr_%02d' )  -- creates a table with 3 markers named 'mkr_01', 'mkr_02', 'mkr_03' (and so on) from the WB\n\n
  * mkr_table3 = Marker_GetTable( 'mkr_%03d_patrol' )  -- creates a table with 3 markers named 'mkr_001_patrol', 'mkr_002_patrol' (and so on) from the WB\n\n
  */
-declare function Marker_GetTable(format: string): LuaTable;
+declare function Marker_GetTable(format: string): any;
 
 /**
  * Returns a table of sgroups NOT in the world builder
  * See Marker_GetTable for more info on format parameter
  */
-declare function SGroup_CreateTable(format: string, size: number): LuaTable;
+declare function SGroup_CreateTable(format: string, size: number): any;
 
 /**
  * Returns a table of sgroups from the world builder
  * See Marker_GetTable for more info on format parameter
  */
-declare function SGroup_GetWBTable(format: string): LuaTable;
+declare function SGroup_GetWBTable(format: string): any;
 
 /**
  * Returns all ScarMarkers from the Mission Editor with the given name. If you don't care about the type, pass in an empty string ( "" )
@@ -10472,69 +10472,69 @@ declare function NIS_StoreCurrentCameraPos(): any;
  * Adds a map highlight around a specific point
  * AreaType is AT_CIRCLE (the default) or AT_SQUARE. Color is a table with three values for red, green and blue - i.e. {255, 0, 0}.
  */
-declare function Objective_AddAreaHighlight(objTable: LuaTable, pos: MARKER | Position | Group, areatype?: AreaType, scale?: number, color?: any, alpha?: number): ElementID;
+declare function Objective_AddAreaHighlight(objTable: any, pos: MARKER | Position | Group, areatype?: AreaType, scale?: number, color?: any, alpha?: number): ElementID;
 
 /**
  * Adds a map highlight around a specific point
  * AreaType is AT_CIRCLE (the default) or AT_SQUARE. Color is a table with three values for red, green and blue - i.e. {255, 0, 0}.
  */
-declare function Objective_AddAreaHighlight(objTable: LuaTable, pos: MARKER | Position | Group, areatype?: AreaType, scale?: number, color?: any, alpha?: number): ElementID;
+declare function Objective_AddAreaHighlight(objTable: any, pos: MARKER | Position | Group, areatype?: AreaType, scale?: number, color?: any, alpha?: number): ElementID;
 
 /**
  * Adds a visual splat on the ground in the world around a certain position, returning the ID
  * The reticule blueprint (the circle on the ground) and the hintpoint template (the arrow) are by defualt taken from the objective type, but you can override them or set them to false to turn that element off.
  */
-declare function Objective_AddGroundReticule(objTable: LuaTable, position: MARKER | Position, size?: number, reticuleBlueprint?: BP, hintpointTemplate?: string): ReticuleID;
+declare function Objective_AddGroundReticule(objTable: any, position: MARKER | Position, size?: number, reticuleBlueprint?: BP, hintpointTemplate?: string): ReticuleID;
 
 /**
  * Adds a visual splat on the ground in the world around a certain position, returning the ID
  * The reticule blueprint (the circle on the ground) and the hintpoint template (the arrow) are by defualt taken from the objective type, but you can override them or set them to false to turn that element off.
  */
-declare function Objective_AddGroundReticule(objTable: LuaTable, position: MARKER | Position, size?: number, reticuleBlueprint?: BP, hintpointTemplate?: string): ReticuleID;
+declare function Objective_AddGroundReticule(objTable: any, position: MARKER | Position, size?: number, reticuleBlueprint?: BP, hintpointTemplate?: string): ReticuleID;
 
 /**
  * Adds a Healthbar tied to a squad or entity at a location.  Will update the health bar as the unit's health fluctuates.  Can be removed with Objective_RemoveHealthBar or completing/failing the objective
  * If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_AddHealthBar(objTable: LuaTable, group: Squad | SGROUP | EntityID | EGroup, onlyWhenDamaged?: boolean, barIndex?: number, text?: string | LocID): ElementID;
+declare function Objective_AddHealthBar(objTable: any, group: Squad | SGROUP | EntityID | EGroup, onlyWhenDamaged?: boolean, barIndex?: number, text?: string | LocID): ElementID;
 
 /**
  * Adds a Healthbar tied to a squad or entity at a location.  Will update the health bar as the unit's health fluctuates.  Can be removed with Objective_RemoveHealthBar or completing/failing the objective
  * If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_AddHealthBar(objTable: LuaTable, group: Squad | SGROUP | EntityID | EGroup, onlyWhenDamaged?: boolean, barIndex?: number, text?: string | LocID): ElementID;
+declare function Objective_AddHealthBar(objTable: any, group: Squad | SGROUP | EntityID | EGroup, onlyWhenDamaged?: boolean, barIndex?: number, text?: string | LocID): ElementID;
 
 /**
  * Adds a tactical map ping to an objective
  */
-declare function Objective_AddPing(objectiveTable: LuaTable, pos: Position): PingID;
+declare function Objective_AddPing(objectiveTable: any, pos: Position): PingID;
 
 /**
  * Adds a tactical map ping to an objective
  */
-declare function Objective_AddPing(objectiveTable: LuaTable, pos: Position): PingID;
+declare function Objective_AddPing(objectiveTable: any, pos: Position): PingID;
 
 /**
  * Adds a Timer bar for objective timers, which is automatically updated. The bar can be removed with Objective_RemoveTimerBar or by completing/failing the objective.
  * Requires a timer to have been started with Objective_StartTimer to work. If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_AddTimerBar(objTable: LuaTable, barIndex?: number, text?: string | LocID): ElementID;
+declare function Objective_AddTimerBar(objTable: any, barIndex?: number, text?: string | LocID): ElementID;
 
 /**
  * Adds a Timer bar for objective timers, which is automatically updated. The bar can be removed with Objective_RemoveTimerBar or by completing/failing the objective.
  * Requires a timer to have been started with Objective_StartTimer to work. If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_AddTimerBar(objTable: LuaTable, barIndex?: number, text?: string | LocID): ElementID;
+declare function Objective_AddTimerBar(objTable: any, barIndex?: number, text?: string | LocID): ElementID;
 
 /**
  * Adds multiple UI elements on one position. 'pos' can be group/entity/squad/marker. worldArrow adds a 3D arrow which points to the thing in the world. hintpointText adds a hint point that appears on the thing when moused over. If you're adding an arrow or a hintpoint, this thing will be among those potentially pointed to by the 2D HUD arrow. objectiveArrowOffset is an offset applied to the arrow's position (you can specify a height offset or a 3D position offset).
  */
-declare function Objective_AddUIElements(objTable: LuaTable, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number | Position, objectiveArrowFacing?: EntityID | Squad | Position, actionType?: HintPointActionType, iconName?: string, templateName?: string): ElementID;
+declare function Objective_AddUIElements(objTable: any, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number | Position, objectiveArrowFacing?: EntityID | Squad | Position, actionType?: HintPointActionType, iconName?: string, templateName?: string): ElementID;
 
 /**
  * Adds multiple UI elements on one position. 'pos' can be group/entity/squad/marker. worldArrow adds a 3D arrow which points to the thing in the world. hintpointText adds a hint point that appears on the thing when moused over. If you're adding an arrow or a hintpoint, this thing will be among those potentially pointed to by the 2D HUD arrow. objectiveArrowOffset is an offset applied to the arrow's position (you can specify a height offset or a 3D position offset).
  */
-declare function Objective_AddUIElements(objTable: LuaTable, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number | Position, objectiveArrowFacing?: EntityID | Squad | Position, actionType?: HintPointActionType, iconName?: string, templateName?: string): ElementID;
+declare function Objective_AddUIElements(objTable: any, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number | Position, objectiveArrowFacing?: EntityID | Squad | Position, actionType?: HintPointActionType, iconName?: string, templateName?: string): ElementID;
 
 /**
  * Returns whether all primary objectives have been completed.
@@ -10549,194 +10549,194 @@ declare function Objective_AreAllPrimaryObjectivesComplete(): boolean;
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are complete
  */
-declare function Objective_AreSubObjectivesComplete(objTable: LuaTable, all: boolean): boolean;
+declare function Objective_AreSubObjectivesComplete(objTable: any, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are complete
  */
-declare function Objective_AreSubObjectivesComplete(objTable: LuaTable, all: boolean): boolean;
+declare function Objective_AreSubObjectivesComplete(objTable: any, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are expired
  */
-declare function Objective_AreSubObjectivesExpired(objTable: LuaTable, all: boolean): boolean;
+declare function Objective_AreSubObjectivesExpired(objTable: any, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are failed
  */
-declare function Objective_AreSubObjectivesFailed(objTable: LuaTable, all: boolean): boolean;
+declare function Objective_AreSubObjectivesFailed(objTable: any, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are failed
  */
-declare function Objective_AreSubObjectivesFailed(objTable: LuaTable, all: boolean): boolean;
+declare function Objective_AreSubObjectivesFailed(objTable: any, all: boolean): boolean;
 
 /**
  * Bring attention to some UI elements by blinking them. This causes the hintpoint and the off-screen arrow to blink, but leaves the minimap ping and other elements constant.
  */
-declare function Objective_BlinkUIElements(objTable: LuaTable, elementID: number): void;
+declare function Objective_BlinkUIElements(objTable: any, elementID: number): void;
 
 /**
  * Bring attention to some UI elements by blinking them. This causes the hintpoint and the off-screen arrow to blink, but leaves the minimap ping and other elements constant.
  */
-declare function Objective_BlinkUIElements(objTable: LuaTable, elementID: number): void;
+declare function Objective_BlinkUIElements(objTable: any, elementID: number): void;
 
 /**
  * Completes an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as complete but stays visible until the parent objective is finished)
  * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Complete event are played (default: true).
  */
-declare function Objective_Complete(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Complete(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Completes an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as complete but stays visible until the parent objective is finished)
  * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Complete event are played (default: true).
  */
-declare function Objective_Complete(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Complete(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Expires an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as expired but stays visible until the parent objective is finished)
  * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Expire event are played (default: true).
  */
-declare function Objective_Expire(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Expire(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Fails an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as failed but stays visible until the parent objective is finished)
  * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Fail event are played (default: true).
  */
-declare function Objective_Fail(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Fail(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Fails an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as failed but stays visible until the parent objective is finished)
  * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Fail event are played (default: true).
  */
-declare function Objective_Fail(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Fail(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Returns the current count associated with this objective.
  */
-declare function Objective_GetCounter(objTable: LuaTable): number;
+declare function Objective_GetCounter(objTable: any): number;
 
 /**
  * Returns the current count associated with this objective.
  */
-declare function Objective_GetCounter(objTable: LuaTable): number;
+declare function Objective_GetCounter(objTable: any): number;
 
 /**
  * Returns a table of all sub-objectives of the given objective
  */
-declare function Objective_GetSubObjectives(objTable: LuaTable): LuaTable;
+declare function Objective_GetSubObjectives(objTable: any): any;
 
 /**
  * Returns a table of all sub-objectives of the given objective
  */
-declare function Objective_GetSubObjectives(objTable: LuaTable): LuaTable;
+declare function Objective_GetSubObjectives(objTable: any): any;
 
 /**
  * Returns the amount of seconds on the timer (time remaining or time elapsed, based on the type of timer used)
  */
-declare function Objective_GetTimerSeconds(objTable: LuaTable): number;
+declare function Objective_GetTimerSeconds(objTable: any): number;
 
 /**
  * Returns the amount of seconds on the timer (time remaining or time elapsed, based on the type of timer used)
  */
-declare function Objective_GetTimerSeconds(objTable: LuaTable): number;
+declare function Objective_GetTimerSeconds(objTable: any): number;
 
 /**
  * Increases the counter that is associated with this objective in the UI. You can provide an amount to increase by.
  */
-declare function Objective_IncreaseCounter(objTable: LuaTable, amount?: number): void;
+declare function Objective_IncreaseCounter(objTable: any, amount?: number): void;
 
 /**
  * Increases the counter that is associated with this objective in the UI. You can provide an amount to increase by.
  */
-declare function Objective_IncreaseCounter(objTable: LuaTable, amount?: number): void;
+declare function Objective_IncreaseCounter(objTable: any, amount?: number): void;
 
 /**
  * Returns whether an objective is complete
  */
-declare function Objective_IsComplete(objTable: LuaTable): boolean;
+declare function Objective_IsComplete(objTable: any): boolean;
 
 /**
  * Returns whether an objective is complete
  */
-declare function Objective_IsComplete(objTable: LuaTable): boolean;
+declare function Objective_IsComplete(objTable: any): boolean;
 
 /**
  * Returns true if a counter has been set for this objective
  */
-declare function Objective_IsCounterSet(objTable: LuaTable): boolean;
+declare function Objective_IsCounterSet(objTable: any): boolean;
 
 /**
  * Returns true if a counter has been set for this objective
  */
-declare function Objective_IsCounterSet(objTable: LuaTable): boolean;
+declare function Objective_IsCounterSet(objTable: any): boolean;
 
 /**
  * Returns whether an objective is expired
  */
-declare function Objective_IsExpired(objTable: LuaTable): boolean;
+declare function Objective_IsExpired(objTable: any): boolean;
 
 /**
  * Returns whether an objective is failed
  */
-declare function Objective_IsFailed(objTable: LuaTable): boolean;
+declare function Objective_IsFailed(objTable: any): boolean;
 
 /**
  * Returns whether an objective is failed
  */
-declare function Objective_IsFailed(objTable: LuaTable): boolean;
+declare function Objective_IsFailed(objTable: any): boolean;
 
 /**
  * Returns whether an objective has been started. Completed and failed / expired objectives will also return true.
  */
-declare function Objective_IsStarted(objTable: LuaTable): boolean;
+declare function Objective_IsStarted(objTable: any): boolean;
 
 /**
  * Returns whether an objective has been started. Completed and failed / expired objectives will also return true.
  */
-declare function Objective_IsStarted(objTable: LuaTable): boolean;
+declare function Objective_IsStarted(objTable: any): boolean;
 
 /**
  * Returns true if a timer has been set for this objective
  */
-declare function Objective_IsTimerSet(objTable: LuaTable): boolean;
+declare function Objective_IsTimerSet(objTable: any): boolean;
 
 /**
  * Returns true if a timer has been set for this objective
  */
-declare function Objective_IsTimerSet(objTable: LuaTable): boolean;
+declare function Objective_IsTimerSet(objTable: any): boolean;
 
 /**
  * Returns whether an objective is visible or not.
  */
-declare function Objective_IsVisible(objTable: LuaTable): boolean;
+declare function Objective_IsVisible(objTable: any): boolean;
 
 /**
  * Returns whether an objective is visible or not.
  */
-declare function Objective_IsVisible(objTable: LuaTable): boolean;
+declare function Objective_IsVisible(objTable: any): boolean;
 
 /**
  * Pauses the objective's timer. If a timer has not been set, it does nothing.
  */
-declare function Objective_PauseTimer(objTable: LuaTable): void;
+declare function Objective_PauseTimer(objTable: any): void;
 
 /**
  * Pauses the objective's timer. If a timer has not been set, it does nothing.
  */
-declare function Objective_PauseTimer(objTable: LuaTable): void;
+declare function Objective_PauseTimer(objTable: any): void;
 
 /**
  * 'Registers' an objective. Wrapper function for Objective_Create with a few other features.
  * Includes pings as defined by the objective table created in the main scar file. You can pass in a team or player, so that the objective only applies to it.
  */
-declare function Objective_Register(objTable: LuaTable, owner?: PlayerID | TeamID): ObjectiveID;
+declare function Objective_Register(objTable: any, owner?: PlayerID | TeamID): ObjectiveID;
 
 /**
  * 'Registers' an objective. Wrapper function for Objective_Create with a few other features.
  * Includes pings as defined by the objective table created in the main scar file. You can pass in a team or player, so that the objective only applies to it.
  */
-declare function Objective_Register(objTable: LuaTable, owner?: PlayerID | TeamID): ObjectiveID;
+declare function Objective_Register(objTable: any, owner?: PlayerID | TeamID): ObjectiveID;
 
 /**
  * Removes an existing ground reticule by its ID
@@ -10751,157 +10751,157 @@ declare function Objective_RemoveGroundReticule(): any;
 /**
  * Removes a health bar monitor
  */
-declare function Objective_RemoveHealthBar(objectiveTable: LuaTable, healthBarID: Element): void;
+declare function Objective_RemoveHealthBar(objectiveTable: any, healthBarID: Element): void;
 
 /**
  * Removes a health bar monitor
  */
-declare function Objective_RemoveHealthBar(objectiveTable: LuaTable, healthBarID: Element): void;
+declare function Objective_RemoveHealthBar(objectiveTable: any, healthBarID: Element): void;
 
 /**
  * Removes a tactical map ping from an objective
  */
-declare function Objective_RemovePing(objectiveTable: LuaTable, PingID: number): void;
+declare function Objective_RemovePing(objectiveTable: any, PingID: number): void;
 
 /**
  * Removes a tactical map ping from an objective
  */
-declare function Objective_RemovePing(objectiveTable: LuaTable, PingID: number): void;
+declare function Objective_RemovePing(objectiveTable: any, PingID: number): void;
 
 /**
  * Remove a progress bar for this objective.
  */
-declare function Objective_RemoveProgressBar(objTable: LuaTable): any;
+declare function Objective_RemoveProgressBar(objTable: any): any;
 
 /**
  * Removes a timer bar monitor
  */
-declare function Objective_RemoveTimerBar(objectiveTable: LuaTable, timerBarID: Element): void;
+declare function Objective_RemoveTimerBar(objectiveTable: any, timerBarID: Element): void;
 
 /**
  * Removes a timer bar monitor
  */
-declare function Objective_RemoveTimerBar(objectiveTable: LuaTable, timerBarID: Element): void;
+declare function Objective_RemoveTimerBar(objectiveTable: any, timerBarID: Element): void;
 
 /**
  * Removes a group of UI elements that were added by Objective_AddUIElements
  */
-declare function Objective_RemoveUIElements(objTable: LuaTable, elementID: number): void;
+declare function Objective_RemoveUIElements(objTable: any, elementID: number): void;
 
 /**
  * Removes a group of UI elements that were added by Objective_AddUIElements
  */
-declare function Objective_RemoveUIElements(objTable: LuaTable, elementID: number): void;
+declare function Objective_RemoveUIElements(objTable: any, elementID: number): void;
 
 /**
  * Resume the objective's timer. If a timer has not been set, it does nothing.
  */
-declare function Objective_ResumeTimer(objTable: LuaTable): void;
+declare function Objective_ResumeTimer(objTable: any): void;
 
 /**
  * Resume the objective's timer. If a timer has not been set, it does nothing.
  */
-declare function Objective_ResumeTimer(objTable: LuaTable): void;
+declare function Objective_ResumeTimer(objTable: any): void;
 
 /**
  * Sets whether this objective always shows detailed text, the HUD arrow, or the hintpoints. There can only be one objective at a time that forces the HUD arrow to show up. If you pass in 'nil' for hud_arrow then its behavior is not affected.
  */
-declare function Objective_SetAlwaysShowDetails(objTable: LuaTable, title: boolean, hud_arrow: boolean, hintpoints: boolean): void;
+declare function Objective_SetAlwaysShowDetails(objTable: any, title: boolean, hud_arrow: boolean, hintpoints: boolean): void;
 
 /**
  * Sets whether this objective always shows detailed text, the HUD arrow, or the hintpoints. There can only be one objective at a time that forces the HUD arrow to show up. If you pass in 'nil' for hud_arrow then its behavior is not affected.
  */
-declare function Objective_SetAlwaysShowDetails(objTable: LuaTable, title: boolean, hud_arrow: boolean, hintpoints: boolean): void;
+declare function Objective_SetAlwaysShowDetails(objTable: any, title: boolean, hud_arrow: boolean, hintpoints: boolean): void;
 
 /**
  * Sets a counter that is associated with this objective in the UI. You can provide a 'maximum' so that it shows up as "1 of 5"
  */
-declare function Objective_SetCounter(objTable: LuaTable, current: number, maximum?: number): void;
+declare function Objective_SetCounter(objTable: any, current: number, maximum?: number): void;
 
 /**
  * Sets a counter that is associated with this objective in the UI. You can provide a 'maximum' so that it shows up as "1 of 5"
  */
-declare function Objective_SetCounter(objTable: LuaTable, current: number, maximum?: number): void;
+declare function Objective_SetCounter(objTable: any, current: number, maximum?: number): void;
 
 /**
  * Show a progress bar for this objective with the given value (which should be a percentage from 0.0 (empty) to 1.0 (full)). This bar can be removed with Objective_RemoveProgressBar or by completing or failing the mission.
  * If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_SetProgressBar(objTable: LuaTable, value: number, OPT_flashing?: boolean, OPT_barIndex?: number, OPT_text?: string): any;
+declare function Objective_SetProgressBar(objTable: any, value: number, OPT_flashing?: boolean, OPT_barIndex?: number, OPT_text?: string): any;
 
 /**
  * Shows or hides an objective from the UI and tactical map
  */
-declare function Objective_Show(objective_table: LuaTable, on: boolean, ShowTitle: boolean): void;
+declare function Objective_Show(objective_table: any, on: boolean, ShowTitle: boolean): void;
 
 /**
  * Shows or hides an objective from the UI and tactical map
  */
-declare function Objective_Show(objective_table: LuaTable, on: boolean, ShowTitle: boolean): void;
+declare function Objective_Show(objective_table: any, on: boolean, ShowTitle: boolean): void;
 
 /**
  * Shows an objective to the player and activates it
  * Includes pings and FOW as defined by the SetupUI() function. The showTitle and playIntel flags let you control whether the titlecard and Intel_Start event are played (default: true).
  */
-declare function Objective_Start(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Start(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Shows an objective to the player and activates it
  * Includes pings and FOW as defined by the SetupUI() function. The showTitle and playIntel flags let you control whether the titlecard and Intel_Start event are played (default: true).
  */
-declare function Objective_Start(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
+declare function Objective_Start(objTable: any, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Starts a timer that is associated with this objective in the UI. Use COUNT_DOWN or COUNT_UP for the 'direction' parameter
  */
-declare function Objective_StartTimer(objTable: LuaTable, direction: number, initialTime?: number, flashThreshold?: number): void;
+declare function Objective_StartTimer(objTable: any, direction: number, initialTime?: number, flashThreshold?: number): void;
 
 /**
  * Starts a timer that is associated with this objective in the UI. Use COUNT_DOWN or COUNT_UP for the 'direction' parameter
  */
-declare function Objective_StartTimer(objTable: LuaTable, direction: number, initialTime?: number, flashThreshold?: number): void;
+declare function Objective_StartTimer(objTable: any, direction: number, initialTime?: number, flashThreshold?: number): void;
 
 /**
  * Stops an objective that is in progress and puts it back into the waiting-to-start state
  * @extdesc
  */
-declare function Objective_Stop(objTable: LuaTable): void;
+declare function Objective_Stop(objTable: any): void;
 
 /**
  * Stops an objective that is in progress and puts it back into the waiting-to-start state
  * @extdesc
  */
-declare function Objective_Stop(objTable: LuaTable): void;
+declare function Objective_Stop(objTable: any): void;
 
 /**
  * Stops the objective's counter. If a counter has not been set, it does nothing.
  */
-declare function Objective_StopCounter(objTable: LuaTable): void;
+declare function Objective_StopCounter(objTable: any): void;
 
 /**
  * Stops the objective's counter. If a counter has not been set, it does nothing.
  */
-declare function Objective_StopCounter(objTable: LuaTable): void;
+declare function Objective_StopCounter(objTable: any): void;
 
 /**
  * Stops the objective's timer. If a timer has not been set, it does nothing.
  */
-declare function Objective_StopTimer(objTable: LuaTable): void;
+declare function Objective_StopTimer(objTable: any): void;
 
 /**
  * Stops the objective's timer. If a timer has not been set, it does nothing.
  */
-declare function Objective_StopTimer(objTable: LuaTable): void;
+declare function Objective_StopTimer(objTable: any): void;
 
 /**
  * Toggles minimap blips on or off.
  */
-declare function Objective_TogglePings(objective_table: LuaTable, on: boolean): void;
+declare function Objective_TogglePings(objective_table: any, on: boolean): void;
 
 /**
  * Toggles minimap blips on or off.
  */
-declare function Objective_TogglePings(objective_table: LuaTable, on: boolean): void;
+declare function Objective_TogglePings(objective_table: any, on: boolean): void;
 
 /**
  * ONLY CALL THIS FROM INSIDE AN OBJECTIVE'S INTEL START / COMPLETE / FAIL EVENT. The objective titlecard will present itself at this point inside the event.
@@ -10919,13 +10919,13 @@ declare function Objective_TriggerTitleCard(): any;
  * Updates the title and description for the objective. If you only want to set one of them, pass in nil for the other
  * Use the immediate flag to make this change happen immediately, bypassing the queue that objective updates normally sit in (i.e. you're updating the objective's title in the middle of its PreStart() function!)
  */
-declare function Objective_UpdateText(objTable: LuaTable, new_title: string, new_description: string, showTitle?: boolean, immediate?: boolean): void;
+declare function Objective_UpdateText(objTable: any, new_title: string, new_description: string, showTitle?: boolean, immediate?: boolean): void;
 
 /**
  * Updates the title and description for the objective. If you only want to set one of them, pass in nil for the other
  * Use the immediate flag to make this change happen immediately, bypassing the queue that objective updates normally sit in (i.e. you're updating the objective's title in the middle of its PreStart() function!)
  */
-declare function Objective_UpdateText(objTable: LuaTable, new_title: string, new_description: string, showTitle?: boolean, immediate?: boolean): void;
+declare function Objective_UpdateText(objTable: any, new_title: string, new_description: string, showTitle?: boolean, immediate?: boolean): void;
 
 /**
  * Add an ability to a player
@@ -11926,7 +11926,7 @@ declare function Prox_EntitiesInProximityOfEntities(egroup1: EGroupID, egroup2: 
  * Minimum is ignored if it is greater than the radius
  * Minimum is the distance from the origin point that is guaranteed to have a return greater than
  */
-declare function Prox_GetRandomPosition(item: Object, radius: number, minimum: number): Position;
+declare function Prox_GetRandomPosition(item: any, radius: number, minimum: number): Position;
 
 /**
  * Returns the distance between a marker and an entity group.  use checktype PROX_SHORTEST, PROX_LONGEST, or PROX_CENTER.
@@ -12602,7 +12602,7 @@ declare function SGroup_FilterSpawned(sgroup: SGroupID, filtertype: number, OPT_
  * @extdesc
  * Optional parameter bEmpty can be set to true, will clear the SGroup if none of the SBPS in the table are found.
  */
-declare function SGroup_FilterThreat(sgroup: SGroupID, tableSBPs: LuaTable, bEmpty?: boolean): void;
+declare function SGroup_FilterThreat(sgroup: SGroupID, tableSBPs: any, bEmpty?: boolean): void;
 
 /**
  * Call a lua function for each item in a group. Function will recieve (groupid, itemindex, itemid) and should return true to break or false to continue.
@@ -13619,7 +13619,7 @@ declare function Squad_GetSlotItemCount(squad: SquadID): number;
 /**
  * Returns a table of SlotItem ID's that this squad currently owns
  */
-declare function Squad_GetSlotItemsTable(squadid: SquadID): LuaTable;
+declare function Squad_GetSlotItemsTable(squadid: SquadID): any;
 
 /**
  * returns the Squad that sent the passed squad in a disable state
@@ -13730,7 +13730,7 @@ declare function Squad_GiveSlotItem(squad: SquadID, pbg: SlotItemBlueprint): voi
 /**
  * Gives all slot items in a table to the squad. The table should come from Squad_GetSlotItemsTable
  */
-declare function Squad_GiveSlotItemsFromTable(squadid: SquadID, itemTable: LuaTable): void;
+declare function Squad_GiveSlotItemsFromTable(squadid: SquadID, itemTable: any): void;
 
 /**
  * Tests to see if a squad has an ability
@@ -16345,7 +16345,7 @@ declare function Util_PrintIf(boolean: any, toPrint: any): undefined;
  * Objects can be anything (Player, SGroup, Int, Table, String, etc.), but this is most useful for Tables
  * This is most useful when used in conjunction with fatal() or bug() to populate the log file.
  */
-declare function Util_PrintObject(obj: Object, max_depth?: number, data_type?: string, print_func?: any): void;
+declare function Util_PrintObject(obj: any, max_depth?: number, data_type?: string, print_func?: any): void;
 
 /**
  * Simply prints out everything in a table including nested tables
@@ -16429,7 +16429,7 @@ declare function Util_StringSplit(str: any, sep: any): any;
  * Checks the first layer of a table and looks for a specified Object, returns true if found.
  * Objects can be anything (Player, SGroup, Int, Table, String, etc.)
  */
-declare function Util_TableContains(targetTable: any, obj: Object): boolean;
+declare function Util_TableContains(targetTable: any, obj: any): boolean;
 
 /**
  * Debug function used to toggle whether or not IntelEvents are played. Only works with -dev parameter
@@ -16558,7 +16558,7 @@ declare function World_GetBlueprintEntities(pbg: ScarEntityPBG, outEntities: EGr
  * Returns the closest object from the table of marker/pos/egroup/sgroup to the closest marker/pos/egroup/sgroup specified
  * The table may mix together objects of different types.
  */
-declare function World_GetClosest(var_: Variable, items: LuaTable | SGROUP | EGroup): Variable;
+declare function World_GetClosest(var_: Variable, items: any | SGROUP | EGroup): Variable;
 
 /**
  * Appends all cover points to an egroup.
@@ -16588,7 +16588,7 @@ declare function World_GetEntitiesWithinTerritorySector(player: PlayerID, egroup
  * Returns the furthest object from the table of marker/pos/egroup/sgroup to the furthest marker/pos/egroup/sgroup specified.
  * The table may mix together objects of different types.
  */
-declare function World_GetFurthest(var_: Variable, items: LuaTable): Variable;
+declare function World_GetFurthest(var_: Variable, items: any): Variable;
 
 /**
  * Return the total number of game (simulation) ticks elapsed.
@@ -16975,12 +16975,12 @@ declare function _QuickDelay(sgroup: SGROUP, enable: boolean, duration?: number,
 /**
  * Removes a reminder rule
  */
-declare function Objective_EndReminder(objectiveTable: LuaTable): void;
+declare function Objective_EndReminder(objectiveTable: any): void;
 
 /**
  * Adds a Reminder for an objective table (will play every X seconds after the previous reminder completes)
  */
-declare function Objective_SetReminder(objTable: LuaTable, intelTable: any, frequency: number): void;
+declare function Objective_SetReminder(objTable: any, intelTable: any, frequency: number): void;
 
 /**
  * Forces all in-process exits to complete instantly.
@@ -17179,7 +17179,7 @@ declare function Create(data: EncounterData, spawnNow?: boolean, spawnStaggered?
 /**
  * Adds a Reminder for an objective table (will play whenever the provided condition evaluates to true)
  */
-declare function Objective_SetConditionalReminder(objTable: LuaTable, intelFunction: any, conditionFunction: any, conditionData: LuaTable): void;
+declare function Objective_SetConditionalReminder(objTable: any, intelFunction: any, conditionFunction: any, conditionData: any): void;
 
 /**
  * Play an NIS. See confluence link below for more info.
@@ -18379,9 +18379,6 @@ declare interface EncounterTable {
 declare interface AiEncounter {
 }
 
-declare interface Object {
-}
-
 declare interface PlayerTable {
 }
 
@@ -18518,9 +18515,6 @@ declare interface Request {
 }
 
 declare interface SyncWeaponID {
-}
-
-declare interface LuaTable {
 }
 
 declare interface Item {
