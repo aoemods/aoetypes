@@ -10,6 +10,7 @@ export type TypeSourceFunction = {
     name: string
     returnType: TypeSourceType
     documentation?: string
+    class?: string
     parameters: TypeSourceParameter[]
 }
 

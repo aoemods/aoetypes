@@ -25,17 +25,17 @@ export const functions: TypeSourceFunction[] = [
                 type: "string",
             },
             {
-                name: "OPT_visibility",
+                name: "visibility",
                 type: "EventCueVisibility",
                 optional: true,
             },
             {
-                name: "OPT_lifetime",
+                name: "lifetime",
                 type: "Real",
                 optional: true,
             },
         ],
-        returnType: "ID",
+        returnType: "Event",
         documentation: "Creates an event cue without a callback (you won't know when it's clicked).",
     },
     {

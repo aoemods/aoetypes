@@ -435,57 +435,57 @@ declare function AITactic_GetTacticPriority(pSquad: SquadID, tacticType: AITacti
  * Get a table of all of the EBPs that match a particular EntityType. You can pass in a table of multiple EntityTypes to get a list EBPs that match ANY of the types listed.
  * If you want a blueprint to match a bunch of EntityTypes at the same time (i.e. AND instead of OR) then those types should be listed together in a sub-table. This function can potentially be quite slow as it has to parse every EBP in the game, so be careful about how you use it.
  */
-declare function BP_GetEntityBlueprintsWithType(types: EntityType): any;
+declare function BP_GetEntityBlueprintsWithType(types: EntityType | any): TableOfEBPs;
 
 /**
  * Get a table of all of the SBPs that match a particular SquadType. You can pass in a table of multiple SquadTypes to get a list SBPs that match ANY of the types listed.
  * If you want a blueprint to match a bunch of SquadTypes at the same time (i.e. AND instead of OR) then those types should be listed together in a sub-table. This function can potentially be quite slow as it has to parse every SBP in the game, so be careful about how you use it.
  */
-declare function BP_GetSquadBlueprintsWithType(types: SquadType): any;
+declare function BP_GetSquadBlueprintsWithType(types: SquadType | any): TableOfSBPs;
 
 /**
  * Converts an entity type (or set of types) into a suitable entity blueprint
  * The types listed are used to track down a specific blueprint, and the list can be augmented with information from the provided player if it isn't specified directly (for things like civilization)
  */
-declare function Cardinal_ConvertTypeToEntityBlueprint(typeList: EntityType, player: PlayerID, OPT_returnAsTable?: boolean): any;
+declare function Cardinal_ConvertTypeToEntityBlueprint(typeList: EntityType | any, player: PlayerID, returnAsTable?: boolean): EntityBlueprint;
 
 /**
  * Converts a squad type (or set of types) into a suitable squad blueprint
  * The types listed are used to track down a specific blueprint, and the list can be augmented with information from the provided player if it isn't specified directly (for things like civilization)
  */
-declare function Cardinal_ConvertTypeToSquadBlueprint(typeList: SquadType, player: PlayerID, OPT_returnAsTable?: boolean): any;
+declare function Cardinal_ConvertTypeToSquadBlueprint(typeList: SquadType | any, player: PlayerID, returnAsTable?: boolean): SquadBlueprint;
 
 /**
  * Attack-move a squad group in a formation to a given position
  */
-declare function Cmd_FormationAttackMove(sgroup: SGroupID, destination: EGroupID, OPT_queued?: boolean, OPT_deleteNearMarker?: boolean, OPT_deleteCallback?: any, OPT_deleteCallbackData?: any): any;
+declare function Cmd_FormationAttackMove(sgroup: SGroupID, destination: Position | SGroupID | EGroupID | MarkerID, queued?: boolean, deleteNearMarker?: boolean, deleteCallback?: any, deleteCallbackData?: any): void;
 
 /**
  * Move a squad group in a formation to a given position.
  */
-declare function Cmd_FormationMove(sgroup: SGroupID, destination: EGroupID, OPT_queued?: boolean, OPT_deleteWhenNearMarker?: MarkerID, OPT_facingPosition?: Position): any;
+declare function Cmd_FormationMove(sgroup: SGroupID, destination: Position | SGroupID | EGroupID | MarkerID, queued?: boolean, deleteWhenNearMarker?: MarkerID, facingPosition?: Position): void;
 
 /**
  * Move a squad group in a formation to a given position and delete it when it arrives, potentially calling back a function.
  */
-declare function Cmd_FormationMoveToAndDestroy(sgroup: SGroupID, destination: EGroupID, OPT_queued?: boolean, OPT_facingPosition?: Position, OPT_callback?: any, OPT_callbackData?: any): any;
+declare function Cmd_FormationMoveToAndDestroy(sgroup: SGroupID, destination: Position | SGroupID | EGroupID | MarkerID, queued?: boolean, facingPosition?: Position, callback?: any, callbackData?: any): void;
 
 /**
  * Stops formation of squads
  */
-declare function Cmd_FormationStop(sgroup: SGroupID): any;
+declare function Cmd_FormationStop(sgroup: SGroupID): void;
 
 /**
  * Returns a number corresponding to the player's latest age upgrade.
  * The result is a number from 1 to 4, but they are also mapped onto these constants: AGE_DARK, AGE_FEUDAL, AGE_CASTLE or AGE_IMPERIAL
  */
-declare function Player_GetCurrentAge(player: PlayerID): any;
+declare function Player_GetCurrentAge(player: PlayerID): number;
 
 /**
  * Returns a number corresponding to the maximum age a player can reach
  * The result is a number from 1 to 4, but they are also mapped onto these constants: AGE_DARK, AGE_FEUDAL, AGE_CASTLE or AGE_IMPERIAL
  */
-declare function Player_GetMaximumAge(player: PlayerID): any;
+declare function Player_GetMaximumAge(player: PlayerID): number;
 
 /**
  * Sets the current age of a player
@@ -502,12 +502,12 @@ declare function Player_SetMaximumAge(player: PlayerID, age: number): any;
 /**
  * Warps all members of an SGroup immediately to a marker but puts them in formation
  */
-declare function SGroup_FormationWarpToMarker(sgroup: SGroupID, marker: MarkerID, OPT_facing?: MarkerID): any;
+declare function SGroup_FormationWarpToMarker(sgroup: SGroupID, marker: MarkerID, facing?: MarkerID | Position): void;
 
 /**
  * Warps all members of an SGroup immediately to a new position but puts them in formation
  */
-declare function SGroup_FormationWarpToPos(sgroup: SGroupID, pos: Position, OPT_facing?: MarkerID): any;
+declare function SGroup_FormationWarpToPos(sgroup: SGroupID, pos: Position, facing?: MarkerID | Position): void;
 
 /**
  * Get current AI player ID
@@ -1103,7 +1103,7 @@ declare function dr_terrainrect(pos: Position, w: number, h: number, r: number, 
  * Sets the target for an encounter to a provided marker, position, sgroup, egroup, squad, or entity
  * When you specify a group as the target, it chooses a single squad or entity - if you pass something for the closestTo parameter it will choose the closest one to that, otherwise it will just choose the first
  */
-declare function AIEncounter_TargetGuidance_SetTarget(aiEncounter: AIEncounterID, OPT_closestTo?: Marker): any;
+declare function AIEncounter_TargetGuidance_SetTarget(aiEncounter: AIEncounterID, OPT_closestTo?: MARKER | Position | GroupID): any;
 
 /**
  * Add an SGroup to an existing SCAR encounter
@@ -1124,12 +1124,12 @@ declare function Encounter_Create(player: PlayerID, group: EGroupID, goal: any, 
 /**
  * Find a SCAR encounter that's associated with a squad, sgroup, or an AI encounter
  */
-declare function Encounter_FindAssociatedEncounter(item: SGroupID): any;
+declare function Encounter_FindAssociatedEncounter(item: SquadID | SGroupID | AIEncounterID): EncounterTable;
 
 /**
  * Returns the underlying aiEncounter for the given encounter, if there is one. Returns nil otherwise.
  */
-declare function Encounter_GetAIEncounter(encounter: EncounterTable): any;
+declare function Encounter_GetAIEncounter(encounter: EncounterTable): AiEncounter;
 
 /**
  * Retrieve the goal data from a given encounter
@@ -1140,7 +1140,7 @@ declare function Encounter_GetGoalData(encounter: EncounterTable): any;
 /**
  * Gets the SGroup that holds all of the units associated with an encounter
  */
-declare function Encounter_GetSGroup(encounter: EncounterTable): any;
+declare function Encounter_GetSGroup(encounter: EncounterTable): SGroupID;
 
 /**
  * Tells you whether an encounter is active or has finished
@@ -1327,12 +1327,12 @@ declare function Missionomatic_FlipLeader(): any;
  * Finds the player data table for one of the players in the mission, identifying them from a String ("descriptor"), PlayerID, Squad/SGroup or Entity/EGroup
  * If you pass in a PlayerTable that has already been resolved it returns it straight back
  */
-declare function MissionOMatic_GetPlayer(identifier: string): any;
+declare function MissionOMatic_GetPlayer(identifier: string | PlayerID | Object): PlayerTable;
 
 /**
  * Get the relationship between two players in the mission. These players can be referenced in any way that MissionOMatic_GetPlayer() can process.
  */
-declare function MissionOMatic_GetRelationship(p1: Player, p2: Player): any;
+declare function MissionOMatic_GetRelationship(p1: Player, p2: Player): Relationship;
 
 /**
  * Sets up a Leader unit's custom Leader behaviour for use in a campaign mission
@@ -1361,8 +1361,9 @@ declare function MissionOMatic_RequestComplete(originalRequest: RequestData, uni
 
 /**
  * Request to have units produced by available production means
+ * @extdesc
  */
-declare function MissionOMatic_RequestUnits(requestingModule: any, requestData: any, OPT_unitSources?: any): any;
+declare function MissionOMatic_RequestUnits(requestingModule: any, requestData: any, unitSources?: any): RequestData;
 
 /**
  * Revives a leader at a defaulted or designated spawn point
@@ -1377,19 +1378,19 @@ declare function MissionOMatic_ShowTitleCard(): any;
 /**
  * Returns if a module needs reinforcements according to it's reinforcement settings
  */
-declare function Reinforcement_AreReinforcementsNeeded(module: ModuleTable): any;
+declare function Reinforcement_AreReinforcementsNeeded(module: ModuleTable): boolean;
 
 /**
  * Generates a unit table of "missing units" that a module can then request to be provided.
  * This takes the module's "ideal composition" and creates a unit list to fill the current composition back up to a portion of that ideal, as directed by the reinforcement settings.
  */
-declare function Reinforcement_GenerateReplacementUnitList(module: any, idealComposition: UnitTable): any;
+declare function Reinforcement_GenerateReplacementUnitList(module: any, idealComposition: UnitTable): UnitTable;
 
 /**
  * Return a UnitTable of all the units currently in the request queue for a module.
  * This helps to avoid double-ordering reinforcements - you can add the units requested to the units present when considering whether to reinforce
  */
-declare function Reinforcement_GetAllUnitsInRequestQueue(module: any): any;
+declare function Reinforcement_GetAllUnitsInRequestQueue(module: any): UnitTable;
 
 /**
  * Once a reinforcement request has been made, this should be called in order to update tracking
@@ -1415,7 +1416,7 @@ declare function Reinforcement_UpdateIdealComposition(module: any): any;
 /**
  * Checks if a non-townLife module has units to fulfill a request, and is willing to give those units up according to its unitProvider data
  */
-declare function UnitProvider_CanModuleProvideUnits(module: any, requestData: any): any;
+declare function UnitProvider_CanModuleProvideUnits(module: any, requestData: any): boolean;
 
 /**
  * DO NOT call this function directly, use Event_Save(STT_Auto) instead
@@ -1880,17 +1881,17 @@ declare function AI_LogCombatTrainingData(conflictID: number, playerA: PlayerID,
 /**
  * Find a AI module that's associated with a squad or sgroup
  */
-declare function AI_Module_FindAssociatedModule(item: SGroupID): any;
+declare function AI_Module_FindAssociatedModule(item: SquadID | SGroupID | AIEncounterID): ModuleTable;
 
 /**
  * Find a AI module that's associated with a squad or sgroup
  */
-declare function AI_Module_FindModuleFromScarEncounter(item: AiEncounterID): any;
+declare function AI_Module_FindModuleFromScarEncounter(item: AIEncounterID): ModuleTable;
 
 /**
  * Takes a target, fallback, or spawnLocation, which can come in many formats, and converts it to a combatArea.
  */
-declare function AI_Module_ResolveCombatArea(module: DefendModule, t: Position, OPT_combatRange?: number, OPT_leashRange?: number, OPT_direction?: Vector, OPT_idlePosition?: Position, OPT_useCustomDirection?: boolean): any;
+declare function AI_Module_ResolveCombatArea(module: DefendModule | RovingArmyModule, t: Position | MARKER | any, combatRange?: number, leashRange?: number, direction?: Vector, idlePosition?: Position, useCustomDirection?: boolean): any;
 
 /**
  * Push an ai intent to an existing AIPrefab. Requires an ai_prefab_intent pbg name
@@ -2279,7 +2280,7 @@ declare function AllMarkers_FromName(name: string, type: string): any;
 /**
  * Converts an angle in degrees (0-360) to a short string representing a compass heading. 0 degrees is north; 90 degrees is east.
  */
-declare function AngleToCardinalDirection(angle: number): any;
+declare function AngleToCardinalDirection(angle: number): string;
 
 /**
  * Remove the movie mode framerate restriction
@@ -2691,7 +2692,7 @@ declare function Condition_BuildingsSpotted_Check(): any;
 /**
  * Checks if a given egroup has living members or not
  */
-declare function Condition_EGroupEmpty_Check(): any;
+declare function Condition_EGroupEmpty_Check(condition: any, context: any): TRUE;
 
 /**
  * Checks whether a player has a certain number of units, optionally of a certain type
@@ -2701,12 +2702,12 @@ declare function Condition_HasUnits_Check(): any;
 /**
  * Checks if a unit with the condition's tag is at the given marker
  */
-declare function Condition_TaggedUnitAtLocation_Check(): any;
+declare function Condition_TaggedUnitAtLocation_Check(condition: any, context: any): TRUE;
 
 /**
  * Checks if all units belonging to a player are close enough to a given marker
  */
-declare function Condition_UnitAtLocation_Check(): any;
+declare function Condition_UnitAtLocation_Check(condition: any, context: any): TRUE;
 
 /**
  * Hide the cursor
@@ -2871,13 +2872,13 @@ declare function EGroup_CallEntityFunctionAllOrAny(egroup: EGroupID, all: boolea
  * Returns the total health of all units in a entity group, excluding entities that currently cannot be damaged.
  * This uses the "proper" measure of health for panel buildings, so should accurately reflect what the user sees.
  */
-declare function EGroup_GetTotalHealthFromCanBeDamagedOnly(egroup: EGroupID): any;
+declare function EGroup_GetTotalHealthFromCanBeDamagedOnly(egroup: EGroupID): number;
 
 /**
  * Build a structure in the center of a Hex properly
  * Pass in nil for Player to build a neutral object
  */
-declare function Entity_BuildStructureOnHex(player: PlayerID, blueprint: number, spawn: Hex, OPT_egroup?: EGroupID): any;
+declare function Entity_BuildStructureOnHex(player: PlayerID, blueprint: Blueprint, spawn: Hex | Position, egroup?: EGroupID): EntityID;
 
 /**
  * Starts a save event the same way as Event_Start, but automatically sets highest priority and promotes the request
@@ -2894,7 +2895,7 @@ declare function Event_SaveWithName(type: SaveTriggerType, fileName: string): an
 /**
  * Creates a Call to Action UI event. cta_type can be CTA_ALARM, CTA_CELEBRATE, CTA_UNIQUE_STAKES, or CTA_UNIQUE_CHANGE. onTriggerIntel plays when the Call appears and must be an Intel Event; onClickFunction plays when the Call is clicked and can be a standard function or an Intel Event. Pass in a postition, marker, or group to move the camera when user clicks on CTA
  */
-declare function EventCues_CallToAction(text: string, cta_type: string, OPT_onTriggerIntel?: any, OPT_onClickFunction?: any, OPT_pos?: Position, OPT_duration?: number, OPT_customImage?: string, OPT_customStinger?: string): any;
+declare function EventCues_CallToAction(text: string, cta_type: string, OPT_onTriggerIntel?: any, OPT_onClickFunction?: any, OPT_pos?: Position | MARKER | Group, OPT_duration?: number, OPT_customImage?: string, OPT_customStinger?: string): any;
 
 /**
  * Clear any Call To Action that is currently displayed
@@ -2918,9 +2919,10 @@ declare function fatal(state: Lua_State): number;
 
 /**
  * Find a food deposit on screen that has visible UI decorators
- * Returns a food deposit entity and a boolean indicating if the entity itself has visible decorators. If not, the squad has visible decorators.
+ * Returns a food deposit entity and a boolean indicating if the entity itself has visible decorators.
+ * If not, the squad has visible decorators.
  */
-declare function FindDecorableFoodDepositInSight(): any;
+declare function FindDecorableFoodDepositInSight(): EntityID;
 
 /**
  * Calculate the dimensions and centre offset of a formation for given squads.  Returns as a ScarPosition {x = Width, y = Height, z = centre offset along forward (Height) direction}.  Returns a zero vector if error.
@@ -3130,7 +3132,7 @@ declare function Game_UnLockRandom(): void;
 /**
  * Finds a marker with a given core name and a cardinal heading
  */
-declare function GetMarkerWithDirection(markerName: string, markerDir: number): any;
+declare function GetMarkerWithDirection(markerName: string, markerDir: number): MARKER;
 
 /**
  * Grabs villagers and gets them moving around to look busy. Meant for non-player/AI villagers only. Should be run as an Interval Rule.
@@ -3230,7 +3232,7 @@ declare function Loc_GetString(id: StackVar): any;
  * Finds a location based on the identifier
  * Locates locations based on identifier type: TABLE (location matching identifier), STRING (location with identifier as descriptor), ENTITY/EGROUP (location containing identifier), SCARPOS (closest location to identifier). Returns nil if nothing is found.
  */
-declare function LOCATION(identifier: EGroupID): any;
+declare function LOCATION(identifier: any | string | EntityID | EGroup | Position): any;
 
 /**
  * Adds units to the appropriate modules associated with this location.
@@ -3369,7 +3371,7 @@ declare function MarkerPaths_ClearIcons(pathName: string, removePath: boolean): 
 /**
  * Follow-up gate locking function, because you can't call two commands on an Entity in the same frame
  */
-declare function MarkerPaths_GenerateIcons(pathName: string, pointList: any, iconName: string, spacing: undefined): any;
+declare function MarkerPaths_GenerateIcons(pathName: string, pointList: any, iconName: string, spacing: undefined | number): any;
 
 /**
  * Gives the sgroup a series of queued orders to go to each marker with the same markerName.
@@ -3519,20 +3521,22 @@ declare function Misc_SetDesignerSplatsVisibility(bVisible: boolean): void;
 declare function Misc_WriteFile(filename: string, text: string): any;
 
 /**
- * Plays the defined end cinematic and ends an SP scenario with a Victory. Waits for no intel events to be playing.
+ * Ends an SP scenario with a Victory. Waits for no intel events to be playing before it ends the mission.
+ * This will play any endNIS and endMovie specified in the g_missionData table. After this is called, the path is set and any subsequent calls to Mission_Complete() or Mission_Fail() are ignored.
  */
-declare function Mission_Complete(): any;
+declare function Mission_Complete(): void;
 
 /**
- * Ends an SP scenario with a Failure. Waits for no intel events to be playing.
+ * Ends an SP scenario with a Failure. Waits for no intel events to be playing before it ends the mission.
+ * After this is called, the path is set and any subsequent calls to Mission_Complete() or Mission_Fail() are ignored.
  */
-declare function Mission_Fail(): any;
+declare function Mission_Fail(): void;
 
 /**
  * Associate an entity with a suitable nearby location. The entity will be added to the location's egroup.
  * If no suitable location is found, it is moved into the eg_orphanBuildings group, so it can be tried again later (maybe by then other buildings will connect it to a location)
  */
-declare function MissionOMatic_AssociateEntityWithNearbyLocation(entity: EntityID): any;
+declare function MissionOMatic_AssociateEntityWithNearbyLocation(entity: EntityID): LocationTable;
 
 /**
  * Initialize challenge timers
@@ -3553,7 +3557,7 @@ declare function MissionOMatic_FindBattalion(): any;
  * Returns a suitable SCAR squadType for a given blueprint
  * Can also pass in a squadID and it will use that squad's blueprint
  */
-declare function MissionOMatic_GetTypeForBlueprint(blueprint: SquadID): any;
+declare function MissionOMatic_GetTypeForBlueprint(blueprint: SquadID | SBP): string;
 
 /**
  * Adds a training hint to a certain kind of squad that is resolved by selecting a squad of that type
@@ -3603,7 +3607,7 @@ declare function MissionOMatic_SGroupCommandDelayed_B(): any;
 /**
  * Spawns a specific pickup at a specific location
  */
-declare function Missionomatic_SpawnPickup(position: MARKER, resource: string, amount: undefined): any;
+declare function Missionomatic_SpawnPickup(position: MARKER | Position, resource: string, amount: undefined | number): any;
 
 /**
  * Applies an entity modifier to an entity.
@@ -3898,20 +3902,24 @@ declare function PlayerUpgrades_LockAllUpgrades(playerID: PlayerID, desiredAge: 
 
 /**
  * Prints a message on the screen
- * Prints the given message on the screen. It will stay there until you call PrintOnScreen_RemoveFromScreen() or print another message on the screen to replace it.
+ * @extdesc
+ * Prints the given message on the screen. It will stay there until you call PrintOnScreen_RemoveFromScreen()
+ * or print another message on the screen to replace it.
  */
 declare function PrintOnScreen(text: string): void;
 
 /**
  * Prints the lua content of an object on the screen
- * Prints the given message on the screen. If you would like to print multiple messages without clearing them you can assign them unique ID's. Must use PrintOnScreen_Remove(id) to remove each instance
+ * @extdesc
+ * Prints the given message on the screen. If you would like to print multiple messages without clearing them you can
+ * assign them unique ID's. Must use PrintOnScreen_Remove(id) to remove each instance
  */
-declare function PrintOnScreen_Add(object: Object, id: string, OPT_style?: string): any;
+declare function PrintOnScreen_Add(object: Object, id: string, style?: string): PrintOnScreenID;
 
 /**
  * Removes the PrintOnScreen text of a given ID
  */
-declare function PrintOnScreen_Remove(id: string): any;
+declare function PrintOnScreen_Remove(id: string): void;
 
 /**
  * Remove any messages from the screen
@@ -3992,7 +4000,7 @@ declare function Raiding_TriggerProbe(): any;
 /**
  * Use this to try to trigger a raid against the given position
  */
-declare function Raiding_TriggerRaid(raidPos: EGroupID, force: boolean): any;
+declare function Raiding_TriggerRaid(raidPos: SGROUP | EGroup | Position, force: boolean): Module;
 
 /**
  * Updates the composition of the generated raid parties
@@ -4070,12 +4078,12 @@ declare function RovingArmy_ForceStart(): any;
 /**
  * Returns the nearest seen squad or entity from a group to a Roving Army
  */
-declare function RovingArmy_GetNearestSeen(moduleData: RovingArmy, huntedGroup: EGroupID): any;
+declare function RovingArmy_GetNearestSeen(moduleData: RovingArmy, huntedGroup: SGROUP | EGroup): Nearest;
 
 /**
  * Returns the average position of the rovingArmy, or the spawnLocation if it has no units.
  */
-declare function RovingArmy_GetPosition(moduleData: RovingArmy): any;
+declare function RovingArmy_GetPosition(moduleData: RovingArmy): A;
 
 /**
  * Returns the units currently in the module as a percentage of the unit count the module started with
@@ -4140,7 +4148,7 @@ declare function RovingArmy_RemoveSGroup(moduleData: any, sgroup: SGroupID, OPT_
 /**
  * Instructs the rovingArmy to send out a reinforcement request.
  */
-declare function RovingArmy_RequestUnits(moduleData: RovingArmy, units: any, OPT_unitSources?: any, OPT_priority?: string): any;
+declare function RovingArmy_RequestUnits(moduleData: RovingArmy, units: any, unitSources?: any, priority?: string): undefined;
 
 /**
  * Resets a module to start at the begining of its target list
@@ -4288,7 +4296,7 @@ declare function Siege_CanAid(): any;
 /**
  * Stops the Siege module entirely and returns the units it contained
  */
-declare function Siege_Disband(): any;
+declare function Siege_Disband(moduleData: any): SGROUP;
 
 /**
  * Returns the siege CREW only! We need this for interface reasons, but it doesn't play nicely with how Siege modules work
@@ -4432,7 +4440,7 @@ declare function SpawnUnitGroups(): any;
 /**
  * Spawns units at the specified location, and adds them to the module.
  */
-declare function SpawnUnitsToModule(units: any, module: Module, spawnLocation: string, OPT_pause?: boolean): any;
+declare function SpawnUnitsToModule(units: any, module: Module, spawnLocation: MarkerID | string, pause?: boolean): SGROUP;
 
 /**
  * A closure-based class-like object for performing unit-tests and outputting test-results
@@ -4495,7 +4503,7 @@ declare function switchplayer(state: Lua_State): any;
 /**
  * Checks whether a sync weapon can attack a target without moving or turning.
  */
-declare function SyncWeapon_CanAttackNow(weapon: SyncWeaponID, target: Egroup): boolean;
+declare function SyncWeapon_CanAttackNow(weapon: SyncWeaponID, target: EGroup | SGROUP | Position | MARKER): boolean;
 
 /**
  * Returns true if a sync weapon still exists in the game world
@@ -4531,7 +4539,7 @@ declare function SyncWeapon_IsAttacking(weapon: SyncWeaponID, time: number): boo
  * Returns true if the specified player owns the sync weapon. Use a playerid of nil to see if it's unonwed.
  * If player is not specified, then the code will check to see if the SyncWeapon is owned by the world.
  */
-declare function SyncWeapon_IsOwnedByPlayer(weapon: SyncWeaponID, player: PlayerID): boolean;
+declare function SyncWeapon_IsOwnedByPlayer(weapon: SyncWeaponID, player?: PlayerID): boolean;
 
 /**
  * Sets whether a weapon to auto-target things or not
@@ -4541,17 +4549,17 @@ declare function SyncWeapon_SetAutoTargetting(weapon: SyncWeaponID, hardpoint: s
 /**
  * Creates a third table that points to every element in table1 and table2, in that order
  */
-declare function Table_Concatenate(table1: LuaTable, table2: LuaTable): any;
+declare function Table_Concatenate(table1: LuaTable, table2: LuaTable): LuaTable;
 
 /**
  * Checks if a table contains the specified item
  */
-declare function Table_Contains(OriginalTable: LuaTable, item: Item): any;
+declare function Table_Contains(OriginalTable: LuaTable, item: Item): boolean;
 
 /**
  * Copies the contents of the original table returns a new table with the contents of that table
  */
-declare function Table_Copy(OriginalTable: LuaTable): any;
+declare function Table_Copy(OriginalTable: LuaTable): LuaTable;
 
 /**
  * Updates myTable by applying default values from the myDefaults table for any items that are not explicitly declared already
@@ -4562,7 +4570,7 @@ declare function Table_FillWithDefaultValues(myTable: any, myDefaults: any, OPT_
 /**
  * Returns a random item from a table. You can return multiple items (without duplicates) by passing in an optional number parameter.
  */
-declare function Table_GetRandomItem(table: any, numberofitems?: number): Item | any;
+declare function Table_GetRandomItem(table: any, numberofitems?: number): Item;
 
 /**
  * Makes a table read-only. This can be done recursively to also apply to any subtables.
@@ -4573,7 +4581,7 @@ declare function Table_MakeReadOnly(table: any, OPT_recursive?: boolean, OPT_err
 /**
  * Finds the first instance of a given item in the given table and removes it
  */
-declare function Table_RemoveFirstItem(table: any, toRemove: OBJECT): any;
+declare function Table_RemoveFirstItem(table: any, toRemove: Object): void;
 
 /**
  * Reverse the order of items in a table.
@@ -4893,7 +4901,7 @@ declare function TrackTradeCartsForPlayers(players: any): any;
 /**
  * Transfers all units from one module to another module, without destroying the source module
  */
-declare function TransferModuleIntoModule(sourceModule: string, targetModule: string, OPT_pause?: boolean): any;
+declare function TransferModuleIntoModule(sourceModule: string, targetModule: string, pause?: boolean): undefined;
 
 /**
  * Add a new child named childName and of type typeName to elementName.
@@ -4990,18 +4998,18 @@ declare function UI_SetSquadDataContext(squad: SquadID, table: StackVarTable): a
 /**
  * Forces ALL in-process deployments to complete instantly.
  */
-declare function UnitEntry_CompleteAllDeploymentsImmediately(): any;
+declare function UnitEntry_CompleteAllDeploymentsImmediately(): void;
 
 /**
  * Forces a specific in-process deployment to complete instantly.
  */
-declare function UnitEntry_CompleteDeploymentImmediately(deployment: DeploymentID): any;
+declare function UnitEntry_CompleteDeploymentImmediately(deployment: DeploymentID): void;
 
 /**
  * Create and spawn a set of units (a "deployment") in one go.
  * See details here: http://relicwiki/display/EE/Core+Unit+Entry+Framework
  */
-declare function UnitEntry_DeploySquads(player: PlayerID, sgroup: SGroupID, units: any, spawn: MarkerID, OPT_entryMethod?: any, OPT_stagger?: number, OPT_options?: any): any;
+declare function UnitEntry_DeploySquads(player: PlayerID, sgroup: SGroupID | any, units: any, spawn: MarkerID | Position, entryMethod?: any, stagger?: number, options?: any): any;
 
 /**
  * Returns a spawnLocation and Facing. If the unit has a custom spawn, it uses that, otherwise it gets it from deployment
@@ -5031,12 +5039,12 @@ declare function UnitTable_CountUnitsOfType(unitTable: any, type: string): any;
 /**
  * Takes an SGroup and returns a UnitTable that reflects the SGroup's makeup
  */
-declare function UnitTable_GenerateFromSGroup(sgroup: SGroupID): any;
+declare function UnitTable_GenerateFromSGroup(sgroup: SGroupID): UnitTable;
 
 /**
  * Returns the count of the units in a UnitTable
  */
-declare function UnitTable_GetTotalUnitCount(unitTable: any): any;
+declare function UnitTable_GetTotalUnitCount(unitTable: any): number;
 
 /**
  * Remove all of the units in a UnitTable from another UnitTable
@@ -5056,12 +5064,12 @@ declare function Util_CinematicKill(killer: SGroupID, target: SGroupID): any;
 /**
  * Returns the game time as a string. Formatted as mm:ss
  */
-declare function Utility_FormatSeconds(): any;
+declare function Utility_FormatSeconds(seconds: any): string;
 
 /**
  * Returns the game time as a string. Formatted as mm:ss
  */
-declare function Utility_GetFormattedTime(): any;
+declare function Utility_GetFormattedTime(): string;
 
 /**
  * Ensures that all pending dissolves are processed
@@ -5081,7 +5089,7 @@ declare function VillagerLife_Attack(): any;
 /**
  * This is the proper way to create a VillagerLife at runtime. Villagers can be assigned to 5 different jobs, and you can provide an sgroup for each job. villager_response can be "none", "flee", or "attack". "mkr_flee" is only required if villager_response is "flee". "mkr_flee_backup" is only required if villager_response is "flee" and b_require_garrison is true. SGroups can be nil if you don't want villagers in those roles.
  */
-declare function VillagerLife_Create(player: Player, name: string, sg_roaming: SGroupID, sg_wood: SGroupID, sg_food: SGroupID, sg_stone: SGroupID, sg_gold: SGroupID, villager_response: string, mkr_home: Marker, mkr_flee: Marker, b_require_garrison: boolean, mkr_flee_backup: Marker): any;
+declare function VillagerLife_Create(player: Player, name: string, sg_roaming: SGroupID, sg_wood: SGroupID, sg_food: SGroupID, sg_stone: SGroupID, sg_gold: SGroupID, villager_response: string, mkr_home: MARKER, mkr_flee: MARKER, b_require_garrison: boolean, mkr_flee_backup: MARKER): any;
 
 /**
  * Private function. Despawns any villagers in the sgroup that have gotten close enough to the specified position.
@@ -5178,7 +5186,7 @@ declare function World_EndSP(win: boolean): void;
  * Find a position on a path hidden from view, as close to the destination as possible whilst still satisfying your hidden checktype. Checktype can be either CHECK_IN_FOW, CHECK_OFFCAMERA or CHECK_BOTH.
  * The path is always calculated as if it were plain infantry. This function returns nil if it can't find a suitable position, so you can do a backup plan.
  */
-declare function World_GetHiddenPositionOnPath(player: PlayerID, origin: MarkerID, destination: MarkerID, checktype: number): Position;
+declare function World_GetHiddenPositionOnPath(player: PlayerID, origin: MarkerID | Position, destination: MarkerID | Position, checktype: number): Position;
 
 /**
  * - to document
@@ -6523,62 +6531,62 @@ declare function SBP_IsOfRace(pbgShortname: string, race: ScarRacePBG): any;
  * Queue moving the camera along a spline consisting of entity/marker/pos/egroup/sgroup/squad objects within seconds.
  * The camera will move from the position that was in front of it in the pan queue along the positions provided. Catmull-Rom interpolation between points is used
  */
-declare function Camera_CatromSplinePanOverTime(var_: Variable, seconds: number, keepQueue: boolean, controlRotation: boolean): any;
+declare function Camera_CatromSplinePanOverTime(var_: Variable, seconds: number, keepQueue: boolean, controlRotation: boolean): void;
 
 /**
  * Moves the camera through a list of positions.
  */
-declare function Camera_CyclePositions(list: any, OPT_pan?: boolean, OPT_panRate?: number, OPT_callback?: any): any;
+declare function Camera_CyclePositions(list: any, pan?: boolean, panRate?: number, callback?: any): void;
 
 /**
  * Set the camera to follow an sgroup/squad/egroup/entity.
  * The camera will follow them until the player takes control again.
  */
-declare function Camera_Follow(var_: Variable): any;
+declare function Camera_Follow(var_: Variable): void;
 
 /**
  * Queue moving the camera along a spline consisting of entity/marker/pos/egroup/sgroup/squad objects within seconds.
  * The camera will move from the position that was in front of it in the pan queue along the positions provided. Linear interpolation between points is used
  */
-declare function Camera_LinearSplinePanOverTime(var_: Variable, seconds: number, keepQueue: boolean, controlRotation: boolean): any;
+declare function Camera_LinearSplinePanOverTime(var_: Variable, seconds: number, keepQueue: boolean, controlRotation: boolean): void;
 
 /**
  * Move the camera to an entity/marker/pos/egroup/sgroup/squad at a given speed
  */
-declare function Camera_MoveTo(var_: Variable, pan: boolean, panRate: number, keepInputLocked: boolean, resetToDefault: boolean): any;
+declare function Camera_MoveTo(var_: Variable, pan: boolean, panRate: number, keepInputLocked: boolean, resetToDefault: boolean): void;
 
 /**
  * Slightly refocus the camera to rest on an entity/squad/squad/sgroup/egroup/pos/marker if it's close by.
  * This function can be called through a CTRL object in NISlets.
  */
-declare function Camera_MoveToIfClose(var_: Variable): any;
+declare function Camera_MoveToIfClose(var_: Variable): void;
 
 /**
  * Queue moving the camera a certain distance from the position of the camera in a specified amount of time.
  * The position used is the position the camera will be in after completing the movement(s) queued in front.
  */
-declare function Camera_PanOverTimeRelative(delta: Position, seconds: number, keepQueue: boolean): any;
+declare function Camera_PanOverTimeRelative(delta: Position, seconds: number, keepQueue: boolean): void;
 
 /**
  * Queue moving the camera to an entity/marker/pos/egroup/sgroup/squad within seconds.
  * The camera will move from the position that was in front of it in the queue.
  */
-declare function Camera_PanOverTimeTo(var_: Variable, seconds: number, keepQueue: boolean): any;
+declare function Camera_PanOverTimeTo(var_: Variable, seconds: number, keepQueue: boolean): void;
 
 /**
  * Reset the camera to its default rotation.
  */
-declare function Camera_ResetRotation(): any;
+declare function Camera_ResetRotation(): void;
 
 /**
  * Rotate the camera relative to its current rotation in degrees.
  */
-declare function Camera_RotateRelative(angle: number): any;
+declare function Camera_RotateRelative(angle: number): void;
 
 /**
  * Rotate the camera to a given angle in degrees.
  */
-declare function Camera_RotateTo(angle: number): any;
+declare function Camera_RotateTo(angle: number): void;
 
 /**
  * Adds a function to the Mission Cheat menu, under the title you provide. These should be registered in the Mission_Preset function.
@@ -6594,7 +6602,7 @@ declare function Cmd_AbandonTeamWeapon(sgroupid: SGroupID, preserveCrew?: boolea
 /**
  * Sends an ability command to a player, egroup or sgroup. extra parameters are provided if the ability requires them.
  */
-declare function Cmd_Ability(user: PlayerID, blueprint: AbilityBlueprint, target: Position, direction: Position, skipCostPrereq: boolean, queued: boolean): void;
+declare function Cmd_Ability(user: PlayerID | EGroupID | SGroupID, blueprint: AbilityBlueprint, target?: Position | SGroupID | EGroupID, direction?: Position, skipCostPrereq?: boolean, queued?: boolean): void;
 
 /**
  * Attach the squad from sgroupnameAttachee to sgroupname.  Both SGroups must contain only one squad.
@@ -6604,17 +6612,17 @@ declare function Cmd_AttachSquads(sgroup: SGroupID, sgroupAttachee: SGroupID): v
 /**
  * Issues an attack command to an SGroup
  */
-declare function Cmd_Attack(sgroup: SGroupID, target: SGroup, queued?: boolean, stationary?: boolean, plan?: string): void;
+declare function Cmd_Attack(sgroup: SGroupID, target: SGROUP | EGroup | Position | MARKER, queued?: boolean, stationary?: boolean, plan?: string, check?: boolean): void;
 
 /**
  * Order a squad group to attack move to a position (anything whose position can be queried). can be queued, can follow a plan, can search for cover within a radius
  */
-declare function Cmd_AttackMove(sgroup: SGroupID, targetposition: Position, queued?: boolean, plan?: string, coverSearchRadius?: number): void;
+declare function Cmd_AttackMove(sgroup: SGroupID, targetposition: Position, queued?: boolean, plan?: string, coverSearchRadius?: number, deleteWhenNearMarker?: MarkerID, splitCmd?: boolean): void;
 
 /**
  * Command attacker sgroup to attack move to strategic point target; when it is capturable, the sgroup would capture it
  */
-declare function Cmd_AttackMoveThenCapture(attacker: SGroupID, target: EGroupID): void;
+declare function Cmd_AttackMoveThenCapture(attacker: SGroupID, target: EGroupID, queued?: boolean): void;
 
 /**
  * Order a squad group to capture team weapon entity group.
@@ -6625,7 +6633,7 @@ declare function Cmd_CaptureTeamWeapon(sgroupid: SGroupID, targetid: EGroupID, q
  * Orders a squad to contruct a building at specified position, or to continue construction on an existing building.
  * The command also checks to see if a building already exists at the location, and the squad will continue building it, if it is of the correct type.
  */
-declare function Cmd_Construct(sgroupid: SGroup, blueprint: EntityID, targetid: EGroupID, Facing?: Position, queued?: boolean): void;
+declare function Cmd_Construct(sgroupid: SGROUP, blueprint: EntityID, targetid: EGroupID | Position | MARKER, Facing?: Position, queued?: boolean): void;
 
 /**
  * Detonates a building's demolitions
@@ -6641,7 +6649,7 @@ declare function Cmd_EjectOccupants(fromgroupid: EGroupID, OPT_destination?: Pos
  * Order a squad group to load at a random entity or squad of the group
  * overload is a flag that will allow the hold entity to ignore maximum slot check
  */
-declare function Cmd_Garrison(fromsgroupid: SGroupID, togroupid: EGroupID, overload: boolean, queued: boolean): EntityID | SquadID;
+declare function Cmd_Garrison(fromsgroupid: SGroupID, togroupid: EGroupID | SGroupID, overload?: boolean, queued?: boolean, instant?: boolean): EntityID;
 
 /**
  * Order a squad group to hold position at a given location (or just it's current location)
@@ -6663,29 +6671,29 @@ declare function Cmd_InstantSetupTeamWeapon(sgroupid: SGroupID, queued: boolean)
 /**
  * Sends an instant upgrade command to a player, egroup or sgroup. accepts a single upgrade or table of upgrades.
  */
-declare function Cmd_InstantUpgrade(target: PlayerID, blueprint: UpgradeBlueprint, count?: number): void;
+declare function Cmd_InstantUpgrade(target: PlayerID | EGroupID | SGroupID, blueprint: UpgradeBlueprint | any, count?: number): void;
 
 /**
  * Move a squad group to a given position.
  * Supports facing, 'offset' movement, and can find cover. The sgroup can be deleted when in proximity of a marker (it assumes a proximity of 5 if you forget to set one on the marker)
  */
-declare function Cmd_Move(sgroup: SGroupID, position: Position, queued: boolean, deleteWhenNearMarker: MarkerID, facing: Position, offset: number, distance: number, coverSearchRadius: number): void;
+declare function Cmd_Move(sgroup: SGroupID, position: Position | SGroupID | EGroupID | MarkerID, queued?: boolean, deleteWhenNearMarker?: MarkerID, facing?: Position, offset?: number, distance?: number, coverSearchRadius?: number, splitCmd?: boolean): void;
 
 /**
  * Move a squad group out of a position to a certain radius
  * All squads in the group will move away from the centre position from its current position
  */
-declare function Cmd_MoveAwayFromPos(sgroup: SGroupID, position: Position, radius: number, queued: boolean): void;
+declare function Cmd_MoveAwayFromPos(sgroup: SGroupID, position: Position, radius: number, queued?: boolean): void;
 
 /**
  * Moves a squad group to the indicated Marker and despawns it.
  */
-declare function Cmd_MoveToAndDeSpawn(sgroup: SGroupID, marker: MarkerID, queued: boolean): any;
+declare function Cmd_MoveToAndDeSpawn(sgroup: SGroupID, marker: MarkerID, queued: boolean): void;
 
 /**
  * Moves a squad group to the indicated Marker and destroys it.
  */
-declare function Cmd_MoveToAndDestroy(sgroup: SGroupID, marker: MarkerID, queued: boolean): any;
+declare function Cmd_MoveToAndDestroy(sgroup: SGroupID, marker: MarkerID, queued: boolean): void;
 
 /**
  * Moves a squad group to the closest marker in a list/table of MarkerIDs.
@@ -6696,12 +6704,12 @@ declare function Cmd_MoveToClosestMarker(sgroup: SGroupID, markertable: any): Ma
  * Move a squad group to a given position, attack-moving once close enough
  * Squad will move to a position, once they're within 'distance', they will attack-move the rest of the way.
  */
-declare function Cmd_MoveToThenAttackMove(sgroup: SGroupID, position: EGroupID, OPT_distance?: number, OPT_ANY?: boolean, OPT_queued?: boolean): any;
+declare function Cmd_MoveToThenAttackMove(sgroup: SGroupID, position: Position | SGroupID | EGroupID | MarkerID, distance?: number, ANY?: boolean, queued?: boolean): void;
 
 /**
  * Command attacker sgroup to attack move to strategic point target; when it is capturable, the sgroup would capture it
  */
-declare function Cmd_MoveToThenCapture(attacker: SGroupID, target: EGroupID): void;
+declare function Cmd_MoveToThenCapture(attacker: SGroupID, target: EGroupID, queued?: boolean): void;
 
 /**
  * Order a squad group to recrew an abandoned vehicle.
@@ -6716,8 +6724,9 @@ declare function Cmd_ReinforceUnit(sgroup: SGroupID, count: number): void;
 
 /**
  * Order a squad group to retreat, optionally to a specific location. The sgroup can be deleted when in proximity of a marker (it assumes a proximity of 5 if you forget to set one on the marker)
+ * vulnerableRetreat will make retreating squads take more damage
  */
-declare function Cmd_Retreat(sgroup: SGroupID, location?: Position, deleteWhenNearMarker?: MarkerID, queued?: boolean): void;
+declare function Cmd_Retreat(sgroup: SGroupID, location?: Position, deleteWhenNearMarker?: boolean | MarkerID | Position, queued?: boolean, saveEncounters?: boolean, vulnerableRetreat?: boolean): void;
 
 /**
  * Order a squad group to revert occupied building
@@ -6752,20 +6761,22 @@ declare function Cmd_SquadPatrolMarker(sgroup: SGroupID, marker: MarkerID): void
 
 /**
  * Retreats large numbers of units in a staggered, realistic manner.
- * Each Squad in the sgroup will have a 1 in 3 chance to retreat.  After 10 seconds (or maxTries), all squads will be forced to retreat. Squads will delete on arrival at their retreat point. vulnerableRetreat will make retreating squads take more damage
+ * vulnerableRetreat will make retreating squads take more damage
+ * Each Squad in the sgroup will have a 1 in 3 chance to retreat.  After 10 seconds (or maxTries), all squads will be forced to retreat. Squads will delete on arrival at their retreat point.
  */
-declare function Cmd_StaggeredRetreat(sgroup: SGroupID, markers: any, OPT_maxTries?: number, OPT_vulnerableRetreat?: boolean): any;
+declare function Cmd_StaggeredRetreat(sgroup: SGroupID, markers: any, maxTries?: number, vulnerableRetreat?: boolean): void;
 
 /**
  * Sends a stop command to egroup or sgroup.
  */
-declare function Cmd_Stop(group: EGroupID): void;
+declare function Cmd_Stop(group: EGroupID | SGroupID): void;
 
 /**
  * Orders a squad to surrender and awards the local player with an appropriate number of action points
  * The command will also overwrite the exit position as well, if you do not want the squads to exit at the map entry point.
+ * Use the optional parameter to assign action points to override the default number.  The function automatically addresses squads that are in buildings or vehicles by ordering them out of the vehicle.
  */
-declare function Cmd_Surrender(actionpoints?: number, exitpos?: Position): void;
+declare function Cmd_Surrender(sgroupid: SGROUP, actionpoints?: number, exitpos?: Position, deleteAtExit?: boolean, removeWeapon?: boolean): void;
 
 /**
  * Orders an sgroup to exit the building or vehicle that it's in. If no position is specified, the sgroup stays at the exit.
@@ -6775,7 +6786,7 @@ declare function Cmd_UngarrisonSquad(sgroupid: SGroupID, destination?: Position,
 /**
  * Sends an upgrade command to a player, egroup or sgroup. accepts a single upgrade or table of upgrades.
  */
-declare function Cmd_Upgrade(user: PlayerID, blueprint: UpgradeBlueprint, count?: number): void;
+declare function Cmd_Upgrade(user: PlayerID | EGroupID | SGroupID, blueprint: UpgradeBlueprint | any, count?: number, instant?: boolean): void;
 
 /**
  * Send a entity command to a entity group(CMD_DefaultAction, CMD_Stop, CMD_Destroy, CMD_BuildSquad, CMD_CancelProduction, CMD_RallyPoint, CMD_AttackForced)
@@ -7146,75 +7157,75 @@ declare function LocalCommand_SquadUpgrade(player: PlayerID, sgroup: SGroupID, u
  * Has a player join a specific team
  * Will remove the player from his previous team.  If you pass in nil for newTeam, will add to a new empty team
  */
-declare function Core_AddPlayerToTeam(player: PlayerID, teams_table: Team): any;
+declare function Core_AddPlayerToTeam(player: PlayerID, teams_table: Team): void;
 
 /**
  * Compare two values using provided comparator
  */
-declare function Core_Compare(value1: number, value2: number, comparator: COMPARISON): any;
+declare function Core_Compare(value1: number, value2: number, comparator: Comparison): boolean;
 
 /**
  * Returns the number of non-eliminated teams remaining.
  */
-declare function Core_GetActiveTeamCount(): any;
+declare function Core_GetActiveTeamCount(): number;
 
 /**
  * Returns the table reference of a PLAYERS table entry
  */
-declare function Core_GetPlayersTableEntry(player: PlayerID): any;
+declare function Core_GetPlayersTableEntry(player: PlayerID): Players_table;
 
 /**
  * Returns the table reference of a PLAYERS table entry
  */
-declare function Core_GetPlayersTableEntryFromIndex(playerIndex: number): any;
+declare function Core_GetPlayersTableEntryFromIndex(playerIndex: number): Players_table;
 
 /**
  * Returns the table reference of a player's TEAMS table entry
  */
-declare function Core_GetPlayerTeamsEntry(player: PlayerID): any;
+declare function Core_GetPlayerTeamsEntry(player: PlayerID): Teams_table;
 
 /**
  * Returns the entry in the Teams table that corresponds to the given teamIndex.
  * NOTE: Use the teams table's .id entry - not the actual index of the table.
  */
-declare function Core_GetTeamsEntryFromIndex(index: number): any;
+declare function Core_GetTeamsEntryFromIndex(index: number): Teams_table;
 
 /**
  * Returns true if a module is registered for delegate invocation, false if delegate invocation is disabled, nil if module not in module registry.
  */
-declare function Core_IsModuleRegistered(name: string): any;
+declare function Core_IsModuleRegistered(name: string): boolean;
 
 /**
  * Returns true if a player is eliminated from the game.
  */
-declare function Core_IsPlayerEliminated(player: PlayerID): any;
+declare function Core_IsPlayerEliminated(player: PlayerID): boolean;
 
 /**
  * Returns true if the two given players are on the same team.
  */
-declare function Core_IsPlayerOnPlayerTeam(): any;
+declare function Core_IsPlayerOnPlayerTeam(playerID1: any, playerID2: any): boolean;
 
 /**
  * Returns true if the PLAYERS table contains the given player.
  */
-declare function Core_IsPlayersTableEntryValid(player: PlayerID): any;
+declare function Core_IsPlayersTableEntryValid(player: PlayerID): boolean;
 
 /**
  * Returns true if a team is eliminated from the game. A team is considered eliminated when all of its players are eliminated.
  */
-declare function Core_IsTeamEliminated(teams_table: Team): any;
+declare function Core_IsTeamEliminated(teams_table: Team): boolean;
 
 /**
  * Returns true if teamIndex is a valid index in the Teams table.
  * NOTE: Use the teams table's .id entry - not the actual index of the table.
  */
-declare function Core_IsTeamsEntryIndexValid(index: number): any;
+declare function Core_IsTeamsEntryIndexValid(index: number): boolean;
 
 /**
  * Call this function to notify other modules (via their ***_OnGameOver() callback) that the match is about to end.
  * Modules typically implement this for cleanup purposes (i.e. remove rules and UI elements) prior to the match end UI.
  */
-declare function Core_OnGameOver(): any;
+declare function Core_OnGameOver(): void;
 
 /**
  * Registers a script module for delegate invocation. The name should be the prefix used by all of the delegate functions in this module. This needs to be called in *global* scope of a module script with the prefix name of that module; use this instead of Scar_AddInit.
@@ -7225,7 +7236,7 @@ declare function Core_RegisterModule(name: string): any;
 /**
  * Removes a player from player and team tables.
  */
-declare function Core_RemovePlayerFromPlayersTable(player: PlayerID): any;
+declare function Core_RemovePlayerFromPlayersTable(player: PlayerID): void;
 
 /**
  * Returns the value of the "Reveal FOW on Elimination" match option
@@ -7235,43 +7246,44 @@ declare function Core_RevealFOWOnEliminationEnabled(): any;
 /**
  * Sets the default presentation table for defeated players.
  */
-declare function Core_SetDefaultDefeatPresentation(presentationTable: any): any;
+declare function Core_SetDefaultDefeatPresentation(presentationTable: any): void;
 
 /**
  * Sets the default presentation function for victorious players.
  */
-declare function Core_SetDefaultVictoriousPresentation(presentationFunction: any): any;
+declare function Core_SetDefaultVictoriousPresentation(presentationFunction: any): void;
 
 /**
  * Sets the relationship between two players
  */
-declare function Core_SetMutualPlayerRelationship(player1: PlayerID, player2: PlayerID, relationship: number): any;
+declare function Core_SetMutualPlayerRelationship(player1: PlayerID, player2: PlayerID, relationship: number): void;
 
 /**
  * Sets the relationship between two entries
- * NOTE: You should generally be setting Team to Team only. Valid Relationships: R_NEUTRAL, R_ALLY, R_ENEMY, R_UNDEFINED
+ * Valid Relationships: R_NEUTRAL, R_ALLY, R_ENEMY, R_UNDEFINED
+ * NOTE: You should generally be setting Team to Team only.
  */
-declare function Core_SetMutualRelationship(player: PlayerID, player2: PlayerID, relationship: Relationship): any;
+declare function Core_SetMutualRelationship(player: PlayerID | any, player2: PlayerID | any, relationship: Relationship): void;
 
 /**
  * Sets a player as defeated.
  */
-declare function Core_SetPlayerDefeated(player: PlayerID, presentationFunction: any, reason: WinReason): any;
+declare function Core_SetPlayerDefeated(player: PlayerID, presentationFunction: any, reason: WinReason): void;
 
 /**
  * Sets a player as the match winner.
  */
-declare function Core_SetPlayerVictorious(player: PlayerID, presentationFunction: any, reason: WinReason): any;
+declare function Core_SetPlayerVictorious(player: PlayerID, presentationFunction: any, reason: WinReason): void;
 
 /**
  * Sets if a team is defeated
  */
-declare function Core_SetTeamDefeated(teams_table: Team, presentationTable: any): any;
+declare function Core_SetTeamDefeated(teams_table: Team, presentationTable: any): void;
 
 /**
  * Sets a team as the match winner.
  */
-declare function Core_SetTeamVictorious(teams_table: Team, presentationFunction: any, reason: WinReason): any;
+declare function Core_SetTeamVictorious(teams_table: Team, presentationFunction: any, reason: WinReason): void;
 
 /**
  * Removes a script module from the delegate invocation system.
@@ -7282,7 +7294,7 @@ declare function Core_UnregisterModule(name: string): any;
 /**
  * Set the game to a GameOver state without an explicit winner
  */
-declare function Core_WinnerlessGameOver(presentationFunction: any, reason: WinReason): any;
+declare function Core_WinnerlessGameOver(presentationFunction: any, reason: WinReason): void;
 
 /**
  * Pauses for a given amount of time. This function MUST be called from a CTRL object in NISlet events only!
@@ -7335,22 +7347,22 @@ declare function Scar_RemoveInit(f: any): void;
 /**
  * This is a global function that needs to exist for other things to work correctly. It used to be in module_defend.scar, but wasn't relevant to that particular chunk!
  */
-declare function _idleBehaviour_stop(data: any): any;
+declare function _idleBehaviour_stop(data: any): undefined;
 
 /**
  * Plays the next intel event in the debug queue.  IntelEvents are played sequentially as they are defined in a mission's .events file.
  */
-declare function _IntelDebugNext(): any;
+declare function _IntelDebugNext(): void;
 
 /**
  * Plays the next intel event in the debug queue. IntelEvents are played sequentially as they are defined in a mission's .events file.
  */
-declare function _IntelDebugPrev(): any;
+declare function _IntelDebugPrev(): void;
 
 /**
  * Replays the last intel event that was debugged.
  */
-declare function _IntelDebugReplay(): any;
+declare function _IntelDebugReplay(): void;
 
 /**
  * Restores various aspects of the single player game after loading a mission from a save game
@@ -7360,12 +7372,12 @@ declare function Game_DefaultGameRestore(): void;
 /**
  * Checks whether a callback
  */
-declare function Game_GetGameRestoreCallbackExists(callback: any): any;
+declare function Game_GetGameRestoreCallbackExists(callback: any): void;
 
 /**
  * Removes a callback from being called on game restore
  */
-declare function Game_RemoveGameRestoreCallback(callback: any): any;
+declare function Game_RemoveGameRestoreCallback(callback: any): void;
 
 /**
  * Adds a function and set of arguments to be automatically called during restore from a saved game. Maxiumum of 9 parameters. Callback will be called like this: Callback(arg[1], arg[2], ...)
@@ -7388,14 +7400,15 @@ declare function Util_ExitCinematicMode(): any;
 declare function Util_FullscreenMode(OPT_VisibilityFlag?: GameUICore, OPT_of?: List): any;
 
 /**
- * Wrapper function for command line arguments. DO NOT USE MORE THAN ONCE PER ARGUMENT. It is impossible for them to change after application start, so save the result and reuse it.
+ * Wrapper function for command line arguments. DO NOT USE MORE THAN ONCE PER ARGUMENT.
+ * It is impossible for them to change after application start, so save the result and reuse it.
  */
-declare function Util_GetCommandLineArgument(key: string): any;
+declare function Util_GetCommandLineArgument(key: string): undefined;
 
 /**
  * Returns whether cinematic mode is active
  */
-declare function Util_IsCinematicMode(): any;
+declare function Util_IsCinematicMode(): boolean;
 
 /**
  * Enters Normal mode
@@ -7441,7 +7454,7 @@ declare function EGroup_SetStayBurningWhileInvulnerable(egroup: EGroupID, stayBu
 /**
  * Finds all on-screen squads for the passed player, clearing and filling the sgroup with those squads
  */
-declare function Player_GetSquadsOnscreen(player: Player, sgroup: SGroupID): any;
+declare function Player_GetSquadsOnscreen(player: Player, sgroup: SGROUP): void;
 
 /**
  * Returns an average position for a table of positions
@@ -7496,22 +7509,22 @@ declare function SGroup_SplitUnderCap(sgroup: SGroupID, maxSGroupSize: number): 
 /**
  * Checks if a table contains the specified item
  */
-declare function Table_Contains(OriginalTable: LuaTable, item: Item): any;
+declare function Table_Contains(OriginalTable: LuaTable, item: Item): boolean;
 
 /**
  * Copies the contents of the original table returns a new table with the contents of that table
  */
-declare function Table_Copy(OriginalTable: LuaTable): any;
+declare function Table_Copy(OriginalTable: LuaTable): LuaTable;
 
 /**
  * Returns a random item from a table. You can return multiple items (without duplicates) by passing in an optional number parameter.
  */
-declare function Table_GetRandomItem(table: any, numberofitems?: number): Item | any;
+declare function Table_GetRandomItem(table: any, numberofitems?: number): Item;
 
 /**
  * Takes a table of key-value pairs, where the keys are the items, and the values are the weights. The chance that a particular key is chosen is proportional to its associated weight. Weights should be integers.
  */
-declare function Table_GetRandomItemWeighted(): any;
+declare function Table_GetRandomItemWeighted(thistable: any): Returns;
 
 /**
  * Makes a table read-only. This can be done recursively to also apply to any subtables.
@@ -7527,7 +7540,7 @@ declare function EGroup_Add(group: EGroupID, entity: EntityID): void;
 /**
  * Adds an ability to all entities in an egroup.
  */
-declare function EGroup_AddAbility(egroup: EGroupID, ability: number): any;
+declare function EGroup_AddAbility(egroup: EGroupID, ability: AbilityBlueprint): void;
 
 /**
  * Appends the entities in one group to another group.
@@ -7558,7 +7571,7 @@ declare function EGroup_Compare(group1: EGroupID, group2: EGroupID): boolean;
 /**
  * Check if a group contains ALL or ANY of the blueprints.
  */
-declare function EGroup_ContainsBlueprints(egroup: EGroupID, blueprint: BP, all: boolean): boolean;
+declare function EGroup_ContainsBlueprints(egroup: EGroupID, blueprint: EBP | EntityType | any, all: boolean): boolean;
 
 /**
  * Returns true if EGroup1 contains ANY or ALL of EGroup2
@@ -7583,7 +7596,7 @@ declare function EGroup_CountAlive(egroup: EGroupID): number;
 /**
  * Returns the total count of all entities in a given EGroup with the provided blueprint
  */
-declare function EGroup_CountBlueprints(sgroup: EGroupID, ebp: number): any;
+declare function EGroup_CountBlueprints(sgroup: EGroupID, ebp: EntityBlueprint | any): number;
 
 /**
  * Returns the number of despawned entities in a group.
@@ -7614,7 +7627,7 @@ declare function EGroup_CreateKickerMessage(group: EGroupID, textid: string): vo
 /**
  * Returns an EGroup with a unique name, prefixed by the 'prefix' parameter.
  */
-declare function EGroup_CreateUnique(OPT_prefix?: string): any;
+declare function EGroup_CreateUnique(prefix?: string): EGroup;
 
 /**
  * Returns a new entity group with an autogenerated unique name, optionally prefixed by the string passed in.
@@ -7634,13 +7647,14 @@ declare function EGroup_Destroy(egroup: EGroupID): void;
 
 /**
  * Destroys all spawned and despawned entities in a group.
- * Be careful not to confuse this with EGroup_Destroy which destroys the group and NOT the items it contains.  This function will destroy spawned and despawned items in a group
+ * @extdesc
+ * Be careful not to confuse this with EGroup_Destroy which destroys the group and NOT the items it contains.  This function will destroy
+ * spawned and despawned items in a group
  */
 declare function EGroup_DestroyAllEntities(egroup: EGroupID): void;
 
 /**
- * Duplicates an EGroup
- * Creates a copy of egroup1 in egroup2. The function will clear egroup2 beforehand if necessary.
+ * Duplicates an EGroup. Creates a copy of egroup1 in egroup2. The function will clear egroup2 beforehand if necessary.
  */
 declare function EGroup_Duplicate(egroupid1: EGroupID, egroupid2: EGroupID): void;
 
@@ -7652,7 +7666,7 @@ declare function EGroup_EnableMinimapIndicator(egroup: EGroupID, enable: boolean
 /**
  * Enable or disable decorators on all entities in the egroup. Sets selection visuals as well unless enableSelection is specified.
  */
-declare function EGroup_EnableUIDecorator(group: SGroupID, enable: boolean, enableSelection: boolean): any;
+declare function EGroup_EnableUIDecorator(group: SGroupID, enable: boolean, enableSelection: boolean): void;
 
 /**
  * Returns true if the entity group with the given name exists
@@ -7660,20 +7674,23 @@ declare function EGroup_EnableUIDecorator(group: SGroupID, enable: boolean, enab
 declare function EGroup_Exists(name: string): boolean;
 
 /**
- * Filters an EGroup by blueprint.
- * Blueprints can be provided by name or by ID, and in a table if you want to filter on more than one type. Setting filtertype to FILTER_KEEP results in the group only containing entities of the types listed in the blueprint table. Setting filtertype to FILTER_REMOVE will strip those same entities out and leave those that aren't of the types listed.
+ * Filters an EGroup by blueprint or type.
+ * @extdesc
+ * Blueprints can be provided by name or by ID, and in a table if you want to filter on more than one type.
+ * Setting filtertype to FILTER_KEEP results in the group only containing entities of the types listed in the blueprint table.
+ * Setting filtertype to FILTER_REMOVE will strip those same entities out and leave those that aren't of the types listed.
  */
-declare function EGroup_Filter(egroup: EGroupID, blueprint: string, filtertype: number): void;
+declare function EGroup_Filter(egroup: EGroupID, blueprint: ID | any | string, filtertype: number, splitGroup?: EGroupID): void;
 
 /**
  * Filters an EGroup by whether units are on screen or not. Percent refers to the screen area you are considering (0.8 is a good value to use - it won't include things that are right at the screen edge).
  * Setting filtertype to FILTER_KEEP results in the group only containing those entities that are on screen.
  */
-declare function EGroup_FilterOnScreen(egroup: EGroupID, percent: number, filtertype: number): any;
+declare function EGroup_FilterOnScreen(egroup: EGroupID, percent: number, filtertype: number): void;
 
 /**
- * Filters an EGroup by construction status.
- * Setting filtertype to FILTER_KEEP results in the group only containing those entities that are in the process of being built. Setting filtertype to FILTER_REMOVE will strip those same entities out and leave those that are complete.
+ * Filters an EGroup by construction status. Set the filtertype to FILTER_REMOVE to remove buildings under construction.
+ * Setting filtertype to FILTER_KEEP results in the group only containing those entities that are in the process of being built.
  */
 declare function EGroup_FilterUnderConstruction(egroup: EGroupID, filtertype: number): void;
 
@@ -7705,7 +7722,7 @@ declare function EGroup_ForEachEx(egroup: EGroupID, f: LuaBinding, spawned: bool
 declare function EGroup_FromName(name: string): EGroupID;
 
 /**
- * Returns the average health of all units in a entity group.
+ * Returns the average health ratio of all units in a entity group.
  * This uses the "proper" measure of health for panel buildings, so should accurately reflect what the user sees.
  */
 declare function EGroup_GetAvgHealth(egroup: EGroupID): number;
@@ -7713,7 +7730,7 @@ declare function EGroup_GetAvgHealth(egroup: EGroupID): number;
 /**
  * Get the closest entity in an egroup to a given position
  */
-declare function EGroup_GetClosestEntity(egroupid: EGroupID, position: Marker): any;
+declare function EGroup_GetClosestEntity(egroupid: EGroupID, position: MARKER | Position): any;
 
 /**
  * Returns the despawned entity at the given index.
@@ -7729,14 +7746,14 @@ declare function EGroup_GetEntityAt(group: EGroupID, int: number): any;
 
 /**
  * Check invulnerablity state for ALL or ANY entity in an entity group.
- * Set all param to true to check for ALL or set to false to check for ANY.
  */
 declare function EGroup_GetInvulnerable(egroup: EGroupID, all: boolean): boolean;
 
 /**
- * Gets the last attacker(s) for all the entities in an EGroup Gets the last attacker for all the squads in an SGroup and stores that in SGroupAttacker
+ * Gets the last attacker(s) for all the entities in an EGroup
+ * Gets the last attacker for all the squads in an SGroup and stores that in SGroupAttacker
  */
-declare function EGroup_GetLastAttacker(EGroupVictim: EGroup, SGroupAttacker: SGroup): void;
+declare function EGroup_GetLastAttacker(EGroupVictim: EGroup, SGroupAttacker: SGROUP): void;
 
 /**
  * Returns the name of a given entity group.
@@ -7744,7 +7761,7 @@ declare function EGroup_GetLastAttacker(EGroupVictim: EGroup, SGroupAttacker: SG
 declare function EGroup_GetName(egroup: EGroupID): string;
 
 /**
- * Returns a position (a certain distance away) relative to an entity's current position/orientation. see LuaConsts.scar for explanation of 'offset' parameter
+ * Returns a position (a certain distance away) relative to an entity's current position/orientation. see ScarUtil.scar for explanation of 'offset' parameter
  */
 declare function EGroup_GetOffsetPosition(egroup: EGroupID, offset: number, value: number): Position;
 
@@ -7770,9 +7787,10 @@ declare function EGroup_GetSequence(name: string): any;
 declare function EGroup_GetSpawnedEntityAt(group: EGroupID, index: number): EntityID;
 
 /**
+ * Get the closest entity in an egroup to a given position
  * Get the first spawned entity from egroup that meets the condition (a function that takes an entity)
  */
-declare function EGroup_GetSpawnedEntityFilter(egroupid: EGroupID, condition: any): any;
+declare function EGroup_GetSpawnedEntityFilter(egroupid: EGroup, position: MARKER | Position): EntityID;
 
 /**
  * Returns the distance from the centre of the group of the entity that furthest out.
@@ -7788,18 +7806,18 @@ declare function EGroup_GetSquadsHeld(egroup: EGroupID, sgroupRecipient: SGroupI
  * Returns the total health of all units in a entity group.
  * This uses the "proper" measure of health for panel buildings, so should accurately reflect what the user sees.
  */
-declare function EGroup_GetTotalHealth(egroup: EGroupID): any;
+declare function EGroup_GetTotalHealth(egroup: EGroupID): number;
 
 /**
  * Test whether ANY or ALL buildings in a group have a specified ability
  */
-declare function EGroup_HasAbility(egroup: EGroupID, ability: number, all: boolean): any;
+declare function EGroup_HasAbility(egroup: EGroupID, ability: AbilityBlueprint, all: boolean): boolean;
 
 /**
  * Check if ANY or ALL of the entities in a group match the blueprint specified.
  * The blueprint can be a table of blueprints or types (see Entity_HasBlueprint() for details)
  */
-declare function EGroup_HasBlueprint(egroup: EGroupID, blueprint: EBP, all: boolean): any;
+declare function EGroup_HasBlueprint(egroup: EGroupID, blueprint: EBP | EntityType | any, all: boolean): boolean;
 
 /**
  * Returns whether ANY or ALL entities in an EGroup have the specified upgrade
@@ -7831,7 +7849,7 @@ declare function EGroup_Intersection(group: EGroupID, grouptointersect: EGroupID
 /**
  * Checks if ANY or ALL entities in an egroup are on fire (ignition threshold exceeded)
  */
-declare function EGroup_IsBurning(egroup: EGroupID, ALL: boolean): any;
+declare function EGroup_IsBurning(egroup: EGroupID, ALL: boolean): boolean;
 
 /**
  * Returns true if all or any strategic points in a group have been captured. Use ANY or ALL.
@@ -7843,7 +7861,7 @@ declare function EGroup_IsCapturedByPlayer(egroup: EGroupID, playerId: PlayerID,
  * Returns true if all or any strategic points in a group have been captured. Use ANY or ALL.
  * This function will ignore all entities that cannot be captured and will return false if no entities in the group can be captured.
  */
-declare function EGroup_IsCapturedByTeam(egroup: EGroupID, teamId: TeamID, all: boolean): any;
+declare function EGroup_IsCapturedByTeam(egroup: EGroupID, teamId: TeamID, all: boolean): boolean;
 
 /**
  * Returns true if ALL or ANY entities are attacking within the time
@@ -7884,7 +7902,7 @@ declare function EGroup_IsProducingSquads(egroup: EGroupID, all: boolean): boole
 /**
  * Checks if ANY or ALL entities in an group are currently spawned or not.
  */
-declare function EGroup_IsSpawned(egroup: EGroupID, ALL: boolean): any;
+declare function EGroup_IsSpawned(egroup: EGroupID, ALL: boolean): boolean;
 
 /**
  * Returns true if ALL or ANY entities are under attack within the time
@@ -7897,9 +7915,9 @@ declare function EGroup_IsUnderAttack(egroup: EGroupID, all: boolean, time: numb
 declare function EGroup_IsUnderAttackByPlayer(group: EGroupID, attackerplayer: PlayerID, duration: number): boolean;
 
 /**
- * Returns true if ALL or ANY entities are under attack from a direction within the time. see LuaConsts.scar for types of directions. you can pass in a table of offsets
+ * Returns true if ALL or ANY entities are under attack from a direction within the time. see ScarUtil.scar for types of directions. you can pass in a table of offsets
  */
-declare function EGroup_IsUnderAttackFromDirection(egroup: EGroupID, all: boolean, offset: number, time: number): boolean;
+declare function EGroup_IsUnderAttackFromDirection(egroup: EGroupID, all: boolean, offset: number | any, time: number): boolean;
 
 /**
  * Checks if ANY or ALL squads within an EGroup are using an ability
@@ -7945,7 +7963,7 @@ declare function EGroup_RemoveNonHoldEntities(egroup: EGroupID): any;
 /**
  * Removes upgrade(s) from an egroup
  */
-declare function EGroup_RemoveUpgrade(egroup: EGroupID, upgrade: UpgradeBlueprint): void;
+declare function EGroup_RemoveUpgrade(egroup: EGroupID, upgrade: UpgradeBlueprint | any): void;
 
 /**
  * Respawn all despawned entities in a group.
@@ -8000,7 +8018,7 @@ declare function EGroup_SetHealthMinCap(egroup: EGroupID, minhealth: number): vo
 
 /**
  * Enable/Disable invulnerablity for an entire entity group. Use true and false for simple on/off, or use a number between 0.0 and 1.0 for more precise control on how much damage an entity can take before it takes no more.
- * The optional reset_time is used to automatically remove invulnerability after a set time. If invulnerable, both health and critical damage are disabled.
+ * The optional reset_time is used to automatically remove invulnerability after a set time. If invulnerable, health damage is disabled.
  */
 declare function EGroup_SetInvulnerable(egroup: EGroupID, enabled: boolean, reset_time?: number): void;
 
@@ -8014,12 +8032,12 @@ declare function EGroup_SetPlayerOwner(egroup: EGroup, owner: PlayerID): void;
  * Set the rally point for this entity
  * This is usually set to zero, any higher value prevents the entity from having its health reduced below this given value
  */
-declare function EGroup_SetRallyPoint(egroup: EGroupID, target: Position): any;
+declare function EGroup_SetRallyPoint(egroup: EGroupID, target: Position): void;
 
 /**
  * Sets all entities in an egroup to be recrewable or not when abandoned
  */
-declare function EGroup_SetRecrewable(sgroup: EGroupID, recrewable: boolean): any;
+declare function EGroup_SetRecrewable(sgroup: EGroupID, recrewable: boolean): void;
 
 /**
  * Set player selectable state of entities in the egroup
@@ -8043,6 +8061,7 @@ declare function EGroup_SetWorldOwned(egroup: EGroupID): void;
 
 /**
  * Creates an entity group containing a single entity
+ * @extdesc
  * Creates an EGroup containing just one entity, creating the group if it doesn't exist and clearing it if it does. It returns the name of the EGroup.
  */
 declare function EGroup_Single(egroup: EGroupID, entity: EntityID): EGroupID;
@@ -8055,17 +8074,17 @@ declare function EGroup_SortBasedOnHealth(egroup: EGroupID, ascending: boolean):
 /**
  * Warps all members of an EGroup immediately to a marker
  */
-declare function EGroup_WarpToMarker(entity: EGroupID, marker: MarkerID): any;
+declare function EGroup_WarpToMarker(entity: EGroupID, marker: MarkerID): void;
 
 /**
  * Warps all members of an EGroup immediately to a new position
  */
-declare function EGroup_WarpToPos(entity: EGroupID, pos: Position): any;
+declare function EGroup_WarpToPos(entity: EGroupID, pos: Position): void;
 
 /**
  * Returns the total health of all units combined in a squad group.
  */
-declare function SGroup_GetTotalHealth(sgroup: SGroupID): any;
+declare function SGroup_GetTotalHealth(sgroup: SGroupID): number;
 
 /**
  * Returns true if ANY or ALL of the squad's entities have the specified upgrade
@@ -8075,7 +8094,7 @@ declare function SGroup_HasEntityUpgrade(egroup: EGroupID, upgrade: UpgradeID, a
 /**
  * Finds all encounters that contain ANY or ALL squads within the given sgroup.
  */
-declare function Ai(sgroup: SGroupID, all: any): any;
+declare function Ai(sgroup: SGroupID, all: any | ALL): any;
 
 /**
  * Finds all encounters that contain ANY or ALL squads within the given sgroup.
@@ -8085,12 +8104,12 @@ declare function Ai(squad: Squad): any;
 /**
  * Disables all encounters
  */
-declare function AI_DisableAllEncounters(): any;
+declare function AI_DisableAllEncounters(): void;
 
 /**
  * Enables all encounters
  */
-declare function AI_EnableAllEncounters(): any;
+declare function AI_EnableAllEncounters(): void;
 
 /**
  * Returns a table with all active (not dead) encounters.
@@ -8100,42 +8119,42 @@ declare function AI_GetActiveEncounters(): any;
 /**
  * Returns the number of alive encounters currently managed by the AI manager.
  */
-declare function AI_GetNumEncounters(): any;
+declare function AI_GetNumEncounters(): number;
 
 /**
  * Returns True if the current AI_Manager difficulty matches any in a given list.
  */
-declare function AI_IsMatchingDifficulty(difficultyList: number): any;
+declare function AI_IsMatchingDifficulty(difficultyList: number | any): boolean;
 
 /**
  * Overrides the current difficulty setting (only for the AI Manager). Pass 'nil' to reset to Game_GetSPDifficulty() value
  */
-declare function AI_OverrideDifficulty(level: number): any;
+declare function AI_OverrideDifficulty(level: number): void;
 
 /**
  * Clears goals on all encounters, then empties the encounter list. Can also issue a stop command to all units.
  */
-declare function AI_RemoveAllEncounters(stopAll: boolean): any;
+declare function AI_RemoveAllEncounters(stopAll: boolean): void;
 
 /**
  * Set the level of debug information shown but Ai:Print().
  */
-declare function AI_SetDebugLevel(): any;
+declare function AI_SetDebugLevel(num: any): void;
 
 /**
  * Sets the default player to use when creating an encounter.
  */
-declare function AI_SetDefaultEnemyPlayer(player: PlayerID): any;
+declare function AI_SetDefaultEnemyPlayer(player: PlayerID): void;
 
 /**
  * Toggle encounter/goal debug information on screen.
  */
-declare function AI_ToggleDebugData(): any;
+declare function AI_ToggleDebugData(): void;
 
 /**
  * Toggle printing console debug information for encounters.
  */
-declare function AI_ToggleDebugPrint(): any;
+declare function AI_ToggleDebugPrint(): void;
 
 /**
  * Adjust default goal data for ability goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter ability goal values.
@@ -8306,48 +8325,48 @@ declare function Encounter(data: EncounterData, OPT_spawnNow?: boolean, OPT_spaw
 /**
  * Create a new encounter with a generic FormationAttack goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_encRange?: number, OPT_encLeash?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
 
 /**
  * Create a new encounter with a generic FormationAttack goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_encRange?: number, OPT_encLeash?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
 
 /**
  * Create a new encounter with a generic Attack goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_encRange?: number, OPT_encLeash?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
 
 /**
  * Create a new encounter with a generic Defend goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_encRange?: number, OPT_encLeash?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
 
 /**
  * Create a new encounter with a generic Patrol goal.
  * pathLoop can be: LOOP_NONE, LOOP_NORMAL, LOOP_TOGGLE_DIRECTION
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encPath: string, OPT_dynamicSpawn?: Marker, OPT_pathWait?: number, OPT_pathLoop?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encPath: string, OPT_dynamicSpawn?: MARKER | Position, OPT_pathWait?: number, OPT_pathLoop?: number): any;
 
 /**
  * Create a new encounter with a generic Move goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_moveRange?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_moveRange?: number): any;
 
 /**
  * Create a new encounter with a generic Ability goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_moveRange?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_moveRange?: number): any;
 
 /**
  * Create a new encounter with a generic TownLife goal.
  */
-declare function Encounter(name: string, encUnits: SBP, spawnLoc: Marker, encTarget: EGroupID, OPT_dynamicSpawn?: Marker, OPT_townLifeRange?: number): any;
+declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_townLifeRange?: number): any;
 
 /**
  * Create a new basic encounter.
  */
-declare function Encounter(name: string, spawnLoc: Marker, encUnits: SBP, OPT_dynamicSpawn?: Marker): any;
+declare function Encounter(name: string, spawnLoc: MARKER | Position, encUnits: SBP | any, OPT_dynamicSpawn?: MARKER | Position): any;
 
 /**
  * Create a new encounter from an SGroup, with default encounter data
@@ -8792,7 +8811,7 @@ declare function Entity_GetMeleeBlocksPerAttacks(entity: EntityID): any;
 declare function Entity_GetNumInteractors(entity: EntityID, interactionType: string): any;
 
 /**
- * Returns a position relative to an entity's current position and orientation. see LuaConsts.scar for explanation of 'offset' parameter.
+ * Returns a position relative to an entity's current position and orientation. see ScarUtil.scar for explanation of 'offset' parameter.
  */
 declare function Entity_GetOffsetPosition(entity: EntityID, offset: number, distance: number): Position;
 
@@ -8998,7 +9017,7 @@ declare function Entity_HasAbility(entity: EntityID, ability: ScarAbilityPBG): a
  * Checks whether an entity is of any of the Blueprints or EntityTypes specified.
  * Blueprint can be a single Blueprint, a single EntityType, or a table of multiple Blueprints or EntityTypes. If you want to see if an entity has ALL of a set of EntityTypes, then wrap them all in a sub-table.
  */
-declare function Entity_HasBlueprint(entity: EntityID, blueprints: EBP): any;
+declare function Entity_HasBlueprint(entity: EntityID, blueprints: EBP | EntityType | any): boolean;
 
 /**
  * Returns true if an entity has a production queue.
@@ -9349,7 +9368,7 @@ declare function Entity_SetBackground(pEntity: EntityID, isInBackground: boolean
 /**
  * Enables or disables the BurnExt extensions for squads / entities
  */
-declare function Entity_SetBurnExtEnabled(unit: EGroupID, enabled: boolean): any;
+declare function Entity_SetBurnExtEnabled(unit: EGroup | EntityID, enabled: boolean): void;
 
 /**
  * Overrides crushable behavior for an entity
@@ -9621,7 +9640,7 @@ declare function Entity_VisHide(pEntity: EntityID, bHide: boolean): void;
 /**
  * Warps an entity immediately to a new position
  */
-declare function Entity_WarpToPos(entity: EntityID, pos: Position): any;
+declare function Entity_WarpToPos(entity: EntityID, pos: Position): void;
 
 /**
  * Checks if the given position has an associated district.
@@ -9668,7 +9687,7 @@ declare function Event_CreateAND(callback: any, data: any, events: any, delay: n
 /**
  * Callback given callback function with data, when the certain objects die.
  */
-declare function Event_Death(callback: any, group: EGroupID, selection: ALL_UNITS, repeat: boolean, requireAllEntitiesDead: boolean, data: any): any;
+declare function Event_Death(callback: any, group: EGroupID, selection: ALL_UNITS | ANY_MEMBER | ANY_SQUAD, repeat: boolean, requireAllEntitiesDead: boolean, data: any): any;
 
 /**
  * Callback given callback function with data, when any squad in the encounter can see any squad owned by the player
@@ -9678,12 +9697,12 @@ declare function Event_EncounterCanSeePlayerSquads(callback: any, data: any, enc
 /**
  * Callback given callback function with data when target enters range
  */
-declare function Event_EnterProximity(callback: any, data: any, target: ConstTargetHandle, arequireAll: boolean, location: Marker, range: number, repeat: boolean, triggerOnEnter: boolean): any;
+declare function Event_EnterProximity(callback: any, data: any, target: ConstTargetHandle, arequireAll: boolean, location: MARKER, range: number, repeat: boolean, triggerOnEnter: boolean): any;
 
 /**
  * Callback given callback function with data when target exits range
  */
-declare function Event_ExitProximity(callback: any, data: any, target: ConstTargetHandle, arequireAll: boolean, location: Marker, range: number, repeat: boolean, triggerOnEnter: boolean): any;
+declare function Event_ExitProximity(callback: any, data: any, target: ConstTargetHandle, arequireAll: boolean, location: MARKER, range: number, repeat: boolean, triggerOnEnter: boolean): any;
 
 /**
  * Callback given callback function with data, when the amount of objects matches the requested conditions - Note: Does not count team weapons
@@ -9728,7 +9747,7 @@ declare function Event_PlayerCanSeeElement(callback: any, data: any, team: Playe
 /**
  * Callback given callback function with data when target enters location.
  */
-declare function Event_Proximity(callback: any, data: any, target: ConstTargetHandle, location: Marker, range: number, delay: number): any;
+declare function Event_Proximity(callback: any, data: any, target: ConstTargetHandle, location: MARKER, range: number, delay: number): any;
 
 /**
  * Callback given callback function with data, when the amount of members left in a squad matches the requested conditions
@@ -9738,7 +9757,7 @@ declare function Event_SGroupCountMember(callback: any, data: any, group: SGroup
 /**
  * Callback given callback function with data when target remains in range (called every interval seconds)
  */
-declare function Event_WhileInProximity(callback: any, data: any, target: ConstTargetHandle, arequireAll: boolean, location: Marker, range: number, repeat: boolean, triggerOnEnter: boolean): any;
+declare function Event_WhileInProximity(callback: any, data: any, target: ConstTargetHandle, arequireAll: boolean, location: MARKER, range: number, repeat: boolean, triggerOnEnter: boolean): any;
 
 /**
  * Explores entire map for all players. (Careful where this is used. For example, if used before the first tick, a statetree may change an entity's visual on the first tick, so the ghost's visual will not reflect the entity's.)
@@ -9810,10 +9829,10 @@ declare function FOW_RevealArea(pos: Position, radius: number, durationSecs: num
 declare function FOW_RevealEGroup(group: EGroupID, durationSecs: number): void;
 
 /**
- * Reveals an entity groups in FOW for all alive players over a given duration.
- * Pass in a duration of -1 for indefinite duration ( until the entities are dead )
+ * Reveals an entity group in the FOW for alive players for a duration.
+ * Pass in a duration of -1 for an indefinite duration.
  */
-declare function FOW_RevealEGroupOnly(group: EGroupID, durationSecs: number): void;
+declare function FOW_RevealEGroupOnly(group: EGroup, durationSeconds: number): void;
 
 /**
  * Reveals an entities line of sight (LOS) for all alive players over a given duration. YOU SHOULD ONLY CALL THIS ONCE FOR EACH AREA.
@@ -9822,7 +9841,7 @@ declare function FOW_RevealEGroupOnly(group: EGroupID, durationSecs: number): vo
 declare function FOW_RevealEntity(entity: EntityID, durationSecs: number): void;
 
 /**
- * Reveals an area the size of a given markers proximity at that markers position for a given amount of time. Pass in a duration of 1 for indefinite duration. YOU SHOULD ONLY CALL THIS ONCE FOR EACH AREA.
+ * Reveals an area the size of a given markers proximity at that markers position for a given amount of time. Pass in a duration of -1 for indefinite duration. YOU SHOULD ONLY CALL THIS ONCE FOR EACH AREA.
  * This function will reveal the FOW for ALL alive players. This does not work with markers with rectangular proximity type
  */
 declare function FOW_RevealMarker(marker: MarkerID, duration: number): void;
@@ -9834,10 +9853,10 @@ declare function FOW_RevealMarker(marker: MarkerID, duration: number): void;
 declare function FOW_RevealSGroup(group: SGroupID, durationSecs: number): void;
 
 /**
- * Reveals a squad groups in fow for all alive players over a given duration. YOU SHOULD ONLY CALL THIS ONCE FOR EACH AREA.
- * Pass in a duration of -1 for indefinite duration ( until the squads are dead )
+ * Reveals a squad group in the FOW for alive players for a duration.
+ * Pass in a duration of -1 for an indefinite duration.
  */
-declare function FOW_RevealSGroupOnly(group: SGroupID, durationSecs: number): void;
+declare function FOW_RevealSGroupOnly(group: SGROUP, durationSeconds: number): void;
 
 /**
  * Reveals a squads line if sight(LOS) for all alive players over a given duration. YOU SHOULD ONLY CALL THIS ONCE FOR EACH AREA.
@@ -9924,13 +9943,16 @@ declare function EGroup_CreateTable(format: string, size: number): LuaTable;
 declare function EGroup_GetWBTable(format: string): LuaTable;
 
 /**
- * Returns a fixed size table of markers from the world builder.  Markers that do not exist in the WB, will be nil in the table.  This is why we call it 'non-sequential'
+ * Returns a fixed size table of markers from the world builder.  Markers that do not
+ * exist in the WB, will be nil in the table.  This is why we call it 'non-sequential'
  */
 declare function Marker_GetNonSequentialTable(format: string, size: number): LuaTable;
 
 /**
  * Returns a table of markers from the world builder. Creates as many as it finds
- * mkr_table = Marker_GetTable( 'mkr_%d' ) -- creates a table with 3 markers named 'mkr_1', 'mkr_2', and 'mkr_3' (and so on) from the WB mkr_table2 = Marker_GetTable( 'mkr_%02d' )  -- creates a table with 3 markers named 'mkr_01', 'mkr_02', 'mkr_03' (and so on) from the WB mkr_table3 = Marker_GetTable( 'mkr_%03d_patrol' )  -- creates a table with 3 markers named 'mkr_001_patrol', 'mkr_002_patrol' (and so on) from the WB
+ * mkr_table = Marker_GetTable( 'mkr_%d' ) -- creates a table with 3 markers named 'mkr_1', 'mkr_2', and 'mkr_3' (and so on) from the WB\n\n
+ * mkr_table2 = Marker_GetTable( 'mkr_%02d' )  -- creates a table with 3 markers named 'mkr_01', 'mkr_02', 'mkr_03' (and so on) from the WB\n\n
+ * mkr_table3 = Marker_GetTable( 'mkr_%03d_patrol' )  -- creates a table with 3 markers named 'mkr_001_patrol', 'mkr_002_patrol' (and so on) from the WB\n\n
  */
 declare function Marker_GetTable(format: string): LuaTable;
 
@@ -9955,7 +9977,7 @@ declare function AllMarkersFromName(name: string, type: string): any;
 /**
  * Builds a table of MarkerIDs that are named in a sequence. i.e. a name of "spot" will find markers "spot1", "spot2" and so on, up until it looks for a marker that isn't there.
  */
-declare function Marker_GetSequence(name: string): any;
+declare function Marker_GetSequence(name: string, type: string): any;
 
 /**
  * Returns the number of ScarMarkers with the given name If you don't care about the type, pass in an empty string ( "" )
@@ -9967,13 +9989,13 @@ declare function MarkerCountFromName(name: string, type: string): any;
  * Ends an SP scenario with a Victory. Waits for no intel events to be playing before it ends the mission.
  * This will play any endNIS and endMovie specified in the g_missionData table. After this is called, the path is set and any subsequent calls to Mission_Complete() or Mission_Fail() are ignored.
  */
-declare function Mission_Complete(): any;
+declare function Mission_Complete(): void;
 
 /**
  * Ends an SP scenario with a Failure. Waits for no intel events to be playing before it ends the mission.
  * After this is called, the path is set and any subsequent calls to Mission_Complete() or Mission_Fail() are ignored.
  */
-declare function Mission_Fail(): any;
+declare function Mission_Fail(): void;
 
 /**
  * Checks if a modifier is enabled on all or any entities in an egroup
@@ -9981,9 +10003,12 @@ declare function Mission_Fail(): any;
 declare function Modifier_IsEnabledOnEGroup(egroup: EGroupID, modifier: string, modtype: string, all: boolean, bEnabledByDefault: boolean): void;
 
 /**
+ * Set up tables to track modifiers that are applied per resource
  * Remove an applied modifier.
+ * The game specific <game_title>/modifiers.scar file should define tables with an entry per resource and pass them as arguments
+ * @result
  */
-declare function Modifier_Remove(modifier: ModID): void;
+declare function Modifier_Remove(modifier: Modids): void;
 
 /**
  * Removes all SCAR-applied modifiers for a specific EGroup.
@@ -9998,77 +10023,77 @@ declare function Modifier_RemoveAllFromSGroup(sgroup: SGroupID): void;
 /**
  * Modifies the cast time of an ability
  */
-declare function Modify_AbilityCastTime(player: PlayerID, ability: AbilityID, scalefactor: number, OPT_mathtype?: number): any;
+declare function Modify_AbilityCastTime(player: PlayerID, ability: AbilityID, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies the channeling time of an ability
  */
-declare function Modify_AbilityChannelingTime(player: PlayerID, ability: AbilityID, scalefactor: number, OPT_mathtype?: number): any;
+declare function Modify_AbilityChannelingTime(player: PlayerID, ability: AbilityID, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies the initial delay time of an ability
  */
-declare function Modify_AbilityDelayTime(player: PlayerID, ability: AbilityID, scalefactor: number): ModID;
+declare function Modify_AbilityDelayTime(player: PlayerID, ability: AbilityID, scalefactor: number): Modids;
 
 /**
  * Modifies the duration of an ability
  */
-declare function Modify_AbilityDurationTime(player: PlayerID, ability: AbilityID, scalefactor: number): ModID;
+declare function Modify_AbilityDurationTime(player: PlayerID, ability: AbilityID, scalefactor: number): Modids;
 
 /**
  * Modifies the manpower cost of an ability
  */
-declare function Modify_AbilityManpowerCost(player: PlayerID, ability: AbilityID, scalefactor: number, OPT_mathtype?: number): any;
+declare function Modify_AbilityManpowerCost(player: PlayerID, ability: AbilityID, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies the maximum casting range of an ability. NOTE: it assumes that the actions that the ability executes can also handle the modified range
  */
-declare function Modify_AbilityMaxCastRange(player: PlayerID, ability: AbilityID, scalefactor: number): ModID;
+declare function Modify_AbilityMaxCastRange(player: PlayerID, ability: AbilityID, scalefactor: number): Modids;
 
 /**
  * Modifies the minimum casting range of an ability. NOTE: it assumes that the actions that the ability executes can also handle the modified range
  */
-declare function Modify_AbilityMinCastRange(player: PlayerID, ability: AbilityID, scalefactor: number): ModID;
+declare function Modify_AbilityMinCastRange(player: PlayerID, ability: AbilityID, scalefactor: number): Modids;
 
 /**
  * Modifies the munitions cost of an ability
  */
-declare function Modify_AbilityMunitionsCost(player: PlayerID, ability: AbilityID, scalefactor: number, OPT_mathtype?: number): any;
+declare function Modify_AbilityMunitionsCost(player: PlayerID, ability: AbilityID, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies the recharge time of an ability
  */
-declare function Modify_AbilityRechargeTime(player: PlayerID, ability: AbilityID, scalefactor: number): ModID;
+declare function Modify_AbilityRechargeTime(player: PlayerID | EntityID | SquadID, ability: AbilityID, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies a squad or entity's armor
  */
-declare function Modify_Armor(group: EGroupID, scalefactor: number, OPT_exclusive?: boolean): any;
+declare function Modify_Armor(group: SGroupID | EGroupID, scalefactor: number, exclusive?: boolean): Modids;
 
 /**
- * Modifies the capture time of all strategic points in an EGroup
+ * Modifies the capture time of all strategic points in an EGroup.
  */
-declare function Modify_CaptureTime(sgroup: EGroupID, scalefactor: number): ModID;
+declare function Modify_CaptureTime(egroup: EGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies the capture time of all cover objects in an EGroup.  Higher = less time to capture.
  */
-declare function Modify_CoverCaptureTime(egroup: EGroupID, scalefactor: number): any;
+declare function Modify_CoverCaptureTime(egroup: EGroupID, scalefactor: number): Modids;
 
 /**
  * Enable or disable hold (garrisoning) for an egroup or sgroup
  */
-declare function Modify_DisableHold(group: EGroupID, disable: boolean): ModID;
+declare function Modify_DisableHold(group: EGroupID, disable: boolean): Modids;
 
 /**
  * Enable or disable camoflage for an egroup or sgroup
  */
-declare function Modify_EnableCamoflage(group: EGroupID, disable: boolean): any;
+declare function Modify_EnableCamoflage(group: EGroupID, disable: boolean): Modids;
 
 /**
  * Modifies the time taken to build a particular EBP. This only affects the given player.
  */
-declare function Modify_EntityBuildTime(playerId: PlayerID, ebp: string, scalefactor: number): ModID;
+declare function Modify_EntityBuildTime(playerId: PlayerID, ebp: string, scalefactor: number): Modids;
 
 /**
  * Modifies an entity's construction rate
@@ -10077,9 +10102,9 @@ declare function Modify_EntityBuildTime(playerId: PlayerID, ebp: string, scalefa
 declare function Modify_EntityConstructionRate(group: EGroupID, Factor: number, Usage: MUT): any;
 
 /**
- * Modifies the cost of an entity for a particular player. Possible resource types are RT_Manpower, RT_Munition, RT_Fuel, RT_Action
+ * Modifies the cost of an entity for a particular player.
  */
-declare function Modify_EntityCost(player: PlayerID, blueprint: string, resourcetype: number, addition: number): ModID;
+declare function Modify_EntityCost(player: PlayerID, blueprint: string, resourcetype: number, addition: number): Modids;
 
 /**
  * Modifies an entity's health regen
@@ -10097,92 +10122,92 @@ declare function Modify_EntityMaxHealth(group: EGroupID, Factor: number, Usage: 
  * Modifies an entity's selection name
  * Should only be used on entities, NOT squads
  */
-declare function Modify_EntitySelectionName(group: EGroupID, value: number, Usage: MUT): any;
+declare function Modify_EntitySelectionName(group: EGroupID, value: number, Usage: MUT): Modids;
 
 /**
  * Modifies the veterancy experience received by a player
  */
-declare function Modify_PlayerExperienceReceived(player: PlayerID, factor: number): ModID;
+declare function Modify_PlayerExperienceReceived(player: PlayerID, factor: number): Modids;
 
 /**
  * Modifies the production rate of a player.
  */
-declare function Modify_PlayerProductionRate(sgroup: PlayerID, scalefactor: number): ModID;
+declare function Modify_PlayerProductionRate(sgroup: PlayerID, scalefactor: number): Modids;
 
 /**
  * Modifies a player's resource cap. Possible math types are MUT_Multiplication, MUT_Addition.
  */
-declare function Modify_PlayerResourceCap(playerId: PlayerID, resourceType: number, scalefactor: number, OPT_mathtype?: number): any;
+declare function Modify_PlayerResourceCap(playerId: PlayerID, resourceType: number, scalefactor: number, mathtype?: number): Modids;
 
 /**
- * Modifies a player's incoming resource rate. Possible resource types are RT_Manpower, RT_Munition, RT_Fuel, RT_Action. Possible math types are MUT_Multiplication, MUT_Addition.
+ * Modifies a player's incoming resource rate. Possible math types are MUT_Multiplication, MUT_Addition.
  */
-declare function Modify_PlayerResourceRate(playerId: PlayerID, resourceType: number, scalefactor: number, mathtype?: number): ModID;
+declare function Modify_PlayerResourceRate(playerId: PlayerID, resourceType: number, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies the sight radius for a player.
  */
-declare function Modify_PlayerSightRadius(player: PlayerID, scalefactor: number): ModID;
+declare function Modify_PlayerSightRadius(player: PlayerID, scalefactor: number): Modids;
 
 /**
  * Modifies the upkeep for a player's resource.  Possible math types are MUT_Multiplication, MUT_Addition.
  */
-declare function Modify_PlayerUpkeep(playerId: PlayerID, resourceType: number, scalefactor: number, OPT_mathtype?: number): any;
+declare function Modify_PlayerUpkeep(playerId: PlayerID, resourceType: number, scalefactor: number, mathtype?: number): Modids;
 
 /**
  * Modifies the production rate of all factories in an EGroup
  */
-declare function Modify_ProductionRate(sgroup: EGroupID, scalefactor: number): ModID;
+declare function Modify_ProductionRate(sgroup: EGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies the build time for a particular upgrade. This only affects the given player.
  */
-declare function Modify_ProductionSpeed(entity: EntityID, scalefactor: number): any;
+declare function Modify_ProductionSpeed(entity: EntityID, scalefactor: number): Modids;
 
 /**
  * Modifies a projectile's delay_detonate_time.
  */
-declare function Modify_ProjectileDelayTime(player: PlayerID, entityBP: PBG, factor: number): any;
+declare function Modify_ProjectileDelayTime(player: PlayerID, entityBP: PBG, factor: number): Modids;
 
 /**
  * Modifies the chance of a squad/entity being hit
  */
-declare function Modify_ReceivedAccuracy(group: SGroupID, scalefactor: number): ModID;
+declare function Modify_ReceivedAccuracy(group: SGroupID | EGroupID, scalefactor: number, exclusive?: boolean): Modids;
 
 /**
  * Modifies the damage a squad/entity receives.
  */
-declare function Modify_ReceivedDamage(group: SGroupID, scalefactor: number): ModID;
+declare function Modify_ReceivedDamage(group: SGroupID | EGroupID, scalefactor: number, exclusive?: boolean): Modids;
 
 /**
  * Modifies the rate at which a squad gets suppressed
  */
-declare function Modify_ReceivedSuppression(sgroup: SGroupID, scalefactor: number): ModID;
+declare function Modify_ReceivedSuppression(sgroup: SGroupID, scalefactor: number): Modids;
 
 /**
  * Sets the cost of an upgrade. This only affects the given player
  */
-declare function Modify_SetUpgradeCost(playerId: PlayerID, upgrade: UpgradeID, resourceType: number, newCost: number): ModID;
+declare function Modify_SetUpgradeCost(playerId: PlayerID, upgrade: UpgradeID, resourceType: number, newCost: number): Modids;
 
 /**
  * Modifies the sight radius for an egroup or an sgroup.
  */
-declare function Modify_SightRadius(group: SGroupID, scalefactor: number): ModID;
+declare function Modify_SightRadius(group: SGroupID | EGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies the availability limit of a squad type for any given player
  */
-declare function Modify_SquadAvailability(player: PlayerID, blueprint: string, addition: number): ModID;
+declare function Modify_SquadAvailability(player: PlayerID, blueprint: string, addition: number): Modids;
 
 /**
  * Modifies a squad's rate at which it will capture a strategic point.
  */
-declare function Modify_SquadCaptureRate(group: SGroupID, scalefactor: number): any;
+declare function Modify_SquadCaptureRate(group: SGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies the cost of an squad for a particular player.
  */
-declare function Modify_SquadCost(player: PlayerID, blueprint: string, resourcetype: number, addition: number): any;
+declare function Modify_SquadCost(player: PlayerID, blueprint: string, resourcetype: number, addition: number): Modids;
 
 /**
  * Modifies a squad's health regen.
@@ -10192,7 +10217,7 @@ declare function Modify_SquadHealthRegen(group: SGroupID, Factor: number, Usage:
 /**
  * Enable or Disable a squad's vulnerability to knock back
  */
-declare function Modify_SquadInvulnerableToKnockback(group: SGroupID, disable: boolean): any;
+declare function Modify_SquadInvulnerableToKnockback(group: SGroupID, disable: boolean): Modids;
 
 /**
  * Modifies a squad's max health
@@ -10203,130 +10228,130 @@ declare function Modify_SquadMaxHealth(group: SGroupID, Factor: number, Usage: M
 /**
  * Modifies the sight radius of a squad type for any given player
  */
-declare function Modify_SquadTypeSightRadius(player: PlayerID, blueprint: string, scalefactor: number): any;
+declare function Modify_SquadTypeSightRadius(player: PlayerID, blueprint: string, scalefactor: number): Modids;
 
 /**
  * Modifies the target priority of a squad or entity group from the attacker. The value is an addition
  */
-declare function Modify_TargetPriority(group: SGroupID, addition: number): ModID;
+declare function Modify_TargetPriority(group: SGroupID | EGroupID, addition: number): Modids;
 
 /**
  * Modifies a sync weapon only.
  * The hardpoint defaults to "hardpoint_01"
  */
-declare function Modify_TeamWeapon(group: EGroupID, modifier: string, scalefactor: number, OPT_hardpoint?: string): any;
+declare function Modify_TeamWeapon(group: SGroupID | EGroupID, modifier: string, scalefactor: number, hardpoint?: string): Modids;
 
 /**
  * Modifies the territory radius for an egroup or an sgroup.
  */
-declare function Modify_TerritoryRadius(group: EGroupID, scalefactor: number): ModID;
+declare function Modify_TerritoryRadius(group: EGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies the maximum speed for a vehicle. This has no effect on infantry.
  */
-declare function Modify_UnitSpeed(sgroup: SGroupID, scalefactor: number): ModID;
+declare function Modify_UnitSpeed(sgroup: SGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies the Veterancy Experience value of the target SGroup, EGroup, Entity, or Squad. Mathtype is Multiplication by default
  */
-declare function Modify_UnitVeterancyValue(group: SGroup, scalefactor: number, mathtype?: number): ModID;
+declare function Modify_UnitVeterancyValue(group: SGROUP | EGroup, scalefactor: number, mathtype?: number): ModID;
 
 /**
  * Modifies the build time for a particular upgrade. This only affects the given player.
  */
-declare function Modify_UpgradeBuildTime(playerId: PlayerID, upgrade: UpgradeID, scalefactor: number): ModID;
+declare function Modify_UpgradeBuildTime(playerId: PlayerID, upgrade: UpgradeID, scalefactor: number): Modids;
 
 /**
  * Modifies the vehicle repair rate of all a player's engineers
  */
-declare function Modify_VehicleRepairRate(player: PlayerID, factor: number, engineer_blueprint?: string): ModID;
+declare function Modify_VehicleRepairRate(player: PlayerID, factor: number, engineer_entity_blueprint: string): Modids;
 
 /**
  * Modifies the vehicle rotation speed
  */
-declare function Modify_VehicleRotationSpeed(group: EGroupID, factor: number): any;
+declare function Modify_VehicleRotationSpeed(group: EGroupID | SGroupID, factor: number): Modids;
 
 /**
  * Modifies the turret rotation speed of a vehicle squad
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_VehicleTurretRotationSpeed(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_VehicleTurretRotationSpeed(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Increases the received accuracy, penetration, and damage on a squad by the scalefactor.  For example, a scalefactor of 2 means that the squad gets 2x the received accuracy, 2x the received penetration, and 2x the received damage.
  */
-declare function Modify_Vulnerability(group: EGroupID, scalefactor: number): ModID;
+declare function Modify_Vulnerability(group: EGroupID | SGroupID, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon accuracy.
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponAccuracy(group: SGroupID, hardpoint: string, scalefactor: number): ModID;
+declare function Modify_WeaponAccuracy(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon burst length (time).
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponBurstLength(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_WeaponBurstLength(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon rate of fire.
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponBurstRateOfFire(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_WeaponBurstRateOfFire(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon cooldown time.
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponCooldown(group: SGroupID, hardpoint: string, scalefactor: number): ModID;
+declare function Modify_WeaponCooldown(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon damage.
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponDamage(group: SGroupID, hardpoint: string, scalefactor: number): ModID;
+declare function Modify_WeaponDamage(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Enables or disables a weapon hardpoint
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponEnabled(group: EGroupID, hardpoint: string, enabled: boolean): any;
+declare function Modify_WeaponEnabled(group: SGroupID | EGroupID, hardpoint: string, enabled: boolean): Modids;
 
 /**
  * Modifies a squad's weapon penetration. Does not work on artillery (mortar, nebelwerfer, etc.)
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponPenetration(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_WeaponPenetration(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon range. Does not work on artillery (mortar, nebelwerfer, etc.)
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponRange(group: SGroupID, hardpoint: string, scalefactor: number): ModID;
+declare function Modify_WeaponRange(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon reload time.
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponReload(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_WeaponReload(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon scatter.
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponScatter(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_WeaponScatter(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Modifies a squad's weapon suppression. Does not work on artillery (mortar, nebelwerfer, etc.)
  * The hardpoint should be specified as a string - i.e. "hardpoint_01"
  */
-declare function Modify_WeaponSuppression(group: EGroupID, hardpoint: string, scalefactor: number): any;
+declare function Modify_WeaponSuppression(group: SGroupID | EGroupID, hardpoint: string, scalefactor: number): Modids;
 
 /**
  * Gets the 'default music movement'.  This is the current default that can always be called
  */
-declare function Music_GetDefaultMovement(): any;
+declare function Music_GetDefaultMovement(): string;
 
 /**
  * Translates the string music event level into the engine designated intensity value
@@ -10405,7 +10430,7 @@ declare function NIS_CameraCheckpoint(): any;
  * ONLY USE THIS INSIDE AN NIS EVENT. Transition from the NIS back to the game.
  * You can safely do any cleanup after calling this, and it will occur once the screen is black.
  */
-declare function NIS_END(OPT_details?: any): any;
+declare function NIS_END(details?: any): void;
 
 /**
  * Used to create a fade cut in an NIS
@@ -10417,25 +10442,25 @@ declare function NIS_FadeCameraCut(): any;
  * ONLY USE THIS INSIDE AN NIS EVENT. Transition from the game into an NIS preamble - a quick section before the NIS proper. A preamble is totally optional, if you want to go straight into an NIS, skip this and use NIS_START instead.
  * See NIS_START for information about the details table.
  */
-declare function NIS_PREAMBLE(details: any): any;
+declare function NIS_PREAMBLE(details: any): void;
 
 /**
  * ONLY USE THIS INSIDE AN NIS EVENT. Transition from the game (or a preamble) into an NIS.
  * You can do any setup after calling this, as that will occur once the screen has faded to black on the transition in. The game will fade back in to the NIS over the next half second or so (apart from opening cinematics, which is two seconds), so you may want to delay your first action accordingly. The details table should include, at the very least, the following items: style (NIS_OPENING, NIS_MID, or NIS_CLOSING), revealFOW (a Boolean). If you included details in a preamble, you don't need to supply them again here.
  */
-declare function NIS_START(OPT_details?: any): any;
+declare function NIS_START(details?: any): void;
 
 /**
  * ONLY USE THIS INSIDE AN NIS EVENT with an NIS camera. Starts the NIS camera drifting.
  * "Drifting" moves the camera around in the shape of an infinity symbol, so it doesn't look quite so static.
  */
-declare function NIS_StartDrift(OPT_totalTime?: number, OPT_driftScale?: number): any;
+declare function NIS_StartDrift(totalTime?: number, driftScale?: number): void;
 
 /**
  * ONLY USE THIS INSIDE AN NIS EVENT with an NIS camera. Stops the NIS camera drifting.
  * "Drifting" moves the camera around in the shape of an infinity symbol, so it doesn't look quite so static.
  */
-declare function NIS_StopDrift(): any;
+declare function NIS_StopDrift(): void;
 
 /**
  * Stores the current camera position as the NIS's end_camera position.
@@ -10447,35 +10472,37 @@ declare function NIS_StoreCurrentCameraPos(): any;
  * Adds a map highlight around a specific point
  * AreaType is AT_CIRCLE (the default) or AT_SQUARE. Color is a table with three values for red, green and blue - i.e. {255, 0, 0}.
  */
-declare function Objective_AddAreaHighlight(objTable: LuaTable, pos: Marker, OPT_areatype?: AreaType, OPT_scale?: number, OPT_color?: any, OPT_alpha?: number): any;
+declare function Objective_AddAreaHighlight(objTable: LuaTable, pos: MARKER | Position | Group, areatype?: AreaType, scale?: number, color?: any, alpha?: number): ElementID;
 
 /**
  * Adds a map highlight around a specific point
  * AreaType is AT_CIRCLE (the default) or AT_SQUARE. Color is a table with three values for red, green and blue - i.e. {255, 0, 0}.
  */
-declare function Objective_AddAreaHighlight(objTable: LuaTable, pos: Marker, OPT_areatype?: AreaType, OPT_scale?: number, OPT_color?: any, OPT_alpha?: number): any;
-
-/**
- * Adds a visual splat on the ground in the world around a certain position, returning the ID
- */
-declare function Objective_AddGroundReticule(): any;
+declare function Objective_AddAreaHighlight(objTable: LuaTable, pos: MARKER | Position | Group, areatype?: AreaType, scale?: number, color?: any, alpha?: number): ElementID;
 
 /**
  * Adds a visual splat on the ground in the world around a certain position, returning the ID
  * The reticule blueprint (the circle on the ground) and the hintpoint template (the arrow) are by defualt taken from the objective type, but you can override them or set them to false to turn that element off.
  */
-declare function Objective_AddGroundReticule(objTable: LuaTable, position: Marker, OPT_size?: number, OPT_reticuleBlueprint?: BP, OPT_hintpointTemplate?: string): any;
+declare function Objective_AddGroundReticule(objTable: LuaTable, position: MARKER | Position, size?: number, reticuleBlueprint?: BP, hintpointTemplate?: string): ReticuleID;
 
 /**
- * Adds a Healthbar tied to a squad or entity at a location.  Will update the health bar as the unit's health fluctuates.  Can be removed with Objective_RemoveHealthBar or completing/failing the objective
+ * Adds a visual splat on the ground in the world around a certain position, returning the ID
+ * The reticule blueprint (the circle on the ground) and the hintpoint template (the arrow) are by defualt taken from the objective type, but you can override them or set them to false to turn that element off.
  */
-declare function Objective_AddHealthBar(objTable: LuaTable, barIndex: number, group: EGroupID, name: string, OPT_onlyWhenDamaged?: boolean): any;
+declare function Objective_AddGroundReticule(objTable: LuaTable, position: MARKER | Position, size?: number, reticuleBlueprint?: BP, hintpointTemplate?: string): ReticuleID;
 
 /**
  * Adds a Healthbar tied to a squad or entity at a location.  Will update the health bar as the unit's health fluctuates.  Can be removed with Objective_RemoveHealthBar or completing/failing the objective
  * If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_AddHealthBar(objTable: LuaTable, group: EGroupID, OPT_onlyWhenDamaged?: boolean, OPT_barIndex?: number, OPT_text?: string): any;
+declare function Objective_AddHealthBar(objTable: LuaTable, group: Squad | SGROUP | EntityID | EGroup, onlyWhenDamaged?: boolean, barIndex?: number, text?: string | LocID): ElementID;
+
+/**
+ * Adds a Healthbar tied to a squad or entity at a location.  Will update the health bar as the unit's health fluctuates.  Can be removed with Objective_RemoveHealthBar or completing/failing the objective
+ * If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
+ */
+declare function Objective_AddHealthBar(objTable: LuaTable, group: Squad | SGROUP | EntityID | EGroup, onlyWhenDamaged?: boolean, barIndex?: number, text?: string | LocID): ElementID;
 
 /**
  * Adds a tactical map ping to an objective
@@ -10486,28 +10513,28 @@ declare function Objective_AddPing(objectiveTable: LuaTable, pos: Position): Pin
  * Adds a tactical map ping to an objective
  */
 declare function Objective_AddPing(objectiveTable: LuaTable, pos: Position): PingID;
-
-/**
- * Adds a Timer bar for objective timers.  Can be removed with Objective_RemoveTimerBar or completing/failing the objective
- * Requires an Objective_StartTimer to work.
- */
-declare function Objective_AddTimerBar(objTable: LuaTable, barIndex: number, text: string): any;
 
 /**
  * Adds a Timer bar for objective timers, which is automatically updated. The bar can be removed with Objective_RemoveTimerBar or by completing/failing the objective.
  * Requires a timer to have been started with Objective_StartTimer to work. If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_AddTimerBar(objTable: LuaTable, OPT_barIndex?: number, OPT_text?: string): any;
+declare function Objective_AddTimerBar(objTable: LuaTable, barIndex?: number, text?: string | LocID): ElementID;
+
+/**
+ * Adds a Timer bar for objective timers, which is automatically updated. The bar can be removed with Objective_RemoveTimerBar or by completing/failing the objective.
+ * Requires a timer to have been started with Objective_StartTimer to work. If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
+ */
+declare function Objective_AddTimerBar(objTable: LuaTable, barIndex?: number, text?: string | LocID): ElementID;
 
 /**
  * Adds multiple UI elements on one position. 'pos' can be group/entity/squad/marker. worldArrow adds a 3D arrow which points to the thing in the world. hintpointText adds a hint point that appears on the thing when moused over. If you're adding an arrow or a hintpoint, this thing will be among those potentially pointed to by the 2D HUD arrow. objectiveArrowOffset is an offset applied to the arrow's position (you can specify a height offset or a 3D position offset).
  */
-declare function Objective_AddUIElements(objTable: LuaTable, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number): ElementID;
+declare function Objective_AddUIElements(objTable: LuaTable, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number | Position, objectiveArrowFacing?: EntityID | Squad | Position, actionType?: HintPointActionType, iconName?: string, templateName?: string): ElementID;
 
 /**
  * Adds multiple UI elements on one position. 'pos' can be group/entity/squad/marker. worldArrow adds a 3D arrow which points to the thing in the world. hintpointText adds a hint point that appears on the thing when moused over. If you're adding an arrow or a hintpoint, this thing will be among those potentially pointed to by the 2D HUD arrow. objectiveArrowOffset is an offset applied to the arrow's position (you can specify a height offset or a 3D position offset).
  */
-declare function Objective_AddUIElements(objTable: LuaTable, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number): ElementID;
+declare function Objective_AddUIElements(objTable: LuaTable, pos: Position, ping?: boolean, hintpointText?: string, worldArrow?: boolean, objectiveArrowOffset?: number | Position, objectiveArrowFacing?: EntityID | Squad | Position, actionType?: HintPointActionType, iconName?: string, templateName?: string): ElementID;
 
 /**
  * Returns whether all primary objectives have been completed.
@@ -10522,67 +10549,67 @@ declare function Objective_AreAllPrimaryObjectivesComplete(): boolean;
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are complete
  */
-declare function Objective_AreSubObjectivesComplete(objTable: LuaTable, all: boolean): any;
+declare function Objective_AreSubObjectivesComplete(objTable: LuaTable, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are complete
  */
-declare function Objective_AreSubObjectivesComplete(objTable: LuaTable, all: boolean): any;
+declare function Objective_AreSubObjectivesComplete(objTable: LuaTable, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are expired
  */
-declare function Objective_AreSubObjectivesExpired(objTable: LuaTable, all: boolean): any;
+declare function Objective_AreSubObjectivesExpired(objTable: LuaTable, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are failed
  */
-declare function Objective_AreSubObjectivesFailed(objTable: LuaTable, all: boolean): any;
+declare function Objective_AreSubObjectivesFailed(objTable: LuaTable, all: boolean): boolean;
 
 /**
  * Returns whether ALL or ANY sub-objectives of the given objective are failed
  */
-declare function Objective_AreSubObjectivesFailed(objTable: LuaTable, all: boolean): any;
+declare function Objective_AreSubObjectivesFailed(objTable: LuaTable, all: boolean): boolean;
 
 /**
  * Bring attention to some UI elements by blinking them. This causes the hintpoint and the off-screen arrow to blink, but leaves the minimap ping and other elements constant.
  */
-declare function Objective_BlinkUIElements(objTable: LuaTable, elementID: number): any;
+declare function Objective_BlinkUIElements(objTable: LuaTable, elementID: number): void;
 
 /**
  * Bring attention to some UI elements by blinking them. This causes the hintpoint and the off-screen arrow to blink, but leaves the minimap ping and other elements constant.
  */
-declare function Objective_BlinkUIElements(objTable: LuaTable, elementID: number): any;
+declare function Objective_BlinkUIElements(objTable: LuaTable, elementID: number): void;
 
 /**
- * 'Completes' an objective. Wrapper function for Objective_SetState with a few other features. If you do not want the objective title to be shown on screen, pass in 'false' for bShowTitle
- * Includes managing the blips and triggers the OnComplete() function as defined by the objective table created in the main scar file.
+ * Completes an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as complete but stays visible until the parent objective is finished)
+ * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Complete event are played (default: true).
  */
-declare function Objective_Complete(objTable: LuaTable, bShowTitle?: boolean): void;
+declare function Objective_Complete(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
- * 'Completes' an objective. Wrapper function for Objective_SetState with a few other features. If you do not want the objective title to be shown on screen, pass in 'false' for bShowTitle
- * Includes managing the blips and triggers the OnComplete() function as defined by the objective table created in the main scar file.
+ * Completes an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as complete but stays visible until the parent objective is finished)
+ * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Complete event are played (default: true).
  */
-declare function Objective_Complete(objTable: LuaTable, bShowTitle?: boolean): void;
+declare function Objective_Complete(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Expires an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as expired but stays visible until the parent objective is finished)
  * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Expire event are played (default: true).
  */
-declare function Objective_Expire(objTable: LuaTable, OPT_showTitle?: boolean, OPT_playIntel?: boolean): any;
+declare function Objective_Expire(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
- * 'Fails' an objective. Wrapper function for Objective_SetState with a few other features.
- * Includes managing the blips and triggers the OnFail() function as defined by the objective table created in the main scar file.
+ * Fails an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as failed but stays visible until the parent objective is finished)
+ * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Fail event are played (default: true).
  */
-declare function Objective_Fail(objTable: LuaTable, bShowTitle?: boolean): void;
+declare function Objective_Fail(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
- * 'Fails' an objective. Wrapper function for Objective_SetState with a few other features.
- * Includes managing the blips and triggers the OnFail() function as defined by the objective table created in the main scar file.
+ * Fails an objective and removes it from the list (unless it is a sub-objective, in which case it is marked as failed but stays visible until the parent objective is finished)
+ * Automatically removes any elements added with Objective_AddUIElements(). The showTitle and playIntel flags let you control whether the titlecard and Intel_Fail event are played (default: true).
  */
-declare function Objective_Fail(objTable: LuaTable, bShowTitle?: boolean): void;
+declare function Objective_Fail(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Returns the current count associated with this objective.
@@ -10597,12 +10624,12 @@ declare function Objective_GetCounter(objTable: LuaTable): number;
 /**
  * Returns a table of all sub-objectives of the given objective
  */
-declare function Objective_GetSubObjectives(objTable: LuaTable): any;
+declare function Objective_GetSubObjectives(objTable: LuaTable): LuaTable;
 
 /**
  * Returns a table of all sub-objectives of the given objective
  */
-declare function Objective_GetSubObjectives(objTable: LuaTable): any;
+declare function Objective_GetSubObjectives(objTable: LuaTable): LuaTable;
 
 /**
  * Returns the amount of seconds on the timer (time remaining or time elapsed, based on the type of timer used)
@@ -10617,12 +10644,12 @@ declare function Objective_GetTimerSeconds(objTable: LuaTable): number;
 /**
  * Increases the counter that is associated with this objective in the UI. You can provide an amount to increase by.
  */
-declare function Objective_IncreaseCounter(objTable: LuaTable, OPT_amount?: number): any;
+declare function Objective_IncreaseCounter(objTable: LuaTable, amount?: number): void;
 
 /**
  * Increases the counter that is associated with this objective in the UI. You can provide an amount to increase by.
  */
-declare function Objective_IncreaseCounter(objTable: LuaTable, OPT_amount?: number): any;
+declare function Objective_IncreaseCounter(objTable: LuaTable, amount?: number): void;
 
 /**
  * Returns whether an objective is complete
@@ -10647,7 +10674,7 @@ declare function Objective_IsCounterSet(objTable: LuaTable): boolean;
 /**
  * Returns whether an objective is expired
  */
-declare function Objective_IsExpired(objTable: LuaTable): any;
+declare function Objective_IsExpired(objTable: LuaTable): boolean;
 
 /**
  * Returns whether an objective is failed
@@ -10660,14 +10687,14 @@ declare function Objective_IsFailed(objTable: LuaTable): boolean;
 declare function Objective_IsFailed(objTable: LuaTable): boolean;
 
 /**
- * Returns whether an objective has been started. Completed objectives will return true.
+ * Returns whether an objective has been started. Completed and failed / expired objectives will also return true.
  */
-declare function Objective_IsStarted(objTable: LuaTable): void;
+declare function Objective_IsStarted(objTable: LuaTable): boolean;
 
 /**
- * Returns whether an objective has been started. Completed objectives will return true.
+ * Returns whether an objective has been started. Completed and failed / expired objectives will also return true.
  */
-declare function Objective_IsStarted(objTable: LuaTable): void;
+declare function Objective_IsStarted(objTable: LuaTable): boolean;
 
 /**
  * Returns true if a timer has been set for this objective
@@ -10682,12 +10709,12 @@ declare function Objective_IsTimerSet(objTable: LuaTable): boolean;
 /**
  * Returns whether an objective is visible or not.
  */
-declare function Objective_IsVisible(objTable: LuaTable): any;
+declare function Objective_IsVisible(objTable: LuaTable): boolean;
 
 /**
  * Returns whether an objective is visible or not.
  */
-declare function Objective_IsVisible(objTable: LuaTable): any;
+declare function Objective_IsVisible(objTable: LuaTable): boolean;
 
 /**
  * Pauses the objective's timer. If a timer has not been set, it does nothing.
@@ -10701,15 +10728,15 @@ declare function Objective_PauseTimer(objTable: LuaTable): void;
 
 /**
  * 'Registers' an objective. Wrapper function for Objective_Create with a few other features.
- * Includes pointers, labels and pings as defined by the objective table created in the main scar file. You can pass in a team or player, so that the objective only applies to it.
+ * Includes pings as defined by the objective table created in the main scar file. You can pass in a team or player, so that the objective only applies to it.
  */
-declare function Objective_Register(objTable: LuaTable, owner?: PlayerID): ObjectiveID;
+declare function Objective_Register(objTable: LuaTable, owner?: PlayerID | TeamID): ObjectiveID;
 
 /**
  * 'Registers' an objective. Wrapper function for Objective_Create with a few other features.
- * Includes pointers, labels and pings as defined by the objective table created in the main scar file. You can pass in a team or player, so that the objective only applies to it.
+ * Includes pings as defined by the objective table created in the main scar file. You can pass in a team or player, so that the objective only applies to it.
  */
-declare function Objective_Register(objTable: LuaTable, owner?: PlayerID): ObjectiveID;
+declare function Objective_Register(objTable: LuaTable, owner?: PlayerID | TeamID): ObjectiveID;
 
 /**
  * Removes an existing ground reticule by its ID
@@ -10724,12 +10751,12 @@ declare function Objective_RemoveGroundReticule(): any;
 /**
  * Removes a health bar monitor
  */
-declare function Objective_RemoveHealthBar(objectiveTable: LuaTable, healthBarID: Element): any;
+declare function Objective_RemoveHealthBar(objectiveTable: LuaTable, healthBarID: Element): void;
 
 /**
  * Removes a health bar monitor
  */
-declare function Objective_RemoveHealthBar(objectiveTable: LuaTable, healthBarID: Element): any;
+declare function Objective_RemoveHealthBar(objectiveTable: LuaTable, healthBarID: Element): void;
 
 /**
  * Removes a tactical map ping from an objective
@@ -10749,12 +10776,12 @@ declare function Objective_RemoveProgressBar(objTable: LuaTable): any;
 /**
  * Removes a timer bar monitor
  */
-declare function Objective_RemoveTimerBar(objectiveTable: LuaTable, timerBarID: Element): any;
+declare function Objective_RemoveTimerBar(objectiveTable: LuaTable, timerBarID: Element): void;
 
 /**
  * Removes a timer bar monitor
  */
-declare function Objective_RemoveTimerBar(objectiveTable: LuaTable, timerBarID: Element): any;
+declare function Objective_RemoveTimerBar(objectiveTable: LuaTable, timerBarID: Element): void;
 
 /**
  * Removes a group of UI elements that were added by Objective_AddUIElements
@@ -10805,24 +10832,24 @@ declare function Objective_SetProgressBar(objTable: LuaTable, value: number, OPT
 /**
  * Shows or hides an objective from the UI and tactical map
  */
-declare function Objective_Show(objective_table: LuaTable, on: boolean): void;
+declare function Objective_Show(objective_table: LuaTable, on: boolean, ShowTitle: boolean): void;
 
 /**
  * Shows or hides an objective from the UI and tactical map
  */
-declare function Objective_Show(objective_table: LuaTable, on: boolean): void;
+declare function Objective_Show(objective_table: LuaTable, on: boolean, ShowTitle: boolean): void;
 
 /**
  * Shows an objective to the player and activates it
- * Includes pointers, labels, pings and FOW as defined by the objective table created in the main scar file.
+ * Includes pings and FOW as defined by the SetupUI() function. The showTitle and playIntel flags let you control whether the titlecard and Intel_Start event are played (default: true).
  */
-declare function Objective_Start(objTable: LuaTable, bShowTitle?: boolean): void;
+declare function Objective_Start(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Shows an objective to the player and activates it
- * Includes pointers, labels, pings and FOW as defined by the objective table created in the main scar file.
+ * Includes pings and FOW as defined by the SetupUI() function. The showTitle and playIntel flags let you control whether the titlecard and Intel_Start event are played (default: true).
  */
-declare function Objective_Start(objTable: LuaTable, bShowTitle?: boolean): void;
+declare function Objective_Start(objTable: LuaTable, showTitle?: boolean, playIntel?: boolean): void;
 
 /**
  * Starts a timer that is associated with this objective in the UI. Use COUNT_DOWN or COUNT_UP for the 'direction' parameter
@@ -10836,13 +10863,15 @@ declare function Objective_StartTimer(objTable: LuaTable, direction: number, ini
 
 /**
  * Stops an objective that is in progress and puts it back into the waiting-to-start state
+ * @extdesc
  */
-declare function Objective_Stop(objTable: LuaTable): any;
+declare function Objective_Stop(objTable: LuaTable): void;
 
 /**
  * Stops an objective that is in progress and puts it back into the waiting-to-start state
+ * @extdesc
  */
-declare function Objective_Stop(objTable: LuaTable): any;
+declare function Objective_Stop(objTable: LuaTable): void;
 
 /**
  * Stops the objective's counter. If a counter has not been set, it does nothing.
@@ -10888,13 +10917,15 @@ declare function Objective_TriggerTitleCard(): any;
 
 /**
  * Updates the title and description for the objective. If you only want to set one of them, pass in nil for the other
+ * Use the immediate flag to make this change happen immediately, bypassing the queue that objective updates normally sit in (i.e. you're updating the objective's title in the middle of its PreStart() function!)
  */
-declare function Objective_UpdateText(objTable: LuaTable, title: string, description: string, bShowTitle?: boolean): void;
+declare function Objective_UpdateText(objTable: LuaTable, new_title: string, new_description: string, showTitle?: boolean, immediate?: boolean): void;
 
 /**
  * Updates the title and description for the objective. If you only want to set one of them, pass in nil for the other
+ * Use the immediate flag to make this change happen immediately, bypassing the queue that objective updates normally sit in (i.e. you're updating the objective's title in the middle of its PreStart() function!)
  */
-declare function Objective_UpdateText(objTable: LuaTable, title: string, description: string, bShowTitle?: boolean): void;
+declare function Objective_UpdateText(objTable: LuaTable, new_title: string, new_description: string, showTitle?: boolean, immediate?: boolean): void;
 
 /**
  * Add an ability to a player
@@ -10907,14 +10938,15 @@ declare function Player_AddAbility(pPlayer: PlayerID, pAbilityPBG: AbilityBluepr
 declare function Player_AddAbilityLockoutZone(player: PlayerID, abilityPBG: AbilityBlueprint, marker: MarkerID): void;
 
 /**
- * Add resource to player, as opposed to just setting it. Possible resource types are RT_Manpower, RT_Munition, RT_Fuel, RT_Action
+ * Add resource to player, as opposed to just setting it.
+ * Player::AddResourceReason, the resource add reason enum, can be nil, RES_Other, RES_Gift, RES_Resourcing, RES_Refund, RES_RefundOnDeath
  */
 declare function Player_AddResource(playerId: PlayerID, resourceType: number, value: number): void;
 
 /**
  * Add resources to player, as opposed to just setting it.
  */
-declare function Player_AddResources(playerId: PlayerID, resources: any): any;
+declare function Player_AddResources(playerId: PlayerID, resources: any): void;
 
 /**
  * For the given player, get all of the squads gathered into a squadgroup of your naming.
@@ -10960,7 +10992,7 @@ declare function Player_CanConstruct(player: PlayerID, pbg: PropertyBagGroup): a
 /**
  * Returns TRUE if player can construct the specified entity at specified position and facing.  Otherwise, returns FALSE.
  */
-declare function Player_CanConstructOnPosition(player: PlayerID, sgroupid: SGroupID, ebp: EntityID, targetid: EGroupID, OPT_Facing?: Position): any;
+declare function Player_CanConstructOnPosition(player: PlayerID, sgroupid: SGROUP, ebp: EntityID, targetid: EGroupID | Position | MARKER, Facing?: Position): boolean;
 
 /**
  * Check if a player of specified group can place an entity at the specified position and facing angle.
@@ -11052,7 +11084,8 @@ declare function Player_GetAIType(pPlayer: PlayerID): number;
 
 /**
  * Creates/Clears groups that contain all of a player's units and buildings. Defaults - sg_allsquads and eg_allentities
- * Fills an SGroup with all of the given player's squads, and an EGroup with all the player's entities. If you don't provide and groups, then it defaults to using sg_allsquads and eg_allentities.
+ * Fills an SGroup with all of the given player's squads, and an EGroup with all the player's entities.
+ * If you don't provide and groups, then it defaults to using sg_allsquads and eg_allentities.
  */
 declare function Player_GetAll(player: PlayerID, sgroup?: SGroupID, egroup?: EGroupID): void;
 
@@ -11066,25 +11099,25 @@ declare function Player_GetAllEntities(player: Player): any;
  * Returns an EGroup containing all of the players entities(including non_squad entities) of a specific unit_type (as defined by the type_ext on the entity)
  * This function returns a new EGroup to allow tracking of different types.
  */
-declare function Player_GetAllEntitiesFromType(player: PlayerID, unitType: string): any;
+declare function Player_GetAllEntitiesFromType(player: PlayerID, unitType: string): EGroup;
 
 /**
  * Gather together all of a player's entities that are in proximity to a marker, a position, or within a territory sector into an EGroup. The EGroup is cleared beforehand.
  * You can override a marker's normal proximity by specifying a range.
  */
-declare function Player_GetAllEntitiesNearMarker(playerid: PlayerID, egroup: EGroupID, position: MarkerID, range?: number): void;
+declare function Player_GetAllEntitiesNearMarker(playerid: PlayerID, egroup: EGroupID, position: MarkerID | Position | SectorID, range?: number): void;
 
 /**
  * Gather together all of a player's squads that are in proximity to a marker, a position, or within a territory sector into an SGroup. The SGroup is cleared beforehand.
  * You can override a marker's normal proximity by specifying a range.
  */
-declare function Player_GetAllSquadsNearMarker(player: PlayerID, sgroup: SGroupID, position: MarkerID, range?: number): void;
+declare function Player_GetAllSquadsNearMarker(player: PlayerID, sgroup: SGroupID, position: MarkerID | Position | SectorID, range?: number): void;
 
 /**
  * Returns the entityID of the first player owned building listed in the table.
  * This only looks at completed buildings
  */
-declare function Player_GetBuildingID(player: PlayerID, entitytypes: number): any;
+declare function Player_GetBuildingID(player: PlayerID, entitytypes: BlueprintTable | StringTable): EntityID;
 
 /**
  * Returns the total number of buildings owned by this player.
@@ -11105,7 +11138,7 @@ declare function Player_GetBuildingsCountOnly(playerId: PlayerID, ebplist: Bluep
  * Returns the entityID of the first player owned building listed in the table.
  * This only looks at under construction buildings
  */
-declare function Player_GetBuildingUnderConstructionID(player: PlayerID, entitytypes: number): any;
+declare function Player_GetBuildingUnderConstructionID(player: PlayerID, entitytypes: BlueprintTable | StringTable): EntityID;
 
 /**
  * Use capType CT_Personnel to get current squad cap, CT_Vehicle to get current vehicle cap, CT_Medic to get current medic cap
@@ -11133,7 +11166,7 @@ declare function Player_GetEntitiesEGroup(player: Player, group: EGroupID): any;
  * Returns an EGroup containing all of the players entities(excluding non_squad entities) of a specific unit_type (as defined by the type_ext on the entity)
  * This function returns a new EGroup to allow tracking of different types.
  */
-declare function Player_GetEntitiesFromType(player: PlayerID, unitType: string): any;
+declare function Player_GetEntitiesFromType(player: PlayerID, unitType: string): EGroup;
 
 /**
  * Returns the modified cost of the given entity including all modifications added by the given player
@@ -11144,7 +11177,7 @@ declare function Player_GetEntityBPCost(player: PlayerID, pbg: PropertyBagGroup)
  * Finds the greatest (or least) concentration of entities owned by a player.
  * This function is slow, so don't call it very often
  */
-declare function Player_GetEntityConcentration(player: PlayerID, popcapOnly?: boolean, includeBlueprints?: any, excludeBlueprints?: any, bLeastConcentrated?: boolean, onlyInThisMarker?: MarkerID): EGroup;
+declare function Player_GetEntityConcentration(player: PlayerID, popcapOnly?: boolean, includeBlueprints?: any, excludeBlueprints?: any, bLeastConcentrated?: boolean, onlyInThisMarker?: MarkerID | any): EGroup;
 
 /**
  * Returns the number of entities a player currently owns
@@ -11188,9 +11221,10 @@ declare function Player_GetNumVictoryPoints(p: PlayerID): number;
 
 /**
  * Gets the current personnel or vehicle population as a percetange of the current max-cap. The captype is either CT_Personnel or CT_Vehicle.
- * If MaxPopulation is 0, returns 1.0 captype is CT_Personnel by default.
+ * captype is CT_Personnel by default.
+ * If MaxPopulation is 0, returns 1.0
  */
-declare function Player_GetPopulationPercentage(playerid: PlayerID, OPT_captype?: number): any;
+declare function Player_GetPopulationPercentage(playerid: PlayerID, captype?: number): number;
 
 /**
  * Returns the race index for the given player.
@@ -11236,7 +11270,7 @@ declare function Player_GetSquadBPCost(pPlayer: PlayerID, pbg: PropertyBagGroup)
  * Finds the greatest (or least) concentration of squads owned by a player.
  * This function is slow, so don't call it very often
  */
-declare function Player_GetSquadConcentration(player: PlayerID, popcapOnly?: boolean, includeBlueprints?: any, excludeBlueprints?: any, bLeastConcentrated?: boolean, onlyInThisMarker?: MarkerID): SGroup;
+declare function Player_GetSquadConcentration(player: PlayerID, popcapOnly?: boolean, includeBlueprints?: any, excludeBlueprints?: any, bLeastConcentrated?: boolean, onlyInThisMarker?: MarkerID | any): SGROUP;
 
 /**
  * Returns the number of squads a player currently owns
@@ -11253,7 +11287,7 @@ declare function Player_GetSquads(player: PlayerID): SGroupID;
  * Returns an SGroup containing all of the players squads of a specific unit_type (as defined by the type_ext on the squad)
  * This function returns a new SGroup.
  */
-declare function Player_GetSquadsFromType(player: PlayerID, unitType: string): any;
+declare function Player_GetSquadsFromType(player: PlayerID, unitType: string): SGROUP;
 
 /**
  * Returns the starting position for this player
@@ -11381,17 +11415,17 @@ declare function Player_HasAbility(player: Player, pAbilityPBG: ScarAbilityPBG):
  * Returns true if this player owns any buildings listed in the table.
  * This only looks at completed buildings - use Player_HasBuildingUnderConstruction to see if the player is building something
  */
-declare function Player_HasBuilding(player: PlayerID, entitytypes: BlueprintTable): boolean;
+declare function Player_HasBuilding(player: PlayerID, entitytypes: BlueprintTable | StringTable): boolean;
 
 /**
  * Returns true if this player owns any buildings. (with exclusions).
  */
-declare function Player_HasBuildingsExcept(playerId: PlayerID, exceptions: BlueprintTable): boolean;
+declare function Player_HasBuildingsExcept(playerId: PlayerID, exceptions: BlueprintTable | StringTable): boolean;
 
 /**
  * Returns true if this player owns any buildings listed in the table currently under construction.
  */
-declare function Player_HasBuildingUnderConstruction(player: PlayerID, entitytypes: BlueprintTable): boolean;
+declare function Player_HasBuildingUnderConstruction(player: PlayerID, entitytypes: BlueprintTable | StringTable): boolean;
 
 /**
  * Returns true if the given player has units that are able to capture in the capturable area of the given strategic point
@@ -11461,7 +11495,7 @@ declare function Player_ObserveReputation(observer: PlayerID, target: PlayerID):
 /**
  * Returns true if a given player owns ALL or ANY items in a group
  */
-declare function Player_OwnsEGroup(playerid: PlayerID, egroup: EGroupID, all?: boolean): boolean;
+declare function Player_OwnsEGroup(player: Player, egroup: EGroupID, all?: boolean): boolean;
 
 /**
  * Returns true if a given player owns an entity
@@ -11471,7 +11505,7 @@ declare function Player_OwnsEntity(playerid: PlayerID, entity: EntityID): boolea
 /**
  * Returns true if a given player owns ALL or ANY items in a group
  */
-declare function Player_OwnsSGroup(playerid: PlayerID, sgroup: SGroupID, all?: boolean): boolean;
+declare function Player_OwnsSGroup(player: Player, sgroup: SGroupID, all?: boolean): boolean;
 
 /**
  * Returns true if a given player owns a squad
@@ -11520,12 +11554,12 @@ declare function Player_RestrictBuildingList(playerid: PlayerID, blueprintlist: 
  * Restrict a list of research items.
  * list should contain an array of strings to restrict.
  */
-declare function Player_RestrictResearchList(playerid: PlayerID, list: StringTable): void;
+declare function Player_RestrictResearchList(playerid: Player, list: StringTable): void;
 
 /**
  * Sets the availability of an ability. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Player_SetAbilityAvailability(player: PlayerID, bp: AbilityBlueprint, availability: number): void;
+declare function Player_SetAbilityAvailability(player: PlayerID, bp: AbilityBlueprint | any, availability: number): void;
 
 /**
  * Sets availability of ALL entity, squad and player commands.
@@ -11535,12 +11569,12 @@ declare function Player_SetAllCommandAvailabilityInternal(player: Player, availa
 /**
  * Sets the availability of entity, squad and player commands. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Player_SetCommandAvailability(player: PlayerID, command: number, availability: number): void;
+declare function Player_SetCommandAvailability(player: PlayerID, command: number | any, availability: number): void;
 
 /**
  * Sets the availability of a construction menu. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Player_SetConstructionMenuAvailability(player: PlayerID, menuname: string, availability: number): void;
+declare function Player_SetConstructionMenuAvailability(player: PlayerID, menuname: string | any, availability: number): void;
 
 /**
  * Set default squad mood mode which can be overrided by squad level mood mode settings
@@ -11550,11 +11584,12 @@ declare function Player_SetDefaultSquadMoodMode(pPlayer: PlayerID, mode: number)
 /**
  * Sets the availability of an entity production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Player_SetEntityProductionAvailability(player: PlayerID, bp: EntityBlueprint, availability: number): void;
+declare function Player_SetEntityProductionAvailability(player: PlayerID, bp: EntityBlueprint | any, availability: number): void;
 
 /**
  * Sets the current personnel or vehicle max-cap for a player. The captype is either CT_Personnel or CT_Vehicle (you can't adjust Medic caps just yet).
  * you will have to call Player_SetMaxPopulation to adjust the current max population to do this.
+ * Note that any modifiers that adjust the current max cap will be applied on top of this.  Also note, this is only adjusting the max cap, not the current cap,
  */
 declare function Player_SetMaxCapPopulation(playerid: PlayerID, captype: number, newcap: number): void;
 
@@ -11598,7 +11633,7 @@ declare function Player_SetResources(player: Player, resourceAmount: ResourceAmo
 /**
  * Sets the availability of a squad production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Player_SetSquadProductionAvailability(player: PlayerID, bp: SquadBlueprint, availability: number): void;
+declare function Player_SetSquadProductionAvailability(player: PlayerID, bp: SquadBlueprint | any, availability: number): void;
 
 /**
  * Sets a boolean value in the Player's state model corresponding to the given key.
@@ -11673,7 +11708,7 @@ declare function Player_SetStateModelVector3f(player: Player, key: string, value
 /**
  * Sets the availability of an upgrade. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Player_SetUpgradeAvailability(player: PlayerID, bp: UpgradeBlueprint, availability: number): void;
+declare function Player_SetUpgradeAvailability(player: PlayerID, bp: UpgradeBlueprint | any, availability: number): void;
 
 /**
  * Abruptly stops an active ability
@@ -11722,17 +11757,17 @@ declare function Prefab_GetAllOfType(instance_data: string, prefab_schema: any):
  * Returns the instance data for a given instance, specified by a number of methods.
  * This normalizes your instance data. You can pass in the instance name as a string, a data table with an instance subtable (i.e. the input params from an event function) or a real instance data table, and it normalizes the format and returns you the instance data table.
  */
-declare function Prefab_GetInstance(instance: string): any;
+declare function Prefab_GetInstance(instance: any | string): InstanceData;
 
 /**
  * Initialize a specific prefab instance. In many cases, this is all you need to do (see the documentation for the specific prefab for details)
  */
-declare function Prefab_Init(instance_data: any): any;
+declare function Prefab_Init(instance_data: any): string;
 
 /**
  * Returns if a String is a valid
  */
-declare function Prefab_IsValid(instance: string): any;
+declare function Prefab_IsValid(instance: string): boolean;
 
 /**
  * Stop and restart a prefab instance, pulling a fresh set of the instance data from the WB-exported prefabs. This is meant for testing and debug purposes, rather than use in mission scripts.
@@ -11759,7 +11794,7 @@ declare function PrefabHelper_StandardTriggerSystem(instance_data: string, actio
 /**
  * Returns how many times this instance has been triggered
  */
-declare function canseetrigger_GetTriggerCount(instance: string): any;
+declare function canseetrigger_GetTriggerCount(instance: any | string): number;
 
 /**
  * Start triggering the items listed in the CanSeeTrigger prefab
@@ -11791,7 +11826,7 @@ declare function playertrigger_Activate(instance: string): any;
 /**
  * Returns how many times this trigger zone instance has been triggered
  */
-declare function playertrigger_GetTriggerCount(instance: string): any;
+declare function playertrigger_GetTriggerCount(instance: any | string): number;
 
 /**
  * Start triggering the items listed in the PlayerTrigger prefab
@@ -11801,66 +11836,82 @@ declare function playertrigger_Trigger(instance: string): any;
 
 /**
  * Plays a speech event for a given actor WITH a portrait and subtitle
- * Be VERY careful how you use the 'blockInput' parameter. It blocks all input except mouse movement, a few critical keyboard keys, and the Continue and Menu buttons. So you should always allow a continue button when blocking input. You shouldn't block input for a sticky subtitle! If the speech file is not available, a placeholder time will be calculated for the message using the number of words and the message will be displayed for that length of time. Actors: ACTOR.GenericAlly, ACTOR.GenericAxis, ACTOR.Keller, ACTOR.McKay, ACTOR.Conti, ACTOR.Franks, ACTOR.Peoples, ACTOR.Coogi, etc...
+ * If the speech file is not available, a placeholder time will be calculated for the message using the number of words and the message will be displayed for that length of time.\n
+ * speechbubble: Who a speech bubble should appear over ingame. Can be a squadID or an SGroup (where it appears over the first guy in the group) \n
+ * It can also be a table in the format {sgroup = sg_orkboys, closest_to = sg_gorgutz} where it finds the squad in the group closest to the reference point. It can also be in the format {sbp = SBP.ORKS.ORK_BOY, closest_to = mkr_orkIdol} to find the closest unit of the specified type, and you can also add a player entry to that table to specify which player (default is the local player)\n
+ * You can also specify just an SBP, in which case it will play on the first SBP found owned - use this for elite units who may or may not be on the map
+ * audioCtrlEvent:  is a wwise event name. This parameter is used to apply an effect on the line of speech. Ex. "Comm_on" plays speech through a comm effect. Work with an audio designer to get more effects.
  */
-declare function Actor_PlaySpeech(actor: ActorTable, locID: number, continueButton?: boolean, stickySubtitle?: boolean, blockInput?: boolean): void;
+declare function Actor_PlaySpeech(actor: ActorTable, locID: number, speechbubble?: SGROUP | SquadID | any, audioCtrlEvent?: string): void;
 
 /**
  * Plays a speech event for a given actor WITHOUT a portrait or subtitle. See Actor_PlaySpeech for more details
  */
-declare function Actor_PlaySpeechWithoutPortrait(actor: ActorTable, locID: number, continueButton?: boolean, stickySubtitle?: boolean, blockInput?: boolean): void;
+declare function Actor_PlaySpeechWithoutPortrait(actor: ActorTable, locID: number, speechbubble?: SGROUP | SquadID | any, audioCtrlEvent?: string): void;
 
 /**
  * Returns true if ANY or ALL entities from a group are in range of a given position, marker, or territory sector.
- * Markers with proximity type rectangle will use circular proximity check if custom range is supplied
+ * Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * You MUST specify a range if you are using a position rather than a marker.
  */
-declare function Prox_AreEntitiesNearMarker(egroup: EGroupID, position: MarkerID, all: boolean, range?: number): boolean;
+declare function Prox_AreEntitiesNearMarker(egroup: EGroupID, position: MarkerID | Position | SectorID, all: boolean, range?: number): boolean;
 
 /**
  * Returns true if ANY or ALL of a player's entities are in range of a given position, marker, or territory sector. THIS FUNCTION IS VERY SLOW. DO NOT USE THIS UNLESS ABSOLUTELY NECESSARY.
- * You MUST specify a range if you are using a position rather than a marker.\n Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * You MUST specify a range if you are using a position rather than a marker.\n
  */
-declare function Prox_ArePlayerEntitiesNearMarker(player: PlayerID, position: MarkerID, all: boolean, OPT_range?: number, OPT_filterlist?: EBP, OPT_filtertype?: number, OPT_ignore_camouflage?: boolean): any;
+declare function Prox_ArePlayerEntitiesNearMarker(player: PlayerID, position: MarkerID | Position | SectorID, all: boolean, range?: number, filterlist?: EBP | any, filtertype?: number, ignore_camouflage?: boolean): boolean;
 
 /**
  * Returns true if ANY or ALL of a player's members (i.e. individual guys, not squads as a whole) are in range of a given position, marker, or territory sector. DO NOT USE THIS FUNCTION UNLESS YOU ABSOLUTELY HAVE TO!!
  * You MUST specify a range if you are using a position rather than a marker.
  */
-declare function Prox_ArePlayerMembersNearMarker(player: PlayerID, position: MarkerID, all: boolean, range?: number): boolean;
+declare function Prox_ArePlayerMembersNearMarker(player: PlayerID, position: MarkerID | Position | SectorID, all: boolean, range?: number, filterlist?: SBP | any, filtertype?: number, ignore_camouflage?: boolean): boolean;
 
 /**
  * Returns true if ANY or ALL of a player's squads are in range of a given position, marker, or territory sector. THIS FUNCTION IS VERY SLOW. DO NOT USE THIS UNLESS ABSOLUTELY NECESSARY.
- * Markers with proximity type rectangle will use circular proximity check if custom range is supplied
+ * Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * You MUST specify a range if you are using a position rather than a marker.\n
  */
-declare function Prox_ArePlayersNearMarker(player: PlayerID, position: MarkerID, all: boolean, range?: number): boolean;
+declare function Prox_ArePlayersNearMarker(player: PlayerID, position: MarkerID | Position | SectorID, all: boolean, range?: number, filterlist?: SBP | any, filtertype?: number, ignore_camouflage?: boolean): boolean;
 
 /**
  * Returns true if ANY or ALL squad members (i.e. individual guys, not squads as a whole) from a group are in range of a given position, marker, or territory sector. DO NOT USE THIS FUNCTION UNLESS YOU ABSOLUTELY HAVE TO!!
- * Markers with proximity type rectangle will use circular proximity check if custom range is supplied
+ * Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * You MUST specify a range if you are using a position rather than a marker.\n
  */
-declare function Prox_AreSquadMembersNearMarker(sgroup: SGroupID, position: MarkerID, all: boolean, range?: number): boolean;
+declare function Prox_AreSquadMembersNearMarker(sgroup: SGroupID, position: MarkerID | Position | SectorID, all: boolean, range?: number): boolean;
 
 /**
  * Returns true if ANY or ALL squads from a group are in range of a given position, marker, or territory sector
- * Markers with proximity type rectangle will use circular proximity check if custom range is supplied
+ * Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * You MUST specify a range if you are using a position rather than a marker.\n
  */
-declare function Prox_AreSquadsNearMarker(sgroup: SGroupID, position: MarkerID, all: boolean, range?: number): boolean;
+declare function Prox_AreSquadsNearMarker(sgroup: SGroupID, position: MarkerID | Position | SectorID, all: boolean, range?: number): boolean;
 
 /**
  * Returns true if ANY or ALL of a teams's squads are in range of a given position, marker, or territory sector. THIS FUNCTION IS VERY SLOW. DO NOT USE THIS UNLESS ABSOLUTELY NECESSARY.
- * You MUST specify a range if you are using a position rather than a marker.\n Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * Markers with proximity type rectangle will use circular proximity check if custom range is supplied\n
+ * You MUST specify a range if you are using a position rather than a marker.\n
  */
-declare function Prox_AreTeamsNearMarker(team: TeamID, position: MarkerID, all: boolean, OPT_range?: number, OPT_filterlist?: SBP, OPT_filtertype?: number, OPT_ignore_camouflage?: boolean): any;
+declare function Prox_AreTeamsNearMarker(team: TeamID, position: MarkerID | Position | SectorID, all: boolean, range?: number, filterlist?: SBP | any, filtertype?: number, ignore_camouflage?: boolean): boolean;
 
 /**
  * Returns the distance between two entity groups. use checktype PROX_SHORTEST, PROX_LONGEST, or PROX_CENTER.
- * If check is PROX_SHORTEST this will return the shortest distance between the two groups. If check is PROX_LONGEST this will return the longest distance between the two groups. If check is PROX_CENTER this will return the distance between the two groups centers.
+ * @extdesc
+ * If check is PROX_SHORTEST this will return the shortest distance between the two groups.\n
+ * If check is PROX_LONGEST this will return the longest distance between the two groups.\n
+ * If check is PROX_CENTER this will return the distance between the two groups centers.\n
  */
 declare function Prox_EGroupEGroup(egroup1: EGroupID, egroup2: EGroupID, checktype: ProxType): number;
 
 /**
  * Returns the distance between an entity group and a squad group.  use checktype PROX_SHORTEST, PROX_LONGEST, or PROX_CENTER.
- * If check is PROX_SHORTEST this will return the shortest distance between the two groups. If check is PROX_LONGEST this will return the longest distance between the two groups. If check is PROX_CENTER this will return the distance between the two groups centers.
+ * @extdesc
+ * If check is PROX_SHORTEST this will return the shortest distance between the two groups.\n
+ * If check is PROX_LONGEST this will return the longest distance between the two groups.\n
+ * If check is PROX_CENTER this will return the distance between the two groups centers.\n
  */
 declare function Prox_EGroupSGroup(egroup1: EGroupID, sgroup2: SGroupID, checktype: ProxType): number;
 
@@ -11872,19 +11923,26 @@ declare function Prox_EntitiesInProximityOfEntities(egroup1: EGroupID, egroup2: 
 
 /**
  * Takes something (Entity, Squad, SGroup, EGroup, Position) in, then returns a random position
- * Minimum is the distance from the origin point that is guaranteed to have a return greater than Minimum is ignored if it is greater than the radius
+ * Minimum is ignored if it is greater than the radius
+ * Minimum is the distance from the origin point that is guaranteed to have a return greater than
  */
-declare function Prox_GetRandomPosition(item: Object, radius: number, minimum: number): any;
+declare function Prox_GetRandomPosition(item: Object, radius: number, minimum: number): Position;
 
 /**
  * Returns the distance between a marker and an entity group.  use checktype PROX_SHORTEST, PROX_LONGEST, or PROX_CENTER.
- * If check is PROX_SHORTEST this will return the shortest distance between the two groups. If check is PROX_LONGEST this will return the longest distance between the two groups. If check is PROX_CENTER this will return the distance between the two groups centers.
+ * @extdesc
+ * If check is PROX_SHORTEST this will return the shortest distance between the two groups.\n
+ * If check is PROX_LONGEST this will return the longest distance between the two groups.\n
+ * If check is PROX_CENTER this will return the distance between the two groups centers.\n
  */
 declare function Prox_MarkerEGroup(marker: MarkerID, egroup: EGroupID, checktype: ProxType): number;
 
 /**
  * Returns the distance between a marker and a squad group.  use checktype PROX_SHORTEST, PROX_LONGEST, or PROX_CENTER.
- * If check is PROX_SHORTEST this will return the shortest distance between the two groups. If check is PROX_LONGEST this will return the longest distance between the two groups. If check is PROX_CENTER this will return the distance between the two groups centers.
+ * @extdesc
+ * If check is PROX_SHORTEST this will return the shortest distance between the two groups.\n
+ * If check is PROX_LONGEST this will return the longest distance between the two groups.\n
+ * If check is PROX_CENTER this will return the distance between the two groups centers.\n
  */
 declare function Prox_MarkerSGroup(marker: MarkerID, sgroup: SGroupID, checktype: ProxType): number;
 
@@ -11910,7 +11968,7 @@ declare function Prox_PlayerEntitiesInProximityOfSquads(playerid: PlayerID, sgro
  * Checks if ALL or ANY players squads are in proximity of a given entity group.
  * Set "all" to true to check that ALL squads are in proximity, or set "all" to false to check for ANY.
  */
-declare function Prox_PlayerSquadsInProximityOfEntities(playerid: PlayerID, egroup: EGroupID, proximity: number, all: boolean): boolean;
+declare function Prox_PlayerSquadsInProximityOfEntities(playerid: PlayerID, egroup: EGroupID, proximity: number, all: boolean, filterlist: SBP | any, filtertype: number, ignore_camouflage: boolean): boolean;
 
 /**
  * Checks if ALL or ANY players squads are in proximity of a given players entities.
@@ -11928,11 +11986,14 @@ declare function Prox_PlayerSquadsInProximityOfPlayerSquads(playerid1: PlayerID,
  * Checks if ALL or ANY players squads are in proximity of a given squad group.
  * Set "all" to true to check that ALL squads are in proximity, or set "all" to false to check for ANY.
  */
-declare function Prox_PlayerSquadsInProximityOfSquads(playerid: PlayerID, sgroup: SGroupID, proximity: number, all: boolean, exclude: SquadID): boolean;
+declare function Prox_PlayerSquadsInProximityOfSquads(playerid: PlayerID, sgroup: SGroupID, proximity: number, all: boolean, exclude: SquadID, filterlist: SBP | any, filtertype: number, ignore_camouflage: boolean): boolean;
 
 /**
  * Returns the distance between two squad groups. use checktype PROX_SHORTEST, PROX_LONGEST, or PROX_CENTER.
- * If check is PROX_SHORTEST this will return the shortest distance between the two groups. If check is PROX_LONGEST this will return the longest distance between the two groups. If check is PROX_CENTER this will return the distance between the two groups centers.
+ * @extdesc
+ * If check is PROX_SHORTEST this will return the shortest distance between the two groups.\n
+ * If check is PROX_LONGEST this will return the longest distance between the two groups.\n
+ * If check is PROX_CENTER this will return the distance between the two groups centers.\n
  */
 declare function Prox_SGroupSGroup(sgroup1: SGroupID, sgroup2: SGroupID, checktype: ProxType): number;
 
@@ -12028,18 +12089,20 @@ declare function TerrainHighlight_Hide(): any;
 declare function TerrainHighlight_Show(metadataLayerName: string, opacity: number): any;
 
 /**
- * Add a rule to be executed every frame. Priority can be from 0 to 1000, with 0 being the lowest. Priority is used in conjunction with Rule_RemoveAll so that rules with high priority do not get removed.
+ * Add a rule to be executed every frame.
+ * Returns the ID of the rule just added.
  */
-declare function Rule_Add(rule: any, priority?: number): void;
+declare function Rule_Add(f: any, data?: any, group?: RuleGroup): number;
 
 /**
- * Add a rule to be executed when the event of 'eventType' has happened on the 'EGroup'	Event types are: GE_EntityKilled
+ * Add a rule to be executed when the event of 'eventType' has happened on entities in the 'egroup'
+ * Event types are: GE_EntityKilled, GE_EntityParadropComplete, GE_EntityCommandIssued, GE_ProjectileFired, GE_AbilityExecuted, GE_SpawnActionComplete
  */
-declare function Rule_AddEGroupEvent(fule: any, egroup: EGroup, eventtype: number): void;
+declare function Rule_AddEGroupEvent(rule: any, egroup: EGroupID, eventtype: number): void;
 
 /**
  * Add a rule to be executed when the event of 'eventType' has happened on the 'entity'
- * Event types are: GE_EntityKilled
+ * Event types are: GE_EntityKilled, GE_EntityParadropComplete, GE_EntityCommandIssued, GE_ProjectileFired, GE_AbilityExecuted, GE_SpawnActionComplete
  */
 declare function Rule_AddEntityEvent(rule: any, entity: EntityID, eventtype: number): void;
 
@@ -12047,85 +12110,87 @@ declare function Rule_AddEntityEvent(rule: any, entity: EntityID, eventtype: num
  * Add a rule to be executed when the event of 'eventType' has happened, regardless of source
  * Event types are: GE_PlayerBeingAttacked
  */
-declare function Rule_AddGlobalEvent(rule: any, eventtype: number): any;
+declare function Rule_AddGlobalEvent(rule: any, eventtype: number): void;
 
 /**
- * Add a rule to be executed at every 'interval' seconds. Priority can be from 0 to 1000, with 0 being the lowest. Priority is used in conjunction with Rule_RemoveAll so that rules with high priority do not get removed.
+ * Add a rule to be executed. Can include a start delay, an interval between rule calls and a count of how many times the rule is called.
+ * interval can be a number (the interval between subsequent rule calls) or a table with the keys: "delay", "interval" and "count". Returns the ID of the rule just added.
  */
-declare function Rule_AddInterval(rule: any, interval: number, priority?: number): void;
+declare function Rule_AddInterval(f: any, interval: number | any, data?: any, group?: RuleGroup): number;
 
 /**
- * Add a rule to be executed once, after 'interval' seconds. Priority can be from 0 to 1000, with 0 being the lowest. Priority is used in conjunction with Rule_RemoveAll so that rules with high priority do not get removed.
+ * Add a rule to be executed once, after 'delay' seconds.
+ * Returns the ID of the rule just added.
  */
-declare function Rule_AddOneShot(rule: any, interval: number, priority?: number): void;
+declare function Rule_AddOneShot(rule: any, delay?: number, data?: any, group?: RuleGroup): number;
 
 /**
  * Add a rule to be executed when the event of 'eventType' has happened on the 'player'
- * Event types are: GE_PlayerBeingAttacked
+ * Event types are: GE_PlayerBeingAttacked, GE_PlayerCommandIssued, GE_AbilityExecuted, GE_UpgradeComplete, GE_ConstructionComplete, GE_BuildItemComplete, GE_PlayerKilled, GE_SpawnActionComplete, GE_AIPlayer_EncounterNotification
  */
 declare function Rule_AddPlayerEvent(rule: any, player: PlayerID, eventtype: number): void;
 
 /**
  * Add a rule to be executed when the event of 'eventType' has happened on squads in the 'sgroup'
- * Event types are: GE_SquadKilled, GE_SquadPinned, GE_SquadCommandIssued, GE_AbilityExecuted
+ * Event types are: GE_SquadKilled, GE_SquadPinned, GE_SquadParadropComplete, GE_SquadCommandIssued, GE_AbilityExecuted, GE_SpawnActionComplete
  */
 declare function Rule_AddSGroupEvent(rule: any, sgroup: SGroupID, eventtype: number): void;
 
 /**
  * Add a rule to be executed when the event of 'eventType' has happened on the 'squad'
- * Event types are: GE_SquadKilled, GE_SquadPinned, GE_SquadCommandIssued, GE_AbilityExecuted
+ * Event types are: GE_SquadKilled, GE_SquadPinned, GE_SquadParadropComplete, GE_SquadCommandIssued, GE_AbilityExecuted, GE_SpawnActionComplete
  */
 declare function Rule_AddSquadEvent(rule: any, squad: SquadID, eventtype: number): void;
 
 /**
- * Change 'interval' seconds of an existing rule
+ * Change 'interval' seconds of all rules with LuaFunction f
  */
 declare function Rule_ChangeInterval(rule: any, interval: number): void;
 
 /**
  * Change 'interval' seconds of an existing rule with id
  */
-declare function Rule_ChangeIntervalWithID(id: number, interval: number): any;
+declare function Rule_ChangeIntervalWithID(id: number, interval: number): void;
 
 /**
  * Triggers when a group (SGroup/EGroup) gets close enough to a location
  */
-declare function Rule_EnterProximity(f: any, all: boolean, who: EGroupID, where: Marker, OPT_range?: number, OPT_recur?: boolean, OPT_data?: any): any;
+declare function Rule_EnterProximity(f: any, all: boolean, who: SGROUP | EGroup, where: MARKER, range?: number, recur?: boolean, data?: any): void;
 
 /**
- * Test if a rule is currently active
+ * Test if a rule with LuaFunction f is currently active
  */
 declare function Rule_Exists(rule: any): boolean;
 
 /**
  * Test if a rule with id is currently active. Only for TimeRules
  */
-declare function Rule_ExistsWithID(id: number): any;
+declare function Rule_ExistsWithID(id: number): boolean;
 
 /**
  * Triggers when a group (SGroup/EGroup) gets far enough from a location (the group must enter the range before this can trigger)
  */
-declare function Rule_ExitProximity(f: any, all: boolean, who: EGroupID, where: Marker, OPT_range?: number, OPT_recur?: boolean, OPT_data?: any): any;
+declare function Rule_ExitProximity(f: any, all: boolean, who: SGROUP | EGroup, where: MARKER, range?: number, recur?: boolean, data?: any): void;
 
 /**
  * Comparison is one of IS_LESS_THAN; IS_LESS_THAN_OR_EQUAL; IS_EQUAL; IS_NOT_EQUAL; IS_GREATER_THAN; IS_GREATER_THAN_OR_EQUAL. Triggers when the number of objects in the group, when compared to value by comparison, is true
  */
-declare function Rule_GroupCount(f: any, group: EGroupID, comparison: Comparison, value: number, recur: boolean, data: any): any;
+declare function Rule_GroupCount(f: any, group: SGROUP | EGroup, comparison: Comparison, value: number, recur: boolean, data: any): void;
 
 /**
  * Pause all rules with LuaFunction for
  */
-declare function Rule_Pause(f: any): any;
+declare function Rule_Pause(f: any): void;
 
 /**
  * Pause all currently active rules. Ignores Unpauseable rules.
  */
-declare function Rule_PauseAll(Table: number): any;
+declare function Rule_PauseAll(Table: number): void;
 
 /**
  * Pause all rules with with id. Only for TimeRules
  */
-declare function Rule_PauseWithID(id: number): any;
+declare function Rule_PauseWithID(id: number): void;
 
 /**
  * Refreshes all Time and Event rules
@@ -12133,7 +12198,7 @@ declare function Rule_PauseWithID(id: number): any;
 declare function Rule_Refresh(): any;
 
 /**
- * Remove a currently active rule (this does not remove any event rules)
+ * Remove all currently active rules with LuaFunction f (this does not remove any event rules)
  */
 declare function Rule_Remove(rule: any): void;
 
@@ -12155,7 +12220,7 @@ declare function Rule_RemoveEntityEvent(rule: any, entity: EntityID): void;
 /**
  * Remove an active event rule that's been applied 'globally'
  */
-declare function Rule_RemoveGlobalEvent(rule: any): any;
+declare function Rule_RemoveGlobalEvent(rule: any): void;
 
 /**
  * Remove a currently executing rule (only works inside a rule function)
@@ -12180,22 +12245,22 @@ declare function Rule_RemoveSquadEvent(rule: any, squad: SquadID): void;
 /**
  * Remove a currently active rule with id (this does not remove any event rules)
  */
-declare function Rule_RemoveWithID(id: number): any;
+declare function Rule_RemoveWithID(id: number): void;
 
 /**
  * Replaces the function callback for all currently active rules with LuaFunction f (This only applies to TimeRules)
  */
-declare function Rule_Replace(oldf: any, newf: any): any;
+declare function Rule_Replace(oldf: any, newf: any): void;
 
 /**
  * Replaces the function callback for all currently active rules with an id (This only applies to TimeRules)
  */
-declare function Rule_ReplaceWithID(id: number, newf: any): any;
+declare function Rule_ReplaceWithID(id: number, newf: any): void;
 
 /**
  * Unpause all rules with LuaFunction for
  */
-declare function Rule_Unpause(f: any): any;
+declare function Rule_Unpause(f: any): void;
 
 /**
  * Unpause all rules
@@ -12205,12 +12270,12 @@ declare function Rule_UnpauseAll(): any;
 /**
  * Unpause all rules with with id. Only for TimeRules
  */
-declare function Rule_UnpauseWithID(id: number): any;
+declare function Rule_UnpauseWithID(id: number): void;
 
 /**
  * Triggers every interval seconds that the group is within range of the location
  */
-declare function Rule_WhileInProximity(f: any, all: boolean, who: EGroupID, where: Marker, OPT_range?: number, OPT_interval?: number, OPT_recur?: boolean, OPT_data?: any): any;
+declare function Rule_WhileInProximity(f: any, all: boolean, who: SGROUP | EGroup, where: MARKER, range?: number, interval?: number, recur?: boolean, data?: any): void;
 
 /**
  * Pass in a group to command to 'stop'. Pass in booleans for capturing and building
@@ -12224,8 +12289,9 @@ declare function EGroup_CompleteUpgrade(egroup: EGroupID, upgrade: number): any;
 
 /**
  * Filters an EGroup to either FILTER_REMOVE or FILTER_KEEP entities that are currently camouflaged (stealthed included)
+ * @extdesc
  */
-declare function EGroup_FilterCamouflaged(sgroup: EGroupID, filtertype: number, OPT_splitEGroup?: EGroupID): any;
+declare function EGroup_FilterCamouflaged(sgroup: EGroupID, filtertype: number, splitEGroup?: EGroupID): void;
 
 /**
  * Restore the targeting type of the entities in this EGroup to their respective defaults (as found in their EBPs)
@@ -12260,7 +12326,7 @@ declare function SGroup_Add(group: SGroupID, squadron: SquadID): void;
 /**
  * Adds an ability to all squads in an sgroup.
  */
-declare function SGroup_AddAbility(sgroup: SGroupID, ability: number): any;
+declare function SGroup_AddAbility(sgroup: SGroupID, ability: AbilityBlueprint): void;
 
 /**
  * Same as EGroup_AddGroup.  Note: You cannot mix squad groups and entity groups.
@@ -12270,7 +12336,7 @@ declare function SGroup_AddGroup(group: SGroupID, grouptoadd: SGroupID): void;
 /**
  * Add a list of multiple sgroups into an existing group.
  */
-declare function SGroup_AddGroups(sgroup: SGroupID, groupList: any): any;
+declare function SGroup_AddGroups(sgroup: SGroupID, groupList: any): void;
 
 /**
  * Adds a leader to all squads in a group that can take a leader.
@@ -12282,11 +12348,14 @@ declare function SGroup_AddLeaders(sgroup: SGroupID): void;
  * Adds the amount of resource type for a squad.
  * If SGroup contains multiple squads, it will add for all
  */
-declare function SGroup_AddResource(sgroup: SGroupID, resource: ResourceType, amount: number): any;
+declare function SGroup_AddResource(sgroup: SGroupID, resource: ResourceType, amount: number): void;
 
 /**
  * Add to the list of slot items to drop when any one of the squads is wiped out
- * SGroup_AddSlotItemToDropOnDeath( squadid, item, false )
+ * example:	local item = Util_GetSlotItemID( "slot_item/allies_m9bazooka.lua" )
+ * @extdesc			SGroup_AddSlotItemToDropOnDeath( squadid, item, false )
+ * exlusive means the squad would only drop this item, thus erasing all previous items in list
+ * Drop chance is percentage chance the item will drop (0.0-1.0)
  */
 declare function SGroup_AddSlotItemToDropOnDeath(groupid: SGroupID, itemid: number, drop_chance: number, exclusive: boolean): void;
 
@@ -12313,7 +12382,7 @@ declare function SGroup_CanInstantReinforceNow(group: SGroupID, all: boolean): b
 /**
  * Returns true if ALL or ANY entities in a group can see ALL or ANY entities in a given egroup.
  */
-declare function SGroup_CanSeeEGroup(sgroup: SGroupID, targetegroup: EGroupID, all: boolean): any;
+declare function SGroup_CanSeeEGroup(sgroup: SGroupID, targetegroup: EGroupID, all: boolean): boolean;
 
 /**
  * Returns true if ALL or ANY squads in a group can see ALL or ANY squads in a target sgroup.
@@ -12338,7 +12407,7 @@ declare function SGroup_Compare(group1: SGroupID, group2: SGroupID): boolean;
 /**
  * Applies an upgrade to all squad entities in an sgroup.
  */
-declare function SGroup_CompleteEntityUpgrade(sgroup: SGroupID, upgrade: UpgradeID): any;
+declare function SGroup_CompleteEntityUpgrade(sgroup: SGroupID, upgrade: UpgradeID): void;
 
 /**
  * Instantly adds an upgrade to all squads in a given SGroup.
@@ -12348,7 +12417,7 @@ declare function SGroup_CompleteUpgrade(sgroup: SGroupID, upgrade: number): any;
 /**
  * Check if a group contains ALL or ANY of the blueprints.
  */
-declare function SGroup_ContainsBlueprints(sgroup: SGroupID, blueprints: BP, all: boolean): boolean;
+declare function SGroup_ContainsBlueprints(sgroup: SGroupID, blueprints: BP | any, all: boolean): boolean;
 
 /**
  * Returns true if SGroup1 contains ANY or ALL of SGroup2
@@ -12374,7 +12443,7 @@ declare function SGroup_CountAlliedSquads(group: SGroupID, player: PlayerID): an
 /**
  * Returns the total count of all squads in a given SGroup with the provided blueprint or type
  */
-declare function SGroup_CountBlueprints(sgroup: SGroupID, sbp: string): any;
+declare function SGroup_CountBlueprints(sgroup: SGroupID, sbp: SBP | string | any): number;
 
 /**
  * Returns the number of despawned squads in a group.
@@ -12389,7 +12458,7 @@ declare function SGroup_CountEnemySquads(group: SGroupID, player: PlayerID): any
 /**
  * Counts the total population cost of an SGroup by iterating over each individual Squad
  */
-declare function SGroup_CountPopulation(sgroup: SGroupID): any;
+declare function SGroup_CountPopulation(sgroup: SGroupID): number;
 
 /**
  * Returns the number of spawned squads in a group.
@@ -12415,7 +12484,7 @@ declare function SGroup_CreateKickerMessage(group: SGroupID, player: PlayerID, t
 /**
  * Returns an SGroup with a unique name, prefixed by the 'prefix' parameter.
  */
-declare function SGroup_CreateUnique(OPT_prefix?: string): any;
+declare function SGroup_CreateUnique(prefix?: string): SGROUP;
 
 /**
  * Returns a new squad group with an autogenerated unique name, optionally prefixed by the string passed in.
@@ -12440,7 +12509,9 @@ declare function SGroup_DestroyAllInMarker(sgroup: SGroupID, marker: MarkerID): 
 
 /**
  * Destroys all spawned and despawned squads in a group.
- * Be careful not to confuse this with SGroup_Destroy which destroys the group and NOT the squads it contains.  This function will destroy spawned and despawned items in a group
+ * @extdesc
+ * Be careful not to confuse this with SGroup_Destroy which destroys the group and NOT the squads it contains.  This function will destroy
+ * spawned and despawned items in a group
  */
 declare function SGroup_DestroyAllSquads(sgroup: SGroupID): void;
 
@@ -12450,8 +12521,7 @@ declare function SGroup_DestroyAllSquads(sgroup: SGroupID): void;
 declare function SGroup_DisableCombatPlans(groupID: SGroupID): void;
 
 /**
- * Duplicates an SGroup
- * Creates a copy of sgroup1 in sgroup2. The function will clear sgroup2 beforehand if necessary.
+ * Duplicates an SGroup. Creates a copy of sgroup1 in sgroup2. The function will clear sgroup2 beforehand if necessary.
  */
 declare function SGroup_Duplicate(sgroup1: SGroupID, sgroup2: SGroupID): void;
 
@@ -12492,9 +12562,13 @@ declare function SGroup_FaceMarker(sgroup: SGroupID, marker: MarkerID): void;
 
 /**
  * Filters an SGroup by blueprint.
- * Blueprints can be provided by name or by ID, and in a table if you want to filter on more than one type. Setting filtertype to FILTER_KEEP results in the group only containing squads of the types listed in the blueprint table. Setting filtertype to FILTER_REMOVE will strip those same squads out and leave those that aren't of the types listed.
+ * A table of blueprints can be specified if you want to filter on more than one type.
+ * Setting filtertype to FILTER_KEEP results in the group only containing squads of the types listed in the blueprint table.
+ * Setting filtertype to FILTER_REMOVE will strip those same squads out and leave those that aren't of the types listed.
+ * Setting splitSGroup will move any squads being KEEP or REMOVE to it.  This SGroup will NOT be cleared beforehand.
+ * SquadTypes can also be used in place of Blueprints. If you want a squad to match a bunch of SquadTypes at the same time (i.e. AND instead of OR) then they can be listed together in a sub-table.
  */
-declare function SGroup_Filter(sgroup: SGroupID, blueprint: ID, filtertype: number): void;
+declare function SGroup_Filter(sgroup: SGroupID, blueprint: SBP | SquadType | any, filtertype: number, splitSGroup?: SGroupID): void;
 
 /**
  * Filters an sgroup base on proximity. Use FILTER_KEEP to keep the affected units, or FILTER_REMOVE to remove them. Set invertPosition to TRUE to affect the units outside the position.
@@ -12503,19 +12577,20 @@ declare function SGroup_FilterByProximity(sgroup: SGroupID, position: Position, 
 
 /**
  * Filters an SGroup to either FILTER_REMOVE or FILTER_KEEP units that are currently camouflaged (stealthed included)
+ * @extdesc
  */
-declare function SGroup_FilterCamouflaged(sgroup: SGroupID, filtertype: number, OPT_splitSGroup?: SGroupID): any;
+declare function SGroup_FilterCamouflaged(sgroup: SGroupID, filtertype: number, splitSGroup?: SGroupID): void;
 
 /**
  * Pass in a group and it will filter it down to the indicated number
  */
-declare function SGroup_FilterCount(sgroup1: SGroupID, groupSize: number): void;
+declare function SGroup_FilterCount(sgroup1: SGroupID, groupSize: number, splitSGroup?: SGroupID): void;
 
 /**
  * Filters an SGroup by whether units are on screen or not. Percent refers to the screen area you are considering (0.8 is a good value to use - it won't include things that are right at the screen edge).
  * Setting filtertype to FILTER_KEEP results in the group only containing those squads that are on screen.
  */
-declare function SGroup_FilterOnScreen(egroup: SGroupID, percent: number, filtertype: number): any;
+declare function SGroup_FilterOnScreen(egroup: SGroupID, percent: number, filtertype: number): void;
 
 /**
  * Filters an sgroup on spawned/despawned status. Use FILTER_KEEP to keep the spawned units (therefore removing the despawned), or FILTER_REMOVE to remove the spawned units (and keep the despawned).
@@ -12524,9 +12599,10 @@ declare function SGroup_FilterSpawned(sgroup: SGroupID, filtertype: number, OPT_
 
 /**
  * Searches an SGroup and finds the first threat within the table (searching first to last) and removes all other SBPs.
+ * @extdesc
  * Optional parameter bEmpty can be set to true, will clear the SGroup if none of the SBPS in the table are found.
  */
-declare function SGroup_FilterThreat(sgroup: SGroupID, tableSBPs: LuaTable, bEmpty: boolean): void;
+declare function SGroup_FilterThreat(sgroup: SGroupID, tableSBPs: LuaTable, bEmpty?: boolean): void;
 
 /**
  * Call a lua function for each item in a group. Function will recieve (groupid, itemindex, itemid) and should return true to break or false to continue.
@@ -12556,7 +12632,7 @@ declare function SGroup_ForEachEx(sgroup: SGroupID, f: LuaBinding, spawned: bool
 declare function SGroup_FromName(name: string): SGroupID;
 
 /**
- * Returns the average health of all units in a squad group.
+ * Returns the average health ratio of all units in a squad group.
  * It now uses the same health measure that's used by the UI, so it does take into account fallen members of a squad
  */
 declare function SGroup_GetAvgHealth(sgroup: SGroupID): number;
@@ -12570,7 +12646,7 @@ declare function SGroup_GetAvgHealthPercentageWithShields(sgroup: SGroupID, incl
  * Returns the average loadout of all squads in a group as a percent [0.0, 1.0].
  * Example: A group of squads with loadouts of 4/8 and 1/1 would return 0.75
  */
-declare function SGroup_GetAvgLoadout(sgroup: SGroup): number;
+declare function SGroup_GetAvgLoadout(sgroup: SGROUP): number;
 
 /**
  * Return the average shield strengths of the squads in the SGroup (as a percentage)
@@ -12580,7 +12656,7 @@ declare function SGroup_GetAvgShieldPercentage(sgroup: SGroupID): any;
 /**
  * Get the closest squad in an sgroup to a given position
  */
-declare function SGroup_GetClosestSquad(sgroupid: SGroupID, position: Marker): any;
+declare function SGroup_GetClosestSquad(sgroupid: SGROUP, position: MARKER | Position): SquadID;
 
 /**
  * Returns the despawned squad at a certain position in the group.
@@ -12601,18 +12677,18 @@ declare function SGroup_GetHoldEGroup(sgroup: SGroupID, EGroupHold: EGroup): voi
 /**
  * Gets all the squads that an SGroup may occupy and adds them to the SGroupHold
  */
-declare function SGroup_GetHoldSGroup(sgroup: SGroupID, SGroupHold: SGroup): void;
+declare function SGroup_GetHoldSGroup(sgroup: SGroupID, SGroupHold: SGROUP): void;
 
 /**
  * Check invulnerablity state for ALL or ANY squads in a squad group.
- * Set all param to true to check for ALL or set to false to check for ANY.
  */
 declare function SGroup_GetInvulnerable(sgroup: SGroupID, all: boolean): boolean;
 
 /**
- * Gets the last attacker(s) for all the squads in an SGroup Gets the last attacker for all the squads in an SGroup and stores that in SGroupAttacker
+ * Gets the last attacker(s) for all the squads in an SGroup
+ * Gets the last attacker for all the squads in an SGroup and stores that in SGroupAttacker
  */
-declare function SGroup_GetLastAttacker(SGroupVictim: SGroup, SGroupAttacker: SGroup): void;
+declare function SGroup_GetLastAttacker(SGroupVictim: SGROUP, SGroupAttacker: SGROUP, seconds?: number): void;
 
 /**
  * Get the squad id of the vehicle squad that any squad of the sgroup is loaded in
@@ -12630,7 +12706,7 @@ declare function SGroup_GetName(sgroup: SGroupID): string;
 declare function SGroup_GetNumSlotItem(group: SGroupID, itemID: number): number;
 
 /**
- * Returns a position (a certain distance away) relative to a squad's current position/orientation. see LuaConsts.scar for explanation of 'offset' parameter
+ * Returns a position (a certain distance away) relative to a squad's current position/orientation. see ScarUtil.scar for explanation of 'offset' parameter
  */
 declare function SGroup_GetOffsetPosition(sgroup: SGroupID, offset: number, value: number): Position;
 
@@ -12643,13 +12719,13 @@ declare function SGroup_GetPosition(group: SGroupID): Position;
 /**
  * Get a random spawned squad from sgroup
  */
-declare function SGroup_GetRandomSpawnedSquad(sgroupid: SGroup): SquadID;
+declare function SGroup_GetRandomSpawnedSquad(sgroupid: SGROUP): SquadID;
 
 /**
  * Gets the amount of resource type for a squad.
  * If SGroup contains multiple squads, it will be the total of all
  */
-declare function SGroup_GetResource(sgroup: SGroupID, resource: ResourceType): any;
+declare function SGroup_GetResource(sgroup: SGroupID, resource: ResourceType): number;
 
 /**
  * Builds a table of SGroupIDs that are named in a sequence. i.e. a name of "sg_killer" will find groups "sg_killer1", "sg_killer2" and so on, up until it looks for a group that isn't there.
@@ -12696,11 +12772,10 @@ declare function SGroup_GetVeterancyRank(groupid: SGroupID): number;
 /**
  * Test whether ANY or ALL units in a group have a specified ability
  */
-declare function SGroup_HasAbility(sgroup: SGroupID, ability: number, all: boolean): any;
+declare function SGroup_HasAbility(sgroup: SGroupID, ability: AbilityBlueprint, all: boolean): boolean;
 
 /**
  * Check if ALL or ANY squads in a sgroup have a leader
- * Set all param to true to check for ALL or set to false to check for ANY.
  */
 declare function SGroup_HasLeader(sgroup: SGroupID, all: boolean): boolean;
 
@@ -12708,7 +12783,7 @@ declare function SGroup_HasLeader(sgroup: SGroupID, all: boolean): boolean;
  * Check if ALL or ANY of the squads in a group have a specific blueprint.
  * The blueprint can be a table of blueprints or types (see Squad_HasBlueprint() for details)
  */
-declare function SGroup_HasSquadBlueprint(sgroup: SGroupID, blueprint: SBP, all: boolean): any;
+declare function SGroup_HasSquadBlueprint(sgroup: SGroupID, blueprint: SBP | SquadType | any, all: boolean): boolean;
 
 /**
  * Returns true if ANY or ALL of the squads in an SGroup are carrying some kind of team weapon
@@ -12745,7 +12820,7 @@ declare function SGroup_Intersection(group: SGroupID, grouptointersect: SGroupID
 /**
  * Returns true if a named squad group is not empty and its average health is > 0.0
  */
-declare function SGroup_IsAlive(sgroup: SGroupID): any;
+declare function SGroup_IsAlive(sgroup: SGroupID): boolean;
 
 /**
  * Returns true if ANY or ALL squads in an SGroup are attack moving.
@@ -12766,7 +12841,7 @@ declare function SGroup_IsCapturing(sgroup: SGroupID, ALL: boolean): boolean;
  * Returns true if ALL or ANY squads in a group are currently constructing a building.
  * Set all to true to check for ALL or set to false to check for ANY
  */
-declare function SGroup_IsConstructingBuilding(sgroup: SGroup, all: boolean): boolean;
+declare function SGroup_IsConstructingBuilding(sgroup: SGROUP, all: boolean): boolean;
 
 /**
  * Returns if ANY or ALL members of an SGroup are doing an ability
@@ -12791,7 +12866,7 @@ declare function SGroup_IsEmpty(sgroup: SGroupID): boolean;
 /**
  * Returns true if ANY or ALL squads are female
  */
-declare function SGroup_IsFemale(sgroup: SGroupID, all: boolean): any;
+declare function SGroup_IsFemale(sgroup: SGroupID, all: boolean): boolean;
 
 /**
  * Returns whether any entity in an SGroup has a hold on anything
@@ -12806,7 +12881,7 @@ declare function SGroup_IsIdle(sgroup: SGroupID, ALL: boolean): boolean;
 /**
  * Returns the percentage of the SGroup members that are in cover. Alternatively, specify ANY or ALL as a second parameter to return true/false.
  */
-declare function SGroup_IsInCover(sgroup: SGroupID, all?: boolean): number | boolean;
+declare function SGroup_IsInCover(sgroup: SGroupID, all?: boolean): number;
 
 /**
  * Returns true if ALL or ANY squads in a group are infiltrated
@@ -12870,7 +12945,7 @@ declare function SGroup_IsUnderAttack(sgroup: SGroupID, all: boolean, time: numb
 declare function SGroup_IsUnderAttackByPlayer(group: SGroupID, attackerplayer: PlayerID, duration: number): boolean;
 
 /**
- * Returns true if ALL or ANY squads are under attack from a direction within the time. see LuaConsts.scar for types of directions. you can pass in a table of directions
+ * Returns true if ALL or ANY squads are under attack from a direction within the time. see ScarUtil.scar for types of directions. you can pass in a table of directions
  */
 declare function SGroup_IsUnderAttackFromDirection(sgroup: SGroupID, all: boolean, offset: number, time: number): boolean;
 
@@ -12904,7 +12979,7 @@ declare function SGroup_Remove(group: SGroupID, squadron: SquadID): void;
 /**
  * Removes an ability that was previously added by SGroup_AddAbility. You cannot remove static abilities (from AE: squad_ability_ext)
  */
-declare function SGroup_RemoveAbility(sgroup: SGroupID, ability: number): any;
+declare function SGroup_RemoveAbility(sgroup: SGroupID, ability: AbilityBlueprint): void;
 
 /**
  * Remove from the first SGroup all squads contained in the second SGroup. SGroup2 remains untouched.
@@ -12914,7 +12989,7 @@ declare function SGroup_RemoveGroup(group: SGroupID, grouptoremove: SGroupID): v
 /**
  * Removes upgrade(s) from an sgroup
  */
-declare function SGroup_RemoveUpgrade(sgroup: SGroupID, upgrade: UpgradeBlueprint): void;
+declare function SGroup_RemoveUpgrade(sgroup: SGroupID, upgrade: UpgradeBlueprint | any): void;
 
 /**
  * Respawn all despawned squads in a group.
@@ -12934,12 +13009,12 @@ declare function SGroup_RewardActionPoints(sgroup: SGroupID, actionpoint: number
 /**
  * Trigger animation action for an SGroup. Please only use this for simple animations
  */
-declare function SGroup_SetAnimatorAction(sgroupid: SGroupID, actionName: string): any;
+declare function SGroup_SetAnimatorAction(sgroupid: SGroupID, actionName: string): void;
 
 /**
  * Trigger animation event for an SGroup. Please only use this for simple animations
  */
-declare function SGroup_SetAnimatorEvent(sgroupid: SGroupID, eventName: string): any;
+declare function SGroup_SetAnimatorEvent(sgroupid: SGroupID, eventName: string): void;
 
 /**
  * Set animation state of a state machine for an SGroup. Please only use this for simple animations
@@ -12947,9 +13022,9 @@ declare function SGroup_SetAnimatorEvent(sgroupid: SGroupID, eventName: string):
 declare function SGroup_SetAnimatorState(sgroupid: SGroupID, stateMachineName: string, stateName: string): void;
 
 /**
- * Sets whether a weapon to auto-target things or not
+ * Sets whether a weapon will auto-target things or not
  */
-declare function SGroup_SetAutoTargetting(group: SGroupID, hardpoint: string, enable: boolean): void;
+declare function SGroup_SetAutoTargetting(group: SGroupID, hardpoint: string | number, enable: boolean): void;
 
 /**
  * Sets the health of each squad in a squad group to a given percent [0.0, 1.0].
@@ -12959,7 +13034,7 @@ declare function SGroup_SetAvgHealth(sgroup: SGroupID, healthpercent: number): n
 /**
  * Sets the moral of each squad in a squad group to a given percent [0.0, 1.0].
  */
-declare function SGroup_SetAvgMorale(sgroup: SGroup, moralepercent: number): number;
+declare function SGroup_SetAvgMorale(sgroup: SGROUP, moralepercent: number): number;
 
 /**
  * Overrides crushable behavior for an sgroup
@@ -12968,9 +13043,9 @@ declare function SGroup_SetCrushable(sgroup: SGroupID, crushable: boolean): void
 
 /**
  * Enable/Disable invulnerablity for an entire SGroup. Use true and false for simple on/off, or use a number between 0.0 and 1.0 for more precise control on how much damage a squad can take before it takes no more.
- * The optional reset_time is used to automatically remove invulnerability after a set time. If invulnerable, both health and critical damage are disabled.
+ * The optional reset_time is used to automatically remove invulnerability after a set time. If invulnerable, both health damage is disabled.
  */
-declare function SGroup_SetInvulnerable(sgroup: SGroupID, enabled: boolean, reset_time?: number): void;
+declare function SGroup_SetInvulnerable(sgroup: SGroupID, enabled: boolean | number, reset_time?: number): void;
 
 /**
  * Set soldier mood mode. Mode could be MM_Auto, MM_ForceCalm or MM_ForceTense
@@ -12985,18 +13060,18 @@ declare function SGroup_SetPlayerOwner(sgroup: SGroupID, owner: PlayerID): void;
 /**
  * Sets all squads in as sgroup to be recrewable or not when abandoned
  */
-declare function SGroup_SetRecrewable(sgroup: SGroupID, recrewable: boolean): any;
+declare function SGroup_SetRecrewable(sgroup: SGroupID, recrewable: boolean): void;
 
 /**
  * Sets the amount of resource type for a squad.
  * If SGroup contains multiple squads, it will set for all
  */
-declare function SGroup_SetResource(sgroup: SGroupID, resource: ResourceType, amount: number): any;
+declare function SGroup_SetResource(sgroup: SGroupID, resource: ResourceType, amount: number): void;
 
 /**
  * Set player selectable state of squads in the sgroup
  */
-declare function SGroup_SetSelectable(sgroupid: SGroup, selectable: boolean): void;
+declare function SGroup_SetSelectable(sgroupid: SGROUP, selectable: boolean): void;
 
 /**
  * Enables shared team production on a building (teammates can build using THEIR resources)
@@ -13016,7 +13091,7 @@ declare function SGroup_SetTeamWeaponCapturable(group: SGroupID, enable: boolean
 /**
  * Sets the visibility of in-game veterancy art for the squads in given SGroup
  */
-declare function SGroup_SetVeterancyDisplayVisibility(groupid: SGroupID, visible: boolean): any;
+declare function SGroup_SetVeterancyDisplayVisibility(groupid: SGroupID, visible: boolean): void;
 
 /**
  * Makes an sgroup neutral
@@ -13025,6 +13100,7 @@ declare function SGroup_SetWorldOwned(sgroup: SGroupID): void;
 
 /**
  * Creates a squad group containing a single squad
+ * @extdesc
  * Creates an SGroup containing just one squad, creating the group if it doesn't exist and clearing it if it does. It returns the name of the SGroup.
  */
 declare function SGroup_Single(groupID: SGroupID, squad: SquadID): SGroupID;
@@ -13043,7 +13119,7 @@ declare function SGroup_SuggestPosture(sgroup: SGroupID, posture: number, durati
 /**
  * Returns the total count of all members of all the squads in a given SGroup.
  */
-declare function SGroup_TotalMembersCount(sgroup: SGroupID): number;
+declare function SGroup_TotalMembersCount(sgroup: SGroupID, dontCountTeamWeapons: boolean): number;
 
 /**
  * Warps all members of an SGroup immediately to a marker
@@ -13059,7 +13135,7 @@ declare function SGroup_WarpToPos(sgroup: SGroupID, pos: Position): void;
  * Grabs the selected squads/entities and returns them in a group. Only works with -dev.
  * Tries to return an SGroup first. If it's empty, it will return an EGroup. (Both types can't be selected at the same time)
  */
-declare function Util_Grab(subselect: boolean): any;
+declare function Util_Grab(subselect: boolean): SGROUP;
 
 /**
  * for the cheat menu
@@ -13485,7 +13561,7 @@ declare function Squad_GetMostRecentQueuedCommandID(squad: SquadID): any;
 declare function Squad_GetNumSlotItem(squad: SquadID, pbg: SlotItemBlueprint): number;
 
 /**
- * Returns a position relative to a squad's current position and orientation. see LuaConsts.scar for explanation of 'offset' parameter.
+ * Returns a position relative to a squad's current position and orientation. see ScarUtil.scar for explanation of 'offset' parameter.
  */
 declare function Squad_GetOffsetPosition(squad: SquadID, offset: number, distance: number): Position;
 
@@ -13670,7 +13746,7 @@ declare function Squad_HasActiveCommand(squad: SquadID): boolean;
  * Checks whether a squad is of any of the Blueprints or SquadTypes specified.
  * Blueprint can be a single Blueprint, a single SquadType, or a table of multiple Blueprints or SquadTypes. If you want to see if a squad has ALL of a set of SquadTypes, then wrap them all in a sub-table.
  */
-declare function Squad_HasBlueprint(squad: SquadID, blueprints: SBP): any;
+declare function Squad_HasBlueprint(squad: SquadID, blueprints: SBP | SquadType | any): boolean;
 
 /**
  * Returns true if the given squad has a building in it (includes team weapons)
@@ -13710,7 +13786,7 @@ declare function Squad_HasSetupTeamWeapon(pSquad: SquadID): any;
 /**
  * Check if a squad has a specific slot item
  */
-declare function Squad_HasSlotItem(squad: SquadID, slotItem: SlotItemID): any;
+declare function Squad_HasSlotItem(squad: SquadID, slotItem: SlotItemID): boolean;
 
 /**
  * Returns true if the squad is carrying some kind of team weapon
@@ -14024,15 +14100,15 @@ declare function Squad_SBPGetMax(sbp: ScarSquadPBG): any;
 /**
  * Trigger animation action for a squad. Please only use this for simple animations
  */
-declare function Squad_SetAnimatorAction(squadid: SquadID, actionName: string): any;
+declare function Squad_SetAnimatorAction(squadid: SquadID, actionName: string): void;
 
 /**
  * Trigger animation event for a squad. Please only use this for simple animations
  */
-declare function Squad_SetAnimatorEvent(squadid: SquadID, actionName: string): any;
+declare function Squad_SetAnimatorEvent(squadid: SquadID, actionName: string): void;
 
 /**
- * Set animation state of a state machine for a squad Please only use this for simple animations
+ * Set animation state of a state machine for a squad. Please only use this for simple animations
  */
 declare function Squad_SetAnimatorState(squadid: SquadID, stateMachineName: string, stateName: string): void;
 
@@ -14052,7 +14128,7 @@ declare function Squad_SetExtEnabled(pSquad: SquadID, extID: string, enabled: bo
 declare function Squad_SetHealth(squad: SquadID, healthPercent: number): void;
 
 /**
- * Set invulnerability on the squad. Reset time is in seconds. If it it set, the invulnerability will expire after this time.
+ * Set invulnerability on the squad. Reset time is in seconds. If it is non-negative, the invulnerability will expire after this time.
  */
 declare function Squad_SetInvulnerable(squad: SquadID, enable: boolean, reset_time: number): void;
 
@@ -14264,44 +14340,45 @@ declare function Squad_WarpToPos(squad: SquadID, pos: Position): void;
 /**
  * Add resource to each member of a team, as opposed to just setting it. Possible resource types are RT_FOOD, RT_WOOD, RT_STONE, RT_GOLD, RT_ACTION
  */
-declare function Team_AddResource(team: TeamID, resourceType: number, value: number): any;
+declare function Team_AddResource(team: TeamID, resourceType: number, value: number): void;
 
 /**
  * For the given team, get all of the squads gathered into a squadgroup of your naming.
- * Squads will be added to given squad group.  If the given squad group does not exist it will be created. This will add all squads for the entire team to one group.  To do so for each player, iterate the team table
+ * This will add all squads for the entire team to one group.  To do so for each player, iterate the team table
+ * Squads will be added to given squad group.  If the given squad group does not exist it will be created.
  */
-declare function Team_AddSquadsToSGroup(team: TeamID, squadgroupName: string): any;
+declare function Team_AddSquadsToSGroup(team: TeamID, squadgroupName: string): SGroupID;
 
 /**
  * Returns true if ANY of a teams squads are in proximity of a marker
  */
-declare function Team_AreSquadsNearMarker(team: TeamID, marker: MarkerID): any;
+declare function Team_AreSquadsNearMarker(team: TeamID, marker: MarkerID): boolean;
 
 /**
  * Returns true if a team can see ALL or ANY items
  */
-declare function Team_CanSee(teamid: TeamID, item: EGroupID, all: boolean): any;
+declare function Team_CanSee(teamid: TeamID, item: EGroupID | SGroupID | EntityID | SquadID | PositionID | MarkerID, all: boolean): boolean;
 
 /**
  * Any of the team's units in the marker area move out of the area, and can be made invulnerable for a bit whilst they do it
  * You can replace the marker with a position and a range - i.e. Team_ClearArea(team, pos, range, invulnerable)
  */
-declare function Team_ClearArea(team: TeamID, marker: MarkerID, invulnerable: boolean): any;
+declare function Team_ClearArea(team: TeamID, marker: MarkerID, invulnerable: boolean): void;
 
 /**
  * Returns total number of players on a team
  */
-declare function Team_CountPlayers(): any;
+declare function Team_CountPlayers(teamid: any): number;
 
 /**
  * Returns 4 playerIDs (player1, player2, player3, player4) for Humans/Allies
  */
-declare function Team_DefineAllies(): any;
+declare function Team_DefineAllies(): PlayerIDs;
 
 /**
  * Returns 4 playerIDs (player5, player6, player7, player8) for Enemy Players
  */
-declare function Team_DefineEnemies(): any;
+declare function Team_DefineEnemies(): PlayerIDs;
 
 /**
  * Returns the TeamID for a given race. See LuaConsts for constants to use.
@@ -14316,42 +14393,44 @@ declare function Team_ForEachAllOrAny(team: TeamID, all: boolean, function_: any
 
 /**
  * Creates/Clears groups that contain all of a team's units and buildings. Defaults - sg_allsquads and eg_allentities
- * Fills an SGroup with all of the given team's squads, and an EGroup with all the team's entities. If you don't provide and groups, then it defaults to using sg_allsquads and eg_allentities.
+ * Fills an SGroup with all of the given team's squads, and an EGroup with all the team's entities.
+ * If you don't provide and groups, then it defaults to using sg_allsquads and eg_allentities.
  */
-declare function Team_GetAll(team: TeamID, OPT_sgroup?: SGroupID, OPT_egroup?: EGroupID): any;
+declare function Team_GetAll(team: TeamID, sgroup?: SGroupID, egroup?: EGroupID): void;
 
 /**
  * Gather together all of a teams's entities that are in proximity to a marker, a position, or within a territory sector into an EGroup. The EGroup is cleared beforehand.
  * You can override a marker's normal proximity by specifying a range.
  */
-declare function Team_GetAllEntitiesNearMarker(team: TeamID, egroup: EGroupID, position: MarkerID, OPT_range?: number): any;
+declare function Team_GetAllEntitiesNearMarker(team: TeamID, egroup: EGroupID, position: MarkerID | Position | SectorID, range?: number): void;
 
 /**
  * Gather together all of a teams's squads that are in proximity to a marker, a position, or within a territory sector into an SGroup. The SGroup is cleared beforehand.
  * You can override a marker's normal proximity by specifying a range.
  */
-declare function Team_GetAllSquadsNearMarker(team: TeamID, sgroup: SGroupID, position: MarkerID, OPT_range?: number): any;
+declare function Team_GetAllSquadsNearMarker(team: TeamID, sgroup: SGroupID, position: MarkerID | Position | SectorID, range?: number): void;
 
 /**
  * Returns the entityID of the first team owned building listed in the table.
- * Use ALL to return a table containing the first building listed for each player on the team This only looks at completed buildings
+ * This only looks at completed buildings
+ * Use ALL to return a table containing the first building listed for each player on the team
  */
-declare function Team_GetBuildingID(player: PlayerID, entitytypes: number, OPT_bool?: any): any;
+declare function Team_GetBuildingID(player: PlayerID, entitytypes: BlueprintTable, bool?: any): EntityID;
 
 /**
  * Returns the total number of buildings owned by this team.
  */
-declare function Team_GetBuildingsCount(team: TeamID): any;
+declare function Team_GetBuildingsCount(team: TeamID): number;
 
 /**
  * Returns the total number of buildings owned by this team (with exclusions).
  */
-declare function Team_GetBuildingsCountExcept(team: TeamID, exceptions: number): any;
+declare function Team_GetBuildingsCountExcept(team: TeamID, exceptions: BlueprintTable): number;
 
 /**
  * Returns the number of buildings owned by this team (inclusive).
  */
-declare function Team_GetBuildingsCountOnly(team: TeamID, ebplist: number): any;
+declare function Team_GetBuildingsCountOnly(team: TeamID, ebplist: BlueprintTable): number;
 
 /**
  * Returns a team's enemy
@@ -14362,78 +14441,79 @@ declare function Team_GetEnemyTeam(team: TeamID): TeamID;
  * Returns an EGroup containing all of the teams entities of a specific unit_type (as defined by the type_ext on the entity)
  * This function returns a new EGroup to allow tracking of different types.
  */
-declare function Team_GetEntitiesFromType(team: TeamID, unitType: string): any;
+declare function Team_GetEntitiesFromType(team: TeamID, unitType: string): EGroup;
 
 /**
  * Returns true if this team owns any buildings listed in the table.
- * This only looks at completed buildings - use Team_HasBuildingUnderConstruction to see if the team is building something Use ALL to check if all players on the team have this building
+ * Use ALL to check if all players on the team have this building
+ * This only looks at completed buildings - use Team_HasBuildingUnderConstruction to see if the team is building something
  */
-declare function Team_HasBuilding(team: TeamID, entitytypes: number, OPT_bool?: any): any;
+declare function Team_HasBuilding(team: TeamID, entitytypes: BlueprintTable, bool?: any): boolean;
 
 /**
  * Returns true if this team owns any buildings. (with exclusions).
  * Use ALL to check if all players on the team have buildings EXCEPT this one
  */
-declare function Team_HasBuildingsExcept(team: TeamID, exceptions: number, OPT_bool?: any): any;
+declare function Team_HasBuildingsExcept(team: TeamID, exceptions: BlueprintTable, bool?: any): boolean;
 
 /**
  * Returns true if this team owns any buildings listed in the table currently under construction.
  * Use ALL to check if all players on the team have this building under construction
  */
-declare function Team_HasBuildingUnderConstruction(team: TeamID, entitytypes: number, OPT_bool?: any): any;
+declare function Team_HasBuildingUnderConstruction(team: TeamID, entitytypes: BlueprintTable, bool?: any): boolean;
 
 /**
  * Returns true if this team has any players that are human.
  */
-declare function Team_HasHuman(team: TeamID, OPT_bool?: any): any;
+declare function Team_HasHuman(team: TeamID, bool?: any): boolean;
 
 /**
  * Returns whether a team is still alive or not (all member players must be 'alive')
  */
-declare function Team_IsAlive(): any;
+declare function Team_IsAlive(teamid: any): boolean;
 
 /**
  * Returns whether a team has surrendered
  */
-declare function Team_IsSurrendered(): any;
+declare function Team_IsSurrendered(teamid: any, any: any): boolean;
 
 /**
  * Returns true if a given team owns ALL or ANY items in a group
  */
-declare function Team_OwnsEGroup(team: TeamID, egroup: EGroupID, OPT_any?: boolean): any;
+declare function Team_OwnsEGroup(team: TeamID, egroup: EGroupID, any?: boolean): boolean;
 
 /**
  * Returns true if a given team owns an entity
  */
-declare function Team_OwnsEntity(team: TeamID, entity: EntityID): any;
+declare function Team_OwnsEntity(team: TeamID, entity: EntityID): boolean;
 
 /**
  * Returns true if a given team owns ALL or ANY items in a group
  */
-declare function Team_OwnsSGroup(team: TeamID, sgroup: SGroupID, OPT_all?: boolean): any;
+declare function Team_OwnsSGroup(team: TeamID, sgroup: SGroupID, all?: boolean): boolean;
 
 /**
  * Returns true if a given team owns a squad
  */
-declare function Team_OwnsSquad(team: TeamID, squad: SquadID): any;
+declare function Team_OwnsSquad(team: TeamID, squad: SquadID): boolean;
 
 /**
  * Restrict a list of addons.
  * list should contain an array of strings to restrict.
  */
-declare function Team_RestrictAddOnList(team: TeamID, addonlist: any): any;
+declare function Team_RestrictAddOnList(team: TeamID, addonlist: any): void;
 
 /**
  * Restrict a list of buildings.
  * list should contain an array of strings to restrict.
  */
-declare function Team_RestrictBuildingList(team: TeamID, blueprintlist: any): any;
+declare function Team_RestrictBuildingList(team: TeamID, blueprintlist: any): void;
 
 /**
  * Restrict a list of research items.
  * list should contain an array of strings to restrict.
  */
-declare function Team_RestrictResearchList(team: TeamID, list: string): any;
+declare function Team_RestrictResearchList(team: TeamID, list: StringTable): void;
 
 /**
  * Sets the availability of an ability. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -14457,15 +14537,16 @@ declare function Team_SetEntityProductionAvailability(team: TeamID, bp: number, 
 
 /**
  * Sets the current personnel or vehicle max-cap for each player on a team. The captype is either CT_Personnel or CT_Vehicle (you can't adjust Medic caps just yet).
- * Note that any modifiers that adjust the current max cap will be applied on top of this.  Also note, this is only adjusting the max cap, not the current cap, you will have to call Team_SetMaxPopulation to adjust the current max population to do this.
+ * you will have to call Team_SetMaxPopulation to adjust the current max population to do this.
+ * Note that any modifiers that adjust the current max cap will be applied on top of this.  Also note, this is only adjusting the max cap, not the current cap,
  */
-declare function Team_SetMaxCapPopulation(team: TeamID, captype: number, newcap: number): any;
+declare function Team_SetMaxCapPopulation(team: TeamID, captype: number, newcap: number): void;
 
 /**
  * Sets the current personnel or vehicle cap for each player on a team. The captype is either CT_Personnel or CT_Vehicle (you can't adjust Medic caps just yet).
  * Note that any modifiers that adjust the current cap will be applied on top of this.  Also note, the current cap cannot go higher than the max cap.
  */
-declare function Team_SetMaxPopulation(team: TeamID, captype: number, newcap: number): any;
+declare function Team_SetMaxPopulation(team: TeamID, captype: number, newcap: number): void;
 
 /**
  * Sets the availability of a squad production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -14475,7 +14556,7 @@ declare function Team_SetSquadProductionAvailability(team: TeamID, bp: number, a
 /**
  * Sets up the tech tree for a whole team based off the year
  */
-declare function Team_SetTechTreeByYear(team: TeamID, year: number): any;
+declare function Team_SetTechTreeByYear(team: TeamID, year: number): void;
 
 /**
  * Sets the availability of an upgrade. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -14485,7 +14566,7 @@ declare function Team_SetUpgradeAvailability(team: TeamID, bp: number, availabil
 /**
  * Sets the cost of an upgrade.
  */
-declare function Team_SetUpgradeCost(team: TeamID, upgrade: UpgradeID, food: number, wood: number, stone: number, gold: number): any;
+declare function Team_SetUpgradeCost(team: TeamID, upgrade: UpgradeID, food: number, wood: number, stone: number, gold: number): void;
 
 /**
  * Returns true if the Territory contains the given SectorID.
@@ -14580,17 +14661,19 @@ declare function Timer_GetRemaining(timerID: number): number;
 /**
  * Check if the timer is paused.
  */
-declare function Timer_IsPaused(timerID: number): any;
+declare function Timer_IsPaused(timerID: number): boolean;
 
 /**
  * Pause the specified timer.
+ * Pause and Resume calls are ref-counted: if you have called Pause *twice* on a timer, you will also need to call Resume twice in order to start the timer up again.
  */
 declare function Timer_Pause(timerID: number): void;
 
 /**
  * Resume the specified timer.
+ * Pause and Resume calls are ref-counted: if you have called Pause *twice* on a timer, you will also need to call Resume twice in order to start the timer up again. Set the force parameter to true if you want to bypass the refcounting and make sure a timer starts up again.
  */
-declare function Timer_Resume(timerID: number): void;
+declare function Timer_Resume(timerID: number, force?: boolean): void;
 
 /**
  * Start a timer with the specified id, taking the required period ( in seconds )
@@ -14785,18 +14868,32 @@ declare function Ghost_EnableSpotting(): void;
 /**
  * Adds a Hint Point that will only appear on Mouseover of the target.
  */
-declare function HintMouseover_Add(hintText: string, hintTarget: Marker, targetRadius: number, looping: boolean): void;
+declare function HintMouseover_Add(hintText: string, hintTarget: MARKER | Position | EGroup | SGROUP, targetRadius: number, looping: boolean): void;
 
 /**
  * Removes a Mouseover Hint Point from the managing function.
  */
-declare function HintMouseover_Remove(hintText: string, hintTarget: Marker): void;
+declare function HintMouseover_Remove(hintText: string, hintTarget: MARKER | EGroup | SGROUP): void;
 
 /**
  * Creates a hintpoint attached to a Marker, EGroup, SGroup or position
  * If range is set to 0, then the hintpoint is rangeless, see the design document for rangeless features.
+ * The following types of hintpoint actions are available.
+ * HPAT_Objective
+ * HPAT_Hint
+ * HPAT_Critical
+ * HPAT_Movement
+ * HPAT_Attack
+ * HPAT_FormationSetup
+ * HPAT_RallyPoint
+ * HPAT_DeepSnow
+ * HPAT_CoverGreen
+ * HPAT_CoverYellow
+ * HPAT_CoverRed
+ * HPAT_Detonation
+ * HPAT_Vaulting
  */
-declare function HintPoint_Add(where: StackVar, bVisible: boolean, hintText: string, height?: number): HintPointID;
+declare function HintPoint_Add(where: StackVar, bVisible: boolean, hintText: string, height?: number, actionType?: HintPointActionType, iconName?: string, priority?: number, visibleInFOW?: boolean, dataTemplate?: string): HintPointID;
 
 /**
  * Deprecated.
@@ -14881,7 +14978,7 @@ declare function MapIcon_ClearFacing(id: number): any;
 /**
  * Creates an arrow on the metamap between the two locations provided
  */
-declare function MapIcon_CreateArrow(position_from: Marker, position_to: Marker, red: number, green: number, blue: number, alpha: number): any;
+declare function MapIcon_CreateArrow(position_from: MARKER | Position, position_to: MARKER | Position, red: number, green: number, blue: number, alpha: number): any;
 
 /**
  * Create a map icon targetting an entity.
@@ -15252,12 +15349,12 @@ declare function Taskbar_SetVisibility(visible: boolean): void;
 /**
  * Adds a threat to an existing group
  */
-declare function ThreatArrow_Add(GroupID: number, Threat: EntityID, icon?: string): void;
+declare function ThreatArrow_Add(GroupID: number, Threat: EntityID | Squad | EGroup | SGROUP | Position | MARKER, icon?: string): void;
 
 /**
  * Creates a group of threats that are represented by a single arrow. Threats can be entities, squads, egroups, sgroups, positions or markers
  */
-declare function ThreatArrow_CreateGroup(threats: Variable): number;
+declare function ThreatArrow_CreateGroup(dataTemplate: string, target1: MARKER | Position | EntityID | Squad | Group, target2?: MARKER | Position | EntityID | Squad | Group): number;
 
 /**
  * Destroy all threat groups
@@ -15272,13 +15369,14 @@ declare function ThreatArrow_DestroyGroup(GroupID: number): void;
 /**
  * Removes a threat from an existing group
  */
-declare function ThreatArrow_Remove(GroupID: number, Threat: EntityID): void;
+declare function ThreatArrow_Remove(GroupID: number, Threat: EntityID | Squad | EGroup | SGROUP | Position | MARKER): void;
 
 /**
  * Creates and flashes an ability button on the taskbar if the unit is selected
- * Length parameter determines how long to flash the item, and the blueprint filter is used if 		certain squad types need to be selected before flashing the button.
+ * Length parameter determines how long to flash the item, and the blueprint filter is used if
+ * certain squad types need to be selected before flashing the button.
  */
-declare function UI_AddHintAndFlashAbility(playerid: PlayerID, abilityID: AbilityID, text: string, length: number, blueprint_filter: any): void;
+declare function UI_AddHintAndFlashAbility(playerid: PlayerID, abilityID: AbilityID, text: string, length: number, blueprint_filter?: any | Blueprint): void;
 
 /**
  * Toggle off all territory lines. Each call to UI_AllTerritoryHide must be matched by a call to UI_AllTerritoryShow
@@ -15384,7 +15482,7 @@ declare function UI_CreateEntityKickerMessage(player: PlayerID, entity: EntityID
 /**
  * Creates an event cue without a callback (you won't know when it's clicked).
  */
-declare function UI_CreateEventCue(title: string, description: string | undefined, data_template: string, icon_path: string, sound_path: string, OPT_visibility?: EventCueVisibility, OPT_lifetime?: number): ID;
+declare function UI_CreateEventCue(title: string, description: string | undefined, data_template: string, icon_path: string, sound_path: string, visibility?: EventCueVisibility, lifetime?: number): Event;
 
 /**
  * Creates a event cue with custom lua callback function when icon is clicked. Lifetime of -1 means use the default. The return value is an event cue ID. The callback receives one parameter: the ID of the event cue that was clicked.
@@ -15399,9 +15497,9 @@ declare function UI_CreateEventCueClickableByType(eventType: UIEventType, lifeti
 
 /**
  * Creates a blip on the minimap; return the ID of the blip.
- * 'where' can be an entity, marker, position, egroup, sgroup, or squad. The following blipTypes are available: BT_GeneralPing, BT_CombatPing, BT_FuelPing BT_MunitionsPing, BT_SelectionPing, BT_BuildingBoomPing, BT_AbilityPing, BT_ObjectivePrimary, BT_ObjectiveSecondary, BT_ObjectiveMedal, BT_AttackHerePing,  BT_DefendHerePing, BT_CaptureHerePing,
+ * 'where' can be an entity, marker, position, egroup, sgroup, or squad.
  */
-declare function UI_CreateMinimapBlip(where: StackVar, lifetime: number, blipType: number): BlipID;
+declare function UI_CreateMinimapBlip(where: StackVar, lifetime: number, blipDataTemplate: string): BlipID;
 
 /**
  * Create a blips on a ScarMarker from a sender. sender is used for retrieving player information like team color
@@ -15421,7 +15519,7 @@ declare function UI_CreatePositionKickerMessage(player: PlayerID, position: Posi
 /**
  * Create a custom kicker message on the squad and display to the player.
  */
-declare function UI_CreateSGroupKickerMessage(player: PlayerID, sgroup: SGroup, message: string): void;
+declare function UI_CreateSGroupKickerMessage(player: PlayerID, sgroup: SGROUP, message: string): void;
 
 /**
  * Create a custom kicker message on the squad and display to the player
@@ -15723,12 +15821,12 @@ declare function UI_SetModalHoverCallback(function_: any): any;
  * Sets a level decorator that's defined in all of the squads squad_ui_ext in the target SGroup
  * if level value is -1 it will hide the special decorator, if no level is defined -1 is default
  */
-declare function UI_SetSGroupSpecialLevel(sgroup: SGroup, level: number): void;
+declare function UI_SetSGroupSpecialLevel(sgroup: SGROUP, level: number): void;
 
 /**
  * Enables or disables the silhouettes for squads / entities
  */
-declare function UI_SetSilhouetteEnabled(unit: EGroupID, enabled: boolean): any;
+declare function UI_SetSilhouetteEnabled(unit: SGROUP | EGroup | Squad | EntityID, enabled: boolean): void;
 
 /**
  * Sets a callback firing when user try to skip the NIS
@@ -15748,7 +15846,7 @@ declare function UI_SetSquadDecoratorAlwaysVisible(squad: SquadID, alwaysVisible
 /**
  * Enables or disables the UI extensions for squads / entities
  */
-declare function UI_SetUIExtEnabled(unit: EGroupID, enabled: boolean): any;
+declare function UI_SetUIExtEnabled(unit: SGROUP | EGroup | Squad | EntityID, enabled: boolean): void;
 
 /**
  * Stops a flash handler of a given id.
@@ -15807,7 +15905,7 @@ declare function bug(errormessage: ErrorMessage): void;
 /**
  * Clones a table allowing for unadulterated use of the data. By default this cloning is done recursively, but that can be changed with the optional recursive flag.
  */
-declare function Clone(data: any, OPT_recursive?: boolean): any;
+declare function Clone(data: any, recursive?: boolean): any;
 
 /**
  * Converts any enum value to a number
@@ -15822,12 +15920,12 @@ declare function Enum_ToString(var_: StackVar): any;
 /**
  * Returns true if any event is currently running [at or below (more important than) the priority threshold. If not specified, ignores threshold.]
  */
-declare function Event_IsAnyRunning(priority_threshold: number): boolean;
+declare function Event_IsAnyRunning(priority_threshold?: number): boolean;
 
 /**
- * Ends the single player game (win/lose). You can optionally specify a message that will show up in the gameover dialog box
+ * Ends the single player game (win/lose).
  */
-declare function Game_EndSP(win: boolean, message?: string, nis?: boolean, sandmap?: boolean): void;
+declare function Game_EndSP(win: boolean, winReason?: WinReason, nis?: boolean, sandmap?: boolean): void;
 
 /**
  * Fades the screen to black - FADE_OUT to fade to black, FADE_IN to fade back in
@@ -15837,13 +15935,13 @@ declare function Game_FadeToBlack(direction: boolean, length: number): void;
 /**
  * Loads a scar file if it hasn't been loaded yet
  */
-declare function Import_Once(Path: string): any;
+declare function Import_Once(Path: string): undefined;
 
 /**
  * Returns a formatted localized string.
- * Use this function to format localized text. ie %1PLAYERNAME% is going to win.
+ * Use this function to format localized text. ie %1PLAYERNAME% is going to win. It accepts up to 9 additional values as parameters.
  */
-declare function Loc_FormatText(FormatID: number): string;
+declare function Loc_FormatText(FormatID: number, parameters?: Argc): string;
 
 /**
  * Modify whether or not the group is revealed in the fog of war.
@@ -15854,28 +15952,28 @@ declare function Modify_EnableIsVisibleInFOW(group: EGroupID, enable: boolean, d
  * Modify the damage done to the entity per tick when it is on fire
  * Can modify the value to zero to allow buildings to be on fire without taking damage
  */
-declare function Modify_OnFireDamagePerTick(egroup: EGroupID, mathtype: ModifierUsageType, value: number): any;
+declare function Modify_OnFireDamagePerTick(egroup: EGroupID, mathtype: ModifierUsageType, value: number): Modids;
 
 /**
  * Modify the amount that the burn level decays per tick when not on fire
  */
-declare function Modify_OnFireDecayAmountPerTick(egroup: EGroupID, mathtype: ModifierUsageType, value: number): any;
+declare function Modify_OnFireDecayAmountPerTick(egroup: EGroupID, mathtype: ModifierUsageType, value: number): Modids;
 
 /**
  * Modify the health threshold required to set the entity on fire
  */
-declare function Modify_OnFireHealthPercentage(egroup: EGroupID, mathtype: ModifierUsageType, value: number): any;
+declare function Modify_OnFireHealthPercentage(egroup: EGroupID, mathtype: ModifierUsageType, value: number): Modids;
 
 /**
  * Modify the burn level threshold required to set the entity on fire. A LOWER value means it lights on fire FASTER.
  */
-declare function Modify_OnFireThreshold(egroup: EGroupID, mathtype: ModifierUsageType, value: number): any;
+declare function Modify_OnFireThreshold(egroup: EGroupID, mathtype: ModifierUsageType, value: number): Modids;
 
 /**
  * Modify the number of entities spawned in new squads
  * Intended use case is spawning damaged squadss
  */
-declare function Modify_PlayerSquadLoadoutMax(player: Player, mathtype: ModifierUsageType, value: number): any;
+declare function Modify_PlayerSquadLoadoutMax(player: Player, mathtype: ModifierUsageType, value: number): Modids;
 
 /**
  * Modifies an entity's shield regen
@@ -15889,31 +15987,31 @@ declare function Modify_SquadShieldRegen(group: SGroupID, Factor: number, Usage:
 declare function Position_IsValid(pos: Position): any;
 
 /**
- * Play sound on the first entity of the squad in sgroup
+ * Play sound on the centermost squad in the sgroup
  */
-declare function Sound_PlayOnSquad(soundpathname: string, sgroupid: SGroupID): void;
+declare function Sound_PlayOnSquad(soundpathname: string, sgroupid: SGroupID | Squad): number;
 
 /**
  * Finds the greatest (or least) concentration of entities owned by a team.
  * This function is slow, so don't call it very often
  */
-declare function Team_GetEntityConcentration(team: TeamID, OPT_popcapOnly?: boolean, OPT_includeBlueprints?: any, OPT_excludeBlueprints?: any, OPT_bLeastConcentrated?: boolean, OPT_onlyInThisMarker?: MarkerID): any;
+declare function Team_GetEntityConcentration(team: TeamID, popcapOnly?: boolean, includeBlueprints?: any, excludeBlueprints?: any, bLeastConcentrated?: boolean, onlyInThisMarker?: MarkerID | any): EGroup;
 
 /**
  * Finds the greatest (or least) concentration of squads owned by a team.
  * This function is slow, so don't call it very often
  */
-declare function Team_GetSquadConcentration(team: TeamID, OPT_popcapOnly?: boolean, OPT_includeBlueprints?: any, OPT_excludeBlueprints?: any, OPT_bLeastConcentrated?: boolean, OPT_onlyInThisMarker?: MarkerID): any;
+declare function Team_GetSquadConcentration(team: TeamID, popcapOnly?: boolean, includeBlueprints?: any, excludeBlueprints?: any, bLeastConcentrated?: boolean, onlyInThisMarker?: MarkerID | any): SGROUP;
 
 /**
  * Forces all in-process spawns / deploys to complete instantly.
  */
-declare function UnitEntry_CompleteAllImmediately(): any;
+declare function UnitEntry_CompleteAllImmediately(): void;
 
 /**
  * Forces a specific index of the deploy table to complete instantly.
  */
-declare function UnitEntry_CompleteImmediately(): any;
+declare function UnitEntry_CompleteImmediately(index: any): void;
 
 /**
  * Forces all in-process exits to complete instantly.
@@ -15923,13 +16021,16 @@ declare function UnitExit_CompleteAllImmediately(): any;
 /**
  * If there's a squad under the mouse cursor, this adds it to a unique SGroup. Return value is the SGroup it was added to, or nil if there was no squad under the mouse cursor. Pass in true for 'clearGroup' to clear the sgroup before adding the squad.
  */
-declare function Util_AddMouseoverSquadToSGroup(clearGroup: boolean): SGroupID;
+declare function Util_AddMouseoverSquadToSGroup(clearGroup?: boolean): SGroupID;
 
 /**
  * Applies any modifier to the target SGroup, EGroup, or Player
- * Valid applytypes are MAT_...(Entity, Squad etc.), if left default assumption is default type for the target Cases you want to define applytype: Weapon Modifiers, Enable Modifiers, or a player modifier for all entity or squad types Valid mathtypes are MUT...(Addition, Multiplication, etc.) Exclusive modifiers will replace all pre-existing modifiers of that modifier type on the target
+ * Valid applytypes are MAT_...(Entity, Squad etc.), if left default assumption is default type for the target
+ * Cases you want to define applytype: Weapon Modifiers, Enable Modifiers, or a player modifier for all entity or squad types
+ * Valid mathtypes are MUT...(Addition, Multiplication, etc.)
+ * Exclusive modifiers will replace all pre-existing modifiers of that modifier type on the target
  */
-declare function Util_ApplyModifier(groupid: SGroupID, modifier: string, scalefactor: number, mathtype: number, applytype?: number, exclusive?: boolean, targetname?: string): ModID;
+declare function Util_ApplyModifier(groupid: SGroupID | EGroupID | Player, modifier: string, scalefactor: number, mathtype: number, applytype?: number, exclusive?: boolean, targetname?: string): Modids;
 
 /**
  * Auto-generate an Ambient Event. These are Low priority, and will hopefully interrupt nothing.
@@ -15938,28 +16039,38 @@ declare function Util_ApplyModifier(groupid: SGroupID, modifier: string, scalefa
 declare function Util_AutoAmbient(intelEventTable: any): void;
 
 /**
- * Auto-generate an Intel Event. These are medium priority, and will interrupt a Stinger, but not an NIS.
+ * Auto-generate an Intel Event. These are medium priority, and will interrupt ambient, but not an NIS.
  * Takes a table of parameters defining speaker(s) and line(s)
  */
 declare function Util_AutoIntel(intelEventTable: any): void;
 
 /**
- * Auto-generate an NISlet Event, a simple NIS meant to convey mission location. These are high priority, and will interrupt a Stinger and Intel Events.
- * Takes an NISLET type and a table of parameters defining speaker(s) and line(s) NISLET_BLACK2GAME	= 1 -- starts in black and fades up, ends in gamplay NISLET_GAME2GAME 	= 2 -- transitions from game play to letterbox and backto gameplay NISLET_GAME2BLACK	= 3 -- starts in gameplay and ends in black NISLET_GAME2LETTER	= 4 -- starts in gameplay and ends in letterbox mode (for transition to sitrep) NISLET_TIME 		= 1 -- use seconds to wait on camera movements NISLET_VO			= 2 -- use voice to wait on camera movements	t_eventes.nislet_start = {		{camPos = pos1, waitType = NISLET_TIME, waitValue = 5},		{camPos = pos2, waitType = NISLET_VO, waitValue = {ACTOR.GenericAlly, 000000}},	}
+ * Auto-generate an NISlet Event, a simple NIS meant to convey mission location. These are high priority, and will interrupt ambient and Intel Events.
+ * Takes an NISLET type and a table of parameters defining speaker(s) and line(s)
+ * NISLET_BLACK2GAME	= 1 -- starts in black and fades up, ends in gamplay
+ * NISLET_GAME2GAME 	= 2 -- transitions from game play to letterbox and backto gameplay
+ * NISLET_GAME2BLACK	= 3 -- starts in gameplay and ends in black
+ * NISLET_GAME2LETTER	= 4 -- starts in gameplay and ends in letterbox mode (for transition to sitrep)
+ * NISLET_TIME 		= 1 -- use seconds to wait on camera movements
+ * NISLET_VO			= 2 -- use voice to wait on camera movements
+ * t_eventes.nislet_start = {
+ * {camPos = pos1, waitType = NISLET_TIME, waitValue = 5},
+ * {camPos = pos2, waitType = NISLET_VO, waitValue = {ACTOR.GenericAlly, 000000}},
+ * }
  */
-declare function Util_AutoNISlet(nisletType: number, intelEventTable: any, bFOWvisible: boolean): void;
+declare function Util_AutoNISlet(nisletType: number, intelEventTable: any, bFOWvisible?: boolean): void;
 
 /**
  * Automatically save the game for the player. The savegame name is built using the abbreviated mission name + checkpoint. You can optionally have it wait until the player is out of combat.
  * This function checks the user setting regarding autosaves (so you don't have to!), and does nothing if the player has them disabled.
  */
-declare function Util_AutoSave(OPT_waitUntilOutOfCombat?: boolean, OPT_onlyCareAboutCombatOnScreen?: boolean, OPT_maxWaitTime?: number): any;
+declare function Util_AutoSave(waitUntilOutOfCombat?: boolean, onlyCareAboutCombatOnScreen?: boolean, maxWaitTime?: number): void;
 
 /**
- * Clears any vehicle wrecks from a given area
- * Area can be a marker (with or without a range override), a position and range combo, or a territory sector ID
+ * Clears vehicle wrecks from a given area.
+ * Area can be a marker (with or without a range override), a position and range combo, or a territory sector ID. Uses EBP.WRECKED_VEHICLES unless wrecksList is defined.
  */
-declare function Util_ClearWrecksFromMarker(position: MarkerID, range?: number): void;
+declare function Util_ClearWrecksFromMarker(position: MarkerID | Position | SectorID, range?: number, wrecksList?: any): void;
 
 /**
  * Helper function to process comparisons that use the Comparison enum... i.e. return true if value1 IS_LESS_THAN value2
@@ -15969,19 +16080,24 @@ declare function Util_Comparison(value1: number, comparison: Comparison, value2:
 
 /**
  * Creates a given number of entities at a location and adds them to an egroup. A PlayerID of nil will create the entities as world objects.
+ * The skipForceConstruct parameter allows you to skip the step that normally spawns buildings fully constructed, so you can spawn buildings that self-construct.
+ * The toward parameter should be a world location that the entity should look at, NOT a direction. Leave it blank if
+ * you want the location's orientation to be used for a direction (assuming location is a marker).
+ * The useMarkerTransform parameter, if no toward is passed in, will determine if the marker's transform should be
+ * used for the entity OR if the marker's direction should be used in which case the entity will face the same way as the marker.
  */
-declare function Util_CreateEntities(player: PlayerID, egroup: EGroupID, blueprintID: number, location: MarkerID, numentities: number, toward?: MarkerID): void;
+declare function Util_CreateEntities(player: PlayerID, egroup: EGroupID, blueprintID: number, location: MarkerID | Position, numentities: number, toward?: MarkerID | Position, snapToGround?: boolean, skipForceConstruct?: boolean, useMarkerTransform?: boolean): EGroup;
 
 /**
- * High level function to create squads and give them basic orders upon spawning. detailed explanation found in Confluence
+ * High level function to create squads and give them basic orders upon spawning. Detailed explanation found in ScarUtil.scar
  */
-declare function Util_CreateSquads(player: PlayerID, sgroup: SGroupID, sbp: SquadBlueprint, spawn_point: Marker, destination?: Position, numsquads?: number, loadout?: number, attackmove?: boolean, dest_facing?: Position, upgrades?: UpgradeBlueprint, spawn_facing?: Position): void;
+declare function Util_CreateSquads(player: PlayerID, sgroup: SGroupID | any | string, sbp: SquadBlueprint | any, spawn_point: MARKER | Position | SGROUP | EGroup, destination?: Position, numsquads?: number, loadout?: number, attackmove?: boolean, dest_facing?: Position, upgrades?: UpgradeBlueprint | any, spawn_facing?: Position, spawntype?: string, first?: The, is?: Or, due?: Or, the?: Then, into?: Load, attack?: Or, the2?: If, the3?: Then, the4?: Then, determines?: This, determines2?: This, the5?: And, marker?: The, will?: This): SGROUP;
 
 /**
  * High level function to deploy squads in different ways. Details can be found in UnitEntry.scar
  * Spawntype spawntype - enum of the spawn type (ex: SPAWN.Race_Teleport). SPAWN.No_Type can be used to force a spawn with no type\n
  */
-declare function Util_DeploySquads(spawntype: Spawntype, player: PlayerID, sgroup: SGroupID, location: Position, squadlist: any, stagger: number, callback: any, ignorepathfindinggroup: EGroupID): any;
+declare function Util_DeploySquads(spawntype: Spawntype, player: PlayerID, sgroup: SGroupID | any | string, location: Position, squadlist: any, stagger: number, callback: any, ignorepathfindinggroup: EGroup): SGroup_comma_Number;
 
 /**
  * Takes in a table and chooses the right variable for the difficulty setting. 1-4 elements. Acquires current difficulty by default.
@@ -15992,17 +16108,17 @@ declare function Util_DifVar(difficultyVariables: any, difficulty?: number): Var
  * Returns the result of the dot product of two items in radians
  * The params must be 3D vectors
  */
-declare function Util_DotProductRadians(vectorA: Vector, vectorB: Vector): any;
+declare function Util_DotProductRadians(vectorA: Vector, vectorB: Vector): number;
 
 /**
  * Returns true if a Player/Team can see any or all of an SGroup/Squad/EGroup/Entity/Position/Marker
  */
-declare function Util_ElementCanSee(playerID: PlayerID, element: EGroupID): any;
+declare function Util_ElementCanSee(playerID: PlayerID | TeamID, element: EGroupID): any;
 
 /**
  * Checks the entity count for the world and returns true or false depending on the result. A specific value can be passed in to override the default amount.
  */
-declare function Util_EntityLimit(entityLimit: number): boolean;
+declare function Util_EntityLimit(entityLimit?: number): boolean;
 
 /**
  * High level function to have squad exit the map (despawn) in different ways. Details can be found in UnitExit.scar
@@ -16012,6 +16128,7 @@ declare function Util_ExitSquads(squads: SGroupID, exitType: ExitType, data: any
 /**
  * Try to garrison a loadable building within radius that is closer to the first squad of the sgroup than enemy
  * The squad suppression would be resetted before fallling back so that they would not succumb to pinned state
+ * Returns the entity id of the building that the squad try to garrison into. Return nil if nothing is found
  */
 declare function Util_FallBackToGarrisonBuilding(sgroupid: SGroupID, radius: number): EntityID;
 
@@ -16019,42 +16136,42 @@ declare function Util_FallBackToGarrisonBuilding(sgroupid: SGroupID, radius: num
  * Finds a hidden position based on what the local player can and can't see
  * If no position is found, returns nil
  */
-declare function Util_FindHiddenItem(items: EGroupID): any;
+declare function Util_FindHiddenItem(items: Position | EGroup | EntityID | SGROUP | Squad): Position;
 
 /**
  * Following a path from origin to destination, finds the HS_CLOSEST/HS_FURTHEST hidden position to/from the destination
  * If no position is found, returns origin
  */
-declare function Util_FindHiddenSpawn(origin: Position, destination: Position, furthest: boolean): any;
+declare function Util_FindHiddenSpawn(origin: Position, destination: Position, furthest: boolean): Position;
 
 /**
  * Following a path from origin to destination, finds the HS_CLOSEST/HS_FURTHEST visible position to/from the destination
  * If no position is found, returns destination
  */
-declare function Util_FindVisibleSpawn(origin: Position, destination: Position, furthest: boolean): any;
+declare function Util_FindVisibleSpawn(origin: Position, destination: Position, furthest: boolean): Position;
 
 /**
  * Forces all squads given to retreat, regardless of whether they are on team weapons or not. Disables aiEncounters input (true disables all encounters).
  */
-declare function Util_ForceRetreatAll(sgroup: SGroupID, marker: Marker, aiEncounterDisable: boolean): any;
+declare function Util_ForceRetreatAll(sgroup: SGroupID, marker: MARKER, aiEncounterDisable: boolean): any;
 
 /**
  * Finds a nearby building to garrison. can ignore occupied [friendly] buildings. return ID of entity it found, or nil if not found
  * Can also filter out groups not to occupy
  */
-declare function Util_GarrisonNearbyBuilding(sgroup: SGroupID, pos: Position, radius: number, occupied?: boolean, filter?: SGroup): EntityID;
+declare function Util_GarrisonNearbyBuilding(sgroup: SGroupID, pos: Position, radius: number, occupied?: boolean, filter?: SGROUP | any): EntityID;
 
 /**
  * Finds a nearby vehicle to garrison. can ignore occupied [friendly] vehicles. return ID of vehicle it found, or nil if not found,
  * Can also filter out groups not to occupy
  */
-declare function Util_GarrisonNearbyVehicle(sgroup: SGroupID, pos: Position, radius: number, occupied?: boolean, filter?: SGroup): SquadID;
+declare function Util_GarrisonNearbyVehicle(sgroup: SGroupID, pos: Position, radius: number, occupied?: boolean, filter?: SGROUP | any): SquadID;
 
 /**
  * Returns the angle (in degrees) between two items
  * The items must of of types that can have a direction resolved on them with Util_GetDirection()
  */
-declare function Util_GetAngleDifference(item1: EGroupID, item2: EGroupID): any;
+declare function Util_GetAngleDifference(item1: MARKER | Position | EntityID | EGroup | Squad | SGROUP, item2: MARKER | Position | EntityID | EGroup | Squad | SGROUP): number;
 
 /**
  * Returns the closest MarkerID to the entity/marker/pos/egroup/sgroup/squad from the table of markers provided
@@ -16064,23 +16181,23 @@ declare function Util_GetClosestMarker(var_: Variable, markers: any): MarkerID;
 /**
  * Returns the heading of an item.
  */
-declare function Util_GetDirection(item: EGroupID): any;
+declare function Util_GetDirection(item: MARKER | Position | EntityID | EGroup | Squad | SGROUP): Position;
 
 /**
  * Returns the direction heading from point a towards point b
  */
-declare function Util_GetDirectionFromAtoB(a: EGroupID, b: EGroupID): any;
+declare function Util_GetDirectionFromAtoB(a: MarkerID | Position | Squad | EntityID | SGROUP | EGroup, b: MarkerID | Position | Squad | EntityID | SGROUP | EGroup): Position;
 
 /**
  * Returns the distance between two objects
  */
-declare function Util_GetDistance(Object1: EGroupID, Object2: EGroupID): any;
+declare function Util_GetDistance(Object1: EntityID | Squad | EGroup | SGROUP | MARKER | Position, Object2: EntityID | Squad | EGroup | SGROUP | MARKER | Position): number;
 
 /**
  * Returns the _squared_ distance between two objects
  * This is much cheaper to calculate that Util_GetDistance(), and fine for when you're only comparing results against other squared distances (i.e. to find the closest item)
  */
-declare function Util_GetDistanceSquared(Object1: EGroupID, Object2: EGroupID): any;
+declare function Util_GetDistanceSquared(Object1: EntityID | Squad | EGroup | SGROUP | MARKER | Position, Object2: EntityID | Squad | EGroup | SGROUP | MARKER | Position): number;
 
 /**
  * Find all the entities with a given blueprint in sourcegroup and add them to destgroup.
@@ -16091,13 +16208,13 @@ declare function Util_GetEntitiesByBP(sourcegroup: EGroupID, destgroup: EGroupID
 /**
  * Converts a direction into a facing.
  */
-declare function Util_GetFacingFromDirection(pos: Position, direction: Position): any;
+declare function Util_GetFacingFromDirection(pos: Position, direction: Position): Facing;
 
 /**
  * Determines the health percentage of a given object
  * Returns average health if the object is a group
  */
-declare function Util_GetHealth(var_: EGroupID): any;
+declare function Util_GetHealth(var_: Squad | EntityID | SGROUP | EGroup): Percentage;
 
 /**
  * Returns a unique SGroup used to hold mouseover squads obtained from Util_AddMouseoverSquadToSGroup
@@ -16105,14 +16222,14 @@ declare function Util_GetHealth(var_: EGroupID): any;
 declare function Util_GetMouseoverSGroup(): void;
 
 /**
- * Returns a position relative to a entity/squad/egroup/sgroup/marker/position's current position and orientation. see LuaConsts.scar for explanation of 'offset' parameter.
+ * Returns a position relative to a entity/squad/egroup/sgroup/marker/position's current position and orientation.
  */
-declare function Util_GetOffsetPosition(pos: EntityID, offset: number, distance: number): Position;
+declare function Util_GetOffsetPosition(pos: EntityID | Squad | EGroup | SGROUP | MARKER | Position, offset: number, distance: number): Position;
 
 /**
  * Returns the player owner for any of: entity, squad, egroup, sgroup, player. for groups, the first item is used. Returns nil for world owned or empty groups
  */
-declare function Util_GetPlayerOwner(Object: EntityID): PlayerID;
+declare function Util_GetPlayerOwner(Object: EntityID | Squad | EGroup | SGROUP | Player): PlayerID;
 
 /**
  * Returns a position from entity/marker/pos/egroup/sgroup/squad
@@ -16121,21 +16238,22 @@ declare function Util_GetPosition(var_: Variable): Position;
 
 /**
  * Returns a random position within an area that is not near a player
- * Useful for dropping artillery NEAR a player, but not on him, for example. searchRadius is the area to look for the location in.  Distance is how far from the player's units the position must be.
+ * searchRadius is the area to look for the location in.  Distance is how far from the player's units the position must be.
+ * Useful for dropping artillery NEAR a player, but not on him, for example.
  */
-declare function Util_GetPositionAwayFromPlayer(pos: EGroupID, player: PlayerID, OPT_searchRadius?: number, OPT_distance?: number): any;
+declare function Util_GetPositionAwayFromPlayer(pos: MarkerID | Position | EGroupID | SGroupID, player: PlayerID, searchRadius?: number, distance?: number): Position;
 
 /**
  * Returns a position that is distance metres from point A, headed in the direction of point B.
  * You can also pass in a percentage (0.0 to 1.0) instead of a distance in metres.
  */
-declare function Util_GetPositionFromAtoB(a: MarkerID, b: MarkerID, distance: number): Position;
+declare function Util_GetPositionFromAtoB(a: MarkerID | Position, b: MarkerID | Position, distance: number): Position;
 
 /**
  * Finds a hidden position based on what the local player can and can't see
  * If no position is found, returns nil
  */
-declare function Util_GetRandomHiddenPosition(items: EGroupID): any;
+declare function Util_GetRandomHiddenPosition(items: Position | EGroup | EntityID | SGROUP | Squad): Position;
 
 /**
  * Returns a random position either within the marker's proximity or with a pos and range provided. Range is ignored for rectangular markers
@@ -16143,14 +16261,14 @@ declare function Util_GetRandomHiddenPosition(items: EGroupID): any;
 declare function Util_GetRandomPosition(range?: number): Position;
 
 /**
- * Gets the relationship between two of: entity, squad, egroup, sgroup, player. for groups, the first item is used.
+ * Gets the relationship between two of: entity, squad, egroup, sgroup, player. for groups, the first item is used. returns R_ENEMY, R_ALLY, R_NEUTRAL, R_UNDEFINED, or nil (if world owned or invalid parameters)
  */
-declare function Util_GetRelationship(Object_1: EntityID, Object_2: EntityID): number;
+declare function Util_GetRelationship(Object_1: EntityID | Squad | EGroup | SGROUP | Player, Object_2: EntityID | Squad | EGroup | SGROUP | Player): Relationship;
 
 /**
  * Returns a relative offset position to an element
  */
-declare function Util_GetRelativeOffset(element: EGroupID, pos: EGroupID): any;
+declare function Util_GetRelativeOffset(element: EntityID | Squad | EGroup | SGROUP | MARKER | Position, pos: EntityID | Squad | EGroup | SGROUP | MARKER | Position): Offset;
 
 /**
  * Find all the squads with a given blueprint in sourcegroup and add them to destgroup.
@@ -16166,7 +16284,7 @@ declare function Util_GetTrailingNumber(val: string): number;
 /**
  * Returns true if given entity/marker/pos/egroup/sgroup/squad has a position; if false, Util_GetPosition will fail.
  */
-declare function Util_HasPosition(var_: Variable): any;
+declare function Util_HasPosition(var_: Variable): boolean;
 
 /**
  * Hides all of a player's squads and/or buildings
@@ -16177,17 +16295,17 @@ declare function Util_HidePlayerForNIS(player: PlayerID, hide: boolean): void;
 /**
  * Returns whether the currently running sequence has been skipped
  */
-declare function Util_IsSequenceSkipped(): any;
+declare function Util_IsSequenceSkipped(): boolean;
 
 /**
  * Kills a given object
  */
-declare function Util_Kill(var_: EGroupID): any;
+declare function Util_Kill(var_: Player | Squad | EntityID | SGROUP | EGroup): void;
 
 /**
  * Tracks a syncweapon ID and destroys it (by default) or makes it uncapturable (if kill is set to false)
  */
-declare function Util_LogSyncWpn(syncweapon: SGroupID, OPT_kill?: boolean): any;
+declare function Util_LogSyncWpn(syncweapon: SGroupID, kill?: boolean): void;
 
 /**
  * Play an events file at a given markers location
@@ -16197,44 +16315,47 @@ declare function Util_MarkerFX(markername: string, eventfile: string): void;
 /**
  * Play the mission title fade.
  */
-declare function Util_MissionTitle(title: string): void;
+declare function Util_MissionTitle(title: string, time_fade_in?: number, lifetime?: number, time_fade_out?: number): void;
 
 /**
  * Calls UI_NewHUDFeature() as an IntelEvent. Will get queued as any other event. See UI_NewHUDFeature() for parameter details.
  */
-declare function Util_NewHUDFeatureEvent(newHUDFeature: HUDFeatureType, featureText: string, featureIcon: string, duration: number): any;
+declare function Util_NewHUDFeatureEvent(newHUDFeature: HUDFeatureType, featureText: string, featureIcon: string, duration: number): void;
 
 /**
  * Play a movie.
- * Plays a movie file after fading out the screen. Fades back in and triggers onComplete once it ends. If fadeIn < 0, does not face back in once complete. If onCompleteAfterMovie is true, the onComplete function will play as soon as the movie is over, instead of after the fade-in
+ * If onCompleteAfterMovie is true, the onComplete function will play as soon as the movie is over, instead of after the fade-in
+ * Plays a movie file after fading out the screen. Fades back in and triggers onComplete once it ends. If fadeIn < 0, does not face back in once complete.
  */
-declare function Util_PlayMovie(name: string, OPT_fadeOut?: number, OPT_fadeIn?: number, OPT_onComplete?: any, OPT_delay?: number, OPT_onCompleteAfterMovie?: boolean): any;
+declare function Util_PlayMovie(name: string, fadeOut?: number, fadeIn?: number, onComplete?: any, delay?: number, onCompleteAfterMovie?: boolean): void;
 
 /**
  * Plays music from the Data:Sound folder, and stores the music track so it can be resumed after a save/load
+ * The new music will phase out the old one. There can only be one music playing at anytime.
  */
-declare function Util_PlayMusic(name: string, fade: number, delay: number): void;
+declare function Util_PlayMusic(name: string): void;
 
 /**
  * Simply prints something if the first variable is true
  */
-declare function Util_PrintIf(): any;
+declare function Util_PrintIf(boolean: any, toPrint: any): undefined;
 
 /**
  * Prints out the entire contents of an Object
  * Objects can be anything (Player, SGroup, Int, Table, String, etc.), but this is most useful for Tables
+ * This is most useful when used in conjunction with fatal() or bug() to populate the log file.
  */
 declare function Util_PrintObject(obj: Object, max_depth?: number, data_type?: string, print_func?: any): void;
 
 /**
  * Simply prints out everything in a table including nested tables
  */
-declare function Util_PrintTable(): any;
+declare function Util_PrintTable(toPrint: any, indent: any): undefined;
 
 /**
  * Prints out a unit table. indent is the number of tabs at the beginning of each line
  */
-declare function Util_PrintUnitTable(): any;
+declare function Util_PrintUnitTable(toPrint: any, indent: any): undefined;
 
 /**
  * Reloads the running scar script. Current running rules would also be updated to the redefined functioin.
@@ -16247,25 +16368,27 @@ declare function Util_ReloadScript(): void;
 declare function Util_RestoreMusic(): void;
 
 /**
- * Converts a 2D top down position to a 3D ScarPosition.
- * 3D ScarPositions have the x axis left to right, the z axis in to out, and the y axis down to up (y axis represents the height of the terrain).  Use this function to convert a top-down 2D position to a 3D world position. Note: (0,0) is in the center of the map.
+ * Converts a 2D top down position to a 3D ScarPosition. returns Position, if y-height is nil, y-height = ground height, terrain ground or walkable
+ * @extdesc
+ * 3D ScarPositions have the x axis left to right, the z axis in to out, and the y axis down to up (y axis represents the height of the terrain).  Use this function to convert a top-down 2D position to a 3D world position.\n\n
+ * Note: (0,0) is in the center of the map.
  */
 declare function Util_ScarPos(xpos: number, zpos: number, ypos: number): Position;
 
 /**
  * Sets it so that a player can skip a scripted sequence. When the skip key is pressed, calls back the given function as a post-sequence setup. noFadeIn stops the system from fading back into gameplay when finished. Call Util_SetPlayerUnableToSkipSequence() when the sequence is finished to disable
  */
-declare function Util_SetPlayerCanSkipSequence(event: any, skippedCallback: any, noFadeIn: boolean, OPT_fadeInTime?: number): any;
+declare function Util_SetPlayerCanSkipSequence(event: any, skippedCallback: any, noFadeIn: boolean, fadeInTime?: number): void;
 
 /**
  * Sets the player owner for an entity, squad, egroup or sgroup. Also sets player owner of whatever is garrisoned inside them
  */
-declare function Util_SetPlayerOwner(Object: EntityID, owner: PlayerID, bApplyToSquadsHeld?: boolean): void;
+declare function Util_SetPlayerOwner(Object: EntityID | Squad | EGroup | SGROUP, owner: PlayerID, bApplyToSquadsHeld?: boolean): void;
 
 /**
  * Disables Util_SetPlayerCanSkipSequence
  */
-declare function Util_SetPlayerUnableToSkipSequence(event: any, skippedCallback: any, noFadeIn: boolean): any;
+declare function Util_SetPlayerUnableToSkipSequence(event: any, skippedCallback: any, noFadeIn: boolean): void;
 
 /**
  * Returns a table of positions sorted from closest to furthest (or furthes to closest if reverse is true) from the origin
@@ -16273,32 +16396,34 @@ declare function Util_SetPlayerUnableToSkipSequence(event: any, skippedCallback:
 declare function Util_SortPositionsByClosest(origin: EGroupID, positions: any): any;
 
 /**
- * Play a Speech Stinger. These are the lowest priority, and will be bumped by Intel Events or NIS's.
+ * Play a Speech Ambient. These are the lowest priority, and will be bumped by Intel Events or NIS's.
  * This function should used instead of Event_Start because it handles priorities.
  */
 declare function Util_StartAmbient(func: any): void;
 
 /**
- * Play an Intel Event. These are medium priority, and will interrupt a Stinger, but not an NIS.
+ * Play an Intel Event. These are medium priority, and will interrupt a ambient, but not an NIS.
  * This function should used instead of Event_Start because it handles priorities.
  */
 declare function Util_StartIntel(func: any): void;
 
 /**
- * Play an NIS. See confluence link below for more info.
+ * Plays an NIS. The NIS should have a call to NIS_START(details) at the beginning, and NIS_END() at the end.
+ * Example details table keys: {style = NIS_OPENING, NIS_MID or NIS_CLOSING, exemptions = {sg_unit_to_not_despawn}, revealFOW = true, callbackStart = func, callbackEnd = func}
  */
-declare function Util_StartNIS(NIS: string, onComplete?: any, hide?: Egroup, preNIS?: any, postNIS?: any): void;
+declare function Util_StartNIS(NIS: any): void;
 
 /**
  * Play a quick, one-line Intel event.  These are medium priority, and will interrupt ambient, but not an NIS.
  * Use this when playing a single line.  For multi-line events, use Util_StartIntel
  */
-declare function Util_StartQuickIntel(actor: string, speech: string): any;
+declare function Util_StartQuickIntel(actor: string, speech: string): void;
 
 /**
- * Splits a string into a table of substrings based on a given separator. Comma is used as the default separator if none is provided.
+ * Splits a string into a table of substrings based on a given separator.
+ * Comma is used as the default separator if none is provided.
  */
-declare function Util_StringSplit(): any;
+declare function Util_StringSplit(str: any, sep: any): any;
 
 /**
  * Checks the first layer of a table and looks for a specified Object, returns true if found.
@@ -16309,19 +16434,34 @@ declare function Util_TableContains(targetTable: any, obj: Object): boolean;
 /**
  * Debug function used to toggle whether or not IntelEvents are played. Only works with -dev parameter
  */
-declare function Util_ToggleAllowIntelEvents(): any;
+declare function Util_ToggleAllowIntelEvents(): void;
 
 /**
  * Library function to trigger NIS event under a certain sets of conditions.  NOTE: if checking against a marker DO NOT specify a range.  The range of the marker set in the WorldBuilder will be used.
  * onscreen_only set to TRUE means the squad must be onscreen if the event is to be triggered.
+ * non_combat set to TRUE means the squad cannot be in combat if the event is to be triggered.
+ * 6 arguments when using marker, 7 arguments when using position, egroup and sgroup with the additional range value
+ * triggering event when one of the player's squads come near a particular SGroup, EGroup, Marker, or Position and that squad is onscreen, and that squad is not in combat.
  */
-declare function Util_TriggerEvent(playerid: PlayerID, position: Marker, range: number, func: any, non_combat: boolean, onscreen_only: boolean, onscreen_duration: number): void;
+declare function Util_TriggerEvent(playerid: PlayerID, position: MARKER | EGroup | SGROUP | Position, range: number, func: any, non_combat: boolean, onscreen_only: boolean, onscreen_duration: number): void;
 
 /**
  * Returns a table containing either the total or a specific player's squad count, entity count, and vehicle count.
- * table can be accessed as scene below Get Player Example: local t = Util_UnitCounts(player1) print(t.squad) print(t.entity) print(t.vehicle) Get World Example: local t = Util_UnitCounts(true) print(t.squad) print(t.entity) print(t.vehicle) Alternate Format: print(Util_UnitCounts(true).squad)
+ * table can be accessed as scene below
+ * Get Player Example:\n
+ * local t = Util_UnitCounts(player1)\n
+ * print(t.squad)\n
+ * print(t.entity)\n
+ * print(t.vehicle)\n
+ * Get World Example:\n
+ * local t = Util_UnitCounts(true)\n
+ * print(t.squad)\n
+ * print(t.entity)\n
+ * print(t.vehicle)\n
+ * Alternate Format:\n
+ * print(Util_UnitCounts(true).squad)\n
  */
-declare function Util_UnitCounts(player: boolean): any;
+declare function Util_UnitCounts(world: boolean): Lua;
 
 /**
  * Kills ALL world entities near a marker
@@ -16331,7 +16471,7 @@ declare function World_KillAllNeutralEntitesNearMarker(marker: MarkerID): void;
 /**
  * Kill off a specific player's dead bodies (enter ALL to clean them all up) in a marker radius
  */
-declare function Marker_CleanUpTheDead(player: PlayerID, marker: MarkerID): any;
+declare function Marker_CleanUpTheDead(player: PlayerID, marker: MarkerID): void;
 
 /**
  * Calculates the length of the provided vector
@@ -16418,7 +16558,7 @@ declare function World_GetBlueprintEntities(pbg: ScarEntityPBG, outEntities: EGr
  * Returns the closest object from the table of marker/pos/egroup/sgroup to the closest marker/pos/egroup/sgroup specified
  * The table may mix together objects of different types.
  */
-declare function World_GetClosest(var_: Variable, items: LuaTable): Variable;
+declare function World_GetClosest(var_: Variable, items: LuaTable | SGROUP | EGroup): Variable;
 
 /**
  * Appends all cover points to an egroup.
@@ -16777,14 +16917,15 @@ declare function SGroup_EnableLeaderCrown(sgroup: SGroupID, enable: boolean): an
 declare function SGroup_PlaySpeech(sgroup: SGroupID, filepath: string): any;
 
 /**
+ * Plays a speech file on the first squad in an sgroup. Pass in a string with the filepath of the audio file under Cardinal_Speech_Sources e.g. "Civ_Rus/rus_manatarms/rus_manatarms_attack_iHigh_cHigh_03"
  * Destroy all Squads and disable Mission_Fail rules
  */
-declare function Util_ClearSquadsForCine(): any;
+declare function Util_ClearSquadsForCine(sgroup: SGROUP, filepath: string): undefined;
 
 /**
  * Spawn (and immediately kill) a series of units to create a field of corpses for outro cameras. units_table can either be a single SBP or a table/tables in the same basic format as UnitDeploy functions. Each entry in that table can optionally have numSqauds (defaults to 15), spawn (an override spawn location), rad_min (radius from center not to spawn in; defaults to 2), rad_max (defaults to marker radius or 20), player (defaults to player 2). cleanLocation allows you to have a marker that will be cleared of corpses.
  */
-declare function Util_CorpseField(units_table: any, spawnlocation: Position, OPT_cleanlocation?: MARKER): any;
+declare function Util_CorpseField(units_table: any | SBP, spawnlocation: Position | MARKER, cleanlocation?: MARKER): undefined;
 
 /**
  * Run a series of camera splines, each with optional speech lines and functions
@@ -16795,12 +16936,13 @@ declare function Util_PlayCameras(cameraData: any): any;
  * Create a shield wall stretching from posA to posB, using the units in the sgroup. Units stand in a line shoulder to shoulder, and excess units are used as backfill.
  * PosA should be the left end (as you look at the line), PosB the right, so if the units are facing the wrong way then flip the two positions. If immediate is set to true, units start in wall formation, otherwise they move into position.
  */
-declare function ShieldWall_Create(posA: Marker, posB: Marker, units: SGroupID, specialUnitsPerRow: any, OPT_immediate?: boolean, OPT_name?: string): any;
+declare function ShieldWall_Create(posA: MARKER | Position, posB: MARKER | Position, units: SGroupID, specialUnitsPerRow: any, immediate?: boolean, name?: string): ShieldWallID;
 
 /**
  * Release units from a shield wall
+ * @extdesc
  */
-declare function ShieldWall_Release(wall: ShieldWallID): any;
+declare function ShieldWall_Release(wall: ShieldWallID): void;
 
 /**
  * Wrapper to trigger proper audio and video settings for entering or exiting intro and outro cameras. Setting enable to true enters the camera mode; false exits. Pass in CAM_INTRO or CAM_OUTRO for camera_type. Keep_gampelayunits_forOutro removes gameplay units by default unless set to true. fowUnRevealDelay sets the delay for when to hide units in FoW (3.825 seconds is the default).
@@ -16810,7 +16952,255 @@ declare function Util_EnableCardinalCinematicMode(enable: boolean, camera_type: 
 /**
  * Spawn a series of units and have them move along a path in a parade. Useful for bringing in or out units in a long line rather than a broad formation. marker_table should be the path of the parade. unit_table should follow the format for UnitEntry functions; each entry is a "row" in the parade. Preferably each should have separate spawn point. If there is a destination defined in a unit entry, that row will go to the destination after completing the parade.
  */
-declare function Util_UnitParade(marker_table: any, unit_table: any, OPT_parade_sgroup?: SGroupID, OPT_delay?: number, OPT_player?: Player): any;
+declare function Util_UnitParade(marker_table: any, unit_table: any, parade_sgroup?: SGROUP, delay?: number, player?: Player): undefined;
+
+/**
+ * Wrapper to trigger proper audio and video settings for entering or exiting intro and outro cameras. Setting enable to true enters the camera mode; false exits. Pass in CAM_INTRO or CAM_OUTRO for camera_type. Keep_gampelayunits_forOutro removes gameplay units by default unless set to true. fowUnRevealDelay sets the delay for when to hide units in FoW (3.825 seconds is the default).
+ */
+declare function __UnRevealEntities(enable: boolean, camera_type: boolean, Keep_gampelayunits_forOutro?: boolean, fowUnRevealDelay?: number): undefined;
+
+/**
+ * Enable or diable a group of abilities for one or more players; useful for hiding glows. data can be a string (ability short name), a table of such strings. To deactivate for a player other than Player 1, pass in a table or tables as such: {player = playerID, abilities = {"name","name"}}
+ * Triggers the mission start title card (as long as it is properly defined in mission recipe)
+ * 
+ */
+declare function Action_SkipNIS(data: string | any, enable: boolean): undefined;
+
+/**
+ * Enables or disables cheering on an Sgroup. Defaults to 60 second duration; pass in -1 for infinite. Defaults to short celebrate walla. WARNING: Units cannot move while cheering. Only works on bipeds. audioDelay delays audio but not animation.
+ * Enable or disable the crown over leader units. The Leader must be the first squad in the sgroup.
+ */
+declare function _QuickDelay(sgroup: SGROUP, enable: boolean, duration?: number, walla?: string, audioDelay?: number): undefined;
+
+/**
+ * Removes a reminder rule
+ */
+declare function Objective_EndReminder(objectiveTable: LuaTable): void;
+
+/**
+ * Adds a Reminder for an objective table (will play every X seconds after the previous reminder completes)
+ */
+declare function Objective_SetReminder(objTable: LuaTable, intelTable: any, frequency: number): void;
+
+/**
+ * Forces all in-process exits to complete instantly.
+ */
+declare function UnitEntry_NoType_StartFunc(data: any): void;
+
+/**
+ * Finds all encounters that contain ANY or ALL squads within the given sgroup.
+ */
+declare function GetEncountersBySquad(squad: Squad): any;
+
+/**
+ * Finds all encounters that contain ANY or ALL squads within the given sgroup.
+ */
+declare function GetEncountersBySGroup(sgroup: SGROUP, all: any | ALL): any;
+
+/**
+ * Set the goal's OnFailure callback.
+ */
+declare function SetGoalOnFailure(func: any): void;
+
+/**
+ * Set the goal's OnSuccess callback.
+ */
+declare function SetGoalOnSuccess(func: any): void;
+
+/**
+ * Sets a new onDeath callback for the encounter
+ */
+declare function SetOnDeath(func: any): void;
+
+/**
+ * Clears the encounter's onDeath callback. If includeUnits is set to true, it clears onDeath callbacks for units as well.
+ */
+declare function RemoveOnDeath(includeUnits: boolean): void;
+
+/**
+ * Forces the encounter to spawn its units instantly
+ */
+declare function CompleteDeployImmediately(): void;
+
+/**
+ * Adds an sgroup to an encounter
+ */
+declare function AddSGroup(squadgroup: any, name: any, onDeath: any): void;
+
+/**
+ * Find and removes a unit from an encounter based on the squad.
+ */
+declare function RemoveUnitBySquad(squad: any): void;
+
+/**
+ * Removes all encounter units that belong to the given sgroup
+ */
+declare function RemoveUnitsBySGroup(squadgroup: any): void;
+
+/**
+ * After adding units to a pre-existing encounter it is sometimes necessary to reboot it, as it may have disabled itself if all it's units died. This function checks and does that safely.
+ */
+declare function RebootIfNeeded(): void;
+
+/**
+ * Stops running the encounter and clears the current goal.
+ */
+declare function Disable(): void;
+
+/**
+ * Starts encounter running (encounters are enabled by default) if it was disabled previously.
+ */
+declare function Enable(): void;
+
+/**
+ * Gets the encounter's nearby allied Egroup. Caution: egroup may be empty. Automatically created whenever the Encounter triggers OnEngage or OnAttacked. To force the EGroup creation call Encounter:UpdateNearbyAllies()
+ */
+declare function GetEgroupNearbyAllies(): EGroup;
+
+/**
+ * Gets the encounter's sgroup. Caution: sgroup may be empty
+ */
+declare function GetSGroup(): SGROUP;
+
+/**
+ * Gets clone of current goal data.  May be nil.
+ */
+declare function GetGoalData(): GoalData;
+
+/**
+ * Sets the goal data for the encounter. If encounter has a goal with a running AI Encounter, updates the goal.
+ * Use GetGoalData() to get
+ * See: http://relicwiki/display/REL/Ai+Goal
+ */
+declare function UpdateGoal(goalData: GoalData): void;
+
+/**
+ * If encounter has a goal, but no currently running AI Encounter, restarts the goal.
+ * Returns true if goal was restarted, false otherwise. If we pass a previousEncounterID, it restarts the
+ * encounter using that handle id. This is used for save / load
+ */
+declare function RestartGoal(previousEncounterID: any, wasAlreadyTriggered: any): boolean;
+
+/**
+ * Moves back the goal to the original location
+ * Only works if the goal was previously relocated after being triggered
+ */
+declare function ResetGoalRelocation(): void;
+
+/**
+ * Removes an encounter's onSight/onEngage event and immediately starts its goal.
+ * Only works if the encounter has both data.goal, and a valid goal trigger
+ */
+declare function TriggerGoal(data: any, relocationData: any): void;
+
+/**
+ * Clears the current goal.
+ */
+declare function ClearGoal(): void;
+
+/**
+ * Determines whether or not the encounter has an active and valid goal.
+ */
+declare function HasGoal(): boolean;
+
+/**
+ * Creates encounter goal from goal data; goals determine unit behaviours.
+ * See: http://relicwiki/display/REL/Ai+Goal
+ */
+declare function SetGoal(goalData: GoalData, triggerGoal: boolean, previousEncounterID?: HandleID): void;
+
+/**
+ * Adds unit(s) to the encounter
+ * See Encounter.scar for details
+ * unitData is a table that can either hold a single unit OR a set of unit tables
+ * The format of each individual unit table is the same as regular encounter unit tables
+ * spawnType is of type SPAWN.<>
+ */
+declare function AddUnits(unitData: any, spawnType: SPAWN): void;
+
+/**
+ * Create a new encounter from an SGroup, with default encounter data
+ * Encounter player is derived from sgroup; all squads in sgroup must be owned by same player.
+ */
+declare function ConvertSGroup(squadgroup: SGROUP): Encounter;
+
+/**
+ * Create a new basic encounter.
+ */
+declare function CreateBasic(name: string, spawnLoc: MARKER | Position, encUnits: SBP | any, dynamicSpawn?: MARKER | Position): Encounter;
+
+/**
+ * Create a new encounter with a generic TownLife goal.
+ */
+declare function CreateTownLife(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, townLifeRange?: number): Encounter;
+
+/**
+ * Create a new encounter with a generic Ability goal.
+ */
+declare function CreateAbility(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
+
+/**
+ * Create a new encounter with a generic Move goal.
+ */
+declare function CreateMove(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
+
+/**
+ * Create a new encounter with a generic Patrol goal.
+ * pathLoop can be: LOOP_NONE, LOOP_NORMAL, LOOP_TOGGLE_DIRECTION
+ */
+declare function CreatePatrol(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encPath: MARKER | string, dynamicSpawn?: MARKER | Position, pathWait?: number, pathLoop?: number): Encounter;
+
+/**
+ * Create a new encounter with a generic Defend goal.
+ */
+declare function CreateDefend(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+
+/**
+ * Create a new encounter with a generic Attack goal.
+ */
+declare function CreateAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+
+/**
+ * Create a new encounter with a generic FormationAttack goal.
+ */
+declare function CreateFormationDefendArea(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+
+/**
+ * Create a new encounter with a generic FormationAttack goal.
+ */
+declare function CreateFormationAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+
+/**
+ * Create a new encounter from encounter data. If spawnNow is true, spawns specified units immediately.
+ * See: http://relicwiki/display/REL/Ai+Encounters
+ */
+declare function Create(data: EncounterData, spawnNow?: boolean, spawnStaggered?: boolean | number): Encounter;
+
+/**
+ * Adds a Reminder for an objective table (will play whenever the provided condition evaluates to true)
+ */
+declare function Objective_SetConditionalReminder(objTable: LuaTable, intelFunction: any, conditionFunction: any, conditionData: LuaTable): void;
+
+/**
+ * Play an NIS. See confluence link below for more info.
+ */
+declare function Framedump_NIS(NIS: string | number | any, onComplete?: any, hide?: EGroup | SGROUP | Player | any, preNIS?: any, postNIS?: any, framedump?: boolean, preserveFOW?: boolean): void;
+
+/**
+ * Play Nislet Event. Starts a Nislet event, and calls back a function for post-nislet setup if the Nislet is skipped. noFadeIn stops the system from fading back into gameplay when the player skips
+ */
+declare function Util_StartNislet(event: any, skippedCallback: any, noFadeIn: boolean, fadeInTime: number): void;
+
+/**
+ * Predicate testing if a value is of specific type
+ * Performs basic type-checking on [value]
+ * Makes an assertion. If the assertion turns out to be false, raises an error.
+ * e.g. foo = 7; assert(foo ~= nil, 'foo should not be nil!', 'If foo is nil we don't know how many bars to spawn!'')
+ * This is intended to be a more scripter friendly version of LUA assert.
+ * e.g. foo = 7; std.Validate(foo, 'foo', T_NUMBER, false)
+ * e.g. f = std.TypePredicate(); f() => 1; f() => 2 ...
+ */
+declare function AppendString(a: any, b: any): any;
 
 /**
  * @compileMembersOnly
@@ -17914,6 +18304,18 @@ declare interface LocString {
     LocString: string;
 }
 
+declare interface _1 {
+}
+
+declare interface _3 {
+}
+
+declare interface _5 {
+}
+
+declare interface _6 {
+}
+
 declare interface PlayerID {
 }
 
@@ -17935,7 +18337,19 @@ declare interface PropertyBagGroup {
 declare interface EntityType {
 }
 
+declare interface TableOfEBPs {
+}
+
 declare interface SquadType {
+}
+
+declare interface TableOfSBPs {
+}
+
+declare interface EntityBlueprint {
+}
+
+declare interface SquadBlueprint {
 }
 
 declare interface SGroupID {
@@ -17956,7 +18370,22 @@ declare interface AIEncounterID {
 declare interface Marker {
 }
 
+declare interface GroupID {
+}
+
 declare interface EncounterTable {
+}
+
+declare interface AiEncounter {
+}
+
+declare interface Object {
+}
+
+declare interface PlayerTable {
+}
+
+declare interface Relationship {
 }
 
 declare interface RequestData {
@@ -17983,13 +18412,10 @@ declare interface ConstTargetHandle {
 declare interface ScarAbilityPBG {
 }
 
-declare interface AiEncounterID {
-}
-
 declare interface DefendModule {
 }
 
-declare interface Vector {
+declare interface RovingArmyModule {
 }
 
 declare interface Key {
@@ -18010,6 +18436,9 @@ declare interface AIScoreMultiplierID {
 declare interface StackVarTable {
 }
 
+declare interface TRUE {
+}
+
 declare interface RenderModel {
 }
 
@@ -18019,7 +18448,13 @@ declare interface Transform {
 declare interface Variable {
 }
 
+declare interface Blueprint {
+}
+
 declare interface Hex {
+}
+
+declare interface Group {
 }
 
 declare interface Lua_State {
@@ -18037,13 +18472,19 @@ declare interface In {
 declare interface And {
 }
 
+declare interface EGroup {
+}
+
 declare interface Num {
+}
+
+declare interface LocationTable {
 }
 
 declare interface VALUE {
 }
 
-declare interface MARKER {
+declare interface SBP {
 }
 
 declare interface ScarModifier {
@@ -18058,7 +18499,10 @@ declare interface MUT {
 declare interface MedalBlueprint {
 }
 
-declare interface Object {
+declare interface PrintOnScreenID {
+}
+
+declare interface SGroup {
 }
 
 declare interface A {
@@ -18067,7 +18511,7 @@ declare interface A {
 declare interface RovingArmy {
 }
 
-declare interface RovingArmy {
+declare interface Nearest {
 }
 
 declare interface Request {
@@ -18076,19 +18520,10 @@ declare interface Request {
 declare interface SyncWeaponID {
 }
 
-declare interface Egroup {
-}
-
 declare interface LuaTable {
 }
 
 declare interface Item {
-}
-
-declare interface Item {
-}
-
-declare interface OBJECT {
 }
 
 declare interface List {
@@ -18098,15 +18533,6 @@ declare interface When {
 }
 
 declare interface This {
-}
-
-declare interface _3 {
-}
-
-declare interface _5 {
-}
-
-declare interface _6 {
 }
 
 declare interface The {
@@ -18163,19 +18589,10 @@ declare interface LuaMap {
 declare interface AbilityBlueprint {
 }
 
-declare interface EntityBlueprint {
-}
-
 declare interface MoveTypeBlueprint {
 }
 
-declare interface Blueprint {
-}
-
 declare interface SlotItemBlueprint {
-}
-
-declare interface SquadBlueprint {
 }
 
 declare interface ScarRacePBG {
@@ -18190,25 +18607,19 @@ declare interface ScarUpgradePBG {
 declare interface WeaponBlueprint {
 }
 
-declare interface Variable {
-}
-
-declare interface SGroup {
-}
-
-declare interface MarkerID {
-}
-
 declare interface CamouflageStanceID {
 }
 
 declare interface Team {
 }
 
-declare interface COMPARISON {
+declare interface Comparison {
 }
 
-declare interface Relationship {
+declare interface Players_table {
+}
+
+declare interface Teams_table {
 }
 
 declare interface WinReason {
@@ -18217,16 +18628,13 @@ declare interface WinReason {
 declare interface GameUICore {
 }
 
-declare interface List {
-}
-
-declare interface BP {
-}
-
-declare interface EGroup {
+declare interface Returns {
 }
 
 declare interface EBP {
+}
+
+declare interface ID {
 }
 
 declare interface UpgradeID {
@@ -18235,10 +18643,10 @@ declare interface UpgradeID {
 declare interface TeamID {
 }
 
-declare interface EncounterData {
+declare interface ALL {
 }
 
-declare interface SBP {
+declare interface EncounterData {
 }
 
 declare interface SPAWN {
@@ -18259,7 +18667,13 @@ declare interface TargetingType {
 declare interface ALL_UNITS {
 }
 
-declare interface ModID {
+declare interface ANY_MEMBER {
+}
+
+declare interface ANY_SQUAD {
+}
+
+declare interface Modids {
 }
 
 declare interface AbilityID {
@@ -18268,19 +18682,34 @@ declare interface AbilityID {
 declare interface PBG {
 }
 
+declare interface ModID {
+}
+
 declare interface AreaType {
 }
 
-declare interface PingID {
+declare interface ElementID {
 }
 
-declare interface ElementID {
+declare interface BP {
+}
+
+declare interface ReticuleID {
+}
+
+declare interface LocID {
+}
+
+declare interface PingID {
 }
 
 declare interface ObjectiveID {
 }
 
 declare interface Element {
+}
+
+declare interface SectorID {
 }
 
 declare interface BlueprintTable {
@@ -18301,6 +18730,9 @@ declare interface AddResourceReason {
 declare interface Var {
 }
 
+declare interface InstanceData {
+}
+
 declare interface ActorTable {
 }
 
@@ -18310,13 +18742,7 @@ declare interface ProxType {
 declare interface TerrainSplatObject {
 }
 
-declare interface Comparison {
-}
-
-declare interface ID {
-}
-
-declare interface SquadID {
+declare interface RuleGroup {
 }
 
 declare interface Or {
@@ -18325,16 +18751,16 @@ declare interface Or {
 declare interface SlotItemID {
 }
 
-declare interface SectorID {
+declare interface PositionID {
+}
+
+declare interface PlayerIDs {
 }
 
 declare interface GoalSequence {
 }
 
 declare interface Target {
-}
-
-declare interface _1 {
 }
 
 declare interface HintPointID {
@@ -18373,21 +18799,54 @@ declare interface GameEventID {
 declare interface ScarReticulePBG {
 }
 
-declare interface In {
+declare interface ErrorMessage {
 }
 
-declare interface ErrorMessage {
+declare interface Argc {
+}
+
+declare interface Then {
+}
+
+declare interface Load {
+}
+
+declare interface If {
 }
 
 declare interface Spawntype {
 }
 
+declare interface SGroup_comma_Number {
+}
+
 declare interface ExitType {
+}
+
+declare interface Facing {
+}
+
+declare interface Percentage {
+}
+
+declare interface Offset {
+}
+
+declare interface Lua {
 }
 
 declare interface MARKER {
 }
 
 declare interface ShieldWallID {
+}
+
+declare interface SGROUP {
+}
+
+declare interface Encounter {
+}
+
+declare interface SGeoup {
 }
 

@@ -12,6 +12,16 @@ function extractText(fullText: string): string | null {
     return m[1]
 }
 
+function extractType(fullText: string): string | null {
+    const m = fullText.match(/(?:(?:const )|(?:optional ))?([a-zA-Z0-9_\/]+)/)
+
+    if (!m) {
+        return null
+    }
+
+    return m[1]
+}
+
 function cleanDocumentation(documentation: string) {
     return documentation.trim().split("\n").map(line => line.trim()).join("\n")
 }
@@ -26,7 +36,7 @@ const parseFunction = (functionNode: HTMLElement): TypeSourceFunction => {
     const parameters: TypeSourceParameter[] = []
     let optional = undefined
     for (let i = 2; i + 1 < functionNode.childNodes.length; i += 2) {
-        const type = extractText(functionNode.childNodes[i].text)
+        const type = extractType(functionNode.childNodes[i].text)
         const name = extractText(functionNode.childNodes[i + 1].text)
         if (functionNode.childNodes[i + 1].text.toLowerCase().includes("opt_")) {
             optional = true
