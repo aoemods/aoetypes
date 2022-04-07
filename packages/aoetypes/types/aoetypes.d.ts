@@ -1,3 +1,5 @@
+/** @noSelfInFile */
+
 /**
  * Create a AlliedCombatFitness scoring function.
  * Returns 1.0 to 0.0, based on how the allied combat fitness is. 1.0 if the allied fitness is at or below minFitness, 0.0 if fitness is above the maxFitness, smooth transition in between. If highFitnessIsGood, returns 0.0 to 1.0 instead. 0.0 if at or below minFitness and 1.0 if at or above maxFitness.

@@ -1,3 +1,5 @@
+/** @noSelfInFile */
+
 /**
  * Will be replaced with a call to import.
  * @param path Path to import.

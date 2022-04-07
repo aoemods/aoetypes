@@ -4,6 +4,6 @@ import { loadSources } from "./load-sources.js"
 import { createDts } from "./dts-creation.js"
 
 const sources = await loadSources()
-const dts = createDts(sources).map(member => dtsDom.emit(member)).join("")
+const dts = `/** @noSelfInFile */\n\n${createDts(sources).map(member => dtsDom.emit(member)).join("")}`
 
 await fs.writeFile("packages/aoetypes/types/aoetypes.d.ts", dts)
