@@ -32,8 +32,14 @@ export function aggregateFunctions(inputs: AggregateFunctionsInput): TypeSourceF
         }
     }
 
+    const uniqueScriptFunctions = Object.values(scriptFunctionMap)
+
+    // Some of the entity functions are missing from aoe4 docs for some reason, let's get them
+    // from coh2 docs and assume these are correct.
+    const coh2EntityFunctions = coh2Functions.filter(fn => fn.name.toLowerCase().startsWith("entity_"))
+
     const preAggregatedFunctionsMap = Object.fromEntries(aggregatedFunctions.map(fn => [functionKey(fn), fn]))
-    for (const fn of Object.values(scriptFunctionMap)) {
+    for (const fn of uniqueScriptFunctions.concat(coh2EntityFunctions)) {
         if (!(functionKey(fn) in preAggregatedFunctionsMap)) {
             aggregatedFunctions.push(fn)
         }

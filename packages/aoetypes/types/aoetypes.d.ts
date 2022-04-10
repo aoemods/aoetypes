@@ -15731,9 +15731,10 @@ declare function Enum_ToNumber(var_: StackVar): any;
 declare function Enum_ToString(var_: StackVar): any;
 
 /**
- * Returns true if any event is currently running [at or below (more important than) the priority threshold. If not specified, ignores threshold.]
+ * Returns true if any standard (non-save) event has been queued to run.
+ * TODO: This function name is misleading. We should maybe change it, but this is being called in many mission scripts so we are leaving it for later.
  */
-declare function Event_IsAnyRunning(priority_threshold?: number): boolean;
+declare function Event_IsAnyRunning(): boolean;
 
 /**
  * Ends the single player game (win/lose).
@@ -16743,7 +16744,7 @@ declare function Util_CorpseField(units_table: any | SBP, spawnlocation: Positio
 /**
  * Run a series of camera splines, each with optional speech lines and functions
  */
-declare function Util_PlayCameras(cameraData: any): any;
+declare function Util_PlayCameras(cameraData: any): undefined;
 
 /**
  * Create a shield wall stretching from posA to posB, using the units in the sgroup. Units stand in a line shoulder to shoulder, and excess units are used as backfill.
@@ -16786,34 +16787,9 @@ declare function Action_SkipNIS(data: string | any, enable: boolean): undefined;
 declare function _QuickDelay(sgroup: SGROUP, enable: boolean, duration?: number, walla?: string, audioDelay?: number): undefined;
 
 /**
- * Removes a reminder rule
- */
-declare function Objective_EndReminder(objectiveTable: any): void;
-
-/**
- * Adds a Reminder for an objective table (will play every X seconds after the previous reminder completes)
- */
-declare function Objective_SetReminder(objTable: any, intelTable: any, frequency: number): void;
-
-/**
  * Forces all in-process exits to complete instantly.
  */
 declare function UnitEntry_NoType_StartFunc(data: any): void;
-
-/**
- * Adds a Reminder for an objective table (will play whenever the provided condition evaluates to true)
- */
-declare function Objective_SetConditionalReminder(objTable: any, intelFunction: any, conditionFunction: any, conditionData: any): void;
-
-/**
- * Play an NIS. See confluence link below for more info.
- */
-declare function Framedump_NIS(NIS: string | number | any, onComplete?: any, hide?: EGroup | SGROUP | Player | any, preNIS?: any, postNIS?: any, framedump?: boolean, preserveFOW?: boolean): void;
-
-/**
- * Play Nislet Event. Starts a Nislet event, and calls back a function for post-nislet setup if the Nislet is skipped. noFadeIn stops the system from fading back into gameplay when the player skips
- */
-declare function Util_StartNislet(event: any, skippedCallback: any, noFadeIn: boolean, fadeInTime: number): void;
 
 /**
  * Predicate testing if a value is of specific type
@@ -16825,6 +16801,82 @@ declare function Util_StartNislet(event: any, skippedCallback: any, noFadeIn: bo
  * e.g. f = std.TypePredicate(); f() => 1; f() => 2 ...
  */
 declare function AppendString(a: any, b: any): any;
+
+/**
+ * Displays info about the panel that is intersected by the passed in ray
+ */
+declare function Entity_BuildingPanelInfo(pEntity: EntityID, cam: Position, terrain: Position): void;
+
+/**
+ * Check if the entity can load an sgroup or not
+ */
+declare function Entity_CanLoadSGroup(entity: EntityID, loadthis: SGroupID, bCheckSquadState: boolean, bOverload: boolean): boolean;
+
+/**
+ * Creates an entity at a given position and assigns it to a given player.  'blueprint' is a string value containing the name of the entity blueprint. This function does not spawn the entity so you will need to call Entity_Spawn to see this entity
+ */
+declare function Entity_Create(ebp: EntityBlueprint, player: PlayerID, pos: Position, toward: Position): EntityID;
+
+/**
+ * Creates an entity at a given position and assigns it to a given player.  'blueprint' is a string value containing the name of the entity blueprint. This function spawns the entity so there is no need to call Entity_Spawn
+ */
+declare function Entity_CreateENV(ebp: EntityBlueprint, pos: Position, toward: Position): EntityID;
+
+/**
+ * Disables the death of the given entity building, only works for panel based destructible buldings
+ */
+declare function Entity_DisableBuildingDeath(pEntity: EntityID, bDisableDeath: boolean): boolean;
+
+/**
+ * Damages this entity but only if its a destructible building
+ * dmgType of 0 is damage accessory, 1 is damage panel, 2 is destroy panel and 3 is destroy radius
+ */
+declare function Entity_DoBuildingDamageRay(pEntity: EntityID, cam: Position, terrain: Position, dmgType: number, radius: number): void;
+
+/**
+ * Get an entity from a mission editor ID.
+ */
+declare function Entity_FromWorldID(id: number): EntityID;
+
+/**
+ * Returns the entities unique id in the world
+ */
+declare function Entity_GetGameID(entity: EntityID): number;
+
+/**
+ * Returns the number of combat slots in total of a certain hold-able type
+ */
+declare function Entity_GetNumCombatSlots(entity: EntityID, holdTypeName: string): number;
+
+/**
+ * Gets the total number of panels in a building (returns 0 for anything but panel based destructible buldings)
+ */
+declare function Entity_GetTotalPanelCount(pEntity: EntityID): number;
+
+/**
+ * Gets the current number of undestroyed panels in a building (returns 0 for anything but panel based destructible buldings)
+ */
+declare function Entity_GetUndestroyedPanelCount(pEntity: EntityID): number;
+
+/**
+ * Return true if the entity has the given criticalID applied to it
+ */
+declare function Entity_HasCritical(pEntity: EntityID, criticalPBG: CriticalBlueprint): boolean;
+
+/**
+ * Returns whether an entity is a soldier
+ */
+declare function Entity_IsSoldier(pEntity: EntityID): boolean;
+
+/**
+ * Get the unit kill count for entities. Possible kill types are VS_Infantry, VS_LightArmor, VS_HeavyArmor, VS_Building
+ */
+declare function Entity_GetKillCount(pEntity: EntityID, killType: number): number;
+
+/**
+ * Overrides whether to display a critical or not. types are: CT_VehicleFront, CT_VehicleBack, CT_VehicleLeft, CT_VehicleRight, CT_VehicleEngineGreen, CT_VehicleEngineYellow, CT_VehicleEngineRed, CT_VehiclePrimaryWeapon, CT_VehicleSecondaryWeapon
+ */
+declare function Entity_OverrideCriticalDisplay(entity: EntityID, type: number, override: boolean, on: boolean): void;
 
 declare interface TAi {
     GetEncountersBySquad(squad: Squad): any;
@@ -18511,5 +18563,8 @@ declare interface SGeoup {
 }
 
 declare interface EncounterData {
+}
+
+declare interface CriticalBlueprint {
 }
 
