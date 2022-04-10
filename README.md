@@ -16,6 +16,10 @@ View the types in your browser [here](https://aoemods.github.io/aoetypes-docs).
 }
 ```
 
+## Projects using TypeScript
+- TypeScript template: https://github.com/aoemods/aoe4-typescript-template
+- Dodge mod (100 rounds): https://github.com/aoemods/dodge-mod
+
 ## Usage (generate the types yourself)
 - Clone this repo and `npm i`
 - (Optional): download https://cm2.network/ScarDoc/function_list.htm to `data/coh2-scardocs/`
@@ -25,7 +29,9 @@ View the types in your browser [here](https://aoemods.github.io/aoetypes-docs).
 
 ## Type sources
 - Age of Empires 4 scardocs (no return types)
+- Age of Empires 4 scar scripts from engine and cardinal Data.sga
 - Company of Heroes 2 scardocs (has return types, matched across the AoE4 scardocs)
+- Manual overrides in `src/overrides.ts`
 
 # Acknowledgements
 This project was directly inspired by [its Dota 2 counterpart](https://github.com/ModDota/TypeScriptDeclarations).
