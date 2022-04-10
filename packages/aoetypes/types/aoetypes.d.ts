@@ -8094,16 +8094,6 @@ declare function SGroup_GetTotalHealth(sgroup: SGroupID): number;
 declare function SGroup_HasEntityUpgrade(egroup: EGroupID, upgrade: UpgradeID, all: boolean): boolean;
 
 /**
- * Finds all encounters that contain ANY or ALL squads within the given sgroup.
- */
-declare function Ai(sgroup: SGroupID, all: any | ALL): any;
-
-/**
- * Finds all encounters that contain ANY or ALL squads within the given sgroup.
- */
-declare function Ai(squad: Squad): any;
-
-/**
  * Disables all encounters
  */
 declare function AI_DisableAllEncounters(): void;
@@ -8317,185 +8307,6 @@ declare function AITownLifeGoal_SetModifyGoalData(modifyGoalData: any): any;
  * Set override goal data for TownLife goals.  overrideGoalData is cloned; any values specified are used for encounter TownLife goal values.
  */
 declare function AITownLifeGoal_SetOverrideGoalData(overrideGoalData: any): any;
-
-/**
- * Create a new encounter from encounter data. If spawnNow is true, spawns specified units immediately.
- * See: http://relicwiki/display/REL/Ai+Encounters
- */
-declare function Encounter(data: EncounterData, OPT_spawnNow?: boolean, OPT_spawnStaggered?: number): any;
-
-/**
- * Create a new encounter with a generic FormationAttack goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
-
-/**
- * Create a new encounter with a generic FormationAttack goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
-
-/**
- * Create a new encounter with a generic Attack goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
-
-/**
- * Create a new encounter with a generic Defend goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_encRange?: number, OPT_encLeash?: number): any;
-
-/**
- * Create a new encounter with a generic Patrol goal.
- * pathLoop can be: LOOP_NONE, LOOP_NORMAL, LOOP_TOGGLE_DIRECTION
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encPath: string, OPT_dynamicSpawn?: MARKER | Position, OPT_pathWait?: number, OPT_pathLoop?: number): any;
-
-/**
- * Create a new encounter with a generic Move goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_moveRange?: number): any;
-
-/**
- * Create a new encounter with a generic Ability goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_moveRange?: number): any;
-
-/**
- * Create a new encounter with a generic TownLife goal.
- */
-declare function Encounter(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroupID, OPT_dynamicSpawn?: MARKER | Position, OPT_townLifeRange?: number): any;
-
-/**
- * Create a new basic encounter.
- */
-declare function Encounter(name: string, spawnLoc: MARKER | Position, encUnits: SBP | any, OPT_dynamicSpawn?: MARKER | Position): any;
-
-/**
- * Create a new encounter from an SGroup, with default encounter data
- * Encounter player is derived from sgroup; all squads in sgroup must be owned by same player.
- */
-declare function Encounter(squadgroup: SGroupID): any;
-
-/**
- * Spawns the units within an. Does nothing if the encounter has already been spawned.
- */
-declare function Encounter(spawnStaggered: boolean): any;
-
-/**
- * Adds unit(s) to the encounter
- * See Encounter.scar for details unitData is a table that can either hold a single unit OR a set of unit tables The format of each individual unit table is the same as regular encounter unit tables spawnType is of type SPAWN.<>
- */
-declare function Encounter(unitData: any, spawnType: SPAWN): any;
-
-/**
- * Creates encounter goal from goal data; goals determine unit behaviours.
- * See: http://relicwiki/display/REL/Ai+Goal
- */
-declare function Encounter(goalData: GoalData, triggerGoal: boolean, OPT_previousEncounterID?: HandleID): any;
-
-/**
- * Determines whether or not the encounter has an active and valid goal.
- */
-declare function Encounter(): any;
-
-/**
- * Clears the current goal.
- */
-declare function Encounter(): any;
-
-/**
- * Removes an encounter's onSight/onEngage event and immediately starts its goal.
- * Only works if the encounter has both data.goal, and a valid goal trigger
- */
-declare function Encounter(): any;
-
-/**
- * Moves back the goal to the original location
- * Only works if the goal was previously relocated after being triggered
- */
-declare function Encounter(): any;
-
-/**
- * If encounter has a goal, but no currently running AI Encounter, restarts the goal.
- * Returns true if goal was restarted, false otherwise. If we pass a previousEncounterID, it restarts the encounter using that handle id. This is used for save / load
- */
-declare function Encounter(): any;
-
-/**
- * Sets the goal data for the encounter. If encounter has a goal with a running AI Encounter, updates the goal.
- * See: http://relicwiki/display/REL/Ai+Goal Use GetGoalData() to get
- */
-declare function Encounter(goalData: GoalData): any;
-
-/**
- * Gets clone of current goal data.  May be nil.
- */
-declare function Encounter(): any;
-
-/**
- * Gets the encounter's sgroup. Caution: sgroup may be empty
- */
-declare function Encounter(): any;
-
-/**
- * Gets the encounter's nearby allied Egroup. Caution: egroup may be empty. Automatically created whenever the Encounter triggers OnEngage or OnAttacked. To force the EGroup creation call Encounter:UpdateNearbyAllies()
- */
-declare function Encounter(): any;
-
-/**
- * Starts encounter running (encounters are enabled by default) if it was disabled previously.
- */
-declare function Encounter(): any;
-
-/**
- * Stops running the encounter and clears the current goal.
- */
-declare function Encounter(): any;
-
-/**
- * After adding units to a pre-existing encounter it is sometimes necessary to reboot it, as it may have disabled itself if all it's units died. This function checks and does that safely.
- */
-declare function Encounter(): any;
-
-/**
- * Removes all encounter units that belong to the given sgroup
- */
-declare function Encounter(): any;
-
-/**
- * Find and removes a unit from an encounter based on the squad.
- */
-declare function Encounter(): any;
-
-/**
- * Adds an sgroup to an encounter
- */
-declare function Encounter(): any;
-
-/**
- * Forces the encounter to spawn its units instantly
- */
-declare function Encounter(): any;
-
-/**
- * Clears the encounter's onDeath callback. If includeUnits is set to true, it clears onDeath callbacks for units as well.
- */
-declare function Encounter(includeUnits: boolean): any;
-
-/**
- * Sets a new onDeath callback for the encounter
- */
-declare function Encounter(func: any): any;
-
-/**
- * Set the goal's OnSuccess callback.
- */
-declare function Encounter(): any;
-
-/**
- * Set the goal's OnFailure callback.
- */
-declare function Encounter(): any;
 
 /**
  * Callback helper function for relocate an Encounter goal. Name of parameters: 'encounter'.
@@ -16990,195 +16801,6 @@ declare function Objective_SetReminder(objTable: any, intelTable: any, frequency
 declare function UnitEntry_NoType_StartFunc(data: any): void;
 
 /**
- * Finds all encounters that contain ANY or ALL squads within the given sgroup.
- */
-declare function GetEncountersBySquad(squad: Squad): any;
-
-/**
- * Finds all encounters that contain ANY or ALL squads within the given sgroup.
- */
-declare function GetEncountersBySGroup(sgroup: SGROUP, all: any | ALL): any;
-
-/**
- * Set the goal's OnFailure callback.
- */
-declare function SetGoalOnFailure(func: any): void;
-
-/**
- * Set the goal's OnSuccess callback.
- */
-declare function SetGoalOnSuccess(func: any): void;
-
-/**
- * Sets a new onDeath callback for the encounter
- */
-declare function SetOnDeath(func: any): void;
-
-/**
- * Clears the encounter's onDeath callback. If includeUnits is set to true, it clears onDeath callbacks for units as well.
- */
-declare function RemoveOnDeath(includeUnits: boolean): void;
-
-/**
- * Forces the encounter to spawn its units instantly
- */
-declare function CompleteDeployImmediately(): void;
-
-/**
- * Adds an sgroup to an encounter
- */
-declare function AddSGroup(squadgroup: any, name: any, onDeath: any): void;
-
-/**
- * Find and removes a unit from an encounter based on the squad.
- */
-declare function RemoveUnitBySquad(squad: any): void;
-
-/**
- * Removes all encounter units that belong to the given sgroup
- */
-declare function RemoveUnitsBySGroup(squadgroup: any): void;
-
-/**
- * After adding units to a pre-existing encounter it is sometimes necessary to reboot it, as it may have disabled itself if all it's units died. This function checks and does that safely.
- */
-declare function RebootIfNeeded(): void;
-
-/**
- * Stops running the encounter and clears the current goal.
- */
-declare function Disable(): void;
-
-/**
- * Starts encounter running (encounters are enabled by default) if it was disabled previously.
- */
-declare function Enable(): void;
-
-/**
- * Gets the encounter's nearby allied Egroup. Caution: egroup may be empty. Automatically created whenever the Encounter triggers OnEngage or OnAttacked. To force the EGroup creation call Encounter:UpdateNearbyAllies()
- */
-declare function GetEgroupNearbyAllies(): EGroup;
-
-/**
- * Gets the encounter's sgroup. Caution: sgroup may be empty
- */
-declare function GetSGroup(): SGROUP;
-
-/**
- * Gets clone of current goal data.  May be nil.
- */
-declare function GetGoalData(): GoalData;
-
-/**
- * Sets the goal data for the encounter. If encounter has a goal with a running AI Encounter, updates the goal.
- * Use GetGoalData() to get
- * See: http://relicwiki/display/REL/Ai+Goal
- */
-declare function UpdateGoal(goalData: GoalData): void;
-
-/**
- * If encounter has a goal, but no currently running AI Encounter, restarts the goal.
- * Returns true if goal was restarted, false otherwise. If we pass a previousEncounterID, it restarts the
- * encounter using that handle id. This is used for save / load
- */
-declare function RestartGoal(previousEncounterID: any, wasAlreadyTriggered: any): boolean;
-
-/**
- * Moves back the goal to the original location
- * Only works if the goal was previously relocated after being triggered
- */
-declare function ResetGoalRelocation(): void;
-
-/**
- * Removes an encounter's onSight/onEngage event and immediately starts its goal.
- * Only works if the encounter has both data.goal, and a valid goal trigger
- */
-declare function TriggerGoal(data: any, relocationData: any): void;
-
-/**
- * Clears the current goal.
- */
-declare function ClearGoal(): void;
-
-/**
- * Determines whether or not the encounter has an active and valid goal.
- */
-declare function HasGoal(): boolean;
-
-/**
- * Creates encounter goal from goal data; goals determine unit behaviours.
- * See: http://relicwiki/display/REL/Ai+Goal
- */
-declare function SetGoal(goalData: GoalData, triggerGoal: boolean, previousEncounterID?: HandleID): void;
-
-/**
- * Adds unit(s) to the encounter
- * See Encounter.scar for details
- * unitData is a table that can either hold a single unit OR a set of unit tables
- * The format of each individual unit table is the same as regular encounter unit tables
- * spawnType is of type SPAWN.<>
- */
-declare function AddUnits(unitData: any, spawnType: SPAWN): void;
-
-/**
- * Create a new encounter from an SGroup, with default encounter data
- * Encounter player is derived from sgroup; all squads in sgroup must be owned by same player.
- */
-declare function ConvertSGroup(squadgroup: SGROUP): Encounter;
-
-/**
- * Create a new basic encounter.
- */
-declare function CreateBasic(name: string, spawnLoc: MARKER | Position, encUnits: SBP | any, dynamicSpawn?: MARKER | Position): Encounter;
-
-/**
- * Create a new encounter with a generic TownLife goal.
- */
-declare function CreateTownLife(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, townLifeRange?: number): Encounter;
-
-/**
- * Create a new encounter with a generic Ability goal.
- */
-declare function CreateAbility(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
-
-/**
- * Create a new encounter with a generic Move goal.
- */
-declare function CreateMove(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
-
-/**
- * Create a new encounter with a generic Patrol goal.
- * pathLoop can be: LOOP_NONE, LOOP_NORMAL, LOOP_TOGGLE_DIRECTION
- */
-declare function CreatePatrol(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encPath: MARKER | string, dynamicSpawn?: MARKER | Position, pathWait?: number, pathLoop?: number): Encounter;
-
-/**
- * Create a new encounter with a generic Defend goal.
- */
-declare function CreateDefend(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-
-/**
- * Create a new encounter with a generic Attack goal.
- */
-declare function CreateAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-
-/**
- * Create a new encounter with a generic FormationAttack goal.
- */
-declare function CreateFormationDefendArea(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-
-/**
- * Create a new encounter with a generic FormationAttack goal.
- */
-declare function CreateFormationAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-
-/**
- * Create a new encounter from encounter data. If spawnNow is true, spawns specified units immediately.
- * See: http://relicwiki/display/REL/Ai+Encounters
- */
-declare function Create(data: EncounterData, spawnNow?: boolean, spawnStaggered?: boolean | number): Encounter;
-
-/**
  * Adds a Reminder for an objective table (will play whenever the provided condition evaluates to true)
  */
 declare function Objective_SetConditionalReminder(objTable: any, intelFunction: any, conditionFunction: any, conditionData: any): void;
@@ -17203,6 +16825,51 @@ declare function Util_StartNislet(event: any, skippedCallback: any, noFadeIn: bo
  * e.g. f = std.TypePredicate(); f() => 1; f() => 2 ...
  */
 declare function AppendString(a: any, b: any): any;
+
+declare interface TAi {
+    GetEncountersBySquad(squad: Squad): any;
+    GetEncountersBySGroup(sgroup: SGROUP, all: any | ALL): any;
+}
+
+declare const Ai: TAi;
+
+declare interface TEncounter {
+    SetGoalOnFailure(func: any): void;
+    SetGoalOnSuccess(func: any): void;
+    SetOnDeath(func: any): void;
+    RemoveOnDeath(includeUnits: boolean): void;
+    CompleteDeployImmediately(): void;
+    AddSGroup(squadgroup: any, name: any, onDeath: any): void;
+    RemoveUnitBySquad(squad: any): void;
+    RemoveUnitsBySGroup(squadgroup: any): void;
+    RebootIfNeeded(): void;
+    Disable(): void;
+    Enable(): void;
+    GetEgroupNearbyAllies(): EGroup;
+    GetSGroup(): SGROUP;
+    GetGoalData(): GoalData;
+    UpdateGoal(goalData: GoalData): void;
+    RestartGoal(previousEncounterID: any, wasAlreadyTriggered: any): boolean;
+    ResetGoalRelocation(): void;
+    TriggerGoal(data: any, relocationData: any): void;
+    ClearGoal(): void;
+    HasGoal(): boolean;
+    SetGoal(goalData: GoalData, triggerGoal: boolean, previousEncounterID?: HandleID): void;
+    AddUnits(unitData: any, spawnType: SPAWN): void;
+    ConvertSGroup(squadgroup: SGROUP): Encounter;
+    CreateBasic(name: string, spawnLoc: MARKER | Position, encUnits: SBP | any, dynamicSpawn?: MARKER | Position): Encounter;
+    CreateTownLife(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, townLifeRange?: number): Encounter;
+    CreateAbility(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
+    CreateMove(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
+    CreatePatrol(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encPath: MARKER | string, dynamicSpawn?: MARKER | Position, pathWait?: number, pathLoop?: number): Encounter;
+    CreateDefend(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateFormationDefendArea(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateFormationAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    Create(data: EncounterData, spawnNow?: boolean, spawnStaggered?: boolean | number): Encounter;
+}
+
+declare const Encounter: TEncounter;
 
 /**
  * @compileMembersOnly
@@ -18639,21 +18306,6 @@ declare interface UpgradeID {
 declare interface TeamID {
 }
 
-declare interface ALL {
-}
-
-declare interface EncounterData {
-}
-
-declare interface SPAWN {
-}
-
-declare interface GoalData {
-}
-
-declare interface HandleID {
-}
-
 declare interface ComponentDependencyIndex {
 }
 
@@ -18840,9 +18492,24 @@ declare interface ShieldWallID {
 declare interface SGROUP {
 }
 
+declare interface ALL {
+}
+
+declare interface GoalData {
+}
+
+declare interface HandleID {
+}
+
+declare interface SPAWN {
+}
+
 declare interface Encounter {
 }
 
 declare interface SGeoup {
+}
+
+declare interface EncounterData {
 }
 

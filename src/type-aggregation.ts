@@ -8,6 +8,10 @@ export type AggregateFunctionsInput = {
 }
 
 function functionKey(fn: TypeSourceFunction) {
+    if (fn.class) {
+        console.log("fn key with class", fn.class, fn.name)
+    }
+
     return `${fn.class ? `${fn.class}:` : ""}${fn.name}`
 }
 

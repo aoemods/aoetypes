@@ -63,6 +63,7 @@ function parseFunctions(source: string): TypeSourceFunction[] {
                 parameters: currentFunction.parameters,
                 returnType: currentFunction.returnType,
                 documentation: currentFunction.documentation,
+                class: currentFunction.class,
             })
         }
 

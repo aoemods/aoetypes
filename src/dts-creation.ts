@@ -112,9 +112,8 @@ function replaceIllegalNames(name: string): string {
     return name
 }
 
-
-const createFunctionDeclaration = (fn: TypeSourceFunction, typeSpellings: Record<TypeSourceType, TypeSourceType>): dom.TopLevelDeclaration => {
-    const params = []
+const makeUniqueParams = (fn: TypeSourceFunction, typeSpellings: Record<TypeSourceType, TypeSourceType>): dom.Parameter[] => {
+    const params: dom.Parameter[] = []
     const existingParamNames = new Set<string>()
 
     let optional = false
@@ -134,23 +133,44 @@ const createFunctionDeclaration = (fn: TypeSourceFunction, typeSpellings: Record
         existingParamNames.add(paramName)
     }
 
-    if (fn.class) {
-        const clsDecl = dom.create.interface(
-            fn.class,
-        )
+    return params
+}
+
+const createFunctionDeclaration = (fn: TypeSourceFunction, typeSpellings: Record<TypeSourceType, TypeSourceType>): dom.TopLevelDeclaration[] => {
+    const params = makeUniqueParams(fn, typeSpellings)
+
+    const fnDecl = dom.create.function(
+        fn.name,
+        params,
+        createTypeReference(fn.returnType, typeSpellings)
+    )
+    fnDecl.jsDocComment = fn.documentation
+    return [fnDecl]
+}
+
+const createInstanceDeclaration = (instanceName: string, fns: TypeSourceFunction[], typeSpellings: Record<TypeSourceType, TypeSourceType>): dom.TopLevelDeclaration[] => {
+    const objType = dom.create.interface(
+        `T${instanceName}`,
+    )
+
+    for (const fn of fns) {
+        const params = makeUniqueParams(fn, typeSpellings)
+        console.log("Adding with class", fn.class, fn.name)
+
         const methodDecl = dom.create.method(fn.name, params, createTypeReference(fn.returnType, typeSpellings))
         methodDecl.jsDocComment = fn.documentation
-        clsDecl.members.push(methodDecl)
-        return clsDecl
-    } else {
-        const fnDecl = dom.create.function(
-            fn.name,
-            params,
-            createTypeReference(fn.returnType, typeSpellings)
+
+        objType.members.push(
+            dom.create.method(
+                fn.name,
+                params,
+                createTypeReference(fn.returnType, typeSpellings)
+            )
         )
-        fnDecl.jsDocComment = fn.documentation
-        return fnDecl
     }
+
+    const obj = dom.create.const(instanceName, objType)
+    return [objType, obj]
 }
 
 const getExtraTypeDeclarations = (): dom.TopLevelDeclaration[] => {
@@ -193,18 +213,6 @@ const createTypeDeclaration = (type: TypeSourceType, ignoreTypeDeclarations: Set
     return [dom.create.interface(type)]
 }
 
-
-
-const getTypeDeclarations = (sources: TypeSources, ignoreTypeDeclarations: Set<string>, aggregatedFunctions: TypeSourceFunction[]): dom.TopLevelDeclaration[] => {
-    const enumNames = new Set<string>(sources.aoe4Enums.map(e => e.name.toLowerCase()))
-
-    const types = new Set<string>(aggregatedFunctions.flatMap(fn => [
-        fn.returnType,
-        ...fn.parameters.map(param => param.type).filter(t => !(t.toLowerCase() in enumNames)),
-    ]))
-    return [...types].flatMap(t => createTypeDeclaration(t, ignoreTypeDeclarations))
-}
-
 const getEnumDeclarations = (sources: TypeSources): dom.TopLevelDeclaration[] => {
     return sources.aoe4Enums.map(e => {
         const enumDecl = dom.create.enum(e.name)
@@ -232,7 +240,10 @@ function getIgnoredTypeDeclarations(sources: TypeSources): Set<string> {
 }
 
 export function createDts(sources: TypeSources): dom.TopLevelDeclaration[] {
-    const aggregatedFunctions = aggregateFunctions(sources)
+    let aggregatedFunctions = aggregateFunctions(sources)
+
+    const classes = new Set(aggregatedFunctions.filter(fn => fn.class).map(fn => fn.class!))
+    aggregatedFunctions = aggregatedFunctions.filter(fn => fn.class || !classes.has(fn.name))
 
     const extractedTypes = extractTypes({
         functions: aggregatedFunctions,
@@ -254,7 +265,23 @@ export function createDts(sources: TypeSources): dom.TopLevelDeclaration[] {
 
     const typeSpellings = Object.fromEntries(extractedTypes.map(type => [type.toLowerCase(), type]))
 
-    aggregatedFunctions.map(fn => createFunctionDeclaration(fn, typeSpellings)).forEach(fn => members.push(fn))
+    // Add top-level functions
+    aggregatedFunctions.flatMap(fn => !fn.class ? createFunctionDeclaration(fn, typeSpellings) : []).forEach(member => members.push(member))
+
+    // Add functions on instances
+    const instanceFns: Record<string, TypeSourceFunction[]> = {}
+    for (const fn of aggregatedFunctions.filter(fn => fn.class)) {
+        const cls = fn.class!
+        if (cls in instanceFns) {
+            instanceFns[cls].push(fn)
+        } else {
+            instanceFns[cls] = [fn]
+        }
+    }
+
+    Object.entries(instanceFns)
+        .flatMap(([instanceName, instanceFns]) => createInstanceDeclaration(instanceName, instanceFns, typeSpellings))
+        .forEach(member => members.push(member))
 
     for (const typeDecl of typeDecls) {
         members.push(typeDecl)
