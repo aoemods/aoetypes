@@ -28,7 +28,7 @@ declare function AIProductionScoring_CanPushProductionScoringFunction(aiPlayer: 
  * Create a ClampedScoringFunction scoring function.
  * Clamps the returned value of the inner scoring function
  */
-declare function AIProductionScoring_ClampedScoringFunction(aiPlayer: PlayerID, min: number, max: number, innerScoringFunction: ScoringFunction): any;
+declare function AIProductionScoring_ClampedScoringFunction(aiPlayer: PlayerID, min: number, max: number, innerScoringFunction: any): any;
 
 /**
  * Create a CounterScore scoring function
@@ -58,7 +58,7 @@ declare function AIProductionScoring_IslandNeedingExpansionBase(aiPlayer: Player
  * Create a LackOfSecuredResourceDeposits scoring function.
  * Returns between 0 and 1, 1 if the total sum of secured resource deposits is less or equal to scarce amount, 0 if the amount is equal to or greater than well off amount, lerps in between
  */
-declare function AIProductionScoring_LackOfSecuredResourceDeposits(aiPlayer: PlayerID, resourceType: ResourceType, scarceAmount: number, wellOffAmount: number): any;
+declare function AIProductionScoring_LackOfSecuredResourceDeposits(aiPlayer: PlayerID, resourceType: number, scarceAmount: number, wellOffAmount: number): any;
 
 /**
  * Create a LuaScoringFunction scoring function.
@@ -2862,13 +2862,13 @@ declare function DrawOBB(pModel: RenderModel, transform: Transform): any;
  * Calls an Entity_ function on every entity in an egroup
  * The first parameter of the supplied function must be EntityID
  */
-declare function EGroup_CallEntityFunction(egroup: EGroupID, entityFunction: any, list: Variable): void;
+declare function EGroup_CallEntityFunction(egroup: EGroupID, entityFunction: any, list: any): void;
 
 /**
  * Returns whether ALL or ANY entities in an egroup satisfy a condition, using an Entity_ function to perform the query on each entity
  * The first parameter of the supplied function must be EntityID
  */
-declare function EGroup_CallEntityFunctionAllOrAny(egroup: EGroupID, all: boolean, entityFunction: any, list: Variable): void;
+declare function EGroup_CallEntityFunctionAllOrAny(egroup: EGroupID, all: boolean, entityFunction: any, list: any): void;
 
 /**
  * Returns the total health of all units in a entity group, excluding entities that currently cannot be damaged.
@@ -3378,7 +3378,7 @@ declare function MarkerPaths_GenerateIcons(pathName: string, pointList: any, ico
 /**
  * Gives the sgroup a series of queued orders to go to each marker with the same markerName.
  */
-declare function MarkerPaths_MoveSGroupAlongPath(sgroup: SGroupID, markerName: string, opt_markerType?: string, opt_startMarker?: Num, opt_endMarker?: Num): any;
+declare function MarkerPaths_MoveSGroupAlongPath(sgroup: SGroupID, markerName: string, opt_markerType?: string, opt_startMarker?: number, opt_endMarker?: number): any;
 
 /**
  * Write the OS map of allocated memory to the log folder
@@ -4277,13 +4277,13 @@ declare function SGroup_CallEntityFunction(sgroup: SGroupID, entityFunction: any
  * Calls a Squad_ function on every squad in an sgroup
  * The first parameter of the supplied function must be SquadID
  */
-declare function SGroup_CallSquadFunction(sgroup: SGroupID, squadFunction: any, list: Variable): void;
+declare function SGroup_CallSquadFunction(sgroup: SGroupID, squadFunction: any, list: any): void;
 
 /**
  * Returns whether ALL or ANY squads in an sgroup satisfy a condition, using a Squad_ function to perform the query on each squad
  * The first parameter of the supplied function must be SquadID
  */
-declare function SGroup_CallSquadFunctionAllOrAny(sgroup: SGroupID, all: boolean, squadFunction: any, list: Variable): void;
+declare function SGroup_CallSquadFunctionAllOrAny(sgroup: SGroupID, all: boolean, squadFunction: any, list: any): void;
 
 /**
  * Adds units to the internal SGroups - siege weapons go into the engines group, everything else goes into crew
@@ -4606,129 +4606,6 @@ declare function Terrain_GetCoverType_AsNumber(pos: Position): any;
 declare function Terrain_GetCoverType_AsString(pos: Position): any;
 
 /**
- * Test the FOW-revealing abilities for certain units.
- * Spawns a given Squad blueprint and issues an order for the given ability blueprint. The Squad will be ordered to move after the ability is used, to separate the two vision zones. Next, the squad will wait, outside of the ability's reveal zone, until ability ends and the FOW closes. Once the FOW closes, the test will check if the Squad's local vision is working as it should. The test succeeds if the Squad used the ability, and the ability's associated EBP was instantiated.
- */
-declare function Test_AbilityRevealFOW(t_test_group: any, t_params: any, timeout_seconds: number, description: string, sbp_caster: string, abp_ability_reveal_fow: string, ebp_ability_summoned_artifact: string): any;
-
-/**
- * Ages up the player by building the wonders specified
- * Spawns all buildings specified in the given list in order to see if the models get replaced successfully on age-up. Then spawns 10 squads as specified in the builder variable. Removes the upgrade after the test is done.
- */
-declare function Test_AgeUp(t_test_group: any, of_: List, of_2: List, name: number): any;
-
-/**
- * Observe AI progress as a smoke test
- * Takes over the local player and observes AI progress Can set initial resources as an option
- */
-declare function Test_AI(t_test_group: any): any;
-
-/**
- * Run several combat fitness tests
- * 1) Tests Combat Fitness Model loaded correctly 2) Test to see Combat Fitness Model characterizes important units 3) Test Combat Fitness Model predictive accuracy 4) Same as 3) but with naval units
- */
-declare function Test_AI_CombatFitness(t_test_group: any): any;
-
-/**
- * Test the persistence of combat engagement by a Squad that is Converted by a Monk.
- * A Monk collects a Relic and then converts an enemy Squad that is engaged in combat with an allied Squad. Movement is expected to cease when the enemy Squad is Converted.
- */
-declare function Test_BPConversion_ConvertedMilitary_Combat(t_test_group: any, t_params: any, sbp_monk: string, sbp_combat_ally: string, sbp_conversion_target: string, timeout_seconds: number, test_name: string, test_description: string): any;
-
-/**
- * Test the persistence of Move commands given to a Squad that is Converted by a Monk.
- * A Monk collects a Relic and then converts an enemy Squad that is engaged in movement toward a destination. Movement is expected to cease when the enemy Squad is Converted.
- */
-declare function Test_BPConversion_ConvertedMilitary_Movement(t_test_group: any, t_params: any, sbp_monk: string, sbp_combat_ally: string, sbp_conversion_target: string, timeout_seconds: number, test_name: string, test_description: string): any;
-
-/**
- * Test that a Villager, when Converted by a Monk, ceases its Construction task.
- * A Monk collects a Relic and then converts an enemy Villager Squad that is constructing a building. Construction is expected to cease when the enemy Villager is Converted.
- */
-declare function Test_BPConversion_ConvertedVillager_Construction(t_test_group: any, t_params: any, sbp_monk: string, sbp_villager: string, ebp_name_construction: string, ebp_name_tc: string, timeout_seconds: number, test_name: string, test_description: string): any;
-
-/**
- * Test that a Villager, when Converted by a Monk, ceases its Gathering tasks.
- * A Monk collects a Relic and then converts some enemy Villager Squads that are gathering resources. Gathering is expected to cease when the enemy Villagers are Converted.
- */
-declare function Test_BPConversion_ConvertedVillager_Gathering(t_test_group: any, t_params: any, sbp_monk: string, sbp_villager: string, timeout_seconds: number, test_name: string, test_description: string): any;
-
-/**
- * Test that a Squad's combat is not interrupted after it is Upgraded to its next level/tier.
- * Pit two squads of the same blueprint against each other.  One squad has slightly reduced health and is upgraded. The weakened/upgraded squad should defeat the other squad in combat,  and not hesitate or stop attacking once it is upgraded.  The upgraded squad should reach the destination coordinates.
- */
-declare function Test_BPConversion_SquadTierUpgrade_Combat(t_test_group: any, t_params: any, sbp_to_upgrade: string, sbp_after_upgrade: string, upgrade_name: string, timeout_seconds: number, test_name: string, test_description: string): any;
-
-/**
- * Test the persistence of a Move command given to a Squad that is Upgraded to its next level/tier.
- * Send a Move order to a Squad toward a location,  and while they are moving cause them to upgrade to the next tier of Squad for that type.  The expectation is that the squad continues their trajectory toward the goal.
- */
-declare function Test_BPConversion_SquadTierUpgrade_Movement(t_test_group: any, t_params: any, sbp_to_upgrade: string, sbp_after_upgrade: string, upgrade_name: string, timeout_seconds: number, test_name: string, test_description: string): any;
-
-/**
- * Tests the Forced Engagement system, an AI behavior which pits offending melee fighters against defending opponent melee fighters that are in the attack path of the offenders.
- * Spawns Attacker ManAtArms that will move toward Target Archer which is behind Defender ManAtArms. Depending on the flag "attacker_should_intercept_defender", the test will either: TRUE: The Attacker will target the Archer, but stop to fight the Defender. FALSE:  The Attacker will run past and avoid both Defender and Target.
- */
-declare function Test_CombatForcedEngagement(t_test_group: any, t_params: any, description: string, name: string, timeout_seconds: number): any;
-
-/**
- * Test gathering resources from animals and dropping them off at a building
- * Spawns the given gatherer blueprint, the drop off building and animals as specified in the given table. Checks if all animals got killed an all food has been gathered from their corpses.
- */
-declare function Test_CommandedAnimalGathering(t_test_group: any): any;
-
-/**
- * Issue move order to SGroup and count how many of them arrived at destination.
- * Spawns a specified number of given SBPs at a start-position and orders them to move to the end-position. The test will count the number of Squads within the group that reached their destination within the time limit. The test will finish once all of the specified coordinates are tested and success will depend upon what % of units reached the end zone (only 100% will succeed)
- */
-declare function Test_FormationMove(t_test_group: any, squad_blueprint_names: any, number_to_spawn: number, use_squad_formation: boolean, acceptable_distance: number, usign: When, will: This, Util_GetPosition: any, highlight_locations: boolean): any;
-
-/**
- * Test gathering resources and dropping them off at a building
- * Spawns the given gatherer blueprint and resource deposit. Depending on the give_gather_command parameter either spawns the drop-off building or gives the squad a construction command. Sets each resource deposit to 50 and checks if the total number of resources matches the number of given resource deposits.
- */
-declare function Test_Gathering(t_test_group: any, RT_Gold: _3, RT_Stone: _5, RT_Wood: _6): any;
-
-/**
- * Test the healing abilities for units can be used for auto-healing and targeted healing
- * Spawns a given healer blueprint and a given target blueprint. Depending on the auto_heal_enabled parameter the test will spawn the healers with auto_heal disabled or enabled. If a unit spawns with auto_heal disabled the healer unit will be ordered to heal the first unit in the given sgroup.
- */
-declare function Test_Healing(t_test_group: any, t_healer_lists: any, auto_heal_enabled: boolean, sbp_target: string, spawn_amount: number, input_name: string, input_description: string): any;
-
-/**
- * Test the pack and unpack abilities for entities (Mongol buildings)
- * Spawns a constructed (unpacked) given Mongol building blueprint and a given target blueprint. The test will spawn an unpacked building. The building/entity will be ordered to move before it packs up (becomes mobile), which should not succeed. Next, the entity will be ordered to pack up and move to a location. Once it reaches its destination, it will be issued an order to unpack at a different location. The test will succeed if the Mongol building is successfully unpacked at the new location.
- */
-declare function Test_PackUnpack(t_test_group: any, t_params: any, timeout_seconds: number, test_description: string, ability_name_unpack: string, ebp_building_unpacked: string, ebp_building_packed: string): any;
-
-/**
- * Verify that a provided SBP spawns in game correctly
- */
-declare function Test_SpawnSquad(table: A, name: The, value: Optional, how: Optional): any;
-
-/**
- * optional expect_kill overrides automatic targeting discovery
- */
-declare function Test_SquadAttackMove(): any;
-
-/**
- * optional expect_kill overrides automatic targeting discovery
- */
-declare function Test_SquadAttackMoveEntity(): any;
-
-/**
- * Movement test designed to allow for optional facing
- * Spawns a given unit blueprint and moves them to the given target destination, rotating the unit to the optional given facing if given upon arrival.
- */
-declare function Test_SquadMoveWithOptionalFacing(t_test_group: any): any;
-
-/**
- * Issue move order to SGroup and count how many of them arrived at destination.
- * Spawns a specified number of given SBPs at a start-position and orders them to move to the end-position. The test will count the number of Squads within the group that reached their destination within the time limit. The test will finish once all of the specified coordinates are tested and success will depend upon what % of units reached the end zone (only 100% will succeed)
- */
-declare function Test_Surround(t_test_group: any, attacker_blueprint_names: any, number_to_spawn: number, use_squad_formation: boolean, acceptable_distance: number, Util_GetPosition: any, Util_GetPosition2: any, highlight_locations: boolean): any;
-
-/**
  * Auto generates a test configuration template and stores it for later saving. This is a debug feature.
  * The system tries to gather the parameters of the calling function and auto generates a template for it. The resulting template is added to a list which is written to cache:AutoConfig.json (see TestConfig_SaveCachedTestTemplates() above). If you use a non json compatible type you need to update _SerializeParameters above. See example for ScarPos.
  */
@@ -4743,7 +4620,7 @@ declare function TestConfig_LoadFromCommandLine(): any;
  * Tries to load the test configuration from the given file.
  * The test configuration file is a json file containing groups of tests. Each test is defined with a function to call and its parameters. The system parses the file and tries to invoke the functions in the global space (by calling _G[function_string] ). Tests marked as active: false are skipped. Parameters either need to be json compatible (strings,  numbers, boolean) or have a 'constructor' function associated to them. e.g: 2D positions { "parameters": [ 0, -20 ], "func": "Util_ScarPos" }
  */
-declare function TestConfig_LoadFromFile(path: Path): any;
+declare function TestConfig_LoadFromFile(path: string): any;
 
 /**
  * Writes the tests to a json file.
@@ -6027,7 +5904,7 @@ declare function AIEncounter_ResourceGuidance_IsSquadGroupEqual(pEncounter: AIEn
 /**
  * Sets the resource money for an encounter.
  */
-declare function AIEncounter_ResourceGuidance_SetResourceMoney(pEncounter: AIEncounterID, resourceAmount: ResourceAmount): any;
+declare function AIEncounter_ResourceGuidance_SetResourceMoney(pEncounter: AIEncounterID, resourceAmount: Record<number, number>): any;
 
 /**
  * Sets the resource squads for encounter.
@@ -6533,7 +6410,7 @@ declare function SBP_IsOfRace(pbgShortname: string, race: ScarRacePBG): any;
  * Queue moving the camera along a spline consisting of entity/marker/pos/egroup/sgroup/squad objects within seconds.
  * The camera will move from the position that was in front of it in the pan queue along the positions provided. Catmull-Rom interpolation between points is used
  */
-declare function Camera_CatromSplinePanOverTime(var_: Variable, seconds: number, keepQueue: boolean, controlRotation: boolean): void;
+declare function Camera_CatromSplinePanOverTime(var_: any, seconds: number, keepQueue: boolean, controlRotation: boolean): void;
 
 /**
  * Moves the camera through a list of positions.
@@ -6544,24 +6421,24 @@ declare function Camera_CyclePositions(list: any, pan?: boolean, panRate?: numbe
  * Set the camera to follow an sgroup/squad/egroup/entity.
  * The camera will follow them until the player takes control again.
  */
-declare function Camera_Follow(var_: Variable): void;
+declare function Camera_Follow(var_: any): void;
 
 /**
  * Queue moving the camera along a spline consisting of entity/marker/pos/egroup/sgroup/squad objects within seconds.
  * The camera will move from the position that was in front of it in the pan queue along the positions provided. Linear interpolation between points is used
  */
-declare function Camera_LinearSplinePanOverTime(var_: Variable, seconds: number, keepQueue: boolean, controlRotation: boolean): void;
+declare function Camera_LinearSplinePanOverTime(var_: any, seconds: number, keepQueue: boolean, controlRotation: boolean): void;
 
 /**
  * Move the camera to an entity/marker/pos/egroup/sgroup/squad at a given speed
  */
-declare function Camera_MoveTo(var_: Variable, pan: boolean, panRate: number, keepInputLocked: boolean, resetToDefault: boolean): void;
+declare function Camera_MoveTo(var_: any, pan: boolean, panRate: number, keepInputLocked: boolean, resetToDefault: boolean): void;
 
 /**
  * Slightly refocus the camera to rest on an entity/squad/squad/sgroup/egroup/pos/marker if it's close by.
  * This function can be called through a CTRL object in NISlets.
  */
-declare function Camera_MoveToIfClose(var_: Variable): void;
+declare function Camera_MoveToIfClose(var_: any): void;
 
 /**
  * Queue moving the camera a certain distance from the position of the camera in a specified amount of time.
@@ -6573,7 +6450,7 @@ declare function Camera_PanOverTimeRelative(delta: Position, seconds: number, ke
  * Queue moving the camera to an entity/marker/pos/egroup/sgroup/squad within seconds.
  * The camera will move from the position that was in front of it in the queue.
  */
-declare function Camera_PanOverTimeTo(var_: Variable, seconds: number, keepQueue: boolean): void;
+declare function Camera_PanOverTimeTo(var_: any, seconds: number, keepQueue: boolean): void;
 
 /**
  * Reset the camera to its default rotation.
@@ -7270,12 +7147,12 @@ declare function Core_SetMutualRelationship(player: PlayerID | any, player2: Pla
 /**
  * Sets a player as defeated.
  */
-declare function Core_SetPlayerDefeated(player: PlayerID, presentationFunction: any, reason: WinReason): void;
+declare function Core_SetPlayerDefeated(player: PlayerID, presentationFunction: any, reason: number): void;
 
 /**
  * Sets a player as the match winner.
  */
-declare function Core_SetPlayerVictorious(player: PlayerID, presentationFunction: any, reason: WinReason): void;
+declare function Core_SetPlayerVictorious(player: PlayerID, presentationFunction: any, reason: number): void;
 
 /**
  * Sets if a team is defeated
@@ -7285,7 +7162,7 @@ declare function Core_SetTeamDefeated(teams_table: Team, presentationTable: any)
 /**
  * Sets a team as the match winner.
  */
-declare function Core_SetTeamVictorious(teams_table: Team, presentationFunction: any, reason: WinReason): void;
+declare function Core_SetTeamVictorious(teams_table: Team, presentationFunction: any, reason: number): void;
 
 /**
  * Removes a script module from the delegate invocation system.
@@ -7296,7 +7173,7 @@ declare function Core_UnregisterModule(name: string): any;
 /**
  * Set the game to a GameOver state without an explicit winner
  */
-declare function Core_WinnerlessGameOver(presentationFunction: any, reason: WinReason): void;
+declare function Core_WinnerlessGameOver(presentationFunction: any, reason: number): void;
 
 /**
  * Pauses for a given amount of time. This function MUST be called from a CTRL object in NISlet events only!
@@ -9475,7 +9352,7 @@ declare function Misc_FindDepositsCloseToSquad(group: EGroupID, squad: SquadID, 
  * Finds resource deposits of given type within the specified range of a position, that can be collected by the provided gathererEBP
  * Returns an egroup of resource deposits named "eg_Misc_FindNearbyDepositOfType_result", sorted by proximity to the position
  */
-declare function Misc_FindDepositsOfTypeCloseToPosition(resourceType: ResourceType, gathererEBP: EBP, position: Position, searchRange: number): any;
+declare function Misc_FindDepositsOfTypeCloseToPosition(resourceType: number, gathererEBP: EBP, position: Position, searchRange: number): any;
 
 /**
  * Return the entity generating the district containing the given position. Use with Misc_DoesPositionHaveAssociatedDistrict
@@ -10930,7 +10807,7 @@ declare function Player_GetAllSquadsNearMarker(player: PlayerID, sgroup: SGroupI
  * Returns the entityID of the first player owned building listed in the table.
  * This only looks at completed buildings
  */
-declare function Player_GetBuildingID(player: PlayerID, entitytypes: BlueprintTable | StringTable): EntityID;
+declare function Player_GetBuildingID(player: PlayerID, entitytypes: BlueprintTable | string[]): EntityID;
 
 /**
  * Returns the total number of buildings owned by this player.
@@ -10951,7 +10828,7 @@ declare function Player_GetBuildingsCountOnly(playerId: PlayerID, ebplist: Bluep
  * Returns the entityID of the first player owned building listed in the table.
  * This only looks at under construction buildings
  */
-declare function Player_GetBuildingUnderConstructionID(player: PlayerID, entitytypes: BlueprintTable | StringTable): EntityID;
+declare function Player_GetBuildingUnderConstructionID(player: PlayerID, entitytypes: BlueprintTable | string[]): EntityID;
 
 /**
  * Use capType CT_Personnel to get current squad cap, CT_Vehicle to get current vehicle cap, CT_Medic to get current medic cap
@@ -11228,17 +11105,17 @@ declare function Player_HasAbility(player: Player, pAbilityPBG: ScarAbilityPBG):
  * Returns true if this player owns any buildings listed in the table.
  * This only looks at completed buildings - use Player_HasBuildingUnderConstruction to see if the player is building something
  */
-declare function Player_HasBuilding(player: PlayerID, entitytypes: BlueprintTable | StringTable): boolean;
+declare function Player_HasBuilding(player: PlayerID, entitytypes: BlueprintTable | string[]): boolean;
 
 /**
  * Returns true if this player owns any buildings. (with exclusions).
  */
-declare function Player_HasBuildingsExcept(playerId: PlayerID, exceptions: BlueprintTable | StringTable): boolean;
+declare function Player_HasBuildingsExcept(playerId: PlayerID, exceptions: BlueprintTable | string[]): boolean;
 
 /**
  * Returns true if this player owns any buildings listed in the table currently under construction.
  */
-declare function Player_HasBuildingUnderConstruction(player: PlayerID, entitytypes: BlueprintTable | StringTable): boolean;
+declare function Player_HasBuildingUnderConstruction(player: PlayerID, entitytypes: BlueprintTable | string[]): boolean;
 
 /**
  * Returns true if the given player has units that are able to capture in the capturable area of the given strategic point
@@ -11367,7 +11244,7 @@ declare function Player_RestrictBuildingList(playerid: PlayerID, blueprintlist: 
  * Restrict a list of research items.
  * list should contain an array of strings to restrict.
  */
-declare function Player_RestrictResearchList(playerid: Player, list: StringTable): void;
+declare function Player_RestrictResearchList(playerid: Player, list: string[]): void;
 
 /**
  * Sets the availability of an ability. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -11420,7 +11297,7 @@ declare function Player_SetPopCapOverride(player: PlayerID, personnel: number): 
 /**
  * Set the relationship that observer has to target. If the relationship does not match the current reputation, the reputation will be changed to match it.
  */
-declare function Player_SetRelationship(observer: PlayerID, target: PlayerID, relationship: Relation): any;
+declare function Player_SetRelationship(observer: PlayerID, target: PlayerID, relationship: Relationship): any;
 
 /**
  * Set the reputation that observer has to target. If the reputation does not match the current relationship, the relationship will be changed to match it.
@@ -11441,7 +11318,7 @@ declare function Player_SetResourceInternal(player: Player, type: number, amt: n
 /**
  * Set all the resource amount for a given player.  Ignores income cap and resource sharing.
  */
-declare function Player_SetResources(player: Player, resourceAmount: ResourceAmount): any;
+declare function Player_SetResources(player: Player, resourceAmount: Record<number, number>): any;
 
 /**
  * Sets the availability of a squad production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -11553,7 +11430,7 @@ declare function Prefab_ApplyDefaults(instance_data: string, prefab_schema: any)
  * Calls an action function with a given name on an instance, making sure it calls the right version for the type of Prefab. Instance can be a string, this will convert it.
  * Example: Calling the "Trigger" action on an instance that is a PlaneCrash prefab will look for a function called "PlaneCrash_Trigger"
  */
-declare function Prefab_DoAction(instance_data: string, actionName: string, OPT_param1?: Var, OPT_param2?: Var): any;
+declare function Prefab_DoAction(instance_data: string, actionName: string, OPT_param1?: any, OPT_param2?: any): any;
 
 /**
  * Finalize the initialization of any prefab instances that have been run through Prefab_Init(). This is automatically called one frame after a prefab is initialized, but you can force it early if necessary.
@@ -12161,7 +12038,7 @@ declare function SGroup_AddLeaders(sgroup: SGroupID): void;
  * Adds the amount of resource type for a squad.
  * If SGroup contains multiple squads, it will add for all
  */
-declare function SGroup_AddResource(sgroup: SGroupID, resource: ResourceType, amount: number): void;
+declare function SGroup_AddResource(sgroup: SGroupID, resource: number, amount: number): void;
 
 /**
  * Add to the list of slot items to drop when any one of the squads is wiped out
@@ -12538,7 +12415,7 @@ declare function SGroup_GetRandomSpawnedSquad(sgroupid: SGROUP): SquadID;
  * Gets the amount of resource type for a squad.
  * If SGroup contains multiple squads, it will be the total of all
  */
-declare function SGroup_GetResource(sgroup: SGroupID, resource: ResourceType): number;
+declare function SGroup_GetResource(sgroup: SGroupID, resource: number): number;
 
 /**
  * Builds a table of SGroupIDs that are named in a sequence. i.e. a name of "sg_killer" will find groups "sg_killer1", "sg_killer2" and so on, up until it looks for a group that isn't there.
@@ -12879,7 +12756,7 @@ declare function SGroup_SetRecrewable(sgroup: SGroupID, recrewable: boolean): vo
  * Sets the amount of resource type for a squad.
  * If SGroup contains multiple squads, it will set for all
  */
-declare function SGroup_SetResource(sgroup: SGroupID, resource: ResourceType, amount: number): void;
+declare function SGroup_SetResource(sgroup: SGroupID, resource: number, amount: number): void;
 
 /**
  * Set player selectable state of squads in the sgroup
@@ -14326,7 +14203,7 @@ declare function Team_RestrictBuildingList(team: TeamID, blueprintlist: any): vo
  * Restrict a list of research items.
  * list should contain an array of strings to restrict.
  */
-declare function Team_RestrictResearchList(team: TeamID, list: StringTable): void;
+declare function Team_RestrictResearchList(team: TeamID, list: string[]): void;
 
 /**
  * Sets the availability of an ability. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -15280,7 +15157,7 @@ declare function UI_CreateCommand(): any;
 /**
  * Create a event cue from a sender.
  */
-declare function UI_CreateCustomEventCueFrom(player: Sender, type: Event, duration: Visible, repeat: Enable, repeatTime: When, repeatTime2: When, data: Ui, cue: Event, cue2: Event, event: Control): any;
+declare function UI_CreateCustomEventCueFrom(player: Sender, type: Event, duration: Visible, repeat: boolean, repeatTime: When, repeatTime2: When, data: Ui, cue: Event, cue2: Event, event: Control): any;
 
 /**
  * Create a table that will be interpreted as a data context for UI properties.
@@ -15739,7 +15616,7 @@ declare function Event_IsAnyRunning(): boolean;
 /**
  * Ends the single player game (win/lose).
  */
-declare function Game_EndSP(win: boolean, winReason?: WinReason, nis?: boolean, sandmap?: boolean): void;
+declare function Game_EndSP(win: boolean, winReason?: number, nis?: boolean, sandmap?: boolean): void;
 
 /**
  * Fades the screen to black - FADE_OUT to fade to black, FADE_IN to fade back in
@@ -15911,12 +15788,12 @@ declare function Util_CreateSquads(player: PlayerID, sgroup: SGroupID | any | st
  * High level function to deploy squads in different ways. Details can be found in UnitEntry.scar
  * Spawntype spawntype - enum of the spawn type (ex: SPAWN.Race_Teleport). SPAWN.No_Type can be used to force a spawn with no type\n
  */
-declare function Util_DeploySquads(spawntype: Spawntype, player: PlayerID, sgroup: SGroupID | any | string, location: Position, squadlist: any, stagger: number, callback: any, ignorepathfindinggroup: EGroup): SGroup_comma_Number;
+declare function Util_DeploySquads(spawntype: Spawntype, player: PlayerID, sgroup: SGroupID | any | string, location: Position, squadlist: any, stagger: number, callback: any, ignorepathfindinggroup: EGroup): any;
 
 /**
  * Takes in a table and chooses the right variable for the difficulty setting. 1-4 elements. Acquires current difficulty by default.
  */
-declare function Util_DifVar(difficultyVariables: any, difficulty?: number): Variable;
+declare function Util_DifVar(difficultyVariables: any, difficulty?: number): any;
 
 /**
  * Returns the result of the dot product of two items in radians
@@ -15990,7 +15867,7 @@ declare function Util_GetAngleDifference(item1: MARKER | Position | EntityID | E
 /**
  * Returns the closest MarkerID to the entity/marker/pos/egroup/sgroup/squad from the table of markers provided
  */
-declare function Util_GetClosestMarker(var_: Variable, markers: any): MarkerID;
+declare function Util_GetClosestMarker(var_: any, markers: any): MarkerID;
 
 /**
  * Returns the heading of an item.
@@ -16022,13 +15899,13 @@ declare function Util_GetEntitiesByBP(sourcegroup: EGroupID, destgroup: EGroupID
 /**
  * Converts a direction into a facing.
  */
-declare function Util_GetFacingFromDirection(pos: Position, direction: Position): Facing;
+declare function Util_GetFacingFromDirection(pos: Position, direction: Position): Position;
 
 /**
  * Determines the health percentage of a given object
  * Returns average health if the object is a group
  */
-declare function Util_GetHealth(var_: Squad | EntityID | SGROUP | EGroup): Percentage;
+declare function Util_GetHealth(var_: Squad | EntityID | SGROUP | EGroup): number;
 
 /**
  * Returns a unique SGroup used to hold mouseover squads obtained from Util_AddMouseoverSquadToSGroup
@@ -16048,7 +15925,7 @@ declare function Util_GetPlayerOwner(Object: EntityID | Squad | EGroup | SGROUP 
 /**
  * Returns a position from entity/marker/pos/egroup/sgroup/squad
  */
-declare function Util_GetPosition(var_: Variable): Position;
+declare function Util_GetPosition(var_: any): Position;
 
 /**
  * Returns a random position within an area that is not near a player
@@ -16082,7 +15959,7 @@ declare function Util_GetRelationship(Object_1: EntityID | Squad | EGroup | SGRO
 /**
  * Returns a relative offset position to an element
  */
-declare function Util_GetRelativeOffset(element: EntityID | Squad | EGroup | SGROUP | MARKER | Position, pos: EntityID | Squad | EGroup | SGROUP | MARKER | Position): Offset;
+declare function Util_GetRelativeOffset(element: EntityID | Squad | EGroup | SGROUP | MARKER | Position, pos: EntityID | Squad | EGroup | SGROUP | MARKER | Position): Position;
 
 /**
  * Find all the squads with a given blueprint in sourcegroup and add them to destgroup.
@@ -16098,7 +15975,7 @@ declare function Util_GetTrailingNumber(val: string): number;
 /**
  * Returns true if given entity/marker/pos/egroup/sgroup/squad has a position; if false, Util_GetPosition will fail.
  */
-declare function Util_HasPosition(var_: Variable): boolean;
+declare function Util_HasPosition(var_: any): boolean;
 
 /**
  * Hides all of a player's squads and/or buildings
@@ -16275,7 +16152,7 @@ declare function Util_TriggerEvent(playerid: PlayerID, position: MARKER | EGroup
  * Alternate Format:\n
  * print(Util_UnitCounts(true).squad)\n
  */
-declare function Util_UnitCounts(world: boolean): Lua;
+declare function Util_UnitCounts(world: boolean): any;
 
 /**
  * Kills ALL world entities near a marker
@@ -16372,7 +16249,7 @@ declare function World_GetBlueprintEntities(pbg: ScarEntityPBG, outEntities: EGr
  * Returns the closest object from the table of marker/pos/egroup/sgroup to the closest marker/pos/egroup/sgroup specified
  * The table may mix together objects of different types.
  */
-declare function World_GetClosest(var_: Variable, items: any | SGROUP | EGroup): Variable;
+declare function World_GetClosest(var_: any, items: any | SGROUP | EGroup): any;
 
 /**
  * Appends all cover points to an egroup.
@@ -16402,7 +16279,7 @@ declare function World_GetEntitiesWithinTerritorySector(player: PlayerID, egroup
  * Returns the furthest object from the table of marker/pos/egroup/sgroup to the furthest marker/pos/egroup/sgroup specified.
  * The table may mix together objects of different types.
  */
-declare function World_GetFurthest(var_: Variable, items: any): Variable;
+declare function World_GetFurthest(var_: any, items: any): any;
 
 /**
  * Return the total number of game (simulation) ticks elapsed.
@@ -16910,14 +16787,14 @@ declare interface TEncounter {
     AddUnits(unitData: any, spawnType: SPAWN): void;
     ConvertSGroup(squadgroup: SGROUP): Encounter;
     CreateBasic(name: string, spawnLoc: MARKER | Position, encUnits: SBP | any, dynamicSpawn?: MARKER | Position): Encounter;
-    CreateTownLife(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, townLifeRange?: number): Encounter;
-    CreateAbility(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
-    CreateMove(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
+    CreateTownLife(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, townLifeRange?: number): Encounter;
+    CreateAbility(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
+    CreateMove(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, moveRange?: number): Encounter;
     CreatePatrol(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encPath: MARKER | string, dynamicSpawn?: MARKER | Position, pathWait?: number, pathLoop?: number): Encounter;
-    CreateDefend(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-    CreateAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-    CreateFormationDefendArea(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
-    CreateFormationAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGeoup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateDefend(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateFormationDefendArea(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
+    CreateFormationAttack(name: string, encUnits: SBP | any, spawnLoc: MARKER | Position, encTarget: EGroup | SGroup | MARKER | Position, dynamicSpawn?: MARKER | Position, encRange?: MARKER | number, encLeash?: MARKER | number): Encounter;
     Create(data: EncounterData, spawnNow?: boolean, spawnStaggered?: boolean | number): Encounter;
 }
 
@@ -18097,6 +17974,28 @@ declare enum UICombineType {
 /**
  * @compileMembersOnly
  */
+declare enum Field {
+    AIIslandDecision_Inhabit,
+    AIIslandDecision_Combat,
+    AIIslandDecision_Scout,
+    AIIslandDecision_Gather,
+    AIIslandDecision_Build,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum AddResourceReason {
+    RES_RefundOnDeath,
+    RES_Refund,
+    RES_Resourcing,
+    RES_Gift,
+    RES_Other,
+}
+
+/**
+ * @compileMembersOnly
+ */
 declare enum AIMilitaryEngagementType {
     AIMET_Capture,
     AIMET_DefendArea,
@@ -18108,6 +18007,15 @@ declare enum AIMilitaryEngagementType {
     AIMET_AttackStructure,
     AIMET_DefendStructure,
     AIMET_Gather,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum TargetingType {
+    Targeting_None,
+    Targeting_Manual,
+    Targeting_Automatic,
 }
 
 /**
@@ -18141,22 +18049,7 @@ declare interface LocString {
 declare interface _1 {
 }
 
-declare interface _3 {
-}
-
-declare interface _5 {
-}
-
-declare interface _6 {
-}
-
 declare interface PlayerID {
-}
-
-declare interface ScoringFunction {
-}
-
-declare interface ResourceType {
 }
 
 declare interface Vector {
@@ -18273,9 +18166,6 @@ declare interface RenderModel {
 declare interface Transform {
 }
 
-declare interface Variable {
-}
-
 declare interface Blueprint {
 }
 
@@ -18301,9 +18191,6 @@ declare interface And {
 }
 
 declare interface EGroup {
-}
-
-declare interface Num {
 }
 
 declare interface LocationTable {
@@ -18351,25 +18238,7 @@ declare interface SyncWeaponID {
 declare interface Item {
 }
 
-declare interface List {
-}
-
-declare interface When {
-}
-
-declare interface This {
-}
-
-declare interface The {
-}
-
-declare interface Optional {
-}
-
 declare interface Stack_level {
-}
-
-declare interface Path {
 }
 
 declare interface False {
@@ -18394,9 +18263,6 @@ declare interface CombatRangePolicy {
 }
 
 declare interface AITaskID {
-}
-
-declare interface ResourceAmount {
 }
 
 declare interface TargetPreference {
@@ -18444,10 +18310,10 @@ declare interface Players_table {
 declare interface Teams_table {
 }
 
-declare interface WinReason {
+declare interface GameUICore {
 }
 
-declare interface GameUICore {
+declare interface List {
 }
 
 declare interface Returns {
@@ -18466,9 +18332,6 @@ declare interface TeamID {
 }
 
 declare interface ComponentDependencyIndex {
-}
-
-declare interface TargetingType {
 }
 
 declare interface ALL_UNITS {
@@ -18522,19 +18385,7 @@ declare interface SectorID {
 declare interface BlueprintTable {
 }
 
-declare interface StringTable {
-}
-
-declare interface Relation {
-}
-
 declare interface BaseType {
-}
-
-declare interface AddResourceReason {
-}
-
-declare interface Var {
 }
 
 declare interface InstanceData {
@@ -18564,6 +18415,9 @@ declare interface PositionID {
 declare interface PlayerIDs {
 }
 
+declare interface The {
+}
+
 declare interface GoalSequence {
 }
 
@@ -18585,7 +18439,7 @@ declare interface Event {
 declare interface Visible {
 }
 
-declare interface Enable {
+declare interface When {
 }
 
 declare interface Ui {
@@ -18618,25 +18472,13 @@ declare interface Load {
 declare interface If {
 }
 
+declare interface This {
+}
+
 declare interface Spawntype {
 }
 
-declare interface SGroup_comma_Number {
-}
-
 declare interface ExitType {
-}
-
-declare interface Facing {
-}
-
-declare interface Percentage {
-}
-
-declare interface Offset {
-}
-
-declare interface Lua {
 }
 
 declare interface MARKER {
@@ -18661,9 +18503,6 @@ declare interface SPAWN {
 }
 
 declare interface Encounter {
-}
-
-declare interface SGeoup {
 }
 
 declare interface EncounterData {

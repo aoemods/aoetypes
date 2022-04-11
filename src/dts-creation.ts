@@ -30,6 +30,7 @@ const typeMap: Record<TypeSourceType, dom.Type> = {
     "char": dom.type.string,
     "std::string": dom.type.string,
     "locstring": dom.type.string,
+    "path": dom.type.string,
 
     "object": dom.type.any,
 
@@ -41,13 +42,22 @@ const typeMap: Record<TypeSourceType, dom.Type> = {
     "unsigned": dom.type.number,
     "real (id)": dom.type.number,
     ["Real --> R_ENEMY, R_ALLY, R_NEUTRAL, R_UNDEFINED, or nil (if world owned or invalid parameters)".toLowerCase()]: dom.type.number,
+    "percentage": dom.type.number,
+    "num": dom.type.number,
+    "resourcetype": dom.type.number,
+    "winreason": dom.type.number,
 
     "void": dom.type.void,
 
     "boolean": dom.type.boolean,
     "bool": dom.type.boolean,
+    "enable": dom.type.boolean,
 
     "player": { kind: "name", name: "Player", typeArguments: [] },
+
+    "relation": { kind: "name", name: "Relationship", typeArguments: [] },
+
+    "resourceamount": { kind: "name", name: "Record", typeArguments: [dom.type.number, dom.type.number] },
 
     "position": { kind: "name", name: "Position", typeArguments: [] },
     "scarposition": { kind: "name", name: "Position", typeArguments: [] },
@@ -56,6 +66,8 @@ const typeMap: Record<TypeSourceType, dom.Type> = {
     "postion": { kind: "name", name: "Position", typeArguments: [] },
     "positon": { kind: "name", name: "Position", typeArguments: [] },
     ["Position, if y-height is nil, y-height = ground height, terrain ground or walkable".toLowerCase()]: { kind: "name", name: "Position", typeArguments: [] },
+    "facing": { kind: "name", name: "Position", typeArguments: [] },
+    "offset": { kind: "name", name: "Position", typeArguments: [] },
 
     "entity": { kind: "name", name: "EntityID", typeArguments: [] },
 
@@ -63,15 +75,24 @@ const typeMap: Record<TypeSourceType, dom.Type> = {
         { kind: "name", name: "EntityID", typeArguments: [] },
         { kind: "name", name: "SquadID", typeArguments: [] }
     ]),
+    "sgeoup": { kind: "name", name: "SGroup", typeArguments: [] },
+
+    "stringtable": dom.create.array(dom.type.string),
 
     "table": dom.type.any,
     "luatable": dom.type.any,
+    "lua": dom.type.any,
     "lua table": dom.type.any,
+    "var": dom.type.any,
+    "variable": dom.type.any,
 
     "function": dom.type.any,
     "luafunction": dom.type.any,
     "func": dom.type.any,
     "scarfn": dom.type.any,
+    "scoringfunction": dom.type.any,
+
+    "sgroup_comma_number": dom.type.any, // TODO: use [SGroup, number] somehow
 }
 
 const createTypeReference = (type: TypeSourceType, typeSpellings: Record<TypeSourceType, TypeSourceType>): dom.Type => {
@@ -242,7 +263,9 @@ export function createDts(sources: TypeSources): dom.TopLevelDeclaration[] {
     let aggregatedFunctions = aggregateFunctions(sources)
 
     const classes = new Set(aggregatedFunctions.filter(fn => fn.class).map(fn => fn.class!))
-    aggregatedFunctions = aggregatedFunctions.filter(fn => fn.class || !classes.has(fn.name))
+    aggregatedFunctions = aggregatedFunctions
+        .filter(fn => fn.class || !classes.has(fn.name))
+        .filter(fn => !fn.name.startsWith("Test_")) // These have messed up docs
 
     const aggregatedEnums = aggregateEnums(sources)
 

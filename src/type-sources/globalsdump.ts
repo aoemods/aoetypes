@@ -27,7 +27,7 @@ function extractConstant(fullText: string): TypeSourceConstant | null {
 type ExtractEnumResult = { name: string, member: TypeSourceEnumMember }
 
 function extractEnum(fullText: string): ExtractEnumResult | null {
-    const m = fullText.match(/\[([A-Za-z0-9_]+)\] => \(userdata\) "([a-zA-Z0-9_]+)\(\d+\)"/)
+    const m = fullText.match(/\[([A-Za-z0-9_]+)\] => \(userdata\) "(?:.+::)?([a-zA-Z0-9_]+)\(\d+\)"/)
 
     if (m) {
         return {
