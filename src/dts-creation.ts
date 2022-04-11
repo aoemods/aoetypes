@@ -287,5 +287,16 @@ export function createDts(sources: TypeSources): dom.TopLevelDeclaration[] {
         members.push(typeDecl)
     }
 
+    for (const { name, type, value } of sources.aoe4GlobalsDumpConstants) {
+        if (name !== "_VERSION") {
+            members.push(dom.create.const(
+                name,
+                type === "number" ?
+                    dom.type.numberLiteral(value) :
+                    dom.type.stringLiteral(value)
+            ))
+        }
+    }
+
     return members
 }

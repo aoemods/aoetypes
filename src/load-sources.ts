@@ -1,8 +1,9 @@
 import fs from "fs/promises"
-import { TypeSourceEnum, TypeSourceFunction } from "./type-sources/types.js"
+import { TypeSourceConstant, TypeSourceEnum, TypeSourceFunction } from "./type-sources/types.js"
 import { makeScarDocsEnumTypeSource, makeScarDocsFunctionTypeSource } from "./type-sources/scardocs.js"
 import { makeScarScriptFunctionTypeSource } from "./type-sources/scarscript.js"
 import { functions as functionOverrides } from "./overrides.js"
+import { makeGlobalsDumpConstantsTypeSource } from "./type-sources/globalsdump.js"
 
 
 export type TypeSources = {
@@ -11,6 +12,7 @@ export type TypeSources = {
     functionOverrides: TypeSourceFunction[]
     aoe4ScriptFunctions: TypeSourceFunction[]
     aoe4Enums: TypeSourceEnum[]
+    aoe4GlobalsDumpConstants: TypeSourceConstant[]
 }
 
 async function loadAoe4ScriptFunctions() {
@@ -46,11 +48,13 @@ export async function loadSources(): Promise<TypeSources> {
     const aoe4FunctionsHtml = await fs.readFile("data/aoe4-scardocs/function_list.htm", "utf-8")
     const aoe4EnumsHtml = await fs.readFile("data/aoe4-scardocs/enum_list.htm", "utf-8")
     const coh2FunctionsHtml = await fs.readFile("data/coh2-scardocs/function_list.htm", "utf-8")
+    const aoe4GlobalsDumpText = await fs.readFile("data/aoe4-dumps/ingame-gamemode-none.txt", "utf-8")
 
     const aoe4Functions = makeScarDocsFunctionTypeSource(aoe4FunctionsHtml).getFunctions()
     const aoe4Enums = makeScarDocsEnumTypeSource(aoe4EnumsHtml).getEnums()
     const coh2Functions = makeScarDocsFunctionTypeSource(coh2FunctionsHtml).getFunctions()
     const aoe4ScriptFunctions = await loadAoe4ScriptFunctions()
+    const aoe4GlobalsDumpConstants = makeGlobalsDumpConstantsTypeSource(aoe4GlobalsDumpText).getConstants()
 
     return {
         aoe4Functions,
@@ -58,5 +62,6 @@ export async function loadSources(): Promise<TypeSources> {
         functionOverrides,
         aoe4ScriptFunctions,
         aoe4Enums,
+        aoe4GlobalsDumpConstants,
     }
 }

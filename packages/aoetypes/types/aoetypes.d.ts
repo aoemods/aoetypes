@@ -18568,3 +18568,965 @@ declare interface EncounterData {
 declare interface CriticalBlueprint {
 }
 
+declare const AIFormationPhaseEncounter_EndReason_WasAttacked: 6;
+
+declare const AIEncounterType_AttackArea: 1;
+
+declare const GE_CommandStatusUpdate: 1638656;
+
+declare const SQUADEXTID_PlantDemolition: "squad_plant_demolition_ext";
+
+declare const GE_WalkableSurfacePurgeOrphans: 9502720;
+
+declare const RT_Gold: 3;
+
+declare const EXTID_ModifierApply: "modifier_apply_ext";
+
+declare const CE_ACHIEVHUIHUIPAOSURVIVES: 17;
+
+declare const AIEncounterNotification_StateTreeExit: 4;
+
+declare const AIEncounterType_DefendArea: 0;
+
+declare const GE_BroadcastMessage: 7733248;
+
+declare const PBG_EntityProperties: 1245184;
+
+declare const CE_FRELANCERCHARGEBEGINS: 39;
+
+declare const CE_ACHIEVHORSEARCHERSSURVIVE: 16;
+
+declare const GE_PlayerObjectiveChanged: 6356992;
+
+declare const GE_PlayerDebug_DELETED: 5308416;
+
+declare const EXTID_Demolishable: "demolishable_ext";
+
+declare const AIFormationPhaseEncounter_EndReason_Torndown: 8;
+
+declare const GE_DistrictRemoved: 9043968;
+
+declare const GE_SpeechTelemetryEvent: 1900800;
+
+declare const TFF_InjuredInfantry: 1024;
+
+declare const CE_RUSBOUNTY: 51;
+
+declare const GE_Garrison: 1441792;
+
+declare const GE_DistrictChanged: 9109504;
+
+declare const EXTID_Sight: "sight_ext";
+
+declare const SQUADEXTID_Veterancy: "squad_veterancy_ext";
+
+declare const EXTID_WalkableSurface: "walkable_surface_ext";
+
+declare const SCARTYPE_SGROUP: 1936138272;
+
+declare const EXTID_ActionApply: "action_apply_ext";
+
+declare const AIEncounterNotification_SquadAdded_Count: 8;
+
+declare const CampaignAutotestStatus_Fail: 3;
+
+declare const EXTID_Construction: "construction_ext";
+
+declare const EXTID_RepairStation: "repair_station_ext";
+
+declare const AIEncounterStage_Fallback: 4;
+
+declare const SCARTYPE_PLAYER: 1886157170;
+
+declare const GE_SquadAudioGameObjectRemoved: 1310976;
+
+declare const GE_MovementNodeUpdated: 5898240;
+
+declare const SQUADEXTID_MoveType: "squad_move_type_ext";
+
+declare const EXTID_ProductionQueue: "production_queue_ext";
+
+declare const PBG_Material: 1900544;
+
+declare const CE_MONRAIDRESOURCEADDED: 45;
+
+declare const GE_Ping: 459008;
+
+declare const EXTID_Cost: "cost_ext";
+
+declare const GE_SquadPrecached: 1245440;
+
+declare const SCARTYPE_MODIFIER: 1836016754;
+
+declare const PBGTYPE_Upgrade: 3407872;
+
+declare const WR_CONQUEST: 1;
+
+declare const GE_PlayerCommandIssued: 786688;
+
+declare const AIEncounterStage_Idle: 1;
+
+declare const WR_Begin: 0;
+
+declare const SQUADEXTID_Experience: "squad_experience_ext";
+
+declare const EXTID_Road: "road_ext";
+
+declare const SQUADEXTID_Formation: "squad_formation_ext";
+
+declare const SCARTYPE_ENTITY: 1701737504;
+
+declare const TFF_RangedCombat: 8192;
+
+declare const AIMTT_hq: 0;
+
+declare const SCARTYPE_EGROUP: 1701257248;
+
+declare const AIFormationPhaseEncounter_EndReason_Timeout: 2;
+
+declare const CE_ACHIEVUPGRADECANNONSNORMANDY: 29;
+
+declare const CE_ACHIEVPAYMONGOLTRIBUTEEARLY: 22;
+
+declare const GE_EntityAbandoned: 3276800;
+
+declare const GE_ImportantUnitSighted: 3211264;
+
+declare const SQUADEXTID_ItemSlot: "squad_item_slot_ext";
+
+declare const SQUADEXTID_Loadout: "squad_loadout_ext";
+
+declare const EXTID_Modifier: "modifier_ext";
+
+declare const GE_SectorLinkProviderChanged: 7208960;
+
+declare const EXTID_OOCTarget: "ooc_target_ext";
+
+declare const GE_PlayerSquadInitialized: 8388608;
+
+declare const GE_EntityPrecached: 1179904;
+
+declare const CE_ACHIEVCINEISENDING: 8;
+
+declare const EXTID_Explosion: "explosion_ext";
+
+declare const GE_EntityBlueprintChanged: 393216;
+
+declare const GE_PlannedStructurePlaced: 1835008;
+
+declare const GE_OccupiedBuildingChangedOwner: 1310720;
+
+declare const PBG_UISelection: 3604480;
+
+declare const AIWanderRadiusMode_TargetArea: 1;
+
+declare const CE_HREHEALINGAURA: 41;
+
+declare const GD_HARD: 2;
+
+declare const EXTID_Territory: "territory_ext";
+
+declare const COUNTER_TimerDecreasing: 0;
+
+declare const GE_StructureReplaced: 1966080;
+
+declare const CE_CHIDYNASTYUNITSPAWNSPIRITWAYINFLUENCED: 31;
+
+declare const GD_NORMAL: 1;
+
+declare const CE_ACHIEVPURCHASEKNIGHTSTINCHEBRAY: 24;
+
+declare const CE_ACHIEVNODEATHSINCOMBAT30ARENA: 20;
+
+declare const CE_ACHIEVNETWORKOFCASTLESUP: 19;
+
+declare const AIEncounterNotification_Cancelled: 3;
+
+declare const GE_ConstructionComplete: 983040;
+
+declare const COUNTER_CountUpTo: 3;
+
+declare const EXTID_StimulusEmission: "stimulus_emission_ext";
+
+declare const GE_StatsCustomEvent: 9437184;
+
+declare const GE_PlayerDebugDestroy: 5636096;
+
+declare const CE_Count: 56;
+
+declare const GE_SquadIdleExit: 3997696;
+
+declare const SQUADEXTID_Ability: "squad_ability_ext";
+
+declare const GE_TerritoryEdgeDeoccupied: 1179648;
+
+declare const SCARTYPE_AISQUAD: 1634300785;
+
+declare const GE_WallCombatEnded: 5832704;
+
+declare const AIEncounterNotification_SquadReleased_ID: 5;
+
+declare const SQUADEXTID_CombatBehaviour: "squad_combat_behaviour_ext";
+
+declare const GE_SquadFormation: 4194304;
+
+declare const EXTID_Burn: "burn_ext";
+
+declare const GE_BuildItemStart: 1572864;
+
+declare const EXTID_Camouflage: "camouflage_ext";
+
+declare const GE_EntityCrushed: 589824;
+
+declare const SQUADEXTID_CombatStance: "squad_combat_stance_ext";
+
+declare const PBG_Weapon: 3866624;
+
+declare const GE_ArtilleryFired: 2228224;
+
+declare const GE_EntityCommandIssued: 721152;
+
+declare const GE_EntitySpawn: 196608;
+
+declare const CampaignAutotestStatus_InProgress: 1;
+
+declare const EXTID_Supply: "supply_ext";
+
+declare const EXTID_MultiControlTerritoryController: "multi_control_territory_controller_ext";
+
+declare const SCARTYPE_RESOURCEAMOUNT: 1919251297;
+
+declare const GE_SquadSpawn: 3473408;
+
+declare const SQUADEXTID_Resource: "squad_resource_ext";
+
+declare const GE_ChallengeCustomEvent: 9371648;
+
+declare const CE_ACHIEVCINEISSTARTING: 9;
+
+declare const GE_BuildItemCancelled: 7995392;
+
+declare const GE_AccessoryWeaponFired: 2752512;
+
+declare const AISniperReactionMode_Respond: 1;
+
+declare const CE_CHISPYREVEALVILLAGERS: 35;
+
+declare const CE_ACHIEVOUTPOSTKILLSUGRA: 21;
+
+declare const PBG_Posture: 2818048;
+
+declare const SCARTYPE_CONSTPLAYER: 1668312178;
+
+declare const TFF_InEnemySectors: 64;
+
+declare const WR_RELIGIOUS: 9;
+
+declare const EXTID_FieldSupport: "field_support_ext";
+
+declare const GE_PlannedStructureCancelled: 1900544;
+
+declare const EXTID_StimulusPerception: "stimulus_perception_ext";
+
+declare const AIMTT_INVALID: 2147483647;
+
+declare const GE_TerrainAreaDeformed: 6946816;
+
+declare const EXTID_UI: "ui_ext";
+
+declare const GE_NonGlobalCamoDetected: 2162688;
+
+declare const EXTID_Combat: "combat_ext";
+
+declare const GE_SquadPinned: 3604480;
+
+declare const GE_PlayerDebugEndMatch: 5373952;
+
+declare const RT_Militia_HRE: 4;
+
+declare const GE_ItemAvailabilityChanged: 7536640;
+
+declare const PBG_Camera: 4653312;
+
+declare const AIMTT_wonder: 7;
+
+declare const AIMTT_wall: 6;
+
+declare const AIMTT_structure: 5;
+
+declare const AIMTT_squad: 4;
+
+declare const WR_OBJECTIVECOMPLETE: 5;
+
+declare const EXTID_Crushee: "crushee_ext";
+
+declare const CE_ACHIEVNETWORKOFCASTLESDOWN: 18;
+
+declare const RT_Stone: 6;
+
+declare const EXTID_InteractiveObject: "interactive_object_ext";
+
+declare const GE_AIPlayer_Migrated: 7143424;
+
+declare const AIFormationPhaseEncounter_EndReason_ShouldFallback: 4;
+
+declare const AID_INVALID: 127;
+
+declare const EXTID_Cover: "cover_ext";
+
+declare const EXTID_Holdable: "holdable_ext";
+
+declare const EXTID_DemolitionCharge: "demolition_charge_ext";
+
+declare const RT_Command: 1;
+
+declare const GE_PlayerPingOfShameLocal: 65792;
+
+declare const GE_EnemyTerritoryEntered: 6029312;
+
+declare const PBG_UITerritory: 3735552;
+
+declare const SQUADEXTID_Production: "squad_production_queue_ext";
+
+declare const AIEncounterType_FormationDefendArea: 6;
+
+declare const CE_ACHIEVDESTROYALLSIEGEOFKAZAN: 12;
+
+declare const GE_ReinforcementCreated: 1703936;
+
+declare const TEAM_NEUTRAL: 10001;
+
+declare const GE_PlayerFormationFinalized: 8716288;
+
+declare const TFF_NotNearPlayerStartingPositions: 256;
+
+declare const AIEncounterStage_Engaged: 3;
+
+declare const PBG_UITacticalMap: 4456704;
+
+declare const PBG_UIMissionArea: 4260096;
+
+declare const GE_MusicIntensityChange: 1769728;
+
+declare const GE_SubselectionChanged: 1507584;
+
+declare const GE_SelectionChanged: 1442048;
+
+declare const GE_PlayerLose: 1114368;
+
+declare const GE_PlayerWin: 1048832;
+
+declare const GE_GameOver: 983296;
+
+declare const GE_EntityParadropComplete: 2293760;
+
+declare const GE_DefaultCommandIssued: 852224;
+
+declare const GE_PlayerRemoveSquad: 8454144;
+
+declare const GE_SquadCommandIssued: 655616;
+
+declare const GD_EXPERT: 3;
+
+declare const GE_FormationSquadGroupCommandIssued: 590080;
+
+declare const GE_SquadBuildCommandIssued: 524544;
+
+declare const AIEncounterType_FormationMove: 4;
+
+declare const GE_PlayerKicked: 262400;
+
+declare const CE_ENGINFLUENCEDFARM: 38;
+
+declare const GE_PlayerLagComplaint: 131328;
+
+declare const GE_PlayerPingOfShame: 256;
+
+declare const EXTID_AttentionGen: "attention_gen_ext";
+
+declare const EXTID_Weapon: "weapon_ext";
+
+declare const EXTID_Crew: "crew_ext";
+
+declare const WR_ANNIHILATION: 0;
+
+declare const GE_DamageArea: 6881280;
+
+declare const EXTID_AttachmentChild: "attachment_child_ext";
+
+declare const PBG_SlotItem: 2883584;
+
+declare const CE_CHIIMPADDGOLDBASETAX: 32;
+
+declare const PBG_MoveType: 2097152;
+
+declare const PBG_PassType: 2555904;
+
+declare const PBG_Ability: 0;
+
+declare const PBG_Upgrade: 3407872;
+
+declare const AIArmyType_ANY: 2;
+
+declare const RT_Action: 0;
+
+declare const RT_Wood: 7;
+
+declare const INVALID_AISQUADID: 0;
+
+declare const AIWanderRadiusMode_Override: 2;
+
+declare const COUNTER_TurnsIncreasing: 5;
+
+declare const COUNTER_Count: 2;
+
+declare const GE_SectorOutOfSupply: 9568256;
+
+declare const CE_ABBSINGLEUNITCONVERSION: 4;
+
+declare const PBG_Tuning: 3276800;
+
+declare const CE_ACHIEVALLCANNONSSURVIVEFORMIGNY: 5;
+
+declare const GE_UpgradeTentative: 131072;
+
+declare const TFF_CausingSuppression: 8;
+
+declare const AIMTT_relic_dropoff: 2;
+
+declare const CE_ABBCONVERSIONIMMUNITY: 1;
+
+declare const GE_PlayerDonation: 6160384;
+
+declare const TFF_NotVisible: 16;
+
+declare const AIEncounterNotification_SquadReleased_Count: 6;
+
+declare const GE_UpgradeStart: 0;
+
+declare const SCARTYPE_CONSTSQUAD: 1668510052;
+
+declare const GE_SquadProductionQueue: 3670016;
+
+declare const EXTID_MineClearer: "mine_clearer_ext";
+
+declare const WR_Count: 14;
+
+declare const WR_WONDER: 13;
+
+declare const WR_SURRENDER: 12;
+
+declare const WR_SETTLEMENTS: 10;
+
+declare const GE_PlayerDebugBuildOrder: 5570560;
+
+declare const WR_REGICIDE: 7;
+
+declare const WR_OBJECTIVEFAILED: 6;
+
+declare const AIMTT_relic: 1;
+
+declare const WR_NONE: 4;
+
+declare const WR_KEEPRUSH: 3;
+
+declare const WR_ELIMINATION: 2;
+
+declare const CE_Begin: 0;
+
+declare const CE_SULTRACKMOSQUEHEALING: 55;
+
+declare const CE_ACHIEVALLGOLDCHESTSPATAY: 6;
+
+declare const GE_OnHealthExtBPConvert: 1376256;
+
+declare const CE_SULBERRYENHANCE: 53;
+
+declare const CE_RUSBLESSINGAURA: 50;
+
+declare const CE_RELICGATHER: 49;
+
+declare const CE_PALINGDAMAGE: 48;
+
+declare const CE_ORTOOSPEEDAURA: 47;
+
+declare const GE_SquadFreezing: 4653056;
+
+declare const CE_MONKCONVERSIONTRACKING: 44;
+
+declare const CE_HREINSPIREACTIVATE: 42;
+
+declare const CE_FRELANCERCHARGEENDS: 40;
+
+declare const GE_PlayerDropped: 196864;
+
+declare const CE_ENGCAMPFIREHEAL: 37;
+
+declare const CE_DEERSTONESSTONEBONUS: 36;
+
+declare const AIEncounterNotification_Failure: 1;
+
+declare const CE_CHIIMPADDGOLDSQUADSPAWNED: 33;
+
+declare const PBG_HitMaterial: 1572864;
+
+declare const CE_CASTLEAGEUPDELAY: 30;
+
+declare const CE_ACHIEVSUBUTAIBEATSBATU: 28;
+
+declare const EXTID_Upgrade: "upgrade_ext";
+
+declare const CE_ACHIEVSTOPMONGOLENTERCITY: 27;
+
+declare const CE_ACHIEVSHUTDOWNCHARGE: 26;
+
+declare const CE_ACHIEVRUSHUNTINGCABINGOLD: 25;
+
+declare const CE_ACHIEVFULLTRANSPORTDEATH: 15;
+
+declare const CE_ACHIEVDIEDTOZHANGJIAKOUGATE: 13;
+
+declare const CE_ACHIEVDEFEATSIEGEOFLINCOLNEARLY: 11;
+
+declare const CE_ACHIEVDANECAMPLOOTED: 10;
+
+declare const GE_StrategicPointChanged: 1769472;
+
+declare const CE_ABBMEDICALCENTERHEALTRACKING: 3;
+
+declare const CE_ABBIMPROVEDDEPOSITSTRACKING: 2;
+
+declare const CE_ABBCAMELSUPPORTTRACKING: 0;
+
+declare const RT_Begin: 0;
+
+declare const GE_PlayerResourcesAwarded: 6488064;
+
+declare const RT_Popcap: 5;
+
+declare const GE_SquadMerge: 4456448;
+
+declare const COUNTER_TurnsDecreasing: 4;
+
+declare const COUNTER_TimerIncreasing: 1;
+
+declare const EXTID_Casualty: "casualty_ext";
+
+declare const AIFormationPhaseEncounter_EndReason_AtDestination: 1;
+
+declare const GE_GameStart: 917760;
+
+declare const GE_PlayerSetResource: 9306112;
+
+declare const GE_InfluenceUpdate: 9240576;
+
+declare const GE_DistrictRatingChanged: 9175040;
+
+declare const SQUADEXTID_Modifier: "squad_modifier_ext";
+
+declare const GE_DistrictCreated: 8978432;
+
+declare const GE_AbilityCanCast: 7929856;
+
+declare const GE_AnimatorSwap: 8781824;
+
+declare const GE_PlayerTeamIdUpdated: 8585216;
+
+declare const GE_TickerValuesUpdated: 8519680;
+
+declare const GE_PlayerSubResource: 8192000;
+
+declare const GE_PlayerAddResource: 8126464;
+
+declare const GE_UpgradeRemoved: 7471104;
+
+declare const GE_EnemyActivitySpotted: 7864320;
+
+declare const GE_PlayerDebugFogOfWar: 5439488;
+
+declare const GE_SquadSizeChanged: 7667712;
+
+declare const GE_UpgradeCancelled: 7602176;
+
+declare const GE_SpeechAction: 7405568;
+
+declare const GE_DriverRecrewed: 7340032;
+
+declare const GE_DriverDecrewed: 7274496;
+
+declare const GE_CustomUIEvent: 7077888;
+
+declare const GE_PlayerSurrendered: 7012352;
+
+declare const GE_SpawnActionComplete: 6815744;
+
+declare const GE_SuperAbility: 6750208;
+
+declare const GE_AIPlayer_EncounterSniped: 6684672;
+
+declare const GE_AIPlayer_EncounterNotification: 6619136;
+
+declare const GE_AITakeOver: 6553600;
+
+declare const RT_Count: 8;
+
+declare const GE_PlayerPhaseUp: 6422528;
+
+declare const maxinteger: 9223372036854776000;
+
+declare const pi: 3.1415926535898;
+
+declare const mininteger: -9223372036854776000;
+
+declare const huge: typeof NaN;
+
+declare const GE_PlayerObjectiveDeleted: 6291456;
+
+declare const GE_LocalPlayerChanged: 6094848;
+
+declare const SCARTYPE_SCARPOS: 1936748403;
+
+declare const WR_SIEGE: 11;
+
+declare const GE_WallCombatStarted: 5767168;
+
+declare const GE_WallWalked: 5701632;
+
+declare const GE_PlayerDebugBuildTime: 5505024;
+
+declare const GE_PlayerCheat: 5242880;
+
+declare const GE_ExperienceGranted: 5177344;
+
+declare const GE_PlayerBeingAttacked: 5046272;
+
+declare const GE_SquadTeleported: 4980736;
+
+declare const GE_SquadOwnerChange: 4915200;
+
+declare const GE_SquadReplaced: 4784128;
+
+declare const GE_SquadCalledIn: 4718592;
+
+declare const EXTID_MoveType: "movetype_ext";
+
+declare const GE_SquadCold: 4587520;
+
+declare const GE_SquadSplit: 4390912;
+
+declare const GE_CasualtySquadSpawned: 4259840;
+
+declare const GE_SquadRetreatMsgReceived: 4128768;
+
+declare const GE_SquadRetreat: 4063232;
+
+declare const GE_SquadIdleEnter: 3932160;
+
+declare const GE_SquadItemDeposit: 3866624;
+
+declare const GE_EntityDespawn: 262144;
+
+declare const GE_SquadVeterancyRank: 3735552;
+
+declare const GE_SquadKilled: 3538944;
+
+declare const GE_FieldSupportChange: 3407872;
+
+declare const GE_BoobyTrapTriggered: 3145728;
+
+declare const GE_PathfindingBlockersUpdated: 3080192;
+
+declare const GE_PathfindingCanBuildBlockersRemoved: 3014656;
+
+declare const GE_PathfindingCanBuildBlockersAdded: 2949120;
+
+declare const GE_MoveFailed: 2883584;
+
+declare const GE_PathFound: 2818048;
+
+declare const GE_ProjectileLanded: 2686976;
+
+declare const GE_ProjectileFired: 2621440;
+
+declare const GE_AbilityComplete: 2490368;
+
+declare const GE_AbilityExecuted: 2424832;
+
+declare const GE_MineDefused: 2359296;
+
+declare const GE_ResourceDepleted: 2031616;
+
+declare const CE_ACHIEVBEGINSACREDSITECAPTURE: 7;
+
+declare const GE_BuildItemComplete: 1638400;
+
+declare const GE_GarrisonSquad: 1507328;
+
+declare const GE_TerritoryCornerDeoccupied: 1245184;
+
+declare const GE_ConstructionCancelled: 917504;
+
+declare const GE_ConstructionStart: 851968;
+
+declare const GE_EntityRestored: 786432;
+
+declare const GE_EntityWrecked: 720896;
+
+declare const GE_EntityLandmarkDestroyed: 655360;
+
+declare const GE_EntityTeleported: 524288;
+
+declare const GE_EntityKilled: 458752;
+
+declare const GE_EntityOwnerChange: 327680;
+
+declare const GE_SquadMembersChanged: 4521984;
+
+declare const TASK_COUNT: 47;
+
+declare const PBG_SquadProperties: 3014656;
+
+declare const TFF_InSectorProducingResources: 2048;
+
+declare const AISniperReactionMode_FallbackSelfDamaged: 2;
+
+declare const EXTID_Wall: "wall_ext";
+
+declare const WR_RELICHUNT: 8;
+
+declare const SQUADEXTID_Upgrade: "squad_upgrade_ext";
+
+declare const SQUADEXTID_Audio: "squad_audio_ext";
+
+declare const GD_INVALID: 127;
+
+declare const SCARTYPE_SQUAD: 1936811040;
+
+declare const Multiplayer: 1;
+
+declare const AISniperReactionMode_FallbackAnyDamaged: 3;
+
+declare const GE_PlayerRemoveEntity: 8323072;
+
+declare const SQUADEXTID_UI: "squad_ui_ext";
+
+declare const GE_SpeechWarningAction: 7798784;
+
+declare const TFF_FriendlyTargets: 512;
+
+declare const TFF_InMostClumpedSector: 128;
+
+declare const TFF_InFriendlySectors: 32;
+
+declare const TFF_Vehicle: 4;
+
+declare const TFF_Infantry: 2;
+
+declare const TFF_Visible: 1;
+
+declare const TFF_All: 0;
+
+declare const SCARTYPE_PREFAB: 1885757794;
+
+declare const AIFormationPhaseEncounter_EndReason_CombatThreshold: 3;
+
+declare const SCARTYPE_AIENCOUNTER: 1634297198;
+
+declare const SCARTYPE_AIENTITY: 1634297204;
+
+declare const SCARTYPE_AIPLAYER: 1634300012;
+
+declare const SCARTYPE_LOCSTRING: 1970562616;
+
+declare const SCARTYPE_PBG: 1885497120;
+
+declare const AIFormationPhaseEncounter_EndReason_CannotReachDestination: 7;
+
+declare const EXTID_Crush: "crush_ext";
+
+declare const AIArmyType_NAVAL: 1;
+
+declare const AID_EASY: 0;
+
+declare const AIFormationPhaseEncounter_EndReason_SelfSquadsEmpty: 9;
+
+declare const EXTID_Medic: "medic_ext";
+
+declare const AIFormationPhaseEncounter_EndReason_Invalid: 0;
+
+declare const AIWanderRadiusMode_Leash: 0;
+
+declare const Singleplayer: 0;
+
+declare const AID_NORMAL: 1;
+
+declare const AIEncounterNotification_SquadAdded_ID: 7;
+
+declare const AIEncounterNotification_Transition: 2;
+
+declare const CE_CHIIMPADDGOLDUPGRADECOMPLETE: 34;
+
+declare const AIEncounterNotification_Success: 0;
+
+declare const AIEncounterStage_Moving: 2;
+
+declare const AIEncounterType_FormationPhase: 8;
+
+declare const AIEncounterType_TownLife: 7;
+
+declare const AIEncounterType_FormationAttackMove: 5;
+
+declare const GE_PlayerKilled: 327936;
+
+declare const AIEncounterType_Ability: 3;
+
+declare const AIEncounterType_Move: 2;
+
+declare const PBG_SquadFormation: 2949120;
+
+declare const PBGTYPE_Squad: 3014656;
+
+declare const GE_UpgradeComplete: 65536;
+
+declare const GE_PlayerHostMigrated: 393472;
+
+declare const CE_SULSCHOLARLOADMADRASA: 54;
+
+declare const PBG_Race: 2228224;
+
+declare const PBG_TurnPlan: 3342336;
+
+declare const CE_ACHIEVFREGUILDHALLRESOURCES: 14;
+
+declare const GE_SquadItemPickup: 3801088;
+
+declare const AIMTT_resource_deposit: 3;
+
+declare const GE_SquadParadropComplete: 4325376;
+
+declare const GE_DamageReceived: 5111808;
+
+declare const GE_EntitySelectionVisualChanged: 8650752;
+
+declare const EXTID_ObjCover: "obj_cover_ext";
+
+declare const EXTID_Paradrop: "paradrop_ext";
+
+declare const AIArmyType_LAND: 0;
+
+declare const SQUADEXTID_Holdable: "squad_holdable_ext";
+
+declare const EXTID_Element: "element_ext";
+
+declare const CampaignAutotestStatus_Pass: 2;
+
+declare const SQUADEXTID_TeamWeapon: "squad_team_weapon_ext";
+
+declare const AIFormationPhaseEncounter_EndReason_EnemiesAtTargetCleared: 5;
+
+declare const EXTID_Mine: "mine_ext";
+
+declare const EXTID_Hold: "hold_ext";
+
+declare const GE_EntityRecrewed: 3342336;
+
+declare const EXTID_Resource: "resource_ext";
+
+declare const EXTID_Attention: "attention_ext";
+
+declare const GE_PlayerNameChanged: 6225920;
+
+declare const EXTID_MovementBlocker: "movement_blocker_ext";
+
+declare const AISniperReactionMode_None: 0;
+
+declare const GE_ConstructionPlanComplete: 1048576;
+
+declare const AID_EXPERT: 3;
+
+declare const SQUADEXTID_ActionApply: "squad_action_apply_ext";
+
+declare const PBG_Formation: 1310720;
+
+declare const CE_HREINSPIREDEACTIVATE: 43;
+
+declare const CE_RUSINFLUENCEDLUMBERCAMP: 52;
+
+declare const EXTID_Market: "market_ext";
+
+declare const GE_AbilityRecharged: 2555904;
+
+declare const GE_SquadUnloaded: 4849664;
+
+declare const CE_MONSIGNALARROWACTIVATE: 46;
+
+declare const EXTID_Flight: "flight_ext";
+
+declare const EXTID_Recrewable: "recrewable_ext";
+
+declare const GE_TradeRouteCompleted: 25601;
+
+declare const CampaignAutotestStatus_NotRun: 0;
+
+declare const AID_HARD: 2;
+
+declare const GE_PlayerEndStateChanged: 1966336;
+
+declare const EXTID_Projectile: "projectile_ext";
+
+declare const GE_TerritoryEntered: 5963776;
+
+declare const SQUADEXTID_Health: "squad_health_ext";
+
+declare const TFF_MeleeCombat: 4096;
+
+declare const GE_ConstructionFieldComplete: 1114112;
+
+declare const GD_EASY: 0;
+
+declare const EXTID_Ability: "ability_ext";
+
+declare const GE_WaitObjectDone: 8060928;
+
+declare const SQUADEXTID_Item: "squad_item_ext";
+
+declare const EXTID_StrategicPoint: "strategic_point_ext";
+
+declare const EXTID_RepairEngineer: "repair_engineer_ext";
+
+declare const Skirmish: 2;
+
+declare const GE_ResourceGathererAtCapacity: 2097152;
+
+declare const EXTID_Posture: "posture_ext";
+
+declare const EXTID_AideStation: "aide_station_ext";
+
+declare const GE_CommandReceiverStatusUpdate: 1704192;
+
+declare const EXTID_TeamWeaponUser: "team_weapon_user_ext";
+
+declare const RT_Food: 2;
+
+declare const EXTID_SupplyRoad: "supply_road_ext";
+
+declare const CE_ACHIEVPROTECTWALLSWALLINGFORD: 23;
+
+declare const COUNTER_None: -1;
+
+declare const GE_PresentatonSoundEvent: 1835264;
+
+declare const SQUADEXTID_Attention: "squad_attention_ext";
+
+declare const EXTID_Moving: "moving_ext";
+
+declare const EXTID_Health: "health_ext";
+
+declare const SCARTYPE_CONSTENTITY: 1667591796;
+
+declare const GE_PlayerAddEntity: 8257536;
+
+declare const SCARTYPE_MARKER: 1835758112;
+
+declare const PBGTYPE_Entity: 1245184;
+

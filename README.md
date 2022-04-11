@@ -24,6 +24,7 @@ View the types in your browser [here](https://aoemods.github.io/aoetypes-docs).
 - Clone this repo and `npm i`
 - (Optional): download https://cm2.network/ScarDoc/function_list.htm to `data/coh2-scardocs/`
 - (Optional): copy `function_list.htm` and `enum_list.htm` to `data/aoe4-scardocs/`
+- (Optional): run the script in `dumpglobals.lua` in the ingame console while with game mode set to None and follow its instructions in the comment
 - Copy scar / lua scripts from data.sga archives to `data/aoe4-scar/` (both cardinal and engine, the script will search there recursively so doesn't matter what the folders are named)
 - `npm start` will generate the types into `packages/aoetypes/types/aoetypes.d.ts`
 
@@ -32,6 +33,7 @@ View the types in your browser [here](https://aoemods.github.io/aoetypes-docs).
 - Age of Empires 4 scar scripts from engine and cardinal Data.sga
 - Company of Heroes 2 scardocs (has return types, matched across the AoE4 scardocs)
 - Manual overrides in `src/overrides.ts`
+- Globals dump with `dumpglobals.lua` ingame with game mode set to None
 
 # Acknowledgements
 This project was directly inspired by [its Dota 2 counterpart](https://github.com/ModDota/TypeScriptDeclarations).
