@@ -286,7 +286,7 @@ export function createDts(sources: TypeSources): dom.TopLevelDeclaration[] {
         members.push(typeDecl)
     }
 
-    for (const { name, type, value } of sources.aoe4GlobalsDumpConstants) {
+    for (const { name, type, value } of sources.aoe4GlobalsDumpConstants.sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0))) {
         if (name !== "_VERSION") {
             members.push(dom.create.const(
                 name,
