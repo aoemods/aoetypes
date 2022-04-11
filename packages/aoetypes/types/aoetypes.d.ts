@@ -340,82 +340,82 @@ declare function AISquad_GetStateModelVector3f(aiSquad: SquadID, key: string): a
 /**
  * Sets a boolean value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelBool(aiSquad: SquadID, key: string, value: boolean): any;
+declare function AISquad_SetStateModelBool(aiSquad: SquadID, key: string, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelEntityTarget(aiSquad: SquadID, key: string, value: EntityID): any;
+declare function AISquad_SetStateModelEntityTarget(aiSquad: SquadID, key: string, value: EntityID): void;
 
 /**
  * Sets a boolean value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTableBool(aiSquad: SquadID, key: string, tableRowIndex: number, value: boolean): any;
+declare function AISquad_SetStateModelEnumTableBool(aiSquad: SquadID, key: string, tableRowIndex: number, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTableEntityTarget(aiSquad: SquadID, key: string, tableRowIndex: number, value: EntityID): any;
+declare function AISquad_SetStateModelEnumTableEntityTarget(aiSquad: SquadID, key: string, tableRowIndex: number, value: EntityID): void;
 
 /**
  * Sets a float value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTableFloat(aiSquad: SquadID, key: string, tableRowIndex: number, value: number): any;
+declare function AISquad_SetStateModelEnumTableFloat(aiSquad: SquadID, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets an integer value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTableInt(aiSquad: SquadID, key: string, tableRowIndex: number, value: number): any;
+declare function AISquad_SetStateModelEnumTableInt(aiSquad: SquadID, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets a pbg value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTablePBG(aiSquad: SquadID, key: string, tableRowIndex: number, value: PropertyBagGroup): any;
+declare function AISquad_SetStateModelEnumTablePBG(aiSquad: SquadID, key: string, tableRowIndex: number, value: PropertyBagGroup): void;
 
 /**
  * Sets a Player TargetHandle value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTablePlayerTarget(aiSquad: SquadID, key: string, tableRowIndex: number, value: PlayerID): any;
+declare function AISquad_SetStateModelEnumTablePlayerTarget(aiSquad: SquadID, key: string, tableRowIndex: number, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTableSquadTarget(aiSquad: SquadID, key: string, tableRowIndex: number, value: SquadID): any;
+declare function AISquad_SetStateModelEnumTableSquadTarget(aiSquad: SquadID, key: string, tableRowIndex: number, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the AISquad's state model corresponding to the given key and table row index (0 based).
  */
-declare function AISquad_SetStateModelEnumTableVector3f(aiSquad: SquadID, key: string, tableRowIndex: number, value: Position): any;
+declare function AISquad_SetStateModelEnumTableVector3f(aiSquad: SquadID, key: string, tableRowIndex: number, value: Position): void;
 
 /**
  * Sets a float value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelFloat(aiSquad: SquadID, key: string, value: number): any;
+declare function AISquad_SetStateModelFloat(aiSquad: SquadID, key: string, value: number): void;
 
 /**
  * Sets an integer value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelInt(aiSquad: SquadID, key: string, value: number): any;
+declare function AISquad_SetStateModelInt(aiSquad: SquadID, key: string, value: number): void;
 
 /**
  * Sets a pbg value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelPBG(aiSquad: SquadID, key: string, value: PropertyBagGroup): any;
+declare function AISquad_SetStateModelPBG(aiSquad: SquadID, key: string, value: PropertyBagGroup): void;
 
 /**
  * Sets a Player TargetHandle value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelPlayerTarget(aiSquad: SquadID, key: string, value: PlayerID): any;
+declare function AISquad_SetStateModelPlayerTarget(aiSquad: SquadID, key: string, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelSquadTarget(aiSquad: SquadID, key: string, value: SquadID): any;
+declare function AISquad_SetStateModelSquadTarget(aiSquad: SquadID, key: string, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the AISquad's state model corresponding to the given key.
  */
-declare function AISquad_SetStateModelVector3f(aiSquad: SquadID, key: string, value: Position): any;
+declare function AISquad_SetStateModelVector3f(aiSquad: SquadID, key: string, value: Position): void;
 
 /**
  * calculates a valid target position for a jump slide ability
@@ -493,13 +493,13 @@ declare function Player_GetMaximumAge(player: PlayerID): number;
  * Sets the current age of a player
  * Age can be a number from 1 to 4, or any one of these: AGE_DARK, AGE_FEUDAL, AGE_CASTLE or AGE_IMPERIAL
  */
-declare function Player_SetCurrentAge(player: PlayerID, age: number): any;
+declare function Player_SetCurrentAge(player: PlayerID, age: number): void;
 
 /**
  * Sets the maximum age a player can progress to
  * Age can be a number from 1 to 4, or any one of these: AGE_DARK, AGE_FEUDAL, AGE_CASTLE or AGE_IMPERIAL. You cannot build the landmark building at the end of the maximum age.
  */
-declare function Player_SetMaximumAge(player: PlayerID, age: number): any;
+declare function Player_SetMaximumAge(player: PlayerID, age: number): void;
 
 /**
  * Warps all members of an SGroup immediately to a marker but puts them in formation
@@ -774,7 +774,7 @@ declare function RenderStats_Enable(): any;
 /**
  * Set the render stats refresh update interval (seconds)
  */
-declare function RenderStats_SetUpdateTime(time: number): any;
+declare function RenderStats_SetUpdateTime(time: number): void;
 
 /**
  * Sort render stats by model instances (descending sort)
@@ -834,7 +834,7 @@ declare function ShaderStats_Enable(): any;
 /**
  * Set the render stats refresh update interval (seconds)
  */
-declare function ShaderStats_SetUpdateTime(time: number): any;
+declare function ShaderStats_SetUpdateTime(time: number): void;
 
 /**
  * Sort render stats by model instances (descending sort)
@@ -1105,7 +1105,7 @@ declare function dr_terrainrect(pos: Position, w: number, h: number, r: number, 
  * Sets the target for an encounter to a provided marker, position, sgroup, egroup, squad, or entity
  * When you specify a group as the target, it chooses a single squad or entity - if you pass something for the closestTo parameter it will choose the closest one to that, otherwise it will just choose the first
  */
-declare function AIEncounter_TargetGuidance_SetTarget(aiEncounter: AIEncounterID, OPT_closestTo?: MARKER | Position | GroupID): any;
+declare function AIEncounter_TargetGuidance_SetTarget(aiEncounter: AIEncounterID, OPT_closestTo?: MARKER | Position | GroupID): void;
 
 /**
  * Add an SGroup to an existing SCAR encounter
@@ -1173,7 +1173,7 @@ declare function Encounter_Restart(encounter: EncounterTable): any;
  * Update the goal data for a given encounter
  * This will cause an encounter to restart internally
  */
-declare function Encounter_SetGoalData(encounter: EncounterTable, newGoal: any): any;
+declare function Encounter_SetGoalData(encounter: EncounterTable, newGoal: any): void;
 
 /**
  * Starts an encounter that has been stopped
@@ -1403,7 +1403,7 @@ declare function Reinforcement_RequestHasBeenTriggered(module: ModuleTable, succ
 /**
  * Sets a module's "ideal composition" to a given unit table, overriding what was there before
  */
-declare function Reinforcement_SetIdealComposition(module: any, units: UnitTable): any;
+declare function Reinforcement_SetIdealComposition(module: any, units: UnitTable): void;
 
 /**
  * Updates a module's "ideal composition" to subtract an sgroup's units from the high water mark (used when those units are removed from an SGroup)
@@ -1737,7 +1737,7 @@ declare function Action_SpawnUnitsToModule_Do(): any;
 /**
  * Set whether or not an action marker is visible.
  */
-declare function ActionMarker_SetVisible(name: string, visible: boolean): any;
+declare function ActionMarker_SetVisible(name: string, visible: boolean): void;
 
 /**
  * Start the given action marker's FX.
@@ -1903,37 +1903,37 @@ declare function AI_PushPrefabAIIntent(prefabId: UniqueID, player: PlayerID, aiP
 /**
  * Set the active status of an existing AIPrefab
  */
-declare function AI_SetPrefabActive(prefabId: UniqueID, player: PlayerID, active: boolean): any;
+declare function AI_SetPrefabActive(prefabId: UniqueID, player: PlayerID, active: boolean): void;
 
 /**
  * Set the can_reassign state of an existing AIPrefab
  */
-declare function AI_SetPrefabCanReassign(prefabId: UniqueID, player: PlayerID, canReassign: boolean): any;
+declare function AI_SetPrefabCanReassign(prefabId: UniqueID, player: PlayerID, canReassign: boolean): void;
 
 /**
  * Set the squad selection of an existing AIPrefab by SGROUP
  */
-declare function AI_SetPrefabSelection_SGroup(prefabId: UniqueID, player: PlayerID, squads: SGroupID): any;
+declare function AI_SetPrefabSelection_SGroup(prefabId: UniqueID, player: PlayerID, squads: SGroupID): void;
 
 /**
  * Set the target of an existing AIPrefab by EGROUP
  */
-declare function AI_SetPrefabTarget_EGroup(prefabId: UniqueID, player: PlayerID, entities: EGroupID): any;
+declare function AI_SetPrefabTarget_EGroup(prefabId: UniqueID, player: PlayerID, entities: EGroupID): void;
 
 /**
  * Set the target of an existing AIPrefab by Position
  */
-declare function AI_SetPrefabTarget_Position(prefabId: UniqueID, player: PlayerID, position: Position): any;
+declare function AI_SetPrefabTarget_Position(prefabId: UniqueID, player: PlayerID, position: Position): void;
 
 /**
  * Set the target of an existing AIPrefab by SGROUP
  */
-declare function AI_SetPrefabTarget_SGroup(prefabId: UniqueID, player: PlayerID, squads: SGroupID): any;
+declare function AI_SetPrefabTarget_SGroup(prefabId: UniqueID, player: PlayerID, squads: SGroupID): void;
 
 /**
  * Set the target of an existing AIPrefab via waypoints
  */
-declare function AI_SetPrefabTarget_Waypoints(prefabId: UniqueID, player: PlayerID, waypointName: string): any;
+declare function AI_SetPrefabTarget_Waypoints(prefabId: UniqueID, player: PlayerID, waypointName: string): void;
 
 /**
  * Checks if the cached path crosses known enemy territory
@@ -2171,27 +2171,27 @@ declare function AIPlayer_ResetAIAbilityPriorityOverride(player: PlayerID, aiAbi
 /**
  * Sets the ability priority override for all the AISquads owned by the player. -1 to disable the ability. NOTE: Encounter overrides have higher priority.
  */
-declare function AIPlayer_SetAbilityPriorityOverride(player: PlayerID, abilityPBG: PropertyBagGroup, priority: number): any;
+declare function AIPlayer_SetAbilityPriorityOverride(player: PlayerID, abilityPBG: PropertyBagGroup, priority: number): void;
 
 /**
  * Sets the ability priority override for all the abilities contained in the AIAbilityBag for all the AISquads owned by the player. -1 to disable the ability. NOTE: Encounter overrides have higher priority.
  */
-declare function AIPlayer_SetAIAbilityPriorityOverride(player: PlayerID, aiAbilityPBG: PropertyBagGroup, priority: number): any;
+declare function AIPlayer_SetAIAbilityPriorityOverride(player: PlayerID, aiAbilityPBG: PropertyBagGroup, priority: number): void;
 
 /**
  * Add entities (buildings) to a homebase. Entities must be owned by player.
  */
-declare function AIPlayer_SetEntityHomebase(aiPlayer: PlayerID, eGroup: EGroupID, homeBaseID: number): any;
+declare function AIPlayer_SetEntityHomebase(aiPlayer: PlayerID, eGroup: EGroupID, homeBaseID: number): void;
 
 /**
  * Add squads to a homebase. Squads must be owned by player.
  */
-declare function AIPlayer_SetSquadHomebase(aiPlayer: PlayerID, sGroup: SGroupID, homeBaseID: number): any;
+declare function AIPlayer_SetSquadHomebase(aiPlayer: PlayerID, sGroup: SGroupID, homeBaseID: number): void;
 
 /**
  * Set the base strategic intention of a player
  */
-declare function AIPlayer_SetStrategicBaseIntention(player: PlayerID, intentionName: string, value: number): any;
+declare function AIPlayer_SetStrategicBaseIntention(player: PlayerID, intentionName: string, value: number): void;
 
 /**
  * Toggle debug draw for the specified path, -1 will draw all of them
@@ -2302,7 +2302,7 @@ declare function app_setidealframerate(frameRate: number): any;
 /**
  * Run the game at specified frame rate (for capturing movies). Only works with 60 or 120, other rates are defaulted to 60. Setting it to 0 disables movie mode
  */
-declare function App_SetMovieModeFramerate(frameRate: number): any;
+declare function App_SetMovieModeFramerate(frameRate: number): void;
 
 /**
  * assigns each tradecart to trade
@@ -2539,17 +2539,17 @@ declare function Camera_SetDeclination(dec: number): void;
 /**
  * Set the default camera declination (tilt).
  */
-declare function Camera_SetDefaultDeclination(declination: number): any;
+declare function Camera_SetDefaultDeclination(declination: number): void;
 
 /**
  * Set the default camera orbit (rotation).
  */
-declare function Camera_SetDefaultOrbit(orbit: number): any;
+declare function Camera_SetDefaultOrbit(orbit: number): void;
 
 /**
  * Set the default zoom distance for the camera.
  */
-declare function Camera_SetDefaultZoomDist(distance: number): any;
+declare function Camera_SetDefaultZoomDist(distance: number): void;
 
 /**
  * Enables / Disables camera input.
@@ -2564,7 +2564,7 @@ declare function Camera_SetOrbit(orbit: number): void;
 /**
  * Set the current camera orbit relative to the current orbit (relative rotation).
  */
-declare function Camera_SetOrbitRelative(deltaOrbit: number): any;
+declare function Camera_SetOrbitRelative(deltaOrbit: number): void;
 
 /**
  * Set the current zoom distance for the camera.
@@ -3104,12 +3104,12 @@ declare function Game_SendCustomChallengeEvent(player: PlayerID, eventType: Chal
 /**
  * sets lock state for stored data at location named by dataID.
  */
-declare function Game_SetDataLock(dataID: string, lock: boolean): any;
+declare function Game_SetDataLock(dataID: string, lock: boolean): void;
 
 /**
  * set the simulation update rate
  */
-declare function Game_SetSimRate(rate: number): any;
+declare function Game_SetSimRate(rate: number): void;
 
 /**
  * Brings up the pause menu. The game does not get paused until the end of the current sim tick, so anything that comes after Game_ShowPauseMenu in your function will still get executed, as well as any rules set to run during that frame.
@@ -3348,17 +3348,17 @@ declare function Marker_InProximity(marker: MarkerID, pos: Position): boolean;
 /**
  * Set the proximity shape of a marker to a circle with size radius
  */
-declare function Marker_SetProximityCircle(marker: MarkerID, radius: number): any;
+declare function Marker_SetProximityCircle(marker: MarkerID, radius: number): void;
 
 /**
  * Set the proximity shape of a marker to point marker (no proximity)
  */
-declare function Marker_SetProximityPoint(marker: MarkerID): any;
+declare function Marker_SetProximityPoint(marker: MarkerID): void;
 
 /**
  * Set the proximity shape of a marker to a rectangle with dimensions width and height
  */
-declare function Marker_SetProximityRectangle(marker: MarkerID, width: number, height: number): any;
+declare function Marker_SetProximityRectangle(marker: MarkerID, width: number, height: number): void;
 
 /**
  * Gives the sgroup a series of queued orders to go to each marker with the same markerName.
@@ -3510,7 +3510,7 @@ declare function Misc_ScreenshotExt(fileExtension: string): any;
 /**
  * Sets the current autotest being used.  Used to set default text in the crash reports
  */
-declare function Misc_SetCurrentAutotest(description: string): any;
+declare function Misc_SetCurrentAutotest(description: string): void;
 
 /**
  * Shows or hides designer splats, which are splats in the UI folder
@@ -3589,12 +3589,12 @@ declare function MissionOMatic_RevealMovingSGroup(): any;
 /**
  * Sets all gates in an EGroup to be either locked or unlocked
  */
-declare function Missionomatic_SetGateLock(egroup: EGroupID, locked: boolean): any;
+declare function Missionomatic_SetGateLock(egroup: EGroupID, locked: boolean): void;
 
 /**
  * Follow-up gate locking function, because you can't call two commands on an Entity in the same frame
  */
-declare function Missionomatic_SetGateLock_B(): any;
+declare function Missionomatic_SetGateLock_B(): void;
 
 /**
  * Prepares a command to be issued in a second or so, once a sim frame has ticked; usually used when units were just spawned by a previous command
@@ -3774,27 +3774,27 @@ declare function Obj_GetVisible(objectiveID: number): boolean;
 /**
  * Set colour of objective. In order red, green, blue, alpha.
  */
-declare function Obj_SetColour(objectiveID: number, red: number, green: number, blue: number, alpha: number): any;
+declare function Obj_SetColour(objectiveID: number, red: number, green: number, blue: number, alpha: number): void;
 
 /**
  * Set the count of the counter on the objective.
  */
-declare function Obj_SetCounterCount(objectiveID: number, count: number): any;
+declare function Obj_SetCounterCount(objectiveID: number, count: number): void;
 
 /**
  * Set the maximum count of the counter on the objective.
  */
-declare function Obj_SetCounterMax(objectiveID: number, max: number): any;
+declare function Obj_SetCounterMax(objectiveID: number, max: number): void;
 
 /**
  * Set the number of seconds on an objective with a timer. Only used to inform the UI.
  */
-declare function Obj_SetCounterTimerSeconds(objectiveID: number, timerSeconds: number): any;
+declare function Obj_SetCounterTimerSeconds(objectiveID: number, timerSeconds: number): void;
 
 /**
  * Set the counter type of an objective.
  */
-declare function Obj_SetCounterType(objectiveID: number, counterType: number): any;
+declare function Obj_SetCounterType(objectiveID: number, counterType: number): void;
 
 /**
  * Set description text localization ID for the objective
@@ -3815,12 +3815,12 @@ declare function Obj_SetObjectiveFunction(id: number, fnType: number, f: any): v
 /**
  * Set objective progress bar value
  */
-declare function Obj_SetProgress(objectiveID: number, progress: number): any;
+declare function Obj_SetProgress(objectiveID: number, progress: number): void;
 
 /**
  * Set objective progress bar visibility
  */
-declare function Obj_SetProgressVisible(objectiveID: number, visible: boolean): any;
+declare function Obj_SetProgressVisible(objectiveID: number, visible: boolean): void;
 
 /**
  * Set objective state ( OS_Off, OS_Incomplete, OS_Complete, OS_Failed )
@@ -3987,12 +3987,12 @@ declare function Raiding_RemoveParty(): any;
 /**
  * Sets the maximum number of raiding parties allowed at once
  */
-declare function Raiding_SetPartyLimit(): any;
+declare function Raiding_SetPartyLimit(): void;
 
 /**
  * Sets whether scouts are regularly sent to look for the player
  */
-declare function Raiding_SetScouting(): any;
+declare function Raiding_SetScouting(): void;
 
 /**
  * Spawns an extremely basic, small probe attack meant to alert the player more than anything
@@ -4160,17 +4160,17 @@ declare function RovingArmy_Reset(moduleData: any): any;
 /**
  * Sets the modules target, removing any previous targets in the process. Skip transition means it wont start attacking the new target, and should usually be false.
  */
-declare function RovingArmy_SetTarget(moduleData: Module, target: string, OPT_combatRange?: number, OPT_leashRange?: number, OPT_skipTransition?: boolean): any;
+declare function RovingArmy_SetTarget(moduleData: Module, target: string, OPT_combatRange?: number, OPT_leashRange?: number, OPT_skipTransition?: boolean): void;
 
 /**
  * Clears any previous targets away, and sets new ones
  */
-declare function RovingArmy_SetTargets(moduleData: Module, targets: any): any;
+declare function RovingArmy_SetTargets(moduleData: Module, targets: any): void;
 
 /**
  * sets withdrawThreshold
  */
-declare function RovingArmy_SetWithdrawThreshold(): any;
+declare function RovingArmy_SetWithdrawThreshold(): void;
 
 /**
  * Orders the module to attack it's next target. Call this if the modules was previously given a pause command. Calling this on a module that has withdrawn will only result in it withdrawing again. Call RovingArmy_ForceStart if you want to override withdraw behaviour.
@@ -4205,7 +4205,7 @@ declare function RulesProfiler_ResetTypeFilter(): any;
 /**
  * Filter the RulesProfiler to filter displayed rules to given type. E.g., "SCAR", "AI"
  */
-declare function RulesProfiler_SetTypeFilter(filter: string): any;
+declare function RulesProfiler_SetTypeFilter(filter: string): void;
 
 /**
  * execute command string in cheat menu domain. Will only work if dev mode is enabled! (it's OFF by default in RTM builds)
@@ -4260,7 +4260,7 @@ declare function Setup_SetPlayerRace(player: PlayerID, raceIndex: number): void;
 /**
  * Set the starting position of a given player.
  */
-declare function Setup_SetPlayerStartingPosition(player: PlayerID, pos: Position): any;
+declare function Setup_SetPlayerStartingPosition(player: PlayerID, pos: Position): void;
 
 /**
  * Put a player in a team. Use TEAM_NEUTRAL as the team_id to set the player as neutral
@@ -4349,17 +4349,17 @@ declare function Sim_MarketExecuteTrade(player: PlayerID, resourceName: string, 
 /**
  * Sets market trade status between two players, using the array index they appear at in PlayerManager::GetPlayers_CS()
  */
-declare function Sim_MarketSetTradeStatusPlayer(firstPlayer: PlayerID, secondPlayer: PlayerID, status: boolean): any;
+declare function Sim_MarketSetTradeStatusPlayer(firstPlayer: PlayerID, secondPlayer: PlayerID, status: boolean): void;
 
 /**
  * Sets trade status between a player number and a settlement ID.
  */
-declare function Sim_MarketSetTradeStatusSettlement(player: PlayerID, settlement: EntityID, status: boolean): any;
+declare function Sim_MarketSetTradeStatusSettlement(player: PlayerID, settlement: EntityID, status: boolean): void;
 
 /**
  * Set/clear drawing of the market info.
  */
-declare function Sim_SetDrawMarketInfo(bEnable: boolean): any;
+declare function Sim_SetDrawMarketInfo(bEnable: boolean): void;
 
 /**
  * Play the specified movie.
@@ -4770,7 +4770,7 @@ declare function TownLife_IsDefeated(): any;
 /**
  * Changes the player owner
  */
-declare function TownLife_SetPlayerOwner(): any;
+declare function TownLife_SetPlayerOwner(): void;
 
 /**
  * Starts a rule which will monitor the mission for trade cart deaths belonging to the specified players, and has a 1/3 chance of dropping a random resource pickup.
@@ -4847,32 +4847,32 @@ declare function UI_RemoveEventHandler(elementName: string, eventName: string, c
 /**
  * Converts table to a data context for bindings of elementName.
  */
-declare function UI_SetDataContext(elementName: string, table: StackVarTable): any;
+declare function UI_SetDataContext(elementName: string, table: StackVarTable): void;
 
 /**
  * Converts table to a data context exposed through entity models.
  */
-declare function UI_SetEntityDataContext(entity: EntityID, table: StackVarTable): any;
+declare function UI_SetEntityDataContext(entity: EntityID, table: StackVarTable): void;
 
 /**
  * Converts table to a data context exposed through player models.
  */
-declare function UI_SetPlayerDataContext(player: PlayerID, table: StackVarTable): any;
+declare function UI_SetPlayerDataContext(player: PlayerID, table: StackVarTable): void;
 
 /**
  * Sets the property propertyName on elementName to value stackVar.
  */
-declare function UI_SetPropertyValue(elementName: string, propertyName: string, stackVar: StackVar): any;
+declare function UI_SetPropertyValue(elementName: string, propertyName: string, stackVar: StackVar): void;
 
 /**
  * Sets the properties on elementName to the key/value pairs in propertyTable.
  */
-declare function UI_SetPropertyValues(elementName: string, propertyTable: StackVarTable): any;
+declare function UI_SetPropertyValues(elementName: string, propertyTable: StackVarTable): void;
 
 /**
  * Converts table to a data context exposed through squad models.
  */
-declare function UI_SetSquadDataContext(squad: SquadID, table: StackVarTable): any;
+declare function UI_SetSquadDataContext(squad: SquadID, table: StackVarTable): void;
 
 /**
  * Forces ALL in-process deployments to complete instantly.
@@ -5054,7 +5054,7 @@ declare function Wave_RefreshSpawns(): any;
 /**
  * Updates the wave with a new unit table. These units will be produced whenever prepare is called
  */
-declare function Wave_SetUnits(wave: Wave, units: any): any;
+declare function Wave_SetUnits(wave: Wave, units: any): void;
 
 /**
  * Wins/loses a single team mission for the local teams
@@ -5313,17 +5313,17 @@ declare function AI_PlayerAddExclusionArea(pPlayer: PlayerID, position: Position
 /**
  * Set a named bool value in the AIPlayer DataDictionary
  */
-declare function AI_PlayerDataDictionarySetBool(player: PlayerID, varName: string, value: boolean): any;
+declare function AI_PlayerDataDictionarySetBool(player: PlayerID, varName: string, value: boolean): void;
 
 /**
  * Set a named number value in the AIPlayer DataDictionary
  */
-declare function AI_PlayerDataDictionarySetNumber(player: PlayerID, varName: string, value: number): any;
+declare function AI_PlayerDataDictionarySetNumber(player: PlayerID, varName: string, value: number): void;
 
 /**
  * Set a named PBG value in the AIPlayer DataDictionary
  */
-declare function AI_PlayerDataDictionarySetPBG(player: PlayerID, varName: string, value: PropertyBagGroup): any;
+declare function AI_PlayerDataDictionarySetPBG(player: PlayerID, varName: string, value: PropertyBagGroup): void;
 
 /**
  * Remove the Exclusion area from the AI Player
@@ -5349,22 +5349,22 @@ declare function AI_RestoreDefaultPersonalitySettings(pPlayer: PlayerID): any;
  * Set Combat Range Policy for the AISquad, overrides the one set at Encounter/task level
  * policy is one of: AICombatRangePolicy_Default, AICombatRangePolicy_Ranged_MinRange, AICombatRangePolicy_Ranged_MaxRange, AICombatRangePolicy_MeleeRange
  */
-declare function AI_SetAISquadCombatRangePolicyTaskOverride(pSquadAI: SquadID, policy: CombatRangePolicy): any;
+declare function AI_SetAISquadCombatRangePolicyTaskOverride(pSquadAI: SquadID, policy: CombatRangePolicy): void;
 
 /**
  * Enables or Disables an AI player to be targetable by other AI players.
  */
-declare function AI_SetAITargetable(pPlayer: PlayerID, targetable: boolean): any;
+declare function AI_SetAITargetable(pPlayer: PlayerID, targetable: boolean): void;
 
 /**
  * This sets importance bonus of the given capture point
  */
-declare function AI_SetCapturePointAsHighPriority(pPlayer: PlayerID, pEntity: EntityID): any;
+declare function AI_SetCapturePointAsHighPriority(pPlayer: PlayerID, pEntity: EntityID): void;
 
 /**
  * Enable or disable the AI debug display
  */
-declare function AI_SetDebugDisplay(pPlayer: PlayerID, enable: boolean): any;
+declare function AI_SetDebugDisplay(pPlayer: PlayerID, enable: boolean): void;
 
 /**
  * Set the difficulty level of this AI player
@@ -5376,17 +5376,17 @@ declare function AI_SetDifficulty(pPlayer: PlayerID, difficultyLevel: number): v
  * This sets the repair priority value for a given squad or building PBG.
  * pbgShortname is the PBG of the squad or building to change its priority value. priorityValue must be within range [0, 1], with higher value being more desirable to repair.
  */
-declare function AI_SetPBGRepairPriority(pPlayer: PlayerID, pbgShortname: string, priorityValue: number): any;
+declare function AI_SetPBGRepairPriority(pPlayer: PlayerID, pbgShortname: string, priorityValue: number): void;
 
 /**
  * Set the personality name of this AI player
  */
-declare function AI_SetPersonality(pPlayer: PlayerID, personalityName: string): any;
+declare function AI_SetPersonality(pPlayer: PlayerID, personalityName: string): void;
 
 /**
  * Set an AI Player's desired income of specified resource type at specified value. This will affect the AI resource gathering, building construction and production priority in trying to achieve the specified resource income.
  */
-declare function AI_SetResourceIncomeDesire(player: PlayerID, resourceType: number, desiredIncome: number): any;
+declare function AI_SetResourceIncomeDesire(player: PlayerID, resourceType: number, desiredIncome: number): void;
 
 /**
  * Clear a named Squad in the AISquad DataDictionary
@@ -5411,22 +5411,22 @@ declare function AI_SquadDataDictionaryGetSquad(squad: SquadID, varName: string)
 /**
  * Set a named bool value in the AISquad DataDictionary
  */
-declare function AI_SquadDataDictionarySetBool(squad: SquadID, varName: string, value: boolean): any;
+declare function AI_SquadDataDictionarySetBool(squad: SquadID, varName: string, value: boolean): void;
 
 /**
  * Set a named number value in the AISquad DataDictionary
  */
-declare function AI_SquadDataDictionarySetNumber(squad: SquadID, varName: string, value: number): any;
+declare function AI_SquadDataDictionarySetNumber(squad: SquadID, varName: string, value: number): void;
 
 /**
  * Set a named PBG value in the AISquad DataDictionary
  */
-declare function AI_SquadDataDictionarySetPBG(squad: SquadID, varName: string, value: PropertyBagGroup): any;
+declare function AI_SquadDataDictionarySetPBG(squad: SquadID, varName: string, value: PropertyBagGroup): void;
 
 /**
  * Set a named Squad in the AISquad DataDictionary
  */
-declare function AI_SquadDataDictionarySetSquad(squad: SquadID, varName: string, targetSquad: SquadID): any;
+declare function AI_SquadDataDictionarySetSquad(squad: SquadID, varName: string, targetSquad: SquadID): void;
 
 /**
  * Toggles the AI debug display
@@ -5458,7 +5458,7 @@ declare function AI_UpdateStatics(pPlayer: PlayerID): void;
 /**
  * Set ability for ability encounter
  */
-declare function AIAbilityEncounter_AbilityGuidance_SetAbilityPBG(pEncounter: AIEncounterID, abilityPBG: PropertyBagGroup): any;
+declare function AIAbilityEncounter_AbilityGuidance_SetAbilityPBG(pEncounter: AIEncounterID, abilityPBG: PropertyBagGroup): void;
 
 /**
  * Ends the encounter and deletes it.
@@ -5519,27 +5519,27 @@ declare function AIEncounter_CombatGuidance_RemoveForcedCombatTargetSquad(pEncou
  * Set Combat Range Policy for the encounter
  * policy is one of: AICombatRangePolicy_Default, AICombatRangePolicy_Ranged_MinRange, AICombatRangePolicy_Ranged_MaxRange, AICombatRangePolicy_MeleeRange
  */
-declare function AIEncounter_CombatGuidance_SetCombatRangePolicy(pEncounter: AIEncounterID, policy: CombatRangePolicy): any;
+declare function AIEncounter_CombatGuidance_SetCombatRangePolicy(pEncounter: AIEncounterID, policy: CombatRangePolicy): void;
 
 /**
  * Set if the Attack Encounter should spread the attackers on multiple targets
  */
-declare function AIEncounter_CombatGuidance_SetSpreadAttackers(pEncounter: AIEncounterID, value: boolean): any;
+declare function AIEncounter_CombatGuidance_SetSpreadAttackers(pEncounter: AIEncounterID, value: boolean): void;
 
 /**
  * Set a named bool value in the Encounter DataDictionary
  */
-declare function AIEncounter_DataDictionarySetBool(pEncounter: AIEncounterID, varName: string, value: boolean): any;
+declare function AIEncounter_DataDictionarySetBool(pEncounter: AIEncounterID, varName: string, value: boolean): void;
 
 /**
  * Set a named number value in the Encounter DataDictionary
  */
-declare function AIEncounter_DataDictionarySetNumber(pEncounter: AIEncounterID, varName: string, value: number): any;
+declare function AIEncounter_DataDictionarySetNumber(pEncounter: AIEncounterID, varName: string, value: number): void;
 
 /**
  * Set a named PBG value in the Encounter DataDictionary
  */
-declare function AIEncounter_DataDictionarySetPBG(pEncounter: AIEncounterID, varName: string, value: PropertyBagGroup): any;
+declare function AIEncounter_DataDictionarySetPBG(pEncounter: AIEncounterID, varName: string, value: PropertyBagGroup): void;
 
 /**
  * Enables/disables idle squads garrisoning.
@@ -5574,47 +5574,47 @@ declare function AIEncounter_EngagementGuidance_EnableSetupLocations(pEncounter:
 /**
  * Sets a TownLife Encounter whether to allow resource gathering from deposits outside of Encounter leash.
  */
-declare function AIEncounter_EngagementGuidance_SetAllowResourceGatheringOutsideLeash(pEncounter: AIEncounterID, allowOutsideLeash: boolean): any;
+declare function AIEncounter_EngagementGuidance_SetAllowResourceGatheringOutsideLeash(pEncounter: AIEncounterID, allowOutsideLeash: boolean): void;
 
 /**
  * Enable encounter to return to previous stages if they fail to meet conditions for current stage.
  */
-declare function AIEncounter_EngagementGuidance_SetAllowReturnToPreviousStages(pEncounter: AIEncounterID, enable: boolean): any;
+declare function AIEncounter_EngagementGuidance_SetAllowReturnToPreviousStages(pEncounter: AIEncounterID, enable: boolean): void;
 
 /**
  * Enable coordinated arrival in attack encounters
  */
-declare function AIEncounter_EngagementGuidance_SetCoordinatedSetup(pEncounter: AIEncounterID, enable: boolean): any;
+declare function AIEncounter_EngagementGuidance_SetCoordinatedSetup(pEncounter: AIEncounterID, enable: boolean): void;
 
 /**
  * Enables/disables sniper reactions
  */
-declare function AIEncounter_EngagementGuidance_SetEnableSniperReactions(pEncounter: AIEncounterID, enable: boolean): any;
+declare function AIEncounter_EngagementGuidance_SetEnableSniperReactions(pEncounter: AIEncounterID, enable: boolean): void;
 
 /**
  * Enables/disables SubEngagementAreas
  */
-declare function AIEncounter_EngagementGuidance_SetEnableSubEngagementAreas(pEncounter: AIEncounterID, enable: boolean): any;
+declare function AIEncounter_EngagementGuidance_SetEnableSubEngagementAreas(pEncounter: AIEncounterID, enable: boolean): void;
 
 /**
  * Sets max time, in seconds, to accomplish encounter, once the target is engaged.
  */
-declare function AIEncounter_EngagementGuidance_SetMaxEngagementTime(pEncounter: AIEncounterID, seconds: number): any;
+declare function AIEncounter_EngagementGuidance_SetMaxEngagementTime(pEncounter: AIEncounterID, seconds: number): void;
 
 /**
  * Sets max time, in seconds, to remain idle at encounter target, once engaged.
  */
-declare function AIEncounter_EngagementGuidance_SetMaxIdleTime(pEncounter: AIEncounterID, seconds: number): any;
+declare function AIEncounter_EngagementGuidance_SetMaxIdleTime(pEncounter: AIEncounterID, seconds: number): void;
 
 /**
  * set the sbp setup location priority override
  */
-declare function AIEncounter_EngagementGuidance_SetSetupLocationSbpPriority(pEncounter: AIEncounterID, sbp: ScarSquadPBG, priority: number): any;
+declare function AIEncounter_EngagementGuidance_SetSetupLocationSbpPriority(pEncounter: AIEncounterID, sbp: ScarSquadPBG, priority: number): void;
 
 /**
  * set the squad setup location and facing direction
  */
-declare function AIEncounter_EngagementGuidance_SetSquadSetupLocation(pEncounter: AIEncounterID, pSquad: SquadID, pos: Position, facingDir: Position): any;
+declare function AIEncounter_EngagementGuidance_SetSquadSetupLocation(pEncounter: AIEncounterID, pSquad: SquadID, pos: Position, facingDir: Position): void;
 
 /**
  * Enable/Disable Reinforce during combat
@@ -5634,77 +5634,77 @@ declare function AIEncounter_FallbackGuidance_EnableRetreatOnSuppression(pEncoun
 /**
  * Set entities remaining threshold of encounter [-1 to N] to fallback at. (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetEntitiesRemainingThreshold(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetEntitiesRemainingThreshold(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set capacity threshold [-1 to 1] to fallback at. (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetFallbackCapacityPercentage(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetFallbackCapacityPercentage(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set combat rating threshold of area [0.0 to 1.0] to fallback at. (0.0 disables)
  */
-declare function AIEncounter_FallbackGuidance_SetFallbackCombatRating(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetFallbackCombatRating(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set Squad health threshold [-1 to 1] to fallback at. (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetFallbackSquadHealthPercentage(pEncounter: AIEncounterID, fallbackStartValue: number, fallbackEndValue: number): any;
+declare function AIEncounter_FallbackGuidance_SetFallbackSquadHealthPercentage(pEncounter: AIEncounterID, fallbackStartValue: number, fallbackEndValue: number): void;
 
 /**
  * Set Squad Shield threshold [-1 to 1] to fallback at. (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetFallbackSquadShieldPercentage(pEncounter: AIEncounterID, fallbackStartValue: number, fallbackEndValue: number): any;
+declare function AIEncounter_FallbackGuidance_SetFallbackSquadShieldPercentage(pEncounter: AIEncounterID, fallbackStartValue: number, fallbackEndValue: number): void;
 
 /**
  * Set Vehicle health threshold [-1 to 1] to fallback at. (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetFallbackVehicleHealthPercentage(pEncounter: AIEncounterID, fallbackStartValue: number, fallbackEndValue: number): any;
+declare function AIEncounter_FallbackGuidance_SetFallbackVehicleHealthPercentage(pEncounter: AIEncounterID, fallbackStartValue: number, fallbackEndValue: number): void;
 
 /**
  * Set global fallback threshold (negative for individual squad).
  */
-declare function AIEncounter_FallbackGuidance_SetGlobalFallbackPercentage(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetGlobalFallbackPercentage(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set global retreat type (true for retreat; false for fallback).
  */
-declare function AIEncounter_FallbackGuidance_SetGlobalFallbackRetreat(pEncounter: AIEncounterID, value: boolean): any;
+declare function AIEncounter_FallbackGuidance_SetGlobalFallbackRetreat(pEncounter: AIEncounterID, value: boolean): void;
 
 /**
  * Set the Reinforce Health Percentage [-1 to 1] (negative disables retreat)
  */
-declare function AIEncounter_FallbackGuidance_SetReinforceHealthPercentage(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetReinforceHealthPercentage(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set the Max Reinforce Distance (negative value: no distance constrain)
  */
-declare function AIEncounter_FallbackGuidance_SetReinforceMaxDistance(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetReinforceMaxDistance(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set the Min Health Ratio Required To Reach Reinforce Point [0.0, 1.0] (negative value: no constrain)
  */
-declare function AIEncounter_FallbackGuidance_SetReinforceMinHealthRatioToReachReinforcePoint(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetReinforceMinHealthRatioToReachReinforcePoint(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set combat rating threshold of area [-1 to 1] to fallback at. (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetRetreatCapacityPercentage(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetRetreatCapacityPercentage(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set combat rating threshold of area [0.0 to 1.0] to retreat at. (0.0 disables)
  */
-declare function AIEncounter_FallbackGuidance_SetRetreatCombatRating(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetRetreatCombatRating(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set retreat health threshold of area [-1 to 1] (negative disables)
  */
-declare function AIEncounter_FallbackGuidance_SetRetreatHealthPercentage(pEncounter: AIEncounterID, value: number): any;
+declare function AIEncounter_FallbackGuidance_SetRetreatHealthPercentage(pEncounter: AIEncounterID, value: number): void;
 
 /**
  * Set fallback target.
  */
-declare function AIEncounter_FallbackGuidance_SetTargetPosition(pEncounter: AIEncounterID, pos: Position): any;
+declare function AIEncounter_FallbackGuidance_SetTargetPosition(pEncounter: AIEncounterID, pos: Position): void;
 
 /**
  * Asks the encounter to terminate in its next update (allows PhaseEncounter to set its exit info)
@@ -5714,27 +5714,27 @@ declare function AIEncounter_ForceComplete(pEncounter: AIEncounterID): any;
 /**
  * Set formup type for formation encounter to be at building of type from AE tuning list (must set before triggering)
  */
-declare function AIEncounter_FormationGuidance_SetFormUpAtBuildingOfType(encounter: AIEncounterID, unitTypeList: string): any;
+declare function AIEncounter_FormationGuidance_SetFormUpAtBuildingOfType(encounter: AIEncounterID, unitTypeList: string): void;
 
 /**
  * Set formup entity for formation encounter (must set before triggering)
  */
-declare function AIEncounter_FormationGuidance_SetFormUpAtEntityTarget(encounter: AIEncounterID, entity: EntityID): any;
+declare function AIEncounter_FormationGuidance_SetFormUpAtEntityTarget(encounter: AIEncounterID, entity: EntityID): void;
 
 /**
  * Set formup position for formation encounter (must set before triggering)
  */
-declare function AIEncounter_FormationGuidance_SetFormUpAtPositionTarget(encounter: AIEncounterID, postion: Position): any;
+declare function AIEncounter_FormationGuidance_SetFormUpAtPositionTarget(encounter: AIEncounterID, postion: Position): void;
 
 /**
  * Set formup position for formation encounter at the average of current squad positions (must set before triggering)
  */
-declare function AIEncounter_FormationGuidance_SetFormUpAtSquadAverage(encounter: AIEncounterID): any;
+declare function AIEncounter_FormationGuidance_SetFormUpAtSquadAverage(encounter: AIEncounterID): void;
 
 /**
  * Set formup position timeout and % squads that must arrive or else it will fail.  Setting zero for timeout means infinite
  */
-declare function AIEncounter_FormationGuidance_SetFormUpAtTimeOutParams(encounter: AIEncounterID, timeoutSeconds: number, requiredSquadsPercent: number): any;
+declare function AIEncounter_FormationGuidance_SetFormUpAtTimeOutParams(encounter: AIEncounterID, timeoutSeconds: number, requiredSquadsPercent: number): void;
 
 /**
  * Get the average position of squads of this finished formation phase encounter (may be the same as target if successful).  You should call AIEncounter_FormationPhase_HasValidExitInfo before this to avoid an error
@@ -5769,24 +5769,24 @@ declare function AIEncounter_FormationPhase_HasValidExitInfo(encounterID: AITask
 /**
  * Assign a property bag contains data to support sub task coordination for combat encounters
  */
-declare function AIEncounter_FormationPhaseGuidance_SetCombatCoordinator(encounter: AIEncounterID, coordinatorPBG: PropertyBagGroup): any;
+declare function AIEncounter_FormationPhaseGuidance_SetCombatCoordinator(encounter: AIEncounterID, coordinatorPBG: PropertyBagGroup): void;
 
 /**
  * Set params for terminating a formation phase encounter based on combat, fallback params can also be used
  */
-declare function AIEncounter_FormationPhaseGuidance_SetCombatExitParams(encounter: AIEncounterID, timeoutSeconds: number, testTargetDestroyed: boolean, testEnemySquadsCleared: boolean, testEnemyBuildingsCleared: boolean, enemyScanRange: number, excludeBuildingTypeNames: string): any;
+declare function AIEncounter_FormationPhaseGuidance_SetCombatExitParams(encounter: AIEncounterID, timeoutSeconds: number, testTargetDestroyed: boolean, testEnemySquadsCleared: boolean, testEnemyBuildingsCleared: boolean, enemyScanRange: number, excludeBuildingTypeNames: string): void;
 
 /**
  * Set params for terminating a formation phase encounter that is moving somewhere and encounters enemies
  * enemyScanRange is scan range from current centre of the formation to look for enemies in meters combatFitnessThreshold is the fitness rating against all detected enemies, < 0 means do not use, 0 means our team will win taking no damage, 1.0 means the enemy will win taking now damage. enemyFormationAngle is the relative heading of the strongest enemy formation in degrees, 0 means do not use enemyFormationPosition is the relative position of the strongest enemy formation in degrees, where 360.0f means directly behind us, 0 means do not use enemyFormationDistance is the distance threshold of the strongest enemy formation in meters
  */
-declare function AIEncounter_FormationPhaseGuidance_SetMoveEnemiesExitParams(encounter: AIEncounterID, enemyScanRange: number, combatFitnessThreshold: number, enemyFormationHeading: number, enemyFormationPosition: number, enemyFormationDistance: number, excludeBuildingTypeNames: string): any;
+declare function AIEncounter_FormationPhaseGuidance_SetMoveEnemiesExitParams(encounter: AIEncounterID, enemyScanRange: number, combatFitnessThreshold: number, enemyFormationHeading: number, enemyFormationPosition: number, enemyFormationDistance: number, excludeBuildingTypeNames: string): void;
 
 /**
  * Set params for terminating a formation phase encounter that is moving somewhere
  * timeoutSeconds is how long to wait for squads to get to destination (0 means run indefinitely) requiredSquadsPercent is how many squads must be in the target area, 1.0 means all wasRecentlyAttackedSecs was any unit attacked in this interval, 0 means do not use.  Recommend not using if you are also using combat threshold
  */
-declare function AIEncounter_FormationPhaseGuidance_SetMoveExitParams(encounter: AIEncounterID, timeoutSeconds: number, requiredSquadsPercent: number, wasRecentlyAttackedSecs: number): any;
+declare function AIEncounter_FormationPhaseGuidance_SetMoveExitParams(encounter: AIEncounterID, timeoutSeconds: number, requiredSquadsPercent: number, wasRecentlyAttackedSecs: number): void;
 
 /**
  * Specify data for formation encounter to create a formation min range task state
@@ -5853,7 +5853,7 @@ declare function AIEncounter_MoveGuidance_EnableAggressiveMove(pEncounter: AIEnc
 /**
  * Set radius (follow distance) for coordinated move phase (<= 0 disables coordinated movement)
  */
-declare function AIEncounter_MoveGuidance_SetSquadCoherenceRadius(pEncounter: AIEncounterID, radius: number): any;
+declare function AIEncounter_MoveGuidance_SetSquadCoherenceRadius(pEncounter: AIEncounterID, radius: number): void;
 
 /**
  * Clears all notification callbacks for encounter
@@ -5863,12 +5863,12 @@ declare function AIEncounter_Notify_ClearCallbacks(pEncounter: AIEncounterID): a
 /**
  * enables/disabled the sniped callback
  */
-declare function AIEncounter_Notify_SetEnableSnipedCallbacks(pEncounter: AIEncounterID, value: boolean): any;
+declare function AIEncounter_Notify_SetEnableSnipedCallbacks(pEncounter: AIEncounterID, value: boolean): void;
 
 /**
  * Sets the ID for the notification event sent out by encounter
  */
-declare function AIEncounter_Notify_SetPlayerEventEncounterID(pEncounter: AIEncounterID, id: number): any;
+declare function AIEncounter_Notify_SetPlayerEventEncounterID(pEncounter: AIEncounterID, id: number): void;
 
 /**
  * Pause/Unpause this encounter
@@ -5904,7 +5904,7 @@ declare function AIEncounter_ResourceGuidance_IsSquadGroupEqual(pEncounter: AIEn
 /**
  * Sets the resource money for an encounter.
  */
-declare function AIEncounter_ResourceGuidance_SetResourceMoney(pEncounter: AIEncounterID, resourceAmount: Record<number, number>): any;
+declare function AIEncounter_ResourceGuidance_SetResourceMoney(pEncounter: AIEncounterID, resourceAmount: Record<number, number>): void;
 
 /**
  * Sets the resource squads for encounter.
@@ -5914,7 +5914,7 @@ declare function AIEncounter_ResourceGuidance_SquadGroup(pEncounter: AIEncounter
 /**
  * Set encounter name for debugging.
  */
-declare function AIEncounter_SetDebugName(pEncounter: AIEncounterID, name: string): any;
+declare function AIEncounter_SetDebugName(pEncounter: AIEncounterID, name: string): void;
 
 /**
  * Reset all tactic filters for encounter
@@ -5950,51 +5950,51 @@ declare function AIEncounter_TacticFilter_ResetTargetGuidance(pEncounter: AIEnco
  * Set tactic ability constraints for encounter
  * maxCasters is maximum concurrent casters of this ability (-1 is unlimited), waitRetrySecs is time in seconds between ability tactic retrying ability retry, wait[self/encounter], and timeout Secs are: the number of seconds to try doing a tactic after a previous try; seconds after last successful try; how long the successful tactic can run. initialWait is true if the waitTime applies before the first ability use. maxRange is the maximum range to look for ability target from caster (other range constraints may limit the max range to a smaller value) castChanceOverride is the probability to cast the ability, must be between 0.0 and 1.0
  */
-declare function AIEncounter_TacticFilter_SetAbilityGuidance(pEncounter: AIEncounterID, ability: PropertyBagGroup, maxCasters: number, retrySecs: number, waitSelfSecs: number, waitEncounterSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number, castChanceOverride: number): any;
+declare function AIEncounter_TacticFilter_SetAbilityGuidance(pEncounter: AIEncounterID, ability: PropertyBagGroup, maxCasters: number, retrySecs: number, waitSelfSecs: number, waitEncounterSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number, castChanceOverride: number): void;
 
 /**
  * Set ability priority for all squads in encounter; negative priority disables
  */
-declare function AIEncounter_TacticFilter_SetAbilityPriority(pEncounter: AIEncounterID, abilityPBG: PropertyBagGroup, priority: number): any;
+declare function AIEncounter_TacticFilter_SetAbilityPriority(pEncounter: AIEncounterID, abilityPBG: PropertyBagGroup, priority: number): void;
 
 /**
  * Set ability priority for squad in encounter
  */
-declare function AIEncounter_TacticFilter_SetAbilityPriorityForSquad(pEncounter: AIEncounterID, squad: SquadID, abilityPBG: PropertyBagGroup, priority: number): any;
+declare function AIEncounter_TacticFilter_SetAbilityPriorityForSquad(pEncounter: AIEncounterID, squad: SquadID, abilityPBG: PropertyBagGroup, priority: number): void;
 
 /**
  * Set default tactic ability constraints for encounter (ability specific guidance takes priority over defaults)
  * maxCasters is maximum concurrent casters of ability (-1 is unlimited), waitRetrySecs is time in seconds between ability tactic retrying ability, retry, wait[self/encounter], and timeout Secs are: the number of seconds to try doing a tactic after a previous try; seconds after last successful try; how long the successful tactic can run. initialWait is true if the waitTime applies before the first ability use. maxRange is the maximum range to look for ability target from caster (other range constraints may limit the max range to a smaller value) castChanceOverride is the probability to cast the ability, must be between 0.0 and 1.0
  */
-declare function AIEncounter_TacticFilter_SetDefaultAbilityGuidance(pEncounter: AIEncounterID, maxCasters: number, retrySecs: number, waitSelfSecs: number, waitEncounterSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number, castChanceOverride: number): any;
+declare function AIEncounter_TacticFilter_SetDefaultAbilityGuidance(pEncounter: AIEncounterID, maxCasters: number, retrySecs: number, waitSelfSecs: number, waitEncounterSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number, castChanceOverride: number): void;
 
 /**
  * Set default tactic constraints for encounter (tactic specific guidance takes priority over defaults)
  * maxUsers is maximum concurrent users of tactic (-1 is unlimited), waitRetrySecs is time in seconds between tactic retrying retry, wait, and timeout Secs are: the number of seconds to try doing a tactic after a previous try; seconds after last successful try; how long the successful tactic can run. initialWait is true if the waitTime applies before the first tactic use. maxRange is the maximum range to look for tactic target from caster (other range constraints may limit the max range to a smaller value)
  */
-declare function AIEncounter_TacticFilter_SetDefaultTacticGuidance(pEncounter: AIEncounterID, maxUsers: number, retrySecs: number, waitSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number): any;
+declare function AIEncounter_TacticFilter_SetDefaultTacticGuidance(pEncounter: AIEncounterID, maxUsers: number, retrySecs: number, waitSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number): void;
 
 /**
  * Set tactic priority for all squads in encounter; negative priority disables
  */
-declare function AIEncounter_TacticFilter_SetPriority(pEncounter: AIEncounterID, tactic: AITacticType, priority: number): any;
+declare function AIEncounter_TacticFilter_SetPriority(pEncounter: AIEncounterID, tactic: AITacticType, priority: number): void;
 
 /**
  * Set tactic priority for squads in encounter
  */
-declare function AIEncounter_TacticFilter_SetPriorityForSquad(pEncounter: AIEncounterID, squad: SquadID, tactic: AITacticType, priority: number): any;
+declare function AIEncounter_TacticFilter_SetPriorityForSquad(pEncounter: AIEncounterID, squad: SquadID, tactic: AITacticType, priority: number): void;
 
 /**
  * Set tactic constraints for encounter
  * maxUsers is maximum concurrent users of this tactic (-1 is unlimited), waitRetrySecs is time in seconds between tactic retry retry, wait, and timeout Secs are: the number of seconds to try doing a tactic after a previous try; seconds after last successful try; how long the successful tactic can run. initialWait is true if the waitTime applies before the first tactic use. maxRange is the maximum range to look for tactic target from caster (other range constraints may limit the max range to a smaller value)
  */
-declare function AIEncounter_TacticFilter_SetTacticGuidance(pEncounter: AIEncounterID, tactic: AITacticType, maxUsers: number, retrySecs: number, waitSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number): any;
+declare function AIEncounter_TacticFilter_SetTacticGuidance(pEncounter: AIEncounterID, tactic: AITacticType, maxUsers: number, retrySecs: number, waitSecs: number, timeoutSecs: number, initialWait: boolean, maxRange: number): void;
 
 /**
  * Set tactic target priority for encounter
  * policy is one of: AITacticTargetPreference_None, AITacticTargetPreference_Near,
  */
-declare function AIEncounter_TacticFilter_SetTargetPolicy(pEncounter: AIEncounterID, policy: TargetPreference): any;
+declare function AIEncounter_TacticFilter_SetTargetPolicy(pEncounter: AIEncounterID, policy: TargetPreference): void;
 
 /**
  * Disables the patrol for the passed Squad
@@ -6004,47 +6004,47 @@ declare function AIEncounter_TargetGuidance_DisableSquadPatrol(pEncounter: AIEnc
 /**
  * Sets target patrol path for encounter
  */
-declare function AIEncounter_TargetGuidance_SetPatrolPathByName(pEncounter: AIEncounterID, pathName: string, delaySecs: number, invertPathAtEnd: boolean, startInverted: boolean): any;
+declare function AIEncounter_TargetGuidance_SetPatrolPathByName(pEncounter: AIEncounterID, pathName: string, delaySecs: number, invertPathAtEnd: boolean, startInverted: boolean): void;
 
 /**
  * Sets random wander target patrol for encounter; delaySecs is the time in secs to pause at each random point
  */
-declare function AIEncounter_TargetGuidance_SetPatrolWander(pEncounter: AIEncounterID, delaySecs: number, radiusMode: number, radiusOverride: number, overrideCenter: boolean, centerOverride: Position): any;
+declare function AIEncounter_TargetGuidance_SetPatrolWander(pEncounter: AIEncounterID, delaySecs: number, radiusMode: number, radiusOverride: number, overrideCenter: boolean, centerOverride: Position): void;
 
 /**
  * Sets target patrol path for the squad
  */
-declare function AIEncounter_TargetGuidance_SetSquadPatrolPathByName(pEncounter: AIEncounterID, pSquad: SquadID, pathName: string, delaySecs: number, invertPathAtEnd: boolean, startInverted: boolean): any;
+declare function AIEncounter_TargetGuidance_SetSquadPatrolPathByName(pEncounter: AIEncounterID, pSquad: SquadID, pathName: string, delaySecs: number, invertPathAtEnd: boolean, startInverted: boolean): void;
 
 /**
  * Sets random wander target patrol for the squad; delaySecs is the time in secs to pause at each random point
  */
-declare function AIEncounter_TargetGuidance_SetSquadPatrolWander(pEncounter: AIEncounterID, pSquad: SquadID, delaySecs: number, radiusMode: number, radiusOverride: number, overrideCenter: boolean, centerOverride: Position): any;
+declare function AIEncounter_TargetGuidance_SetSquadPatrolWander(pEncounter: AIEncounterID, pSquad: SquadID, delaySecs: number, radiusMode: number, radiusOverride: number, overrideCenter: boolean, centerOverride: Position): void;
 
 /**
  * Sets engagement area radius around the target.
  */
-declare function AIEncounter_TargetGuidance_SetTargetArea(pEncounter: AIEncounterID, radius: number): any;
+declare function AIEncounter_TargetGuidance_SetTargetArea(pEncounter: AIEncounterID, radius: number): void;
 
 /**
  * Sets target Entity for encounter
  */
-declare function AIEncounter_TargetGuidance_SetTargetEntity(pEncounter: AIEncounterID, entity: EntityID): any;
+declare function AIEncounter_TargetGuidance_SetTargetEntity(pEncounter: AIEncounterID, entity: EntityID): void;
 
 /**
  * Sets leash radius around target where squads should stay within.
  */
-declare function AIEncounter_TargetGuidance_SetTargetLeash(pEncounter: AIEncounterID, radius: number): any;
+declare function AIEncounter_TargetGuidance_SetTargetLeash(pEncounter: AIEncounterID, radius: number): void;
 
 /**
  * Sets target position for encounter
  */
-declare function AIEncounter_TargetGuidance_SetTargetPosition(pEncounter: AIEncounterID, pos: Position): any;
+declare function AIEncounter_TargetGuidance_SetTargetPosition(pEncounter: AIEncounterID, pos: Position): void;
 
 /**
  * Sets target Squad for encounter
  */
-declare function AIEncounter_TargetGuidance_SetTargetSquad(pEncounter: AIEncounterID, squad: SquadID): any;
+declare function AIEncounter_TargetGuidance_SetTargetSquad(pEncounter: AIEncounterID, squad: SquadID): void;
 
 /**
  * Set encounter name for debugging.
@@ -6095,12 +6095,12 @@ declare function AIPlayer_ResetEnemySquadsVisibility(player: PlayerID, enemyPlay
  * Set the target distribution of how the ai player should use their units for gathering
  * Second argument is a map of resource type names to weights ex: { ['wood'] = 5, ... }
  */
-declare function AIPlayer_SetGathererDistributionOverride(aiPlayer: PlayerID, luaGatherDistro: number): any;
+declare function AIPlayer_SetGathererDistributionOverride(aiPlayer: PlayerID, luaGatherDistro: number): void;
 
 /**
  * marks the player to force the stats squads to update
  */
-declare function AIPlayer_SetRequiresStatsUpdate(player: PlayerID): any;
+declare function AIPlayer_SetRequiresStatsUpdate(player: PlayerID): void;
 
 /**
  * UnLocks a tactic item for the passed player
@@ -6991,13 +6991,13 @@ declare function LocalCommand_SquadRetreatPos(player: PlayerID, sgroup: SGroupID
  * Send a set CombatStance command to the squads
  * Set the CombatStance for all the Squads in the SGroup. StanceTypes: STANCE_CeaseFire (don't shoot), STANCE_StandGround (don't move, just shoot), STANCE_Attack (move and shoot)
  */
-declare function LocalCommand_SquadSetCombatStance(player: PlayerID, sgroup: SGroupID, stanceType: StanceType, queued: boolean): any;
+declare function LocalCommand_SquadSetCombatStance(player: PlayerID, sgroup: SGroupID, stanceType: StanceType, queued: boolean): void;
 
 /**
  * Send a set Weapon Preference command to the squads
  * Set the Weapon Preference for all the Squads in the SGroup. WeaponPreference: WP_Melee, WP_Ranged,
  */
-declare function LocalCommand_SquadSetWeaponPreference(player: PlayerID, sgroup: SGroupID, weaponPreference: WeaponPreference, queued: boolean): any;
+declare function LocalCommand_SquadSetWeaponPreference(player: PlayerID, sgroup: SGroupID, weaponPreference: WeaponPreference, queued: boolean): void;
 
 /**
  * Send an squad-based command to a squad group.
@@ -7261,7 +7261,7 @@ declare function Game_RemoveGameRestoreCallback(callback: any): void;
 /**
  * Adds a function and set of arguments to be automatically called during restore from a saved game. Maxiumum of 9 parameters. Callback will be called like this: Callback(arg[1], arg[2], ...)
  */
-declare function Game_SetGameRestoreCallback(callback: any): any;
+declare function Game_SetGameRestoreCallback(callback: any): void;
 
 /**
  * Enters Cinematic mode
@@ -7323,12 +7323,12 @@ declare function Debug_ScartypeToString(): any;
 /**
  * Sets all Entities in an EGroup on fire
  */
-declare function EGroup_SetOnFire(egroup: EGroupID): any;
+declare function EGroup_SetOnFire(egroup: EGroupID): void;
 
 /**
  * Sets whether or not Entities in an EGroup should continue burning while invulnerable
  */
-declare function EGroup_SetStayBurningWhileInvulnerable(egroup: EGroupID, stayBurning: boolean): any;
+declare function EGroup_SetStayBurningWhileInvulnerable(egroup: EGroupID, stayBurning: boolean): void;
 
 /**
  * Finds all on-screen squads for the passed player, clearing and filling the sgroup with those squads
@@ -7368,7 +7368,7 @@ declare function SGroup_GetClosestSquads(): any;
 /**
  * Sets the targeting type of entities in an sgroup
  */
-declare function SGroup_SetTargetingType(): any;
+declare function SGroup_SetTargetingType(): void;
 
 /**
  * Splits an SGroup as cleanly as possible into X new SGroups, returning a table of the SGroups in question
@@ -8033,17 +8033,17 @@ declare function AIAbilityGoal_AdjustDefaultGoalData(additionalDefaultGoalData: 
 /**
  * Set default goal data for ability goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter ability goal values.
  */
-declare function AIAbilityGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIAbilityGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for ability goals.  modifyGoalData is cloned; values specified via keyname_Multiplier are used for the numeric keyname encounter ability goal value.
  */
-declare function AIAbilityGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIAbilityGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for ability goals.  overrideGoalData is cloned; any values specified are used for encounter ability goal values.
  */
-declare function AIAbilityGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIAbilityGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data for attack goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter attack goal values.
@@ -8053,17 +8053,17 @@ declare function AIAttackGoal_AdjustDefaultGoalData(additionalDefaultGoalData: a
 /**
  * Set default goal data for attack goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter attack goal values.
  */
-declare function AIAttackGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIAttackGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for attack goals.  modifyGoalData is cloned; values specified via keyname_Multiplier are used for the numeric keyname encounter attack goal value.
  */
-declare function AIAttackGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIAttackGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for attack goals.  overrideGoalData is cloned; any values specified are used for encounter attack goal values.
  */
-declare function AIAttackGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIAttackGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter goal values.
@@ -8073,17 +8073,17 @@ declare function AIBaseGoal_AdjustDefaultGoalData(additionalDefaultGoalData: any
 /**
  * Set default goal data.  defaultGoalData is cloned; any values specified are used for unspecified encounter goal values.
  */
-declare function AIBaseGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIBaseGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data.  modifyGoalData is cloned; values specified via keyname_Multiplier are used for the numeric keyname encounter goal value.
  */
-declare function AIBaseGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIBaseGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data.  overrideGoalData is cloned; any values specified are used for encounter goal values.
  */
-declare function AIBaseGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIBaseGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data for defend goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter defend goal values.
@@ -8093,17 +8093,17 @@ declare function AIDefendGoal_AdjustDefaultGoalData(additionalDefaultGoalData: a
 /**
  * Set default goal data for defend goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter defend goal values.
  */
-declare function AIDefendGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIDefendGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for defend goals.  modifyGoalData is cloned; values specified via keyname_Multiply are used for the numeric keyname encounter defend goal value.
  */
-declare function AIDefendGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIDefendGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for defend goals.  overrideGoalData is cloned; any values specified are used for encounter defend goal values.
  */
-declare function AIDefendGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIDefendGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data for attack goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter attack goal values.
@@ -8113,17 +8113,17 @@ declare function AIFormationAttackGoal_AdjustDefaultGoalData(additionalDefaultGo
 /**
  * Set default goal data for attack goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter attack goal values.
  */
-declare function AIFormationAttackGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIFormationAttackGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for attack goals.  modifyGoalData is cloned; values specified via keyname_Multiplier are used for the numeric keyname encounter attack goal value.
  */
-declare function AIFormationAttackGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIFormationAttackGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for attack goals.  overrideGoalData is cloned; any values specified are used for encounter attack goal values.
  */
-declare function AIFormationAttackGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIFormationAttackGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data for DefendArea goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter DefendArea goal values.
@@ -8133,17 +8133,17 @@ declare function AIFormationDefendAreaGoal_AdjustDefaultGoalData(additionalDefau
 /**
  * Set default goal data for DefendArea goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter DefendArea goal values.
  */
-declare function AIFormationDefendAreaGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIFormationDefendAreaGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for DefendArea goals.  modifyGoalData is cloned; values specified via keyname_Multiplier are used for the numeric keyname encounter DefendArea goal value.
  */
-declare function AIFormationDefendAreaGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIFormationDefendAreaGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for DefendArea goals.  overrideGoalData is cloned; any values specified are used for encounter DefendArea goal values.
  */
-declare function AIFormationDefendAreaGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIFormationDefendAreaGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data for move goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter move goal values.
@@ -8153,17 +8153,17 @@ declare function AIMoveGoal_AdjustDefaultGoalData(additionalDefaultGoalData: any
 /**
  * Set default goal data for move goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter move goal values.
  */
-declare function AIMoveGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AIMoveGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for move goals.  modifyGoalData is cloned; values specified via keyname_Multiply are used for the numeric keyname encounter move goal value.
  */
-declare function AIMoveGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AIMoveGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for move goals.  overrideGoalData is cloned; any values specified are used for encounter move goal values.
  */
-declare function AIMoveGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AIMoveGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Adjust default goal data for TownLife goals.  Sets the default GoalData to the current defaults plus additionalDefaultGoalData; any values specified are used for unspecified encounter TownLife goal values.
@@ -8173,17 +8173,17 @@ declare function AITownLifeGoal_AdjustDefaultGoalData(additionalDefaultGoalData:
 /**
  * Set default goal data for TownLife goals.  defaultGoalData is cloned; any values specified are used for unspecified encounter TownLife goal values.
  */
-declare function AITownLifeGoal_SetDefaultGoalData(defaultGoalData: any): any;
+declare function AITownLifeGoal_SetDefaultGoalData(defaultGoalData: any): void;
 
 /**
  * Set modify goal data for TownLife goals.  modifyGoalData is cloned; values specified via keyname_Multiply are used for the numeric keyname encounter TownLife goal value.
  */
-declare function AITownLifeGoal_SetModifyGoalData(modifyGoalData: any): any;
+declare function AITownLifeGoal_SetModifyGoalData(modifyGoalData: any): void;
 
 /**
  * Set override goal data for TownLife goals.  overrideGoalData is cloned; any values specified are used for encounter TownLife goal values.
  */
-declare function AITownLifeGoal_SetOverrideGoalData(overrideGoalData: any): any;
+declare function AITownLifeGoal_SetOverrideGoalData(overrideGoalData: any): void;
 
 /**
  * Callback helper function for relocate an Encounter goal. Name of parameters: 'encounter'.
@@ -9053,7 +9053,7 @@ declare function Entity_SetAnimatorVariable(pEntity: EntityID, variableName: str
 /**
  * Sets the entity to be in the background or foreground. By default, all entities are in the foreground
  */
-declare function Entity_SetBackground(pEntity: EntityID, isInBackground: boolean): any;
+declare function Entity_SetBackground(pEntity: EntityID, isInBackground: boolean): void;
 
 /**
  * Enables or disables the BurnExt extensions for squads / entities
@@ -9068,7 +9068,7 @@ declare function Entity_SetCrushable(entity: EntityID, crushable: boolean): void
 /**
  * Changes the crush mode of a given entity.  Entity must have a crush extension.
  */
-declare function Entity_SetCrushMode(entity: EntityID, mode: CrushMode): any;
+declare function Entity_SetCrushMode(entity: EntityID, mode: CrushMode): void;
 
 /**
  * Fully wires this entity for demolitions, if it's set up to be demolishable. 'player' is the one that owns the demolitions and can detonate them.
@@ -9078,12 +9078,12 @@ declare function Entity_SetDemolitions(player: PlayerID, entity: EntityID, numch
 /**
  * enable or disable the casualtext
  */
-declare function Entity_SetEnableCasualty(enable: boolean, entity: EntityID): any;
+declare function Entity_SetEnableCasualty(enable: boolean, entity: EntityID): void;
 
 /**
  * Enables/disables an extension on the entity.
  */
-declare function Entity_SetExtEnabled(entity: EntityID, extID: string, enabled: boolean): any;
+declare function Entity_SetExtEnabled(entity: EntityID, extID: string, enabled: boolean): void;
 
 /**
  * Sets the heading of the entity.  The position is currently a lua table with three entries (x, y, z)
@@ -9093,7 +9093,7 @@ declare function Entity_SetHeading(entity: EntityID, pos: Position, bInterpolate
 /**
  * Sets the heading of the entity.  The position is currently a lua table with three entries (x, y, z)
  */
-declare function Entity_SetHeadingGroundSnapOptional(entity: EntityID, pos: Position, bSnapToGround: boolean, bInterpolate: boolean): any;
+declare function Entity_SetHeadingGroundSnapOptional(entity: EntityID, pos: Position, bSnapToGround: boolean, bInterpolate: boolean): void;
 
 /**
  * Set the health of an entity.  healthPercent must be in the range [0.0, 1.0].
@@ -9115,12 +9115,12 @@ declare function Entity_SetInvulnerableMinCap(entity: EntityID, minHealthPercent
  * Set the number of blocks the entity will perform per number of attacks
  * For each numAttacks melee attacks the entity receives, it will block a random numBlocks of them. Block rate is numBlocks / numAttacks
  */
-declare function Entity_SetMeleeBlocksPerAttacks(entity: EntityID, blocks: number, attacks: number): any;
+declare function Entity_SetMeleeBlocksPerAttacks(entity: EntityID, blocks: number, attacks: number): void;
 
 /**
  * Sets an object on fire (also works on buildings)
  */
-declare function Entity_SetOnFire(entity: EntityID): any;
+declare function Entity_SetOnFire(entity: EntityID): void;
 
 /**
  * Changes the owner of the given squad.
@@ -9136,13 +9136,13 @@ declare function Entity_SetPosition(entity: EntityID, pos: Position): void;
 /**
  * If the entity is at the same cell as desiredPosition, try to set the entity position to it. If the cell is next to impass, set it to the center of the cell.
  */
-declare function Entity_SetPositionWithinCell(entity: EntityID, desiredPosition: Position): any;
+declare function Entity_SetPositionWithinCell(entity: EntityID, desiredPosition: Position): void;
 
 /**
  * Set the number of blocks the entity will perform per number of attacks
  * For each numAttacks projectile attacks the entity receives, it will block a random numBlocks of them. Block rate is numBlocks / numAttacks
  */
-declare function Entity_SetProjectileBlocksPerAttacks(entity: EntityID, blocks: number, attacks: number): any;
+declare function Entity_SetProjectileBlocksPerAttacks(entity: EntityID, blocks: number, attacks: number): void;
 
 /**
  * Sets whether or not a projectile can explode.
@@ -9153,17 +9153,17 @@ declare function Entity_SetProjectileCanExplode(projectile: EntityID, canExplode
  * Set the number of blocks the entity will perform per number of attacks
  * For each numAttacks ranged attacks the entity receives, it will block a random numBlocks of them. Block rate is numBlocks / numAttacks
  */
-declare function Entity_SetRangedBlocksPerAttacks(entity: EntityID, blocks: number, attacks: number): any;
+declare function Entity_SetRangedBlocksPerAttacks(entity: EntityID, blocks: number, attacks: number): void;
 
 /**
  * Sets an entity to be recrewable or not when it becomes abandoned
  */
-declare function Entity_SetRecrewable(entity: EntityID, capturable: boolean): any;
+declare function Entity_SetRecrewable(entity: EntityID, capturable: boolean): void;
 
 /**
  * Set remaining resource amount of the given entity.
  */
-declare function Entity_SetRemainingResourceDepositAmount(entity: EntityID, amount: number): any;
+declare function Entity_SetRemainingResourceDepositAmount(entity: EntityID, amount: number): void;
 
 /**
  * Enables shared team production on a building (teammates can build using THEIR resources)
@@ -9173,82 +9173,82 @@ declare function Entity_SetSharedProductionQueue(entity: EntityID, shared: boole
 /**
  * Show or hide the entity's silhouette when behind other objects
  */
-declare function Entity_SetShowSilhouette(entity: EntityID, show: boolean): any;
+declare function Entity_SetShowSilhouette(entity: EntityID, show: boolean): void;
 
 /**
  * Sets a boolean value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelBool(entity: EntityID, key: string, value: boolean): any;
+declare function Entity_SetStateModelBool(entity: EntityID, key: string, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelEntityTarget(entity: EntityID, key: string, value: EntityID): any;
+declare function Entity_SetStateModelEntityTarget(entity: EntityID, key: string, value: EntityID): void;
 
 /**
  * Sets a boolean value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTableBool(entity: EntityID, key: string, tableRowIndex: number, value: boolean): any;
+declare function Entity_SetStateModelEnumTableBool(entity: EntityID, key: string, tableRowIndex: number, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTableEntityTarget(entity: EntityID, key: string, tableRowIndex: number, value: EntityID): any;
+declare function Entity_SetStateModelEnumTableEntityTarget(entity: EntityID, key: string, tableRowIndex: number, value: EntityID): void;
 
 /**
  * Sets a float value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTableFloat(entity: EntityID, key: string, tableRowIndex: number, value: number): any;
+declare function Entity_SetStateModelEnumTableFloat(entity: EntityID, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets an integer value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTableInt(entity: EntityID, key: string, tableRowIndex: number, value: number): any;
+declare function Entity_SetStateModelEnumTableInt(entity: EntityID, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets a Player TargetHandle value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTablePlayerTarget(entity: EntityID, key: string, tableRowIndex: number, value: PlayerID): any;
+declare function Entity_SetStateModelEnumTablePlayerTarget(entity: EntityID, key: string, tableRowIndex: number, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTableSquadTarget(entity: EntityID, key: string, tableRowIndex: number, value: SquadID): any;
+declare function Entity_SetStateModelEnumTableSquadTarget(entity: EntityID, key: string, tableRowIndex: number, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the entity's state model corresponding to the given key and table row index (0 based).
  */
-declare function Entity_SetStateModelEnumTableVector3f(entity: EntityID, key: string, tableRowIndex: number, value: Position): any;
+declare function Entity_SetStateModelEnumTableVector3f(entity: EntityID, key: string, tableRowIndex: number, value: Position): void;
 
 /**
  * Sets a float value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelFloat(entity: EntityID, key: string, value: number): any;
+declare function Entity_SetStateModelFloat(entity: EntityID, key: string, value: number): void;
 
 /**
  * Sets an integer value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelInt(entity: EntityID, key: string, value: number): any;
+declare function Entity_SetStateModelInt(entity: EntityID, key: string, value: number): void;
 
 /**
  * Sets a Player TargetHandle value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelPlayerTarget(entity: EntityID, key: string, value: PlayerID): any;
+declare function Entity_SetStateModelPlayerTarget(entity: EntityID, key: string, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelSquadTarget(entity: EntityID, key: string, value: SquadID): any;
+declare function Entity_SetStateModelSquadTarget(entity: EntityID, key: string, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the entity's state model corresponding to the given key.
  */
-declare function Entity_SetStateModelVector3f(entity: EntityID, key: string, value: Position): any;
+declare function Entity_SetStateModelVector3f(entity: EntityID, key: string, value: Position): void;
 
 /**
  * Sets a flag that tells a building to keep burning while invulnerable (for atmosphere).
  */
-declare function Entity_SetStayBurningWhileInvulnerable(entity: EntityID, shouldStayBurning: boolean): any;
+declare function Entity_SetStayBurningWhileInvulnerable(entity: EntityID, shouldStayBurning: boolean): void;
 
 /**
  * Sets a strategic point to neutral (not owned by any team)
@@ -9258,13 +9258,13 @@ declare function Entity_SetStrategicPointNeutral(entity: EntityID): void;
 /**
  * Sets whether a strategic point's reticule is visible
  */
-declare function Entity_SetStrategicPointReticuleVisible(entity: EntityID, visible: boolean): any;
+declare function Entity_SetStrategicPointReticuleVisible(entity: EntityID, visible: boolean): void;
 
 /**
  * Set the allowable methods of targeting this entity
  * Targeting_Automatic: allow auto and manual targeting Targeting_Manual: only allow manual targeting Targeting_None: do not allow targeting
  */
-declare function Entity_SetTargetingType(entity: EntityID, type: TargetingType): any;
+declare function Entity_SetTargetingType(entity: EntityID, type: TargetingType): void;
 
 /**
  * Makes an entity neutral
@@ -10088,12 +10088,12 @@ declare function Music_RestartAfterObjective(duration: number): any;
 /**
  * Sets the 'default music movement'.  This is the current default that can always be called
  */
-declare function Music_SetDefaultMovement(newMovement: string): any;
+declare function Music_SetDefaultMovement(newMovement: string): void;
 
 /**
  * This restart the music after objective after certain
  */
-declare function Music_SetIntensityAfterObjective(delay: number, level: number, duration: number): any;
+declare function Music_SetIntensityAfterObjective(delay: number, level: number, duration: number): void;
 
 /**
  * Stops all music currently playing
@@ -10517,7 +10517,7 @@ declare function Objective_SetCounter(objTable: any, current: number, maximum?: 
  * Show a progress bar for this objective with the given value (which should be a percentage from 0.0 (empty) to 1.0 (full)). This bar can be removed with Objective_RemoveProgressBar or by completing or failing the mission.
  * If you want to use one of the "global" progress bars (if your project supports them), supply the relevant barIndex value and text string to show alongside it.
  */
-declare function Objective_SetProgressBar(objTable: any, value: number, OPT_flashing?: boolean, OPT_barIndex?: number, OPT_text?: string): any;
+declare function Objective_SetProgressBar(objTable: any, value: number, OPT_flashing?: boolean, OPT_barIndex?: number, OPT_text?: string): void;
 
 /**
  * Shows or hides an objective from the UI and tactical map
@@ -11254,7 +11254,7 @@ declare function Player_SetAbilityAvailability(player: PlayerID, bp: AbilityBlue
 /**
  * Sets availability of ALL entity, squad and player commands.
  */
-declare function Player_SetAllCommandAvailabilityInternal(player: Player, availability: Availability, reason: string): any;
+declare function Player_SetAllCommandAvailabilityInternal(player: Player, availability: Availability, reason: string): void;
 
 /**
  * Sets the availability of entity, squad and player commands. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -11297,12 +11297,12 @@ declare function Player_SetPopCapOverride(player: PlayerID, personnel: number): 
 /**
  * Set the relationship that observer has to target. If the relationship does not match the current reputation, the reputation will be changed to match it.
  */
-declare function Player_SetRelationship(observer: PlayerID, target: PlayerID, relationship: Relationship): any;
+declare function Player_SetRelationship(observer: PlayerID, target: PlayerID, relationship: Relationship): void;
 
 /**
  * Set the reputation that observer has to target. If the reputation does not match the current relationship, the relationship will be changed to match it.
  */
-declare function Player_SetReputation(observer: PlayerID, target: PlayerID, reputation: BaseType): any;
+declare function Player_SetReputation(observer: PlayerID, target: PlayerID, reputation: BaseType): void;
 
 /**
  * Set the resource amount for a given player.  Ignores income cap and resource sharing.
@@ -11313,12 +11313,12 @@ declare function Player_SetResource(player: PlayerID, resourceType: number, amt:
 /**
  * Set the resource amount for a given player.  Ignores income cap and resource sharing.
  */
-declare function Player_SetResourceInternal(player: Player, type: number, amt: number, reason: AddResourceReason): any;
+declare function Player_SetResourceInternal(player: Player, type: number, amt: number, reason: AddResourceReason): void;
 
 /**
  * Set all the resource amount for a given player.  Ignores income cap and resource sharing.
  */
-declare function Player_SetResources(player: Player, resourceAmount: Record<number, number>): any;
+declare function Player_SetResources(player: Player, resourceAmount: Record<number, number>): void;
 
 /**
  * Sets the availability of a squad production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -11328,72 +11328,72 @@ declare function Player_SetSquadProductionAvailability(player: PlayerID, bp: Squ
 /**
  * Sets a boolean value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelBool(player: Player, key: string, value: boolean): any;
+declare function Player_SetStateModelBool(player: Player, key: string, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelEntityTarget(player: Player, key: string, value: EntityID): any;
+declare function Player_SetStateModelEntityTarget(player: Player, key: string, value: EntityID): void;
 
 /**
  * Sets a boolean value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTableBool(player: Player, key: string, tableRowIndex: number, value: boolean): any;
+declare function Player_SetStateModelEnumTableBool(player: Player, key: string, tableRowIndex: number, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTableEntityTarget(player: Player, key: string, tableRowIndex: number, value: EntityID): any;
+declare function Player_SetStateModelEnumTableEntityTarget(player: Player, key: string, tableRowIndex: number, value: EntityID): void;
 
 /**
  * Sets a float value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTableFloat(player: Player, key: string, tableRowIndex: number, value: number): any;
+declare function Player_SetStateModelEnumTableFloat(player: Player, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets an integer value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTableInt(player: Player, key: string, tableRowIndex: number, value: number): any;
+declare function Player_SetStateModelEnumTableInt(player: Player, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets a Player TargetHandle value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTablePlayerTarget(player: Player, key: string, tableRowIndex: number, value: PlayerID): any;
+declare function Player_SetStateModelEnumTablePlayerTarget(player: Player, key: string, tableRowIndex: number, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTableSquadTarget(player: Player, key: string, tableRowIndex: number, value: SquadID): any;
+declare function Player_SetStateModelEnumTableSquadTarget(player: Player, key: string, tableRowIndex: number, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the player's state model corresponding to the given key and table row index (0 based).
  */
-declare function Player_SetStateModelEnumTableVector3f(player: Player, key: string, tableRowIndex: number, value: Position): any;
+declare function Player_SetStateModelEnumTableVector3f(player: Player, key: string, tableRowIndex: number, value: Position): void;
 
 /**
  * Sets a float value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelFloat(player: Player, key: string, value: number): any;
+declare function Player_SetStateModelFloat(player: Player, key: string, value: number): void;
 
 /**
  * Sets an integer value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelInt(player: Player, key: string, value: number): any;
+declare function Player_SetStateModelInt(player: Player, key: string, value: number): void;
 
 /**
  * Sets a Player TargetHandle value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelPlayerTarget(player: Player, key: string, value: PlayerID): any;
+declare function Player_SetStateModelPlayerTarget(player: Player, key: string, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelSquadTarget(player: Player, key: string, value: SquadID): any;
+declare function Player_SetStateModelSquadTarget(player: Player, key: string, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the Player's state model corresponding to the given key.
  */
-declare function Player_SetStateModelVector3f(player: Player, key: string, value: Position): any;
+declare function Player_SetStateModelVector3f(player: Player, key: string, value: Position): void;
 
 /**
  * Sets the availability of an upgrade. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
@@ -11991,12 +11991,12 @@ declare function EGroup_RestoreTargetingType(egroup: EGroupID): any;
 /**
  * Enables or disables the burn extenstion
  */
-declare function EGroup_SetBurnExtEnabled(egroup: EGroupID, enabled: boolean): any;
+declare function EGroup_SetBurnExtEnabled(egroup: EGroupID, enabled: boolean): void;
 
 /**
  * Set the allowable methods of targeting the entities in this EGroup.
  */
-declare function EGroup_SetTargetingType(egroup: EGroupID, targetingType: TargetingType): any;
+declare function EGroup_SetTargetingType(egroup: EGroupID, targetingType: TargetingType): void;
 
 /**
  * Test whether ANY or ALL of an EGroup is on screen currently (not strict)
@@ -12836,7 +12836,7 @@ declare function Sound_ForceMusicEnabled(): any;
  * Force set the combat intensity to be at least combatIntensity for a duration.
  * Use a duration of -1 for an indefinite override. Use a duration of 0 to cancel the override. Does not trigger any music events.
  */
-declare function Sound_ForceSetMinimumMusicCombatIntensity(combatIntensity: number, durationSeconds: number): any;
+declare function Sound_ForceSetMinimumMusicCombatIntensity(combatIntensity: number, durationSeconds: number): void;
 
 /**
  * for the cheat menu
@@ -12861,33 +12861,33 @@ declare function Sound_PlaySpeechForPlayer(player: PlayerID, eventName: string, 
 /**
  * tells the music system if it should be trying to enter/stay in the playing music state
  */
-declare function Sound_SetForceMusic(value: boolean): any;
+declare function Sound_SetForceMusic(value: boolean): void;
 
 /**
  * tells the music system if it should be trying to enter/stay in the silent state
  */
-declare function Sound_SetForceSilence(value: boolean): any;
+declare function Sound_SetForceSilence(value: boolean): void;
 
 /**
  * Prevents the music system from automatically switching between layers and stopping for the duration.
  */
-declare function Sound_SetManualMusicSelectDuration(durationSecs: number): any;
+declare function Sound_SetManualMusicSelectDuration(durationSecs: number): void;
 
 /**
  * Set the target combat intensity to at least the value of value combatIntensity for a duration.
  * Use a duration of -1 for an indefinite override. Use a duration of 0 to cancel the override.
  */
-declare function Sound_SetMinimumMusicCombatIntensity(combatIntensity: number, durationSeconds: number): any;
+declare function Sound_SetMinimumMusicCombatIntensity(combatIntensity: number, durationSeconds: number): void;
 
 /**
  * sets the scaling multiplier for the music intensity value
  */
-declare function Sound_SetMusicIntensityScaling(scale: number): any;
+declare function Sound_SetMusicIntensityScaling(scale: number): void;
 
 /**
  * sets the race rtpc for controlling what race's music gets played
  */
-declare function Sound_SetMusicRaceCode(raceCode: string): any;
+declare function Sound_SetMusicRaceCode(raceCode: string): void;
 
 /**
  * stops the music immediately and go into silence.
@@ -13805,12 +13805,12 @@ declare function Squad_SetAnimatorState(squadid: SquadID, stateMachineName: stri
 /**
  * Sets the squad to be in the background or foreground. By default, all squads are in the foreground
  */
-declare function Squad_SetBackground(pSquad: SquadID, isInBackground: boolean): any;
+declare function Squad_SetBackground(pSquad: SquadID, isInBackground: boolean): void;
 
 /**
  * Enables or disables the squad's UI extension (which controls all UI elements related to the squad)
  */
-declare function Squad_SetExtEnabled(pSquad: SquadID, extID: string, enabled: boolean): any;
+declare function Squad_SetExtEnabled(pSquad: SquadID, extID: string, enabled: boolean): void;
 
 /**
  * Set the health of all units in a squad.  Health must be in range [0.0, 1.0]
@@ -13826,7 +13826,7 @@ declare function Squad_SetInvulnerable(squad: SquadID, enable: boolean, reset_ti
  * Make a squad invulnerable to physical damage when number of members drop to or below specified count.
  * member count, 0 means squad is vulnerable; above 0 means number of alive entities will not go below this count resetTime is the time in seconds that vulnerability will be restored.; zero time for reset time means the buff will last forever
  */
-declare function Squad_SetInvulnerableEntityCount(squad: SquadID, invEntityCount: number, resetTime: number): any;
+declare function Squad_SetInvulnerableEntityCount(squad: SquadID, invEntityCount: number, resetTime: number): void;
 
 /**
  * Make a squad invulnerable to physical damage.
@@ -13858,12 +13858,12 @@ declare function Squad_SetPosition(squad: SquadID, pos: Position, toward: Positi
  * Moves the squad to an arbitrary new 3D position.
  * Note that the squad will still have the same properties, so any squad that snaps to the terrain (most land based squads) will interpolate to the terrain height immediately after this move. This function should really only be used for skimmers and other units that require the y axis to be specified. Use Squad_SetPosition() otherwise.
  */
-declare function Squad_SetPosition3D(squad: SquadID, pos: Position, toward: Position): any;
+declare function Squad_SetPosition3D(squad: SquadID, pos: Position, toward: Position): void;
 
 /**
  * Set entity inside the squad to be recrewable or not when it becomes abandoned
  */
-declare function Squad_SetRecrewable(squad: SquadID, capturable: boolean): any;
+declare function Squad_SetRecrewable(squad: SquadID, capturable: boolean): void;
 
 /**
  * Enables shared team production on a building (teammates can build using THEIR resources)
@@ -13873,107 +13873,107 @@ declare function Squad_SetSharedProductionQueue(squad: SquadID, shared: boolean)
 /**
  * Sets a boolean value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelBool(squad: SquadID, key: string, value: boolean): any;
+declare function Squad_SetStateModelBool(squad: SquadID, key: string, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelEntityTarget(squad: SquadID, key: string, value: EntityID): any;
+declare function Squad_SetStateModelEntityTarget(squad: SquadID, key: string, value: EntityID): void;
 
 /**
  * Sets a boolean value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTableBool(squad: SquadID, key: string, tableRowIndex: number, value: boolean): any;
+declare function Squad_SetStateModelEnumTableBool(squad: SquadID, key: string, tableRowIndex: number, value: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTableEntityTarget(squad: SquadID, key: string, tableRowIndex: number, value: EntityID): any;
+declare function Squad_SetStateModelEnumTableEntityTarget(squad: SquadID, key: string, tableRowIndex: number, value: EntityID): void;
 
 /**
  * Sets a float value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTableFloat(squad: SquadID, key: string, tableRowIndex: number, value: number): any;
+declare function Squad_SetStateModelEnumTableFloat(squad: SquadID, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets an integer value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTableInt(squad: SquadID, key: string, tableRowIndex: number, value: number): any;
+declare function Squad_SetStateModelEnumTableInt(squad: SquadID, key: string, tableRowIndex: number, value: number): void;
 
 /**
  * Sets a Player TargetHandle value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTablePlayerTarget(squad: SquadID, key: string, tableRowIndex: number, value: PlayerID): any;
+declare function Squad_SetStateModelEnumTablePlayerTarget(squad: SquadID, key: string, tableRowIndex: number, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTableSquadTarget(squad: SquadID, key: string, tableRowIndex: number, value: SquadID): any;
+declare function Squad_SetStateModelEnumTableSquadTarget(squad: SquadID, key: string, tableRowIndex: number, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the squad's state model corresponding to the given key and table row index (0 based).
  */
-declare function Squad_SetStateModelEnumTableVector3f(squad: SquadID, key: string, tableRowIndex: number, value: Position): any;
+declare function Squad_SetStateModelEnumTableVector3f(squad: SquadID, key: string, tableRowIndex: number, value: Position): void;
 
 /**
  * Sets a float value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelFloat(squad: SquadID, key: string, value: number): any;
+declare function Squad_SetStateModelFloat(squad: SquadID, key: string, value: number): void;
 
 /**
  * Sets an integer value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelInt(squad: SquadID, key: string, value: number): any;
+declare function Squad_SetStateModelInt(squad: SquadID, key: string, value: number): void;
 
 /**
  * Sets a boolean value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListBool(squad: SquadID, key: string, value: boolean, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListBool(squad: SquadID, key: string, value: boolean, allowDuplicates: boolean): void;
 
 /**
  * Sets an Entity TargetHandle value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListEntityTarget(squad: SquadID, key: string, value: EntityID, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListEntityTarget(squad: SquadID, key: string, value: EntityID, allowDuplicates: boolean): void;
 
 /**
  * Sets a float value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListFloat(squad: SquadID, key: string, value: number, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListFloat(squad: SquadID, key: string, value: number, allowDuplicates: boolean): void;
 
 /**
  * Sets an integer value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListInt(squad: SquadID, key: string, value: number, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListInt(squad: SquadID, key: string, value: number, allowDuplicates: boolean): void;
 
 /**
  * Sets a Player TargetHandle value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListPlayerTarget(squad: SquadID, key: string, value: PlayerID, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListPlayerTarget(squad: SquadID, key: string, value: PlayerID, allowDuplicates: boolean): void;
 
 /**
  * Sets a Squad TargetHandle value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListSquadTarget(squad: SquadID, key: string, value: SquadID, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListSquadTarget(squad: SquadID, key: string, value: SquadID, allowDuplicates: boolean): void;
 
 /**
  * Sets a Vector3f value in the squad's state model list corresponding to the given key.
  */
-declare function Squad_SetStateModelListVector3f(squad: SquadID, key: string, value: Position, allowDuplicates: boolean): any;
+declare function Squad_SetStateModelListVector3f(squad: SquadID, key: string, value: Position, allowDuplicates: boolean): void;
 
 /**
  * Sets a Player TargetHandle value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelPlayerTarget(squad: SquadID, key: string, value: PlayerID): any;
+declare function Squad_SetStateModelPlayerTarget(squad: SquadID, key: string, value: PlayerID): void;
 
 /**
  * Sets a Squad TargetHandle value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelSquadTarget(squad: SquadID, key: string, value: SquadID): any;
+declare function Squad_SetStateModelSquadTarget(squad: SquadID, key: string, value: SquadID): void;
 
 /**
  * Sets a Vector3f value in the squad's state model corresponding to the given key.
  */
-declare function Squad_SetStateModelVector3f(squad: SquadID, key: string, value: Position): any;
+declare function Squad_SetStateModelVector3f(squad: SquadID, key: string, value: Position): void;
 
 /**
  * Set current squad suppresion level. Suppression value value from 0 to 1
@@ -13983,7 +13983,7 @@ declare function Squad_SetSuppression(squad: SquadID, percentage: number): void;
 /**
  * Turn on/off display of the unit portrait veterancy stars
  */
-declare function Squad_SetVeterancyDisplayVisibility(squad: SquadID, visible: boolean): any;
+declare function Squad_SetVeterancyDisplayVisibility(squad: SquadID, visible: boolean): void;
 
 /**
  * Makes a squad neutral
@@ -14208,22 +14208,22 @@ declare function Team_RestrictResearchList(team: TeamID, list: string[]): void;
 /**
  * Sets the availability of an ability. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Team_SetAbilityAvailability(team: TeamID, bp: number, availability: number): any;
+declare function Team_SetAbilityAvailability(team: TeamID, bp: number, availability: number): void;
 
 /**
  * Sets the availability of entity, squad and player commands. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Team_SetCommandAvailability(team: TeamID, command: number, availability: number): any;
+declare function Team_SetCommandAvailability(team: TeamID, command: number, availability: number): void;
 
 /**
  * Sets the availability of a construction menu. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Team_SetConstructionMenuAvailability(team: TeamID, menuname: string, availability: number): any;
+declare function Team_SetConstructionMenuAvailability(team: TeamID, menuname: string, availability: number): void;
 
 /**
  * Sets the availability of an entity production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Team_SetEntityProductionAvailability(team: TeamID, bp: number, availability: number): any;
+declare function Team_SetEntityProductionAvailability(team: TeamID, bp: number, availability: number): void;
 
 /**
  * Sets the current personnel or vehicle max-cap for each player on a team. The captype is either CT_Personnel or CT_Vehicle (you can't adjust Medic caps just yet).
@@ -14241,7 +14241,7 @@ declare function Team_SetMaxPopulation(team: TeamID, captype: number, newcap: nu
 /**
  * Sets the availability of a squad production item. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Team_SetSquadProductionAvailability(team: TeamID, bp: number, availability: number): any;
+declare function Team_SetSquadProductionAvailability(team: TeamID, bp: number, availability: number): void;
 
 /**
  * Sets up the tech tree for a whole team based off the year
@@ -14251,7 +14251,7 @@ declare function Team_SetTechTreeByYear(team: TeamID, year: number): void;
 /**
  * Sets the availability of an upgrade. Availability can be either ITEM_LOCKED, ITEM_UNLOCKED, ITEM_REMOVED or ITEM_DEFAULT
  */
-declare function Team_SetUpgradeAvailability(team: TeamID, bp: number, availability: number): any;
+declare function Team_SetUpgradeAvailability(team: TeamID, bp: number, availability: number): void;
 
 /**
  * Sets the cost of an upgrade.
@@ -14481,42 +14481,42 @@ declare function Game_IsPerformanceTest(): any;
 /**
  * Requests the local player to be set on the next update. (not deterministic)
  */
-declare function Game_RequestSetLocalPlayer(player: PlayerID): any;
+declare function Game_RequestSetLocalPlayer(player: PlayerID): void;
 
 /**
  * Sets the input enabled flag.
  */
-declare function Game_SetInputEnabledFlag(flag: number): any;
+declare function Game_SetInputEnabledFlag(flag: number): void;
 
 /**
  * Set the player color for the world visuals from preset colors defined in tuning_simulation\ui_team_colours.
  */
-declare function Game_SetPlayerColour(player: Target, Colour_Neutral: Or): any;
+declare function Game_SetPlayerColour(player: Target, Colour_Neutral: Or): void;
 
 /**
  * Set the player color for the world visuals by slot index from preset colors defined in tuning_simulation\ui_player_colours.
  */
-declare function Game_SetPlayerSlotColour(player: Target, based: _1): any;
+declare function Game_SetPlayerSlotColour(player: Target, based: _1): void;
 
 /**
  * Set the player color for the UI from preset colors defined in tuning_simulation\ui_team_colours. Does not affect world visuals.
  */
-declare function Game_SetPlayerUIColour(player: Target, Colour_Neutral: Or): any;
+declare function Game_SetPlayerUIColour(player: Target, Colour_Neutral: Or): void;
 
 /**
  * Set the player color for the UI by slot index from preset colors defined in tuning_simulation\ui_player_colours. Does not affect world visuals.
  */
-declare function Game_SetPlayerUISlotColour(player: Target, based: _1): any;
+declare function Game_SetPlayerUISlotColour(player: Target, based: _1): void;
 
 /**
  * Sets the visibility of the specified game visibility flag.
  */
-declare function Game_SetVisibility(flag: VisibilityFlag, visible: boolean): any;
+declare function Game_SetVisibility(flag: VisibilityFlag, visible: boolean): void;
 
 /**
  * Sets the game visibility flag.
  */
-declare function Game_SetVisibilityFlag(flag: number): any;
+declare function Game_SetVisibilityFlag(flag: number): void;
 
 /**
  * Skips all events. Can either delete or skip queued events.
@@ -14633,22 +14633,22 @@ declare function HintPoint_SetDisplayOffset(hintpointID: number, x: number, y: n
 /**
  * Add a projected offset to the specified hint point.
  */
-declare function HintPoint_SetDisplayOffsetInternal(id: number, offset: Position): any;
+declare function HintPoint_SetDisplayOffsetInternal(id: number, offset: Position): void;
 
 /**
  * Face the hint point arrow towards this entity.
  */
-declare function HintPoint_SetFacingEntity(id: number, entity: EntityID): any;
+declare function HintPoint_SetFacingEntity(id: number, entity: EntityID): void;
 
 /**
  * Face the hint point arrow towards this position.
  */
-declare function HintPoint_SetFacingPosition(id: number, position: Position): any;
+declare function HintPoint_SetFacingPosition(id: number, position: Position): void;
 
 /**
  * Face the hint point arrow towards this squad.
  */
-declare function HintPoint_SetFacingSquad(id: number, squad: SquadID): any;
+declare function HintPoint_SetFacingSquad(id: number, squad: SquadID): void;
 
 /**
  * Sets a hintpoint's visibility. Currently, FOW is not accounted for.
@@ -14658,7 +14658,7 @@ declare function HintPoint_SetVisible(HintPointID: number, bVisible: boolean): v
 /**
  * Show or hide the specified hint point.
  */
-declare function HintPoint_SetVisibleInternal(id: number, visible: boolean): any;
+declare function HintPoint_SetVisibleInternal(id: number, visible: boolean): void;
 
 /**
  * Clear the map icon facing value.
@@ -14698,17 +14698,17 @@ declare function MapIcon_DestroyAll(): any;
 /**
  * Face the map icon towards this entity.
  */
-declare function MapIcon_SetFacingEntity(id: number, entity: EntityID): any;
+declare function MapIcon_SetFacingEntity(id: number, entity: EntityID): void;
 
 /**
  * Face the map icon towards this position.
  */
-declare function MapIcon_SetFacingPosition(id: number, position: Position): any;
+declare function MapIcon_SetFacingPosition(id: number, position: Position): void;
 
 /**
  * Face the map icon towards this squad.
  */
-declare function MapIcon_SetFacingSquad(id: number, squad: SquadID): any;
+declare function MapIcon_SetFacingSquad(id: number, squad: SquadID): void;
 
 /**
  * Add another circle in which commands are restricted to.
@@ -14880,7 +14880,7 @@ declare function Misc_SetDefaultCommandsEnabled(enabled: boolean): void;
 /**
  * Allow all entities in an EGroup to be selectable (or not)
  */
-declare function Misc_SetEGroupSelectable(egroup: EGroupID, selectable: boolean): any;
+declare function Misc_SetEGroupSelectable(egroup: EGroupID, selectable: boolean): void;
 
 /**
  * Makes a squad belong to a specific control group. If it already belongs to another control group, it's removed from that one before being added to the new one.
@@ -14890,7 +14890,7 @@ declare function Misc_SetEntityControlGroup(entity: EntityID, groupIndex: number
 /**
  * Disable/enable selectability of the specified entity.
  */
-declare function Misc_SetEntitySelectable(entity: EntityID, selectable: boolean): any;
+declare function Misc_SetEntitySelectable(entity: EntityID, selectable: boolean): void;
 
 /**
  * Enables / Disables selection input.
@@ -14900,7 +14900,7 @@ declare function Misc_SetSelectionInputEnabled(enabled: boolean): void;
 /**
  * Allow all squads in an SGroup to be selectable (or not)
  */
-declare function Misc_SetSGroupSelectable(sgroup: SGroupID, selectable: boolean): any;
+declare function Misc_SetSGroupSelectable(sgroup: SGroupID, selectable: boolean): void;
 
 /**
  * Makes a squad belong to a specific control group. If it already belongs to another control group, it's removed from that one before being added to the new one.
@@ -14910,7 +14910,7 @@ declare function Misc_SetSquadControlGroup(squad: SquadID, groupIndex: number): 
 /**
  * Disable/enable selectability of the specified squad.
  */
-declare function Misc_SetSquadSelectable(squad: SquadID, selectable: boolean): any;
+declare function Misc_SetSquadSelectable(squad: SquadID, selectable: boolean): void;
 
 /**
  * Hide the objective progress panel.
@@ -14925,7 +14925,7 @@ declare function Obj_HideProgressEx(progressBarIndex: number): any;
 /**
  * Make the objective progress bar blink or stop blinking.
  */
-declare function Obj_SetProgressBlinking(blinking: boolean): any;
+declare function Obj_SetProgressBlinking(blinking: boolean): void;
 
 /**
  * Show the objective progress panel with a progress bar - call repeatedly to update progress.  Value should be normalized between [0 - 1].
@@ -14965,7 +14965,7 @@ declare function PlayerColour_Enable(): any;
 /**
  * Sets a callback firing when user changes the config for player colour
  */
-declare function PlayerColour_SetConfigChangedCallback(function_: any): any;
+declare function PlayerColour_SetConfigChangedCallback(function_: any): void;
 
 /**
  * Prematurely finish all queued speech
@@ -15132,12 +15132,12 @@ declare function UI_ClearSkipNISCallback(): any;
 /**
  * Set the numner of columns in the command card.
  */
-declare function UI_CommandCardSetColumns(columns: number): any;
+declare function UI_CommandCardSetColumns(columns: number): void;
 
 /**
  * Set the numner of rows in the command card.
  */
-declare function UI_CommandCardSetRows(rows: number): any;
+declare function UI_CommandCardSetRows(rows: number): void;
 
 /**
  * Toggle off cover preview. Each call to UI_CoverPreviewHide must be matched by a call to UI_CoverPreviewShow
@@ -15455,17 +15455,17 @@ declare function UI_SetAlliedBandBoxSelection(allow: boolean): void;
 /**
  * Enables or disable load and save features at the pause menu
  */
-declare function UI_SetAllowLoadAndSave(allowLoadAndSave: boolean): any;
+declare function UI_SetAllowLoadAndSave(allowLoadAndSave: boolean): void;
 
 /**
  * Sets a callback firing when user select a control group either by hotkey or by control group button
  */
-declare function UI_SetControlGroupSelectedCallback(the: In): any;
+declare function UI_SetControlGroupSelectedCallback(the: In): void;
 
 /**
  * Sets the visibility of the Command Point meter.
  */
-declare function UI_SetCPMeterVisibility(visible: boolean): any;
+declare function UI_SetCPMeterVisibility(visible: boolean): void;
 
 /**
  * Enables or disables all decorators
@@ -15475,22 +15475,22 @@ declare function UI_SetDecoratorsEnabled(enabled: boolean): void;
 /**
  * Enable/Disable pause menu showing up when the pause menu hot key is pressed.
  */
-declare function UI_SetEnablePauseMenu(isEnable: boolean): any;
+declare function UI_SetEnablePauseMenu(isEnable: boolean): void;
 
 /**
  * Explicitly set the decorator a squad should use.
  */
-declare function UI_SetEntityDecorator(entity: EntityID, decorator: string): any;
+declare function UI_SetEntityDecorator(entity: EntityID, decorator: string): void;
 
 /**
  * Sets the game to force show subtitles even if the player has them turned off.
  */
-declare function UI_SetForceShowSubtitles(forceShowSubtitles: boolean): any;
+declare function UI_SetForceShowSubtitles(forceShowSubtitles: boolean): void;
 
 /**
  * Sets the angle of True North for the minimap in degrees
  */
-declare function UI_SetMinimapTrueNorth(trueNorthAngleDeg: number): any;
+declare function UI_SetMinimapTrueNorth(trueNorthAngleDeg: number): void;
 
 /**
  * Sets a function to be called when the player clicks an ability and gets a targetting UI. Your function will have 2 arguments: [Blueprint] ability blueprint, [Real] phase: MAP_Placing, MAP_Facing (only if ability requires facing) or MAP_Confirmed
@@ -15500,12 +15500,12 @@ declare function UI_SetModalAbilityPhaseCallback(f: any): void;
 /**
  * Sets a function to be called when the player clicks a construction item and gets a targeting UI. Your function will have 2 arguments: [Blueprint] ability blueprint, [integer] phase: TP_Position, TP_Facing (only if ability requires facing), TP_Issued (not strict) or TP_Cancelled (for all issuables)
  */
-declare function UI_SetModalConstructionPhaseCallback(function_: any): any;
+declare function UI_SetModalConstructionPhaseCallback(function_: any): void;
 
 /**
  * Sets a function to be called when the player clicks a construction item and gets a targeting UI. Your function will have 2 arguments: [Blueprint] ability blueprint, [integer] phase: TP_Position, TP_Facing (only if ability requires facing), TP_Issued (not strict) or TP_Cancelled (for all issuables)
  */
-declare function UI_SetModalHoverCallback(function_: any): any;
+declare function UI_SetModalHoverCallback(function_: any): void;
 
 /**
  * Sets a level decorator that's defined in all of the squads squad_ui_ext in the target SGroup
@@ -15521,17 +15521,17 @@ declare function UI_SetSilhouetteEnabled(unit: SGROUP | EGroup | Squad | EntityI
 /**
  * Sets a callback firing when user try to skip the NIS
  */
-declare function UI_SetSkipNISCallback(function_: any): any;
+declare function UI_SetSkipNISCallback(function_: any): void;
 
 /**
  * Explicitly set the decorator a squad should use.
  */
-declare function UI_SetSquadDecorator(squad: SquadID, decorator: string): any;
+declare function UI_SetSquadDecorator(squad: SquadID, decorator: string): void;
 
 /**
  * Turn on of off the squad decorator being always visible. The default is decorator not always visible.
  */
-declare function UI_SetSquadDecoratorAlwaysVisible(squad: SquadID, alwaysVisible: boolean): any;
+declare function UI_SetSquadDecoratorAlwaysVisible(squad: SquadID, alwaysVisible: boolean): void;
 
 /**
  * Enables or disables the UI extensions for squads / entities
@@ -16565,7 +16565,7 @@ declare function World_Reset(): any;
 /**
  * Unlocks all the interaction stages
  */
-declare function World_SetAllInteractiveStagesVisibility(visibilityStatus: boolean): any;
+declare function World_SetAllInteractiveStagesVisibility(visibilityStatus: boolean): void;
 
 /**
  * Sets a particular sector in the world as a supply provider (or not)
@@ -16575,12 +16575,12 @@ declare function World_SetDesignerSupply(point: Position, bSupply: boolean): voi
 /**
  * Set current interaction stage to value supplied, must be >= 0
  */
-declare function World_SetInteractionStage(stage: number): any;
+declare function World_SetInteractionStage(stage: number): void;
 
 /**
  * Enables or disables shared line of sight between these two players, and merges explored maps when needed
  */
-declare function World_SetSharedLineOfSightEnabledAndMergeExploredMaps(p0: PlayerID, p1: PlayerID, enableSharedVision: boolean): any;
+declare function World_SetSharedLineOfSightEnabledAndMergeExploredMaps(p0: PlayerID, p1: PlayerID, enableSharedVision: boolean): void;
 
 /**
  * spawn a demolitions charge at a position, 'player' is the one that owns the demolitions and can detonate them.

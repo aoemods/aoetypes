@@ -27,10 +27,17 @@ function cleanDocumentation(documentation: string) {
 }
 
 const parseFunction = (functionNode: HTMLElement): TypeSourceFunction => {
-    const returnType = functionNode.childNodes[0].text.trim()
+    let returnType = functionNode.childNodes[0].text.trim()
+
     const name = extractText(functionNode.childNodes[1].text)
     if (!name) {
         throw new Error("Could not find name for function")
+    }
+
+    // Heuristics when we have no return type:
+    // - Set followed by upper-case letter has void return type
+    if (!returnType && name.match(/Set[A-Z]+/)) {
+        returnType = "void"
     }
 
     const parameters: TypeSourceParameter[] = []
