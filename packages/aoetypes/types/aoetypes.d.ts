@@ -16290,18 +16290,18 @@ declare function Marker_CleanUpTheDead(player: PlayerID, marker: MarkerID): void
 /**
  * Calculates the length of the provided vector
  */
-declare function Vector_Length(pos: Position): any;
+declare function Vector_Length(pos: Position): number;
 
 /**
  * Linearly interpolates between the two provided vectors based on the provided factor
  */
-declare function Vector_Lerp(factor: number, pos1: Position, pos2: Position): any;
+declare function Vector_Lerp(factor: number, pos1: Position, pos2: Position): Position;
 
 /**
- * Returns the normalized version of the provided vector
+ * Returns the normalized version of the provided vector.
  * Returns a vector pointing the same direction as the provided vector, but shortened/elongated to a length of 1. Don't pass in a vector of length 0, or you'll get a divide-by-zero error!
  */
-declare function Vector_Normalize(pos: Position): any;
+declare function Vector_Normalize(pos: Position): Position;
 
 /**
  * Returns the average positions of the entities in the area

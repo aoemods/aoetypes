@@ -155,7 +155,6 @@ const createInstanceDeclaration = (instanceName: string, fns: TypeSourceFunction
 
     for (const fn of fns) {
         const params = makeUniqueParams(fn, typeSpellings)
-        console.log("Adding with class", fn.class, fn.name)
 
         const methodDecl = dom.create.method(fn.name, params, createTypeReference(fn.returnType, typeSpellings))
         methodDecl.jsDocComment = fn.documentation
