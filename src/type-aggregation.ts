@@ -1,4 +1,4 @@
-import { TypeSourceFunction } from "./type-sources/types.js";
+import { TypeSourceEnum, TypeSourceFunction } from "./type-sources/types.js";
 
 export type AggregateFunctionsInput = {
     coh2Functions: TypeSourceFunction[]
@@ -42,4 +42,22 @@ export function aggregateFunctions(inputs: AggregateFunctionsInput): TypeSourceF
     }
 
     return aggregatedFunctions
+}
+
+export type AggregateEnumsInput = {
+    aoe4Enums: TypeSourceEnum[]
+    aoe4GlobalsDumpEnums: TypeSourceEnum[]
+}
+
+export function aggregateEnums(inputs: AggregateEnumsInput): TypeSourceEnum[] {
+    const { aoe4Enums, aoe4GlobalsDumpEnums } = inputs
+
+    const enums = aoe4Enums
+    for (const dumpEnum of aoe4GlobalsDumpEnums) {
+        if (!enums.some(e => e.name === dumpEnum.name)) {
+            enums.push(dumpEnum)
+        }
+    }
+
+    return enums
 }

@@ -18007,6 +18007,119 @@ declare enum WeaponPreference {
     WP_Ranged,
 }
 
+/**
+ * @compileMembersOnly
+ */
+declare enum EventCueActionVisibility {
+    ECAV_CanSeeExecutor,
+    ECAV_CanSeeTargetAndExecutorIsOwnOrAlly,
+    ECAV_ExecuterIsOwnOrAlly,
+    ECAV_ExecuterIsOwn,
+    ECAV_CanEnemySeeExecutor,
+    ECAV_TargetIsOwn,
+    ECAV_TargetIsAlly,
+    ECAV_OwnsTargetAndExecuterIsEnemy,
+    ECAV_AlliedToTargetAndExecuterIsEnemy,
+    ECAV_ExecuterIsEnemy,
+    ECAV_CanSeeTargetAndExecutorIsOwn,
+    ECAV_ExecuterIsAlly,
+    ECAV_Global,
+    ECAV_CanSeeTarget,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum Relationship {
+    R_UNDEFINED,
+    R_NEUTRAL,
+    R_ALLY,
+    R_ENEMY,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum EventCueVisibility {
+    ECV_Title,
+    ECV_Queue,
+    ECV_None,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum KillPlayerReason {
+    KPR_COUNT,
+    KPR_NetworkKickedOut,
+    KPR_NetworkDisconnected,
+    KPR_Lost,
+    KPR_Surrendered,
+    KPR_Endgame,
+    KPR_UnusedPlayer,
+    KPR_NetworkAbort,
+    KPR_NetworkOutOfSync,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum DecoratorVisibility {
+    DV_Default,
+    DV_Hidden,
+    DV_Visible,
+    DV_MouseOverOrDamagedEnemy,
+    DV_EnemyOnly,
+    DV_MouseOver,
+    DV_Count,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum AIType {
+    AII_RemoteAITakeover,
+    AII_None,
+    AII_Normal,
+    AII_RemoteHumanTakeover,
+    AII_LocalHumanTakeover,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum UICombineType {
+    UI_Union,
+    UI_Intersection,
+    UI_DoNotCombine,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum AIMilitaryEngagementType {
+    AIMET_Capture,
+    AIMET_DefendArea,
+    AIMET_AttackArea,
+    AIMET_NeutralClump,
+    AIMET_EnemyClump,
+    AIMET_AllyClump,
+    AIMET_NeutralStructure,
+    AIMET_AttackStructure,
+    AIMET_DefendStructure,
+    AIMET_Gather,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum PresetColour {
+    Colour_Enemy,
+    Colour_Local,
+    Colour_Neutral,
+    Colour_Ally,
+}
+
 declare interface Position {
     x: number;
     y: number;
@@ -18101,9 +18214,6 @@ declare interface AiEncounter {
 }
 
 declare interface PlayerTable {
-}
-
-declare interface Relationship {
 }
 
 declare interface RequestData {
@@ -18275,9 +18385,6 @@ declare interface VillagerLife {
 }
 
 declare interface Wave {
-}
-
-declare interface KillPlayerReason {
 }
 
 declare interface ScarEntityPBG {
@@ -18485,9 +18592,6 @@ declare interface Ui {
 }
 
 declare interface Control {
-}
-
-declare interface EventCueVisibility {
 }
 
 declare interface BlipID {

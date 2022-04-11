@@ -1,6 +1,6 @@
 import * as dom from "dts-dom"
 import { TypeSources } from "./load-sources.js"
-import { aggregateFunctions } from "./type-aggregation.js"
+import { aggregateEnums, aggregateFunctions } from "./type-aggregation.js"
 import { extractTypes } from "./type-extraction.js"
 import { TypeSourceFunction, TypeSourceType } from "./type-sources/types.js"
 
@@ -244,12 +244,14 @@ export function createDts(sources: TypeSources): dom.TopLevelDeclaration[] {
     const classes = new Set(aggregatedFunctions.filter(fn => fn.class).map(fn => fn.class!))
     aggregatedFunctions = aggregatedFunctions.filter(fn => fn.class || !classes.has(fn.name))
 
+    const aggregatedEnums = aggregateEnums(sources)
+
     const extractedTypes = extractTypes({
         functions: aggregatedFunctions,
-        enums: sources.aoe4Enums,
+        enums: aggregatedEnums,
     })
 
-    const enumTypesLower = new Set(sources.aoe4Enums.map(e => e.name.toLowerCase()))
+    const enumTypesLower = new Set(aggregatedEnums.map(e => e.name.toLowerCase()))
     const ignoreTypeDeclarations = getIgnoredTypeDeclarations(sources)
 
     const newTypes = extractedTypes.filter(

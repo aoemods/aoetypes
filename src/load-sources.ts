@@ -3,7 +3,7 @@ import { TypeSourceConstant, TypeSourceEnum, TypeSourceFunction } from "./type-s
 import { makeScarDocsEnumTypeSource, makeScarDocsFunctionTypeSource } from "./type-sources/scardocs.js"
 import { makeScarScriptFunctionTypeSource } from "./type-sources/scarscript.js"
 import { functions as functionOverrides } from "./overrides.js"
-import { makeGlobalsDumpConstantsTypeSource } from "./type-sources/globalsdump.js"
+import { makeGlobalsDumpConstantsTypeSource, makeGlobalsDumpEnumTypeSource } from "./type-sources/globalsdump.js"
 
 
 export type TypeSources = {
@@ -13,6 +13,7 @@ export type TypeSources = {
     aoe4ScriptFunctions: TypeSourceFunction[]
     aoe4Enums: TypeSourceEnum[]
     aoe4GlobalsDumpConstants: TypeSourceConstant[]
+    aoe4GlobalsDumpEnums: TypeSourceEnum[]
 }
 
 async function loadAoe4ScriptFunctions() {
@@ -55,6 +56,7 @@ export async function loadSources(): Promise<TypeSources> {
     const coh2Functions = makeScarDocsFunctionTypeSource(coh2FunctionsHtml).getFunctions()
     const aoe4ScriptFunctions = await loadAoe4ScriptFunctions()
     const aoe4GlobalsDumpConstants = makeGlobalsDumpConstantsTypeSource(aoe4GlobalsDumpText).getConstants()
+    const aoe4GlobalsDumpEnums = makeGlobalsDumpEnumTypeSource(aoe4GlobalsDumpText).getEnums()
 
     return {
         aoe4Functions,
@@ -63,5 +65,6 @@ export async function loadSources(): Promise<TypeSources> {
         aoe4ScriptFunctions,
         aoe4Enums,
         aoe4GlobalsDumpConstants,
+        aoe4GlobalsDumpEnums,
     }
 }
