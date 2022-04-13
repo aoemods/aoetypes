@@ -1,6 +1,6 @@
 {
     "name": "@aoemods/aoetypes",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "description": "TypeScript definitions for Age of Empires 4 Lua API",
     "keywords": [
         "aoe",
