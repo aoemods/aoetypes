@@ -101,4 +101,19 @@ export const functions: TypeSourceFunction[] = [
         returnType: "any",
         documentation: "Create a table that will be interpreted as a data context for UI properties.",
     },
+    {
+        name: "SGroup_SetTargetingType",
+        parameters: [
+            {
+                name: "sgroup",
+                type: "SGroupID",
+            },
+            {
+                name: "type",
+                type: "TargetingType",
+            },
+        ],
+        returnType: "void",
+        documentation: "Sets the targeting type of entities in an sgroup",
+    },
 ]

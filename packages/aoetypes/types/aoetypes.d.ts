@@ -7368,7 +7368,7 @@ declare function SGroup_GetClosestSquads(): any;
 /**
  * Sets the targeting type of entities in an sgroup
  */
-declare function SGroup_SetTargetingType(): void;
+declare function SGroup_SetTargetingType(sgroup: SGroupID, type: TargetingType): void;
 
 /**
  * Splits an SGroup as cleanly as possible into X new SGroups, returning a table of the SGroups in question
