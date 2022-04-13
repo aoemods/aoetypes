@@ -1084,7 +1084,7 @@ declare function Weapon_Tracking(): any;
 /**
  * Draw line. If you don't pass in a name, TerrainLine is used.
  */
-declare function dr_drawline(pos0: Position, pos1: Position, r: number, g: number, b: number, svar: StackVar): any;
+declare function dr_drawline(pos0: Position, pos1: Position, r: number, g: number, b: number, svar: any): any;
 
 /**
  * Draw circle on terrain.
@@ -2008,7 +2008,7 @@ declare function AIPlayer_GetBestOwnTrafficPos(aiPlayer: PlayerID, minNumSquads:
 /**
  * Returns a position that has the highest decayed traffic of either allies or enemies
  */
-declare function AIPlayer_GetBestTrafficPos(aiPlayer: PlayerID, relationshipEnum: StackVar, minNumSquads: number): any;
+declare function AIPlayer_GetBestTrafficPos(aiPlayer: PlayerID, relationshipEnum: any, minNumSquads: number): any;
 
 /**
  * Get the distance of the path requested with the given ID. < 0 means invalid request.
@@ -2023,7 +2023,7 @@ declare function AIPlayer_GetCachedPathPoints(player: PlayerID, requestingID: nu
 /**
  * Returns an EGroup containing all capture points on the map owned by a player with the specified
  */
-declare function AIPlayer_GetCapturePoints(aiPlayer: PlayerID, relationshipEnum: StackVar, onlyCanPlaceSecuringStructure: boolean, egroupOut: EGroupID): any;
+declare function AIPlayer_GetCapturePoints(aiPlayer: PlayerID, relationshipEnum: any, onlyCanPlaceSecuringStructure: boolean, egroupOut: EGroupID): any;
 
 /**
  * Used for tactics; returns a "special error position" on failure that's nowhere inside the world
@@ -2086,7 +2086,7 @@ declare function AIPlayer_GetOwnedMilitaryPointEntitiesInRange(militaryPointPBG:
 /**
  * Returns all positions of military points allied with a player
  */
-declare function AIPlayer_GetPositionsOfMilitaryPointsWithRelation(aiPlayer: PlayerID, relationshipEnum: StackVar): any;
+declare function AIPlayer_GetPositionsOfMilitaryPointsWithRelation(aiPlayer: PlayerID, relationshipEnum: any): any;
 
 /**
  * Returns the utility of building the squad specified by the PBG, or 0 if not found
@@ -2413,7 +2413,7 @@ declare function Camera_ExecuteBSplinePan(totalT: number, controlRotation: boole
 /**
  * Executes a camera pan that was captured using the Capture Tool. Expects that the "camera_spline" Camera set was pushed to the CameraSwitchboard, using Camera_Push("camera_spline") Returns the duration of the spline, so that the user can call Camera_Pop()
  */
-declare function Camera_ExecuteCaptureCameraPan(cameraPanTable: StackVarTable): any;
+declare function Camera_ExecuteCaptureCameraPan(cameraPanTable: any): any;
 
 /**
  * Execute spline pan based on queued control points. Use Catmull-Rom interpolation of points
@@ -3009,7 +3009,7 @@ declare function Game_GetSPDifficulty(): number;
 /**
  * injects terrain type values into passed table to use for terrain creation
  */
-declare function Game_GetTerrainTypeVariables(terrainVars: StackVarTable): any;
+declare function Game_GetTerrainTypeVariables(terrainVars: any): any;
 
 /**
  * Returns lock state of stored data at location named by dataID.
@@ -3034,7 +3034,7 @@ declare function Game_IsSaving(): any;
 /**
  * load this scenario as an single player match
  */
-declare function Game_LaunchSPGeneratedMap(biomePbgName: string, layoutPbgName: string, sizePbgName: string, difficulty: number, terrainResult: StackVarTable): any;
+declare function Game_LaunchSPGeneratedMap(biomePbgName: string, layoutPbgName: string, sizePbgName: string, difficulty: number, terrainResult: any): any;
 
 /**
  * Load data store to disk
@@ -3228,7 +3228,7 @@ declare function Loc_FormatTime_M_S_MS(secs: number, leading_zeroes: boolean): a
 /**
  * Returns the localized string identified by the specified id.
  */
-declare function Loc_GetString(id: StackVar): any;
+declare function Loc_GetString(id: any): any;
 
 /**
  * Finds a location based on the identifier
@@ -4225,7 +4225,7 @@ declare function scartype(v: LuaBinding): number;
 /**
  * Returns a string representing the scartype when passed a scartype enum value
  */
-declare function scartype_enum_tostring(v: StackVar): any;
+declare function scartype_enum_tostring(v: any): any;
 
 /**
  * Returns a string representing the scartype
@@ -4245,7 +4245,7 @@ declare function setsimrate(rate: number): any;
 /**
  * Fill table with win condition options - schema is loaded from .win file
  */
-declare function Setup_GetWinConditionOptions(outOptions: StackVarTable): any;
+declare function Setup_GetWinConditionOptions(outOptions: any): any;
 
 /**
  * Set the UI name of a given player.
@@ -4785,7 +4785,7 @@ declare function TransferModuleIntoModule(sourceModule: string, targetModule: st
 /**
  * Add a new child named childName and of type typeName to elementName.
  */
-declare function UI_AddChild(elementName: string, typeName: string, childName: string, propertyTable: StackVarTable): any;
+declare function UI_AddChild(elementName: string, typeName: string, childName: string, propertyTable: any): any;
 
 /**
  * Adds a command binding for groupName.bindingName to global function callbackName.
@@ -4847,32 +4847,32 @@ declare function UI_RemoveEventHandler(elementName: string, eventName: string, c
 /**
  * Converts table to a data context for bindings of elementName.
  */
-declare function UI_SetDataContext(elementName: string, table: StackVarTable): void;
+declare function UI_SetDataContext(elementName: string, table: any): void;
 
 /**
  * Converts table to a data context exposed through entity models.
  */
-declare function UI_SetEntityDataContext(entity: EntityID, table: StackVarTable): void;
+declare function UI_SetEntityDataContext(entity: EntityID, table: any): void;
 
 /**
  * Converts table to a data context exposed through player models.
  */
-declare function UI_SetPlayerDataContext(player: PlayerID, table: StackVarTable): void;
+declare function UI_SetPlayerDataContext(player: PlayerID, table: any): void;
 
 /**
  * Sets the property propertyName on elementName to value stackVar.
  */
-declare function UI_SetPropertyValue(elementName: string, propertyName: string, stackVar: StackVar): void;
+declare function UI_SetPropertyValue(elementName: string, propertyName: string, stackVar: any): void;
 
 /**
  * Sets the properties on elementName to the key/value pairs in propertyTable.
  */
-declare function UI_SetPropertyValues(elementName: string, propertyTable: StackVarTable): void;
+declare function UI_SetPropertyValues(elementName: string, propertyTable: any): void;
 
 /**
  * Converts table to a data context exposed through squad models.
  */
-declare function UI_SetSquadDataContext(squad: SquadID, table: StackVarTable): void;
+declare function UI_SetSquadDataContext(squad: SquadID, table: any): void;
 
 /**
  * Forces ALL in-process deployments to complete instantly.
@@ -6354,7 +6354,7 @@ declare function BP_GetSquadUIInfo(sbp: ScarSquadPBG, rbp: ScarRacePBG): any;
 /**
  * Returns the type of a blueprint.
  */
-declare function BP_GetType(v: StackVar): any;
+declare function BP_GetType(v: any): any;
 
 /**
  * Returns an upgrade property bag group.
@@ -14583,7 +14583,7 @@ declare function HintMouseover_Remove(hintText: string, hintTarget: MARKER | EGr
  * HPAT_Detonation
  * HPAT_Vaulting
  */
-declare function HintPoint_Add(where: StackVar, bVisible: boolean, hintText: string, height?: number, actionType?: HintPointActionType, iconName?: string, priority?: number, visibleInFOW?: boolean, dataTemplate?: string): HintPointID;
+declare function HintPoint_Add(where: any, bVisible: boolean, hintText: string, height?: number, actionType?: HintPointActionType, iconName?: string, priority?: number, visibleInFOW?: boolean, dataTemplate?: string): HintPointID;
 
 /**
  * Deprecated.
@@ -15162,7 +15162,7 @@ declare function UI_CreateCustomEventCueFrom(player: Sender, type: Event, durati
 /**
  * Create a table that will be interpreted as a data context for UI properties.
  */
-declare function UI_CreateDataContext(): any;
+declare function UI_CreateDataContext(dataContext: any): any;
 
 /**
  * Create a custom kicker message on the entity and display to the player
@@ -15189,7 +15189,7 @@ declare function UI_CreateEventCueClickableByType(eventType: UIEventType, lifeti
  * Creates a blip on the minimap; return the ID of the blip.
  * 'where' can be an entity, marker, position, egroup, sgroup, or squad.
  */
-declare function UI_CreateMinimapBlip(where: StackVar, lifetime: number, blipDataTemplate: string): BlipID;
+declare function UI_CreateMinimapBlip(where: any, lifetime: number, blipDataTemplate: string): BlipID;
 
 /**
  * Create a blips on a ScarMarker from a sender. sender is used for retrieving player information like team color
@@ -15590,7 +15590,7 @@ declare function WinWarning_ShowLoseWarning(text: string, fadeIn: number, durati
  * E-mails a warning out with logfiles at the end of the game.
  * Example: bug( "This shouldn't happen, fix "..problem.here)
  */
-declare function bug(errormessage: ErrorMessage): void;
+declare function bug(errormessage: string): void;
 
 /**
  * Clones a table allowing for unadulterated use of the data. By default this cloning is done recursively, but that can be changed with the optional recursive flag.
@@ -15600,12 +15600,12 @@ declare function Clone(data: any, recursive?: boolean): any;
 /**
  * Converts any enum value to a number
  */
-declare function Enum_ToNumber(var_: StackVar): any;
+declare function Enum_ToNumber(var_: any): any;
 
 /**
  * Converts any enum value to a string
  */
-declare function Enum_ToString(var_: StackVar): any;
+declare function Enum_ToString(var_: any): any;
 
 /**
  * Returns true if any standard (non-save) event has been queued to run.
@@ -18088,9 +18088,6 @@ declare interface EGroupID {
 declare interface MarkerID {
 }
 
-declare interface StackVar {
-}
-
 declare interface AIEncounterID {
 }
 
@@ -18152,9 +18149,6 @@ declare interface ScarSquadPBG {
 }
 
 declare interface AIScoreMultiplierID {
-}
-
-declare interface StackVarTable {
 }
 
 declare interface TRUE {
@@ -18455,9 +18449,6 @@ declare interface GameEventID {
 }
 
 declare interface ScarReticulePBG {
-}
-
-declare interface ErrorMessage {
 }
 
 declare interface Argc {

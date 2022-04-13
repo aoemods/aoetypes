@@ -90,4 +90,15 @@ export const functions: TypeSourceFunction[] = [
         returnType: "Position",
         documentation: "Returns the normalized version of the provided vector.\nReturns a vector pointing the same direction as the provided vector, but shortened/elongated to a length of 1. Don't pass in a vector of length 0, or you'll get a divide-by-zero error!",
     },
+    {
+        name: "UI_CreateDataContext",
+        parameters: [
+            {
+                name: "dataContext",
+                type: "any",
+            },
+        ],
+        returnType: "any",
+        documentation: "Create a table that will be interpreted as a data context for UI properties.",
+    },
 ]

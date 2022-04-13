@@ -31,6 +31,7 @@ const typeMap: Record<TypeSourceType, dom.Type> = {
     "std::string": dom.type.string,
     "locstring": dom.type.string,
     "path": dom.type.string,
+    "errormessage": dom.type.string,
 
     "object": dom.type.any,
 
@@ -84,7 +85,9 @@ const typeMap: Record<TypeSourceType, dom.Type> = {
     "lua": dom.type.any,
     "lua table": dom.type.any,
     "var": dom.type.any,
+    "stackvartable": dom.type.any,
     "variable": dom.type.any,
+    "stackvar": dom.type.any,
 
     "function": dom.type.any,
     "luafunction": dom.type.any,
