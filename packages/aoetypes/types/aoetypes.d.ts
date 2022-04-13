@@ -16803,6 +16803,17 @@ declare const Encounter: TEncounter;
 /**
  * @compileMembersOnly
  */
+declare enum AddResourceReason {
+    RES_Gift,
+    RES_Other,
+    RES_Refund,
+    RES_Resourcing,
+    RES_RefundOnDeath,
+}
+
+/**
+ * @compileMembersOnly
+ */
 declare enum AIBuildStyle {
     BS_AwayFromResources,
     BS_COUNT,
@@ -16864,6 +16875,22 @@ declare enum AIDifficultyLevel {
     Invalid,
     Max,
     Normal,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum AIMilitaryEngagementType {
+    AIMET_AttackStructure,
+    AIMET_AttackArea,
+    AIMET_AllyClump,
+    AIMET_DefendStructure,
+    AIMET_NeutralStructure,
+    AIMET_Capture,
+    AIMET_NeutralClump,
+    AIMET_Gather,
+    AIMET_EnemyClump,
+    AIMET_DefendArea,
 }
 
 /**
@@ -16979,6 +17006,17 @@ declare enum AITaskType {
 /**
  * @compileMembersOnly
  */
+declare enum AIType {
+    AII_Normal,
+    AII_RemoteAITakeover,
+    AII_LocalHumanTakeover,
+    AII_RemoteHumanTakeover,
+    AII_None,
+}
+
+/**
+ * @compileMembersOnly
+ */
 declare enum Availability {
     eAvailablityCOUNT,
     eDefault,
@@ -17071,6 +17109,19 @@ declare enum DeathReason {
     DEATHREASON_SUBMERGE,
     DEATHREASON_SYNC_KILL,
     DEATHREASON_WALKABLE_SURFACE,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum DecoratorVisibility {
+    DV_MouseOverOrDamagedEnemy,
+    DV_Visible,
+    DV_EnemyOnly,
+    DV_Hidden,
+    DV_Default,
+    DV_MouseOver,
+    DV_Count,
 }
 
 /**
@@ -17192,11 +17243,51 @@ declare enum EntityStateID {
 /**
  * @compileMembersOnly
  */
+declare enum EventCueActionVisibility {
+    ECAV_ExecuterIsAlly,
+    ECAV_ExecuterIsEnemy,
+    ECAV_ExecuterIsOwnOrAlly,
+    ECAV_CanSeeTarget,
+    ECAV_ExecuterIsOwn,
+    ECAV_Global,
+    ECAV_AlliedToTargetAndExecuterIsEnemy,
+    ECAV_CanEnemySeeExecutor,
+    ECAV_CanSeeTargetAndExecutorIsOwn,
+    ECAV_OwnsTargetAndExecuterIsEnemy,
+    ECAV_CanSeeTargetAndExecutorIsOwnOrAlly,
+    ECAV_CanSeeExecutor,
+    ECAV_TargetIsOwn,
+    ECAV_TargetIsAlly,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum EventCueVisibility {
+    ECV_None,
+    ECV_Title,
+    ECV_Queue,
+}
+
+/**
+ * @compileMembersOnly
+ */
 declare enum ExplosionDebugVisuals {
     All,
     Count,
     None,
     Selected,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum Field {
+    AIIslandDecision_Combat,
+    AIIslandDecision_Inhabit,
+    AIIslandDecision_Scout,
+    AIIslandDecision_Build,
+    AIIslandDecision_Gather,
 }
 
 /**
@@ -17249,6 +17340,21 @@ declare enum InputEnabledFlag {
     x0001,
     x0002,
     x0004,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum KillPlayerReason {
+    KPR_NetworkAbort,
+    KPR_NetworkKickedOut,
+    KPR_Lost,
+    KPR_NetworkDisconnected,
+    KPR_COUNT,
+    KPR_Endgame,
+    KPR_UnusedPlayer,
+    KPR_Surrendered,
+    KPR_NetworkOutOfSync,
 }
 
 /**
@@ -17483,6 +17589,16 @@ declare enum PresentationEventType {
 /**
  * @compileMembersOnly
  */
+declare enum PresetColour {
+    Colour_Enemy,
+    Colour_Local,
+    Colour_Neutral,
+    Colour_Ally,
+}
+
+/**
+ * @compileMembersOnly
+ */
 declare enum ProductionItemType {
     Count,
     PITEM_PlayerUpgrade,
@@ -17491,6 +17607,16 @@ declare enum ProductionItemType {
     PITEM_SquadUpgrade,
     PITEM_Upgrade,
     SelfConstructed,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum Relationship {
+    R_ALLY,
+    R_UNDEFINED,
+    R_ENEMY,
+    R_NEUTRAL,
 }
 
 /**
@@ -17797,6 +17923,24 @@ declare enum StanceType {
 /**
  * @compileMembersOnly
  */
+declare enum TargetingType {
+    Targeting_None,
+    Targeting_Automatic,
+    Targeting_Manual,
+}
+
+/**
+ * @compileMembersOnly
+ */
+declare enum UICombineType {
+    UI_DoNotCombine,
+    UI_Intersection,
+    UI_Union,
+}
+
+/**
+ * @compileMembersOnly
+ */
 declare enum UIEventType {
     AbilityExectued,
     AllyAttacked,
@@ -17882,150 +18026,6 @@ declare enum WeaponPreference {
     WP_Count,
     WP_Melee,
     WP_Ranged,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum EventCueActionVisibility {
-    ECAV_CanSeeExecutor,
-    ECAV_CanSeeTargetAndExecutorIsOwnOrAlly,
-    ECAV_ExecuterIsOwnOrAlly,
-    ECAV_ExecuterIsOwn,
-    ECAV_CanEnemySeeExecutor,
-    ECAV_TargetIsOwn,
-    ECAV_TargetIsAlly,
-    ECAV_OwnsTargetAndExecuterIsEnemy,
-    ECAV_AlliedToTargetAndExecuterIsEnemy,
-    ECAV_ExecuterIsEnemy,
-    ECAV_CanSeeTargetAndExecutorIsOwn,
-    ECAV_ExecuterIsAlly,
-    ECAV_Global,
-    ECAV_CanSeeTarget,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum Relationship {
-    R_UNDEFINED,
-    R_NEUTRAL,
-    R_ALLY,
-    R_ENEMY,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum EventCueVisibility {
-    ECV_Title,
-    ECV_Queue,
-    ECV_None,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum KillPlayerReason {
-    KPR_COUNT,
-    KPR_NetworkKickedOut,
-    KPR_NetworkDisconnected,
-    KPR_Lost,
-    KPR_Surrendered,
-    KPR_Endgame,
-    KPR_UnusedPlayer,
-    KPR_NetworkAbort,
-    KPR_NetworkOutOfSync,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum DecoratorVisibility {
-    DV_Default,
-    DV_Hidden,
-    DV_Visible,
-    DV_MouseOverOrDamagedEnemy,
-    DV_EnemyOnly,
-    DV_MouseOver,
-    DV_Count,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum AIType {
-    AII_RemoteAITakeover,
-    AII_None,
-    AII_Normal,
-    AII_RemoteHumanTakeover,
-    AII_LocalHumanTakeover,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum UICombineType {
-    UI_Union,
-    UI_Intersection,
-    UI_DoNotCombine,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum Field {
-    AIIslandDecision_Inhabit,
-    AIIslandDecision_Combat,
-    AIIslandDecision_Scout,
-    AIIslandDecision_Gather,
-    AIIslandDecision_Build,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum AddResourceReason {
-    RES_RefundOnDeath,
-    RES_Refund,
-    RES_Resourcing,
-    RES_Gift,
-    RES_Other,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum AIMilitaryEngagementType {
-    AIMET_Capture,
-    AIMET_DefendArea,
-    AIMET_AttackArea,
-    AIMET_NeutralClump,
-    AIMET_EnemyClump,
-    AIMET_AllyClump,
-    AIMET_NeutralStructure,
-    AIMET_AttackStructure,
-    AIMET_DefendStructure,
-    AIMET_Gather,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum TargetingType {
-    Targeting_None,
-    Targeting_Manual,
-    Targeting_Automatic,
-}
-
-/**
- * @compileMembersOnly
- */
-declare enum PresetColour {
-    Colour_Enemy,
-    Colour_Local,
-    Colour_Neutral,
-    Colour_Ally,
 }
 
 declare interface Position {
@@ -18511,6 +18511,48 @@ declare interface EncounterData {
 declare interface CriticalBlueprint {
 }
 
+declare const __AI_debugLevel: 2;
+
+declare const __AI_encounterCounter: 0;
+
+declare const __stagRetreatID: 0;
+
+declare const __t_trainingBriefInterval: 1;
+
+declare const __t_trainingHoverInterval: 3;
+
+declare const __t_trainingInfiniteTimerDuration: 99999;
+
+declare const __t_trainingLongDistance: 50;
+
+declare const __t_trainingLongInterval: 60;
+
+declare const __t_trainingModerateInterval: 30;
+
+declare const __t_trainingShortInterval: 15;
+
+declare const __t_trainingTimerIDOffset: 3000;
+
+declare const __t_trainingVeryLargeTimerDuration: 9999;
+
+declare const __t_trainingWonderInterval: 15;
+
+declare const _StartMission_HoldReferenceCount: 0;
+
+declare const AGE_CASTLE: 3;
+
+declare const AGE_DARK: 1;
+
+declare const AGE_FEUDAL: 2;
+
+declare const AGE_IMPERIAL: 4;
+
+declare const AGE_NONE: 0;
+
+declare const AI_MODULE_COMBAT_RANGE: 40;
+
+declare const AI_MODULE_LEASH_BUFFER: 20;
+
 declare const AIArmyType_ANY: 2;
 
 declare const AIArmyType_LAND: 0;
@@ -18622,6 +18664,44 @@ declare const AIWanderRadiusMode_Leash: 0;
 declare const AIWanderRadiusMode_Override: 2;
 
 declare const AIWanderRadiusMode_TargetArea: 1;
+
+declare const ARMY_DEFEND_TYPE_CURRENT_POSITION: "Current Position";
+
+declare const ARMY_DEFEND_TYPE_FALLBACK: "Fallback";
+
+declare const ARMY_DEFEND_TYPE_SPAWN: "Spawn";
+
+declare const ARMY_DEFEND_TYPE_TARGET: "Target";
+
+declare const ARMY_STATUS_ATTACKING: "Attacking";
+
+declare const ARMY_STATUS_DEFENDING: "Defending";
+
+declare const ARMY_STATUS_DISSOLVED: "Dissolved";
+
+declare const ARMY_STATUS_DISSOLVING_INTO_MODULE: "Dissolving into module";
+
+declare const ARMY_STATUS_EMPTY: "Empty";
+
+declare const ARMY_TARGETING_CYCLE: "Cycle";
+
+declare const ARMY_TARGETING_DISCARD: "Discard";
+
+declare const ARMY_TARGETING_PROX: "Proximity";
+
+declare const ARMY_TARGETING_RANDOM: "Random";
+
+declare const ARMY_TARGETING_RANDOM_MEANDERING: "RandomMeandering";
+
+declare const ARMY_TARGETING_REVERSE: "Reverse";
+
+declare const AT_CIRCLE: "icons/minimap/area_circle";
+
+declare const AT_SQUARE: "icons/minimap/area_square";
+
+declare const AUDIO_TRIGGER_AREA: 1;
+
+declare const AUDIO_TRIGGER_CONDITION: 2;
 
 declare const CampaignAutotestStatus_Fail: 3;
 
@@ -18747,6 +18827,18 @@ declare const CE_SULSCHOLARLOADMADRASA: 54;
 
 declare const CE_SULTRACKMOSQUEHEALING: 55;
 
+declare const CONDITION_LIST_ALL: "all";
+
+declare const CONDITION_LIST_ANY: "any";
+
+declare const CONDITION_LIST_NONE: "none";
+
+declare const CORE_ENCOUNTER_SQUAD_COUNT_LIMIT: 250;
+
+declare const COUNT_DOWN: 1;
+
+declare const COUNT_UP: 0;
+
 declare const COUNTER_Count: 2;
 
 declare const COUNTER_CountUpTo: 3;
@@ -18760,6 +18852,40 @@ declare const COUNTER_TimerIncreasing: 1;
 declare const COUNTER_TurnsDecreasing: 4;
 
 declare const COUNTER_TurnsIncreasing: 5;
+
+declare const CTA_ALARM: "cta_alarm";
+
+declare const CTA_CELEBRATE: "cta_celebration";
+
+declare const CTA_UNIQUE_CHANGE: "cta_focus_change";
+
+declare const CTA_UNIQUE_STAKES: "cta_raised_stakes";
+
+declare const DO_NOTHING: 0;
+
+declare const DST_CLOSEST_HIDDEN: 2;
+
+declare const DST_CLOSEST_VISIBLE: 3;
+
+declare const DST_FURTHEST_HIDDEN: 0;
+
+declare const DST_FURTHEST_VISIBLE: 1;
+
+declare const DT_BONUS_DEFAULT: "BonusObjectiveDataTemplate";
+
+declare const DT_INFO_DEFAULT: "InfoObjectiveDataTemplate";
+
+declare const DT_PRIMARY_DEFAULT: "PrimaryObjectiveDataTemplate";
+
+declare const DT_PRIMARY_OR: "PrimaryOrObjectiveDataTemplate";
+
+declare const DT_SECONDARY_DEFAULT: "SecondaryObjectiveDataTemplate";
+
+declare const EVENT_AMBIENT: 2;
+
+declare const EVENT_INTEL: 1;
+
+declare const EVENT_NIS: 0;
 
 declare const EXTID_Ability: "ability_ext";
 
@@ -18880,6 +19006,20 @@ declare const EXTID_WalkableSurface: "walkable_surface_ext";
 declare const EXTID_Wall: "wall_ext";
 
 declare const EXTID_Weapon: "weapon_ext";
+
+declare const FILTER_KEEP: 0;
+
+declare const FILTER_REMOVE: 1;
+
+declare const g_AIManagerDifficulty: 1;
+
+declare const g_audioTriggerCounter: 1;
+
+declare const g_TimerRate: 1;
+
+declare const GAMEOVER_OBJECTIVE_TIME: 6.5;
+
+declare const GAMEOVER_PRESENTATION_TIME: 20;
 
 declare const GD_EASY: 0;
 
@@ -19241,15 +19381,147 @@ declare const GE_WallCombatStarted: 5767168;
 
 declare const GE_WallWalked: 5701632;
 
-declare const huge: typeof NaN;
+declare const GOAL_ABILITY: "Ability";
+
+declare const GOAL_ATTACK: "Attack";
+
+declare const GOAL_DEFEND: "Defend";
+
+declare const GOAL_FORMATION_ATTACK: "FormationAttack";
+
+declare const GOAL_FORMATION_DEFEND: "FormationDefend";
+
+declare const GOAL_MOVE: "Move";
+
+declare const GOAL_TOWNLIFE: "TownLife";
 
 declare const INVALID_AISQUADID: 0;
 
-declare const maxinteger: 9223372036854776000;
+declare const IT_B_Default: "icons/objectives/objectives_generic_small";
 
-declare const mininteger: -9223372036854776000;
+declare const IT_I_Default: "icons/objectives/objectives_warning_small";
 
-declare const Multiplayer: 1;
+declare const IT_P_Default: "icons/objectives/objectives_generic_small";
+
+declare const IT_S_Default: "icons/objectives/objectives_generic_small";
+
+declare const LOCATION_ASSOCIATION_DISTANCE: 40;
+
+declare const LOCATION_LABEL_HEIGHT: 10;
+
+declare const MIX_RETURN_TO_GAME: "mix_set_game_flow_state_in_game";
+
+declare const MIX_START_INTRO_CAM: "mix_set_game_flow_state_nis";
+
+declare const MIX_START_OUTRO_CAM: "mix_set_game_flow_state_nis";
+
+declare const MUS_STING_BONUS_OBJ_COMPLETE: "sfx_ui_event_queue_campaign_objective_complete";
+
+declare const MUS_STING_BONUS_OBJ_FAIL: "sfx_ui_event_queue_campaign_objective_fail";
+
+declare const MUS_STING_BONUS_OBJ_START: "sfx_ui_event_queue_campaign_objective_start";
+
+declare const MUS_STING_NEGATIVE: "mus_stinger_campaign_negative";
+
+declare const MUS_STING_POSITIVE: "mus_stinger_campaign_positive";
+
+declare const MUS_STING_PRIMARY_OBJ_COMPLETE: "sfx_ui_event_queue_campaign_objective_complete";
+
+declare const MUS_STING_PRIMARY_OBJ_COMPLETE_ENDGAME: "sfx_ui_event_queue_campaign_objective_complete_endgame";
+
+declare const MUS_STING_PRIMARY_OBJ_FAIL: "sfx_ui_event_queue_campaign_objective_fail";
+
+declare const MUS_STING_PRIMARY_OBJ_START: "sfx_ui_event_queue_campaign_objective_start";
+
+declare const MUS_STING_TRIUMPHANT: "mus_stinger_campaign_triumph_short";
+
+declare const MUS_STING_WARN_OBJ_COMPLETE: "sfx_ui_event_queue_campaign_objective_complete";
+
+declare const MUS_STING_WARN_OBJ_FAIL: "sfx_ui_event_queue_campaign_objective_fail";
+
+declare const MUS_STING_WARN_OBJ_START: "sfx_ui_event_queue_campaign_objective_start";
+
+declare const MUS_STINGER_ALERT: "mus_stinger_campaign_alert";
+
+declare const MUS_STINGER_WARNING: "mus_stinger_campaign_warning";
+
+declare const MUSIC_COMBAT: "mus_combat_intensity_state_comb";
+
+declare const MUSIC_COMBAT_RARE: "mus_combat_intensity_state_comb_rare";
+
+declare const MUSIC_DEFAULT: "mus_combat_intensity_state_exp";
+
+declare const MUSIC_EXPLORE: "mus_combat_intensity_state_exp";
+
+declare const MUSIC_EXPLORE_RARE: "mus_combat_intensity_state_exp_rare";
+
+declare const MUSIC_EXPLORE_TENSE: "mus_combat_intensity_state_exp_tens";
+
+declare const MUSIC_EXPLORE_TENSE_RARE: "mus_combat_intensity_state_exp_tens_rare";
+
+declare const MUSIC_RARE: "mus_combat_intensity_state_rare";
+
+declare const MUSIC_SILENT: "silent";
+
+declare const MUSIC_STOP: "mus_core_event_stop_all_civs";
+
+declare const MUSIC_TENSE: "mus_combat_intensity_state_tens";
+
+declare const MUSIC_TENSE_COMBAT: "mus_combat_intensity_state_tens_comb";
+
+declare const MUSIC_TENSE_COMBAT_RARE: "mus_combat_intensity_state_tens_comb_rare";
+
+declare const MUSIC_TENSE_RARE: "mus_combat_intensity_state_tens_rare";
+
+declare const NIS_CLOSING: 2;
+
+declare const NIS_CLOSING_NOFADE: 6;
+
+declare const NIS_MID: 1;
+
+declare const NIS_OPENING: 0;
+
+declare const NIS_OPENING_BLACK: 3;
+
+declare const NIS_OPENING_BLEND: 5;
+
+declare const NIS_OPENING_FULLSCREEN: 4;
+
+declare const NIS_PERF_TEST: 7;
+
+declare const NISLET_BLACK2GAME: 1;
+
+declare const NISLET_GAME2BLACK: 3;
+
+declare const NISLET_GAME2GAME: 2;
+
+declare const NISLET_GAME2LETTER: 4;
+
+declare const NISLET_TIME: 1;
+
+declare const NISLET_VO: 2;
+
+declare const OFFSET_BACK: 4;
+
+declare const OFFSET_BACK_LEFT: 5;
+
+declare const OFFSET_BACK_RIGHT: 3;
+
+declare const OFFSET_FRONT: 0;
+
+declare const OFFSET_FRONT_LEFT: 7;
+
+declare const OFFSET_FRONT_RIGHT: 1;
+
+declare const OFFSET_LEFT: 6;
+
+declare const OFFSET_RIGHT: 2;
+
+declare const PB_CENTER: 1;
+
+declare const PB_LEFT: 0;
+
+declare const PB_OBJ: 2;
 
 declare const PBG_Ability: 0;
 
@@ -19299,7 +19571,11 @@ declare const PBGTYPE_Squad: 3014656;
 
 declare const PBGTYPE_Upgrade: 3407872;
 
-declare const pi: 3.1415926535898;
+declare const PROX_CENTER: 2;
+
+declare const PROX_LONGEST: 1;
+
+declare const PROX_SHORTEST: 0;
 
 declare const RT_Action: 0;
 
@@ -19359,9 +19635,19 @@ declare const SCARTYPE_SGROUP: 1936138272;
 
 declare const SCARTYPE_SQUAD: 1936811040;
 
-declare const Singleplayer: 0;
+declare const SFX_VICTORY_TIMER_FINAL: "sfx_ui_victory_countdown_update_final";
 
-declare const Skirmish: 2;
+declare const SFX_VICTORY_TIMER_FIRST: "sfx_ui_victory_countdown_update_first";
+
+declare const SFX_VICTORY_TIMER_MIX_EVENT: "mus_shared_victory_countdown_mix_event";
+
+declare const SFX_VICTORY_TIMER_MIX_RESET_EVENT: "mus_shared_victory_countdown_mix_event_reset";
+
+declare const SFX_VICTORY_TIMER_SECOND: "sfx_ui_victory_countdown_update_second";
+
+declare const SPAWN_ATMARKER: 1;
+
+declare const SPAWN_ATSQUAD: 2;
 
 declare const SQUADEXTID_Ability: "squad_ability_ext";
 
@@ -19407,6 +19693,10 @@ declare const SQUADEXTID_Upgrade: "squad_upgrade_ext";
 
 declare const SQUADEXTID_Veterancy: "squad_veterancy_ext";
 
+declare const STINGER_ALERT: "mus_stinger_alert";
+
+declare const STINGER_COMBAT_THREAT: "mus_stinger_event_combat_threat";
+
 declare const TASK_COUNT: 47;
 
 declare const TEAM_NEUTRAL: 10001;
@@ -19440,6 +19730,58 @@ declare const TFF_RangedCombat: 8192;
 declare const TFF_Vehicle: 4;
 
 declare const TFF_Visible: 1;
+
+declare const TIMER_PAUSED: typeof NaN;
+
+declare const UI_TYPE_COMMAND: 1;
+
+declare const UI_TYPE_DATA_CONTEXT: 2;
+
+declare const WALLA_CAMP_CELEBRATE_LARGE: "sfx_campaign_scripted_large_group_celebrate";
+
+declare const WALLA_CAMP_CELEBRATE_MEDIUM: "sfx_campaign_scripted_medium_group_celebrate";
+
+declare const WALLA_CAMP_CELEBRATE_SMALL: "sfx_campaign_scripted_small_group_celebrate";
+
+declare const WALLA_CAMP_CHARGE_LARGE: "sfx_campaign_scripted_large_group_charge";
+
+declare const WALLA_CAMP_CHARGE_MEDIUM: "sfx_campaign_scripted_medium_group_charge";
+
+declare const WALLA_CAMP_CHARGE_SMALL: "sfx_campaign_scripted_small_group_charge";
+
+declare const WALLA_CAMP_ENGAGE_LARGE: "sfx_campaign_scripted_large_group_engage";
+
+declare const WALLA_CAMP_ENGAGE_MEDIUM: "sfx_campaign_scripted_medium_group_engage";
+
+declare const WALLA_CAMP_ENGAGE_SMALL: "sfx_campaign_scripted_small_group_din_engage";
+
+declare const WALLA_CAMP_FEAR_LARGE: "sfx_campaign_scripted_large_group_fear";
+
+declare const WALLA_CAMP_FEAR_MEDIUM: "sfx_campaign_scripted_medium_group_fear";
+
+declare const WALLA_CAMP_FEAR_SMALL: "sfx_campaign_scripted_small_group_fear";
+
+declare const WALLA_CAMP_SPEARWALL_LARGE: "sfx_campaign_scripted_large_group_spearwall";
+
+declare const WALLA_CAMP_SPEARWALL_MEDIUM: "sfx_campaign_scripted_medium_group_spearwall";
+
+declare const WALLA_CAMP_SPEARWALL_SMALL: "sfx_campaign_scripted_small_group_spearwall";
+
+declare const WM_ACCURACY: "accuracy_weapon_modifier";
+
+declare const WM_BURST: "burst_weapon_modifier";
+
+declare const WM_COOLDOWN: "cooldown_weapon_modifier";
+
+declare const WM_DAMAGE: "damage_weapon_modifier";
+
+declare const WM_ENABLE: "enable_weapon_modifier";
+
+declare const WM_PENETRATION: "weapon_penetration_modifier";
+
+declare const WM_RANGE: "range_weapon_modifier";
+
+declare const WM_RELOAD: "reload_weapon_modifier";
 
 declare const WR_ANNIHILATION: 0;
 

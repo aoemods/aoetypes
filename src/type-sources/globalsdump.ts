@@ -2,7 +2,7 @@ import { TypeSourceConstant, TypeSourceEnum, TypeSourceEnumMember } from "./type
 import { ConstantTypeSource, EnumTypeSource } from "./typesource.js"
 
 function extractConstant(fullText: string): TypeSourceConstant | null {
-    const m = fullText.match(/\[([A-Za-z0-9_]+)\] => \((number|string)\) (.+)/)
+    const m = fullText.match(/^    \[([A-Za-z0-9_]+)\] => \((number|string)\) (.+)/)
 
     if (m) {
         switch (m[2]) {
@@ -27,7 +27,7 @@ function extractConstant(fullText: string): TypeSourceConstant | null {
 type ExtractEnumResult = { name: string, member: TypeSourceEnumMember }
 
 function extractEnum(fullText: string): ExtractEnumResult | null {
-    const m = fullText.match(/\[([A-Za-z0-9_]+)\] => \(userdata\) "(?:.+::)?([a-zA-Z0-9_]+)\(\d+\)"/)
+    const m = fullText.match(/^    \[([A-Za-z0-9_]+)\] => \(userdata\) "(?:.+::)?([a-zA-Z0-9_]+)\(\d+\)"/)
 
     if (m) {
         return {
@@ -43,7 +43,7 @@ function extractEnum(fullText: string): ExtractEnumResult | null {
 }
 
 function getLines(text: string): string[] {
-    return text.split("\n").map(line => line.trim()).filter(line => line)
+    return text.split("\n").map(line => line.trimEnd()).filter(line => line)
 }
 
 const parseConstants = (text: string): TypeSourceConstant[] => {

@@ -234,18 +234,20 @@ const createTypeDeclaration = (type: TypeSourceType, ignoreTypeDeclarations: Set
 }
 
 const getEnumDeclarations = (sources: TypeSources): dom.TopLevelDeclaration[] => {
-    return sources.aoe4Enums.map(e => {
-        const enumDecl = dom.create.enum(e.name)
-        const addedMembers = new Set<string>()
-        for (const enumMember of e.members) {
-            if (!addedMembers.has(enumMember.name)) {
-                enumDecl.members.push(dom.create.enumValue(enumMember.name))
-                addedMembers.add(enumMember.name)
+    return sources.aoe4Enums
+        .sort((a, b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 0))
+        .map(e => {
+            const enumDecl = dom.create.enum(e.name)
+            const addedMembers = new Set<string>()
+            for (const enumMember of e.members) {
+                if (!addedMembers.has(enumMember.name)) {
+                    enumDecl.members.push(dom.create.enumValue(enumMember.name))
+                    addedMembers.add(enumMember.name)
+                }
             }
-        }
-        enumDecl.jsDocComment = "@compileMembersOnly"
-        return enumDecl
-    })
+            enumDecl.jsDocComment = "@compileMembersOnly"
+            return enumDecl
+        })
 }
 
 function getIgnoredTypeDeclarations(sources: TypeSources): Set<string> {

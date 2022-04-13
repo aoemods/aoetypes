@@ -49,7 +49,7 @@ export async function loadSources(): Promise<TypeSources> {
     const aoe4FunctionsHtml = await fs.readFile("data/aoe4-scardocs/function_list.htm", "utf-8")
     const aoe4EnumsHtml = await fs.readFile("data/aoe4-scardocs/enum_list.htm", "utf-8")
     const coh2FunctionsHtml = await fs.readFile("data/coh2-scardocs/function_list.htm", "utf-8")
-    const aoe4GlobalsDumpText = await fs.readFile("data/aoe4-dumps/ingame-gamemode-none.txt", "utf-8")
+    const aoe4GlobalsDumpText = await fs.readFile("data/aoe4-dumps/dump.txt", "utf-8")
 
     const aoe4Functions = makeScarDocsFunctionTypeSource(aoe4FunctionsHtml).getFunctions()
     const aoe4Enums = makeScarDocsEnumTypeSource(aoe4EnumsHtml).getEnums()

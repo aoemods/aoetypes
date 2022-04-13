@@ -24,7 +24,7 @@ View the types in your browser [here](https://aoemods.github.io/aoetypes-docs).
 - Clone this repo and `npm i`
 - (Optional): download https://cm2.network/ScarDoc/function_list.htm to `data/coh2-scardocs/`
 - (Optional): copy `function_list.htm` and `enum_list.htm` to `data/aoe4-scardocs/`
-- (Optional): run the script in `dumpglobals.lua` in the ingame console while with game mode set to None and follow its instructions in the comment
+- (Optional): run the script `dumpglobals.lua` as detailed in its comment
 - Copy scar / lua scripts from data.sga archives to `data/aoe4-scar/` (both cardinal and engine, the script will search there recursively so doesn't matter what the folders are named)
 - `npm start` will generate the types into `packages/aoetypes/types/aoetypes.d.ts`
 
